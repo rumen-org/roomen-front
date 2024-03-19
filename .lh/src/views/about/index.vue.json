@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/views/about/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1710812285100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1710812291163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,12 @@\n <template>\n     \n-</template>\n\\ No newline at end of file\n+</template>\n+<script>\n+import { defineComponent } from '@vue/composition-api'\n+\n+export default defineComponent({\n+    setup() {\n+        \n+    },\n+})\n+</script>\n"
+                },
+                {
+                    "date": 1710812300802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+<template>\n+    \n+</template>\n+<script>\n+import { defineComponent } from '@vue/composition-api'\n+\n+export default defineComponent({\n+    setup() {\n+        \n+    },\n+})\n+</script>\n"
+                },
+                {
+                    "date": 1710812334126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,12 @@\n <template>\n     \n </template>\n-<script>\n+<script setup>\n import { defineComponent } from '@vue/composition-api'\n \n export default defineComponent({\n     setup() {\n         \n     },\n })\n </script>\n-<template>\n-    \n-</template>\n-<script>\n-import { defineComponent } from '@vue/composition-api'\n-\n-export default defineComponent({\n-    setup() {\n-        \n-    },\n-})\n-</script>\n"
+                }
+            ],
+            "date": 1710812285100,
+            "name": "Commit-0",
+            "content": "<template>\n    \n</template>"
+        }
+    ]
+}

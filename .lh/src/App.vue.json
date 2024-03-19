@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/App.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1710810509429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1710811559197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,14 @@\n   <header>\n     <img alt=\"Vue logo\" class=\"logo\" src=\"@/assets/logo.svg\" width=\"125\" height=\"125\" />\n \n     <div class=\"wrapper\">\n-      \n+      <HelloWorld msg=\"You did it!\" />\n+\n+      <nav>\n+        <RouterLink to=\"/\">Home</RouterLink>\n+        <RouterLink to=\"/about\">About</RouterLink>\n+      </nav>\n     </div>\n   </header>\n \n   <RouterView />\n"
+                },
+                {
+                    "date": 1710811564603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,21 +3,9 @@\n import HelloWorld from './components/HelloWorld.vue'\n </script>\n \n <template>\n-  <header>\n-    <img alt=\"Vue logo\" class=\"logo\" src=\"@/assets/logo.svg\" width=\"125\" height=\"125\" />\n \n-    <div class=\"wrapper\">\n-      <HelloWorld msg=\"You did it!\" />\n-\n-      <nav>\n-        <RouterLink to=\"/\">Home</RouterLink>\n-        <RouterLink to=\"/about\">About</RouterLink>\n-      </nav>\n-    </div>\n-  </header>\n-\n   <RouterView />\n </template>\n \n <style scoped>\n"
+                }
+            ],
+            "date": 1710810509429,
+            "name": "Commit-0",
+            "content": "<script setup lang=\"ts\">\nimport { RouterLink, RouterView } from 'vue-router'\nimport HelloWorld from './components/HelloWorld.vue'\n</script>\n\n<template>\n  <header>\n    <img alt=\"Vue logo\" class=\"logo\" src=\"@/assets/logo.svg\" width=\"125\" height=\"125\" />\n\n    <div class=\"wrapper\">\n      \n    </div>\n  </header>\n\n  <RouterView />\n</template>\n\n<style scoped>\nheader {\n  line-height: 1.5;\n  max-height: 100vh;\n}\n\n.logo {\n  display: block;\n  margin: 0 auto 2rem;\n}\n\nnav {\n  width: 100%;\n  font-size: 12px;\n  text-align: center;\n  margin-top: 2rem;\n}\n\nnav a.router-link-exact-active {\n  color: var(--color-text);\n}\n\nnav a.router-link-exact-active:hover {\n  background-color: transparent;\n}\n\nnav a {\n  display: inline-block;\n  padding: 0 1rem;\n  border-left: 1px solid var(--color-border);\n}\n\nnav a:first-of-type {\n  border: 0;\n}\n\n@media (min-width: 1024px) {\n  header {\n    display: flex;\n    place-items: center;\n    padding-right: calc(var(--section-gap) / 2);\n  }\n\n  .logo {\n    margin: 0 2rem 0 0;\n  }\n\n  header .wrapper {\n    display: flex;\n    place-items: flex-start;\n    flex-wrap: wrap;\n  }\n\n  nav {\n    text-align: left;\n    margin-left: -1rem;\n    font-size: 1rem;\n\n    padding: 1rem 0;\n    margin-top: 1rem;\n  }\n}\n</style>\n"
+        }
+    ]
+}
