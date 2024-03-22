@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 33,
             "patches": [
                 {
                     "date": 1710812246193,
@@ -56,6 +56,90 @@
                 {
                     "date": 1710812592597,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       name: 'about',\n       // route level code-splitting\n       // this generates a separate chunk (About.[hash].js) for this route\n       // which is lazy-loaded when the route is visited.\n-      component: () => import('../views/AboutView.vue')\n+      component: () => import('../views/about/Index.vue')\n     }\n   ]\n })\n \n"
+                },
+                {
+                    "date": 1711098120126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,65 @@\n-import { createRouter, createWebHistory } from 'vue-router'\n-import HomeView from '../views/main/Index.vue'\n-import about from '../views/about/Index.vue'\n+import { createRouter, createWebHashHistory, RouteRecordRaw, } from 'vue-router'\n+\n+// Ts, Vue-router - 240322 한준희 \n+const routes: Array<RouteRecordRaw> = [\n+  {\n+    path: '/',\n+    name: 'Main',\n+    component: () => import('@/views/main/index.vue')\n+  },\n+  {\n+    path: '/about',\n+    name: 'About',\n+    component: () => import('@/views/about/index.vue')\n+  },\n+  {\n+    path: '/cart',\n+    name: 'Cart',\n+    component: () => import('@/views/cart/index.vue')\n+  },\n+  {\n+    path: '/community',\n+    name: 'Comunnity',\n+    component: () => import('@/views/community/index.vue'),\n+    children: [\n+      {\n+        path: '/community/gallery',\n+        name: 'Gallery',\n+        component: () => import('@/views/community/gallery/index.vue'),\n+      },\n+      {\n+        path: '/community/notice',\n+        name: 'Notice',\n+        component: () => import('@/views/community/notice/index.vue'),\n+      },\n+      {\n+        path: '/community/Q&A',\n+        name: 'Q&A',\n+        component: () => import('@/views/community/q&a/index.vue'),\n+      },\n+    ],\n+  },\n+  {\n+    path: '/login',\n+    name: 'Login',\n+    component: () => import('@/views/login/index.vue')\n+  },\n+  {\n+    path: '/mypage',\n+    name: 'Mypage',\n+    component: () => import('@/views/my_page/index.vue')\n+  },\n+  {\n+    path: '/product',\n+    name: 'Product',\n+    component: () => import('@/views/product/index.vue')\n+  },\n+]\n+\n const router = createRouter({\n-  history: createWebHistory(import.meta.env.BASE_URL),\n-  routes: [\n-    {\n-      path: '/',\n-      name: 'home',\n-      component: HomeView\n-    },\n-    {\n-      path: '/about',\n-      name: 'about',\n-      // route level code-splitting\n-      // this generates a separate chunk (About.[hash].js) for this route\n-      // which is lazy-loaded when the route is visited.\n-      component: () => import('../views/about/Index.vue')\n-    }\n-  ]\n+  history: createWebHashHistory(),\n+  routes,\n+  \n })\n \n-export default router\n+export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098128454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,8 +58,8 @@\n \n const router = createRouter({\n   history: createWebHashHistory(),\n   routes,\n-  \n+  scrollBehavior\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098134757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,65 @@\n+import { createRouter, createWebHashHistory, RouteRecordRaw, } from 'vue-router'\n+\n+// Ts, Vue-router - 240322 한준희 \n+const routes: Array<RouteRecordRaw> = [\n+  {\n+    path: '/',\n+    name: 'Main',\n+    component: () => import('@/views/main/index.vue')\n+  },\n+  {\n+    path: '/about',\n+    name: 'About',\n+    component: () => import('@/views/about/index.vue')\n+  },\n+  {\n+    path: '/cart',\n+    name: 'Cart',\n+    component: () => import('@/views/cart/index.vue')\n+  },\n+  {\n+    path: '/community',\n+    name: 'Comunnity',\n+    component: () => import('@/views/community/index.vue'),\n+    children: [\n+      {\n+        path: '/community/gallery',\n+        name: 'Gallery',\n+        component: () => import('@/views/community/gallery/index.vue'),\n+      },\n+      {\n+        path: '/community/notice',\n+        name: 'Notice',\n+        component: () => import('@/views/community/notice/index.vue'),\n+      },\n+      {\n+        path: '/community/Q&A',\n+        name: 'Q&A',\n+        component: () => import('@/views/community/q&a/index.vue'),\n+      },\n+    ],\n+  },\n+  {\n+    path: '/login',\n+    name: 'Login',\n+    component: () => import('@/views/login/index.vue')\n+  },\n+  {\n+    path: '/mypage',\n+    name: 'Mypage',\n+    component: () => import('@/views/my_page/index.vue')\n+  },\n+  {\n+    path: '/product',\n+    name: 'Product',\n+    component: () => import('@/views/product/index.vue')\n+  },\n+]\n+\n+const router = createRouter({\n+  history: createWebHashHistory(),\n+  routes,\n+  scrollBehavior() {}\n+})\n+\n+export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098140098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,73 +58,8 @@\n \n const router = createRouter({\n   history: createWebHashHistory(),\n   routes,\n-  scrollBehavior() {}\n+  scrollBehavior(to, from, ) {}\n })\n \n-export default router\n-import { createRouter, createWebHashHistory, RouteRecordRaw, } from 'vue-router'\n-\n-// Ts, Vue-router - 240322 한준희 \n-const routes: Array<RouteRecordRaw> = [\n-  {\n-    path: '/',\n-    name: 'Main',\n-    component: () => import('@/views/main/index.vue')\n-  },\n-  {\n-    path: '/about',\n-    name: 'About',\n-    component: () => import('@/views/about/index.vue')\n-  },\n-  {\n-    path: '/cart',\n-    name: 'Cart',\n-    component: () => import('@/views/cart/index.vue')\n-  },\n-  {\n-    path: '/community',\n-    name: 'Comunnity',\n-    component: () => import('@/views/community/index.vue'),\n-    children: [\n-      {\n-        path: '/community/gallery',\n-        name: 'Gallery',\n-        component: () => import('@/views/community/gallery/index.vue'),\n-      },\n-      {\n-        path: '/community/notice',\n-        name: 'Notice',\n-        component: () => import('@/views/community/notice/index.vue'),\n-      },\n-      {\n-        path: '/community/Q&A',\n-        name: 'Q&A',\n-        component: () => import('@/views/community/q&a/index.vue'),\n-      },\n-    ],\n-  },\n-  {\n-    path: '/login',\n-    name: 'Login',\n-    component: () => import('@/views/login/index.vue')\n-  },\n-  {\n-    path: '/mypage',\n-    name: 'Mypage',\n-    component: () => import('@/views/my_page/index.vue')\n-  },\n-  {\n-    path: '/product',\n-    name: 'Product',\n-    component: () => import('@/views/product/index.vue')\n-  },\n-]\n-\n-const router = createRouter({\n-  history: createWebHashHistory(),\n-  routes,\n-  scrollBehavior\n-})\n-\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098155304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,8 +58,10 @@\n \n const router = createRouter({\n   history: createWebHashHistory(),\n   routes,\n-  scrollBehavior(to, from, ) {}\n+  scrollBehavior(to, from, positions) {\n+    top: 0;\n+  }\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098163163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n const router = createRouter({\n   history: createWebHashHistory(),\n   routes,\n   scrollBehavior(to, from, positions) {\n-    top: 0;\n+    return {}\n   }\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098172098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,11 @@\n const router = createRouter({\n   history: createWebHashHistory(),\n   routes,\n   scrollBehavior(to, from, positions) {\n-    return {}\n+    return {\n+      top: 0,\n+    }\n   }\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098185637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,9 @@\n   scrollBehavior(to, from, positions) {\n     return {\n       top: 0,\n     }\n-  }\n+  },\n+  linkActiveClass:\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098196636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,8 +63,8 @@\n     return {\n       top: 0,\n     }\n   },\n-  linkActiveClass:\n+  linkActiveClass: 'nav-active'm\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098343136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,13 +58,9 @@\n \n const router = createRouter({\n   history: createWebHashHistory(),\n   routes,\n-  scrollBehavior(to, from, positions) {\n-    return {\n-      top: 0,\n-    }\n-  },\n-  linkActiveClass: 'nav-active'm\n+\n+  linkActiveClass: 'nav-active',\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098348738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,9 @@\n ]\n \n const router = createRouter({\n   history: createWebHashHistory(),\n+\n   routes,\n \n   linkActiveClass: 'nav-active',\n })\n"
+                },
+                {
+                    "date": 1711098355948,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,11 +57,10 @@\n ]\n \n const router = createRouter({\n   history: createWebHashHistory(),\n-\n+  scrollBehavior: () => ({ y: 0 }),\n   routes,\n-\n   linkActiveClass: 'nav-active',\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098381374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,10 +57,14 @@\n ]\n \n const router = createRouter({\n   history: createWebHashHistory(),\n-  scrollBehavior: () => ({ y: 0 }),\n   routes,\n+  scrollBehavior(to, from, positions) {\n+    return {\n+      top: 0,\n+    }\n+  },\n   linkActiveClass: 'nav-active',\n })\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098421342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,6 +65,7 @@\n     }\n   },\n   linkActiveClass: 'nav-active',\n })\n+router\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098427266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,7 +65,7 @@\n     }\n   },\n   linkActiveClass: 'nav-active',\n })\n-router\n+router.beforeEach({})\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098432713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,7 +65,7 @@\n     }\n   },\n   linkActiveClass: 'nav-active',\n })\n-router.beforeEach({})\n+router.beforeEach(() => {})\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098437828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,7 +65,7 @@\n     }\n   },\n   linkActiveClass: 'nav-active',\n })\n-router.beforeEach(() => {})\n+router.beforeEach((to, from, next) => {})\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098443553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,7 +65,9 @@\n     }\n   },\n   linkActiveClass: 'nav-active',\n })\n-router.beforeEach((to, from, next) => {})\n+router.beforeEach((to, from, next) => {\n+  next();\n+})\n \n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098451825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,74 @@\n+import { createRouter, createWebHashHistory, RouteRecordRaw, } from 'vue-router'\n+\n+// Ts, Vue-router - 240322 한준희 \n+const routes: Array<RouteRecordRaw> = [\n+  {\n+    path: '/',\n+    name: 'Main',\n+    component: () => import('@/views/main/index.vue')\n+  },\n+  {\n+    path: '/about',\n+    name: 'About',\n+    component: () => import('@/views/about/index.vue')\n+  },\n+  {\n+    path: '/cart',\n+    name: 'Cart',\n+    component: () => import('@/views/cart/index.vue')\n+  },\n+  {\n+    path: '/community',\n+    name: 'Comunnity',\n+    component: () => import('@/views/community/index.vue'),\n+    children: [\n+      {\n+        path: '/community/gallery',\n+        name: 'Gallery',\n+        component: () => import('@/views/community/gallery/index.vue'),\n+      },\n+      {\n+        path: '/community/notice',\n+        name: 'Notice',\n+        component: () => import('@/views/community/notice/index.vue'),\n+      },\n+      {\n+        path: '/community/Q&A',\n+        name: 'Q&A',\n+        component: () => import('@/views/community/q&a/index.vue'),\n+      },\n+    ],\n+  },\n+  {\n+    path: '/login',\n+    name: 'Login',\n+    component: () => import('@/views/login/index.vue')\n+  },\n+  {\n+    path: '/mypage',\n+    name: 'Mypage',\n+    component: () => import('@/views/my_page/index.vue')\n+  },\n+  {\n+    path: '/product',\n+    name: 'Product',\n+    component: () => import('@/views/product/index.vue')\n+  },\n+]\n+\n+const router = createRouter({\n+  history: createWebHashHistory(),\n+  routes,\n+  scrollBehavior(to, from, positions) {\n+    return {\n+      top: 0,\n+    }\n+  },\n+  linkActiveClass: 'nav-active',\n+})\n+router.beforeEach((to, from, next) => {\n+  \n+  next();\n+})\n+\n+export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098460230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,82 +66,9 @@\n   },\n   linkActiveClass: 'nav-active',\n })\n router.beforeEach((to, from, next) => {\n-  \n+  // 라우터 이동시의 처리 ()\n   next();\n })\n \n-export default router\n-import { createRouter, createWebHashHistory, RouteRecordRaw, } from 'vue-router'\n-\n-// Ts, Vue-router - 240322 한준희 \n-const routes: Array<RouteRecordRaw> = [\n-  {\n-    path: '/',\n-    name: 'Main',\n-    component: () => import('@/views/main/index.vue')\n-  },\n-  {\n-    path: '/about',\n-    name: 'About',\n-    component: () => import('@/views/about/index.vue')\n-  },\n-  {\n-    path: '/cart',\n-    name: 'Cart',\n-    component: () => import('@/views/cart/index.vue')\n-  },\n-  {\n-    path: '/community',\n-    name: 'Comunnity',\n-    component: () => import('@/views/community/index.vue'),\n-    children: [\n-      {\n-        path: '/community/gallery',\n-        name: 'Gallery',\n-        component: () => import('@/views/community/gallery/index.vue'),\n-      },\n-      {\n-        path: '/community/notice',\n-        name: 'Notice',\n-        component: () => import('@/views/community/notice/index.vue'),\n-      },\n-      {\n-        path: '/community/Q&A',\n-        name: 'Q&A',\n-        component: () => import('@/views/community/q&a/index.vue'),\n-      },\n-    ],\n-  },\n-  {\n-    path: '/login',\n-    name: 'Login',\n-    component: () => import('@/views/login/index.vue')\n-  },\n-  {\n-    path: '/mypage',\n-    name: 'Mypage',\n-    component: () => import('@/views/my_page/index.vue')\n-  },\n-  {\n-    path: '/product',\n-    name: 'Product',\n-    component: () => import('@/views/product/index.vue')\n-  },\n-]\n-\n-const router = createRouter({\n-  history: createWebHashHistory(),\n-  routes,\n-  scrollBehavior(to, from, positions) {\n-    return {\n-      top: 0,\n-    }\n-  },\n-  linkActiveClass: 'nav-active',\n-})\n-router.beforeEach((to, from, next) => {\n-  next();\n-})\n-\n export default router\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711098473048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n   },\n   linkActiveClass: 'nav-active',\n })\n router.beforeEach((to, from, next) => {\n-  // 라우터 이동시의 처리 ()\n+  // 라우터 이동시의 처리부분\n   next();\n })\n \n export default router\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1710812246193,

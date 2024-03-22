@@ -59,6 +59,16 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  scrollBehavior(to, from, positions) {
+    return {
+      top: 0,
+    }
+  },
+  linkActiveClass: 'nav-active',
+})
+router.beforeEach((to, from, next) => {
+  // 라우터 이동시의 처리부분
+  next();
 })
 
 export default router

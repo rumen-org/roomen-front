@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/api/apiTree.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1711094542999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711094548890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const \n\\ No newline at end of file\n+const tree\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711094557514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,1 @@\n+const urlTree = {}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711094576591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,1 @@\n-const urlTree = {}\n-const tree\n\\ No newline at end of file\n+let urlTree = {}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711094581849,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-let urlTree = {}\n\\ No newline at end of file\n+let urlTree = {};\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711094588756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +0,0 @@\n-let urlTree = {};\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711094596479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,1 @@\n+urls:{}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711094601637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n-urls:{\n-  \n+\n+{\n+\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711094643099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+\n+{\n+  main: {}\n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1711094542999,
+            "name": "Commit-0",
+            "content": "const "
+        }
+    ]
+}

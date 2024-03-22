@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/api/getApi.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1711099019714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711099027336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-import axios from 'axios';\n\\ No newline at end of file\n+import axios from 'axios';\\\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711099038451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,2 @@\n-import axios from 'axios';\\\n\\ No newline at end of file\n+import axios from 'axios'\n+export \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711099045155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n import axios from 'axios'\n-export \n\\ No newline at end of file\n+export const use\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711099052672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n import axios from 'axios'\n-export const use\n\\ No newline at end of file\n+export const useGetApi = \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711099066844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n import axios from 'axios'\n-export const useGetApi = \n\\ No newline at end of file\n+export const useGetApi()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711099075798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n import axios from 'axios'\n-export const useGetApi()\n\\ No newline at end of file\n+export const useGetApi = () => {}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1711099019714,
+            "name": "Commit-0",
+            "content": "import axios from 'axios';"
+        }
+    ]
+}
