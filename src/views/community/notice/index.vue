@@ -1,12 +1,6 @@
 <template>
-    
+  <NoticeComponent></NoticeComponent>
 </template>
-<script setup>
-import { defineComponent } from '@vue/composition-api'
-
-export default defineComponent({
-    setup() {
-        
-    },
-})
+<script setup lang="ts">
+import NoticeComponent from '@components/pages/community/notice/index.vue';
 </script>

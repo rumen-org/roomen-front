@@ -1,9 +1,6 @@
-<template></template>
-
-<script setup>
-import { defineComponent } from '@vue/composition-api'
-
-export default defineComponent({
-  setup() {}
-})
+<template>
+  <MainComponent></MainComponent>
+</template>
+<script setup lang="ts">
+import MainComponent from '@components/pages/main/index.vue';
 </script>

@@ -1,12 +1,6 @@
 <template>
-    
+  <LoginComponent></LoginComponent>
 </template>
-<script setup>
-import { defineComponent } from '@vue/composition-api'
-
-export default defineComponent({
-    setup() {
-        
-    },
-})
+<script setup lang="ts">
+import LoginComponent from '@components/pages/login/index.vue';
 </script>

@@ -19,7 +19,7 @@
                 },
                 {
                     "date": 1710812334126,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,12 @@\n <template>\n     \n </template>\n-<script>\n+<script setup>\n import { defineComponent } from '@vue/composition-api'\n \n export default defineComponent({\n     setup() {\n         \n     },\n })\n </script>\n-<template>\n-    \n-</template>\n-<script>\n-import { defineComponent } from '@vue/composition-api'\n-\n-export default defineComponent({\n-    setup() {\n-        \n-    },\n-})\n-</script>\n"
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,12 @@\n <template>\n     \n </template>\n-<script>\n+<script setup lang="ts">\n import { defineComponent } from '@vue/composition-api'\n \n export default defineComponent({\n     setup() {\n         \n     },\n })\n </script>\n-<template>\n-    \n-</template>\n-<script>\n-import { defineComponent } from '@vue/composition-api'\n-\n-export default defineComponent({\n-    setup() {\n-        \n-    },\n-})\n-</script>\n"
                 }
             ],
             "date": 1710812285100,

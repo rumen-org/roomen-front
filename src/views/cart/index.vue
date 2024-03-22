@@ -1,12 +1,6 @@
 <template>
-    
+  <CartComponent></CartComponent>
 </template>
-<script setup>
-import { defineComponent } from '@vue/composition-api'
-
-export default defineComponent({
-    setup() {
-        
-    },
-})
+<script setup lang="ts">
+import CartComponent from '@components/pages/cart/index.vue';
 </script>

@@ -1,12 +1,6 @@
 <template>
-    
+  <MyPageComponent></MyPageComponent>
 </template>
-<script setup>
-import { defineComponent } from '@vue/composition-api'
-
-export default defineComponent({
-    setup() {
-        
-    },
-})
+<script setup lang="ts">
+import MyPageComponent from '@components/pages/my_page/index.vue';
 </script>
