@@ -1,0 +1,58 @@
+{
+    "sourceFile": "src/utils/mousePosition.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1711084685122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711084690858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+import { Script } from \"vm\";\n+\n+Script\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711084696592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,1 @@\n+<script></script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711084703065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,1 @@\n-<script></script>\n-import { Script } from \"vm\";\n-\n-Script\n-ㄴㅊ\n\\ No newline at end of file\n+<script setup lang=\"ts\"></script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711084713203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,17 @@\n-<script setup lang=\"ts\"></script>\n\\ No newline at end of file\n+import { ref, onMounted, onUnmounted } from 'vue'\n+\n+export function useMouse() {\n+  const x = ref(0)\n+  const y = ref(0)\n+\n+  function update(event) {\n+    x.value = event.pageX\n+    y.value = event.pageY\n+  }\n+\n+  onMounted(() => window.addEventListener('mousemove', update))\n+  onUnmounted(() => window.removeEventListener('mousemove', update))\n+\n+\t// 유일하게 다른 점\t\n+  return { x, y }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711084719994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n export function useMouse() {\n   const x = ref(0)\n   const y = ref(0)\n \n-  function update(event) {\n+  function update(event: { pageX: number; pageY: number }) {\n     x.value = event.pageX\n     y.value = event.pageY\n   }\n \n"
+                },
+                {
+                    "date": 1711085098173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,6 @@\n \n   onMounted(() => window.addEventListener('mousemove', update))\n   onUnmounted(() => window.removeEventListener('mousemove', update))\n \n-\t// 유일하게 다른 점\t\n   return { x, y }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711085146510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,5 +12,7 @@\n   onMounted(() => window.addEventListener('mousemove', update))\n   onUnmounted(() => window.removeEventListener('mousemove', update))\n \n   return { x, y }\n-}\n\\ No newline at end of file\n+}\n+\n+// 외부 사용시 \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711085153436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,5 @@\n \n   return { x, y }\n }\n \n-// 외부 사용시 \n\\ No newline at end of file\n+// 외부 사용시 - Utils (composable)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711085158764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,5 @@\n \n   return { x, y }\n }\n \n-// 외부 사용시 - Utils (composable) \n\\ No newline at end of file\n+// 외부 사용시 - Utils (composable)의  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711085186246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,20 @@\n+import { ref, onMounted, onUnmounted } from 'vue'\n+\n+export function useMouse() {\n+  const x = ref(0)\n+  const y = ref(0)\n+\n+  function update(event: { pageX: number; pageY: number }) {\n+    x.value = event.pageX\n+    y.value = event.pageY\n+  }\n+\n+  onMounted(() => window.addEventListener('mousemove', update))\n+  onUnmounted(() => window.removeEventListener('mousemove', update))\n+\n+  return { x, y }\n+}\n+\n+// 외부 사용시 - Utils(composable)의 기능을 컴포넌트에서 사용할 시 \n+// import { useMouse } from './mouse.js'\n+// const { x, y } = useMouse()\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1711084685122,
+            "name": "Commit-0",
+            "content": "ㄴㅊ"
+        }
+    ]
+}

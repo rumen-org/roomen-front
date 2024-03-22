@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/table/initTable.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1711082560603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1711082560603,
+            "name": "Commit-0",
+            "content": "<template>\n  <div>\n    <table>\n      <caption>{{ tblData.tit }}</caption>\n      <slot v-if=\"tblData.tHead\">\n        <thead>\n          <tr v-for=\"(trItem, idx) in tblData.tHead\" :key=\"idx\">\n            <slot v-if=\"trItem.th\">\n              <th>{{ trItem.th.con.text }}</th>\n            </slot>\n            <slot v-if=\"trItem.td\">\n              <td>{{ trItem.td.con.text }}</td>\n            </slot>\n          </tr>\n        </thead>\n        <tbody>\n          <tr v-for=\"(trItem, idx) in tblData.tBody\" :key=\"idx\">\n            <slot v-if=\"trItem.th\">\n              <th>{{ trItem.th.con.text }}</th>\n            </slot>\n            <slot v-if=\"trItem.td\">\n              <td>{{ trItem.td.con.text }}</td>\n            </slot>\n          </tr>\n        </tbody>\n      </slot>\n    </table>\n  </div>\n</template>\n<script setup lang=\"ts\">\n// defineProps({\n// \ttitle:{\n//     \tType: String,\n//         default : \"\"\n//     }\n// })\n// defineEmits({\n// \ttitle:{\n//     \tType: String,\n//         default : \"\"\n//     }\n// })\nconst tblData = {\n  tit: '테이블1',\n  colgroups: [\n    {width: ''},\n  ],\n  tHead: {\n    tr: {\n      th: {\n      con: { text: '', img: '', btn: '', btn_fn: ''},\n      // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정\n      options: { cSpan: '1', rSpan: '', pd: '' },  \n      // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리\n      style: {style: ''}\n      },\n      td: {\n        con: { text: '', img: '', btn: '', btn_fn: ''},\n        // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정\n        options: { cSpan: '1', rSpan: '', pd: '' },  \n        // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리\n        style: {style: ''}\n      },\n    }\n  },\n  tBody: {\n    tr: {\n      th: {\n        con: { text: '', img: '', btn: '', btn_fn: ''},\n        // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정\n        options: { cSpan: '1', rSpan: '', pd: '' },  \n        // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리\n        style: {style: ''}\n      },\n      td: {\n        con: { text: '', img: '', btn: '', btn_fn: ''},\n        // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정\n        options: { cSpan: '1', rSpan: '', pd: '' },  \n        // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리\n        style: {style: ''}\n      },\n    }\n  }\n}\n// 현재는 임시 ref 변수이나, Api로 data를 가져오는 경우엔, Store + Computed, 등의 값을 적용 예정\n</script>"
+        }
+    ]
+}
