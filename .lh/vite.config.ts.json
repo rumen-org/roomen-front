@@ -1,0 +1,58 @@
+{
+    "sourceFile": "vite.config.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1711430894359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711430902373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,9 @@\n       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),\n       '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n       '@router': fileURLToPath(new URL('./src/router', import.meta.url)),\n       '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),\n-\n+      '@locales': fileURLToPath(new URL('./src/lo', import.meta.url)),\n       '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n-      '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n     }\n   }\n })\n"
+                },
+                {
+                    "date": 1711430907405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),\n       '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n       '@router': fileURLToPath(new URL('./src/router', import.meta.url)),\n       '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),\n-      '@locales': fileURLToPath(new URL('./src/lo', import.meta.url)),\n+      '@locales': fileURLToPath(new URL('./src/locales', import.meta.url)),\n       '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n     }\n   }\n })\n"
+                },
+                {
+                    "date": 1711432487241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,33 @@\n+import { fileURLToPath, URL } from 'url'\n+\n+import { defineConfig } from 'vite'\n+import vue from '@vitejs/plugin-vue'\n+import VueDevTools from 'vite-plugin-vue-devtools'\n+\n+// https://vitejs.dev/config/\n+export default defineConfig({\n+  plugins: [\n+    vue(),\n+    VueDevTools(),\n+    Vue\n+  ],\n+  css: {\n+    preprocessorOptions: {\n+      scss: {\n+        additionalData: `@import \"./src/assets/style/main.scss\";`,\n+      },\n+    },\n+  },\n+  resolve: {\n+    alias: {\n+      '@': fileURLToPath(new URL('./src', import.meta.url)),\n+      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),\n+      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),\n+      '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n+      '@router': fileURLToPath(new URL('./src/router', import.meta.url)),\n+      '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),\n+      '@locales': fileURLToPath(new URL('./src/locales', import.meta.url)),\n+      '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n+    }\n+  }\n+})\n"
+                },
+                {
+                    "date": 1711432493770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,15 +2,16 @@\n \n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n import VueDevTools from 'vite-plugin-vue-devtools'\n+import VueI18n from 'vue-i18n'\n \n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [\n     vue(),\n     VueDevTools(),\n-    Vue\n+    VueI18n({})\n   ],\n   css: {\n     preprocessorOptions: {\n       scss: {\n@@ -30,36 +31,4 @@\n       '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n     }\n   }\n })\n-import { fileURLToPath, URL } from 'url'\n-\n-import { defineConfig } from 'vite'\n-import vue from '@vitejs/plugin-vue'\n-import VueDevTools from 'vite-plugin-vue-devtools'\n-\n-// https://vitejs.dev/config/\n-export default defineConfig({\n-  plugins: [\n-    vue(),\n-    VueDevTools(),\n-  ],\n-  css: {\n-    preprocessorOptions: {\n-      scss: {\n-        additionalData: `@import \"./src/assets/style/main.scss\";`,\n-      },\n-    },\n-  },\n-  resolve: {\n-    alias: {\n-      '@': fileURLToPath(new URL('./src', import.meta.url)),\n-      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),\n-      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),\n-      '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n-      '@router': fileURLToPath(new URL('./src/router', import.meta.url)),\n-      '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),\n-      '@locales': fileURLToPath(new URL('./src/locales', import.meta.url)),\n-      '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n-    }\n-  }\n-})\n"
+                },
+                {
+                    "date": 1711432509743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n import VueDevTools from 'vite-plugin-vue-devtools'\n import VueI18n from 'vue-i18n'\n-\n+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite' \n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [\n     vue(),\n"
+                },
+                {
+                    "date": 1711432517433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,15 @@\n \n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n import VueDevTools from 'vite-plugin-vue-devtools'\n-import VueI18n from 'vue-i18n'\n import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite' \n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [\n     vue(),\n     VueDevTools(),\n-    VueI18n({})\n+    VueI18nPlugin({})\n   ],\n   css: {\n     preprocessorOptions: {\n       scss: {\n"
+                },
+                {
+                    "date": 1711432530697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,11 @@\n export default defineConfig({\n   plugins: [\n     vue(),\n     VueDevTools(),\n-    VueI18nPlugin({})\n+    VueI18nPlugin({\n+      include: [path.resolve(__dirname, './src/locales/**')],\n+    })\n   ],\n   css: {\n     preprocessorOptions: {\n       scss: {\n"
+                },
+                {
+                    "date": 1711432549219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n \n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n import VueDevTools from 'vite-plugin-vue-devtools'\n+import path from 'node:path'\n+\n import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite' \n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [\n"
+                },
+                {
+                    "date": 1711432820860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,10 @@\n-import { fileURLToPath, URL } from 'url'\n+import { fileURLToPath, URL } from 'node:url'\n \n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n import VueDevTools from 'vite-plugin-vue-devtools'\n import path from 'node:path'\n-\n import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite' \n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [\n"
+                },
+                {
+                    "date": 1711432919045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,32 @@\n+import { fileURLToPath, URL } from 'url'\n+\n+import { defineConfig } from 'vite'\n+import vue from '@vitejs/plugin-vue'\n+import VueDevTools from 'vite-plugin-vue-devtools'\n+\n+// https://vitejs.dev/config/\n+export default defineConfig({\n+  plugins: [\n+    vue(),\n+    VueDevTools(),\n+  ],\n+  css: {\n+    preprocessorOptions: {\n+      scss: {\n+        additionalData: `@import \"./src/assets/style/main.scss\";`,\n+      },\n+    },\n+  },\n+  resolve: {\n+    alias: {\n+      '@': fileURLToPath(new URL('./src', import.meta.url)),\n+      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),\n+      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),\n+      '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n+      '@router': fileURLToPath(new URL('./src/router', import.meta.url)),\n+      '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),\n+      '@locales': fileURLToPath(new URL('./src/locales', import.meta.url)),\n+      '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n+    }\n+  }\n+})\n"
+                }
+            ],
+            "date": 1711430894359,
+            "name": "Commit-0",
+            "content": "import { fileURLToPath, URL } from 'url'\n\nimport { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\nimport VueDevTools from 'vite-plugin-vue-devtools'\n\n// https://vitejs.dev/config/\nexport default defineConfig({\n  plugins: [\n    vue(),\n    VueDevTools(),\n  ],\n  css: {\n    preprocessorOptions: {\n      scss: {\n        additionalData: `@import \"./src/assets/style/main.scss\";`,\n      },\n    },\n  },\n  resolve: {\n    alias: {\n      '@': fileURLToPath(new URL('./src', import.meta.url)),\n      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),\n      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),\n      '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n      '@router': fileURLToPath(new URL('./src/router', import.meta.url)),\n      '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),\n\n      '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n      '@pages': fileURLToPath(new URL('./src/views', import.meta.url)),\n    }\n  }\n})\n"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/components/pages/main/[item].vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1711421033605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711421599463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n <template>\n   <div>\n-    \n+    ㄷ\n   </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422246299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n <template>\n   <div>\n-    ㄷ\n+    {{  }}\n   </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422251861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <template>\n   <div>\n     {{  }}\n   </div>\n-</template>\n\\ No newline at end of file\n+</template>\n+<script setup></script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422257882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,7 @@\n   <div>\n     {{  }}\n   </div>\n </template>\n-<script setup lang=\"ts\"></script>\n\\ No newline at end of file\n+<script setup lang=\"ts\">\n+\n+</script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422277747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+<template>\n+  <div>\n+    {{  }}\n+  </div>\n+</template>\n+<script setup lang=\"ts\">\n+import { route } =\n+</script>\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1711421033605,
+            "name": "Commit-0",
+            "content": "<template>\n  <div>\n    \n  </div>\n</template>"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/locales/i18n-locales.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1711430728090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711430733621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-// 다국어기능 설정\n\\ No newline at end of file\n+다국어기능 설정\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711430738931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-다국어기능 설정\n\\ No newline at end of file\n+// 다국어기능 설정\n"
+                }
+            ],
+            "date": 1711430728090,
+            "name": "Commit-0",
+            "content": "// 다국어기능 설정"
+        }
+    ]
+}

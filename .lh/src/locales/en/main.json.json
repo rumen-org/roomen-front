@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/locales/en/main.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1711431083217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711431094097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-// ko\n\\ No newline at end of file\n+{\n+  'header': {}\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711431099740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+{\n+  'header': {\n+    \n+  }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711431105805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,5 @@\n {\n   'header': {\n-    \n+    'nav'\n   }\n-}\n-{\n-  'header': {}\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711431112821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n {\n   'header': {\n-    'nav'\n+    'nav': {}\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711431122867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   'header': {\n     'nav': {\n-      'main'\n+      'main': '메인',\n     }\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711431136199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"header\": {\n-    'nav': {\n+    'nav\": {\n       'main': '메인',\n     },\n   },\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1711431083217,
+            "name": "Commit-0",
+            "content": "// ko"
+        }
+    ]
+}

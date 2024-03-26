@@ -1,0 +1,90 @@
+{
+    "sourceFile": "src/views/main/[item].vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1711422622829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711422632005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,3 @@\n <template>\n-  <div>\n-    \n-  </div>\n+  \n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422643155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,7 @@\n <template>\n   \n-</template>\n\\ No newline at end of file\n+</template>\n+\n+<script setup lang=\"ts\">\n+\n+</script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422652342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   \n </template>\n \n <script setup lang=\"ts\">\n-\n+import mainItem from ''\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422670444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   \n </template>\n \n <script setup lang=\"ts\">\n-import mainItem from ''\n+import \n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422680579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   \n </template>\n \n <script setup lang=\"ts\">\n-import \n+import MainItemPage from '@/'\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422695518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  \n+  d\n </template>\n \n <script setup lang=\"ts\">\n import MainItemPage from '@/'\n"
+                },
+                {
+                    "date": 1711422702485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   d\n </template>\n \n <script setup lang=\"ts\">\n-import MainItemPage from '@/'\n+import MainItemPage from '/'\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422709294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   d\n </template>\n \n <script setup lang=\"ts\">\n-import MainItemPage from '/'\n+import MainItemPage from '@component/'\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422714340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   d\n </template>\n \n <script setup lang=\"ts\">\n-import MainItemPage from '@component/'\n+import MainItemPage from '@components/pages/'\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422721311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,7 @@\n+<template>\n+  d\n+</template>\n+\n+<script setup lang=\"ts\">\n+import MainItemPage from '@components/pages/main/[item]'\n+</script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422726962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,7 @@\n <template>\n-  d\n+  <MainItemPage>\n </template>\n \n <script setup lang=\"ts\">\n-import MainItemPage from '@components/pages/main/[item]'\n-</script>\n-<template>\n-  d\n-</template>\n-\n-<script setup lang=\"ts\">\n-import MainItemPage from '@components/pages/'\n+import MainItemPage from '@components/pages/main/[item].vue'\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422757553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n-  <MainItemPage>\n+  <MainItemPage />\n </template>\n \n <script setup lang=\"ts\">\n-import MainItemPage from '@components/pages/main/[item].vue'\n+// import MainItemPage from ''\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422777515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n-  <MainItemPage />\n+  <!-- <MainItemPage /> -->\n </template>\n \n <script setup lang=\"ts\">\n-// import MainItemPage from ''\n+import MainItemPage from ''\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422786057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   <!-- <MainItemPage /> -->\n </template>\n \n <script setup lang=\"ts\">\n-import MainItemPage from ''\n+import MainItemPage from '@components/pages/'\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422792975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n-  <!-- <MainItemPage /> -->\n+  <MainItemPage />\n </template>\n \n <script setup lang=\"ts\">\n-import MainItemPage from '@components/pages/'\n+import MainItemPage from '@components/pages/main/[item].vue'\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711422853688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <template>\n   <MainItemPage />\n+  \n </template>\n \n <script setup lang=\"ts\">\n import MainItemPage from '@components/pages/main/[item].vue'\n"
+                },
+                {
+                    "date": 1711422862967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <MainItemPage />\n-  \n+  ㅇㅇ\n </template>\n \n <script setup lang=\"ts\">\n import MainItemPage from '@components/pages/main/[item].vue'\n"
+                },
+                {
+                    "date": 1711430112398,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n <template>\n   <MainItemPage />\n-  ㅇㅇ\n </template>\n \n <script setup lang=\"ts\">\n import MainItemPage from '@components/pages/main/[item].vue'\n"
+                }
+            ],
+            "date": 1711422622829,
+            "name": "Commit-0",
+            "content": "<template>\n  <div>\n    \n  </div>\n</template>"
+        }
+    ]
+}

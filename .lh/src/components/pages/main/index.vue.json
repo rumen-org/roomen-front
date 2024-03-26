@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/components/pages/main/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1711414319847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711414328905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+<template>\n+  <div>main Page</div>\n+</template>\n+<script setup lang=\"ts\"></script>\n+<style lang=\"scss\" scoped></style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711414337438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,41 @@\n <template>\n   <div>main Page</div>\n </template>\n <script setup lang=\"ts\"></script>\n-<style lang=\"scss\" scoped></style>\n-<template>\n-  <div>main Page</div>\n-</template>\n-<script setup lang=\"ts\"></script>\n-<style></style>\n\\ No newline at end of file\n+<style lang=\"scss\" scoped>\n+* {\n+    margin: 0;\n+    padding: 0;\n+    box-sizing: border-box;\n+}\n+\n+.parent {\n+    display: flex;\n+    flex-wrap: wrap;\n+    gap: 20px;\n+}\n+\n+.parent .child {\n+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);\n+    overflow: hidden;\n+    height: 470px;\n+    border-radius: 30px;\n+    position: relative;\n+    border-radius: 12px;\n+    flex-basis: calc((100% - 60px) / 4);\n+}\n+\n+@media (max-width: 640px) {\n+    .parent .child {\n+        flex-basis: calc((100% - 40px) / 2);\n+        border-radius: 6px;\n+    }\n+}\n+\n+        @media (max-width: 480px) {\n+            .parent .child {\n+                flex-basis: 100%;\n+                border-radius: 4px;\n+            }\n+        }\n+        </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711414342662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,17 +3,17 @@\n </template>\n <script setup lang=\"ts\"></script>\n <style lang=\"scss\" scoped>\n * {\n-    margin: 0;\n-    padding: 0;\n-    box-sizing: border-box;\n+  margin: 0;\n+  padding: 0;\n+  box-sizing: border-box;\n }\n \n .parent {\n-    display: flex;\n-    flex-wrap: wrap;\n-    gap: 20px;\n+  display: flex;\n+  flex-wrap: wrap;\n+  gap: 20px;\n }\n \n .parent .child {\n     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);\n"
+                },
+                {
+                    "date": 1711414352810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,11 +31,11 @@\n       border-radius: 6px;\n   }\n }\n \n-        @media (max-width: 480px) {\n-            .parent .child {\n-                flex-basis: 100%;\n-                border-radius: 4px;\n-            }\n-        }\n-        </style>\n\\ No newline at end of file\n+@media (max-width: 480px) {\n+    .parent .child {\n+        flex-basis: 100%;\n+        border-radius: 4px;\n+    }\n+}\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711414357982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,39 @@\n+\n+<script setup lang=\"ts\"></script>\n+<style lang=\"scss\" scoped>\n+* {\n+  margin: 0;\n+  padding: 0;\n+  box-sizing: border-box;\n+}\n+\n+.parent {\n+  display: flex;\n+  flex-wrap: wrap;\n+  gap: 20px;\n+}\n+\n+.parent .child {\n+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);\n+  overflow: hidden;\n+  height: 470px;\n+  border-radius: 30px;\n+  position: relative;\n+  border-radius: 12px;\n+  flex-basis: calc((100% - 60px) / 4);\n+}\n+\n+@media (max-width: 640px) {\n+  .parent .child {\n+      flex-basis: calc((100% - 40px) / 2);\n+      border-radius: 6px;\n+  }\n+}\n+\n+@media (max-width: 480px) {\n+    .parent .child {\n+        flex-basis: 100%;\n+        border-radius: 4px;\n+    }\n+}\n+</style>\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1711414319847,
+            "name": "Commit-0",
+            "content": "<template>\n  <div>main Page</div>\n</template>\n<script setup lang=\"ts\"></script>\n<style></style>"
+        }
+    ]
+}

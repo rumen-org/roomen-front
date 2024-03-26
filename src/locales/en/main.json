@@ -1,0 +1,9 @@
+
+{
+  "all": {
+    "text1": "test",
+    "group": {
+      "text1": "groupText-1"
+    }
+  }
+}

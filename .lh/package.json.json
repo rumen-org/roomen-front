@@ -1,0 +1,42 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1711427403020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711427418403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   \"scripts\": {\n     \"dev\": \"vite\",\n     \"build\": \"run-p type-check \\\"build-only {@}\\\" --\",\n     \"preview\": \"vite preview\",\n-    \"serve\"\n+    \"serve\": \"vue-cli-service\",\n     \"build-only\": \"vite build\",\n     \"type-check\": \"vue-tsc --build --force\",\n     \"lint\": \"eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore\",\n     \"format\": \"prettier --write src/\"\n"
+                },
+                {
+                    "date": 1711427423883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   \"scripts\": {\n     \"dev\": \"vite\",\n     \"build\": \"run-p type-check \\\"build-only {@}\\\" --\",\n     \"preview\": \"vite preview\",\n-    \"serve\": \"vue-cli-service\",\n+    \"serve\": \"vue-cli-service serve\",\n     \"build-only\": \"vite build\",\n     \"type-check\": \"vue-tsc --build --force\",\n     \"lint\": \"eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore\",\n     \"format\": \"prettier --write src/\"\n"
+                },
+                {
+                    "date": 1711427581509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   \"scripts\": {\n     \"dev\": \"vite\",\n     \"build\": \"run-p type-check \\\"build-only {@}\\\" --\",\n     \"preview\": \"vite preview\",\n-    \"serve\": \"vue-cli-service serve\",\n+    \"serve\": \"vite serve\",\n     \"build-only\": \"vite build\",\n     \"type-check\": \"vue-tsc --build --force\",\n     \"lint\": \"eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore\",\n     \"format\": \"prettier --write src/\"\n"
+                },
+                {
+                    "date": 1711428310158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     \"dev\": \"vite\",\n     \"build\": \"run-p type-check \\\"build-only {@}\\\" --\",\n     \"preview\": \"vite preview\",\n     \"serve\": \"vite serve\",\n+    \"serve\": \"vite serve\",\n     \"build-only\": \"vite build\",\n     \"type-check\": \"vue-tsc --build --force\",\n     \"lint\": \"eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore\",\n     \"format\": \"prettier --write src/\"\n"
+                },
+                {
+                    "date": 1711428317602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     \"dev\": \"vite\",\n     \"build\": \"run-p type-check \\\"build-only {@}\\\" --\",\n     \"preview\": \"vite preview\",\n     \"serve\": \"vite serve\",\n-    \"serve\": \"vite serve\",\n+    \"prod\": \"vite prod\",\n     \"build-only\": \"vite build\",\n     \"type-check\": \"vue-tsc --build --force\",\n     \"lint\": \"eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore\",\n     \"format\": \"prettier --write src/\"\n"
+                },
+                {
+                    "date": 1711434901495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,43 @@\n+{\n+  \"name\": \"roomen-frontend\",\n+  \"version\": \"0.0.0\",\n+  \"private\": true,\n+  \"type\": \"module\",\n+  \"scripts\": {\n+    \"dev\": \"vite\",\n+    \"build\": \"run-p type-check \\\"build-only {@}\\\" --\",\n+    \"preview\": \"vite preview\",\n+    \"serve\": \"vite serve\",\n+    \"prod\": \"vite prod\",\n+    \"build-only\": \"vite build\",\n+    \"type-check\": \"vue-tsc --build --force\",\n+    \"lint\": \"eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore\",\n+    \"format\": \"prettier --write src/\"\n+  },\n+  \"dependencies\": {\n+    \"axios\": \"^1.6.8\",\n+    \"gsap\": \"^3.12.5\",\n+    \"pinia\": \"^2.1.7\",\n+    \"sass-loader\": \"^10.5.2\",\n+    \"vue\": \"^3.4.21\",\n+    \"vue-router\": \"^4.3.0\"\n+  },\n+  \"devDependencies\": {\n+    \"@rushstack/eslint-patch\": \"^1.3.3\",\n+    \"@tsconfig/node20\": \"^20.1.2\",\n+    \"@types/node\": \"^20.11.30\",\n+    \"@vitejs/plugin-vue\": \"^5.0.4\",\n+    \"@vue/eslint-config-prettier\": \"^8.0.0\",\n+    \"@vue/eslint-config-typescript\": \"^12.0.0\",\n+    \"@vue/tsconfig\": \"^0.5.1\",\n+    \"eslint\": \"^8.49.0\",\n+    \"eslint-plugin-vue\": \"^9.17.0\",\n+    \"npm-run-all2\": \"^6.1.2\",\n+    \"prettier\": \"^3.0.3\",\n+    \"sass\": \"^1.72.0\",\n+    \"typescript\": \"~5.4.0\",\n+    \"vite\": \"^5.1.5\",\n+    \"vite-plugin-vue-devtools\": \"^7.0.16\",\n+    \"vue-tsc\": \"^2.0.6\"\n+  }\n+}\n"
+                }
+            ],
+            "date": 1711427403020,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"roomen-frontend\",\n  \"version\": \"0.0.0\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"build\": \"run-p type-check \\\"build-only {@}\\\" --\",\n    \"preview\": \"vite preview\",\n    \"serve\"\n    \"build-only\": \"vite build\",\n    \"type-check\": \"vue-tsc --build --force\",\n    \"lint\": \"eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore\",\n    \"format\": \"prettier --write src/\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^1.6.8\",\n    \"gsap\": \"^3.12.5\",\n    \"pinia\": \"^2.1.7\",\n    \"sass-loader\": \"^10.5.2\",\n    \"vue\": \"^3.4.21\",\n    \"vue-i18n\": \"^8.28.2\",\n    \"vue-router\": \"^4.3.0\"\n  },\n  \"devDependencies\": {\n    \"@rushstack/eslint-patch\": \"^1.3.3\",\n    \"@tsconfig/node20\": \"^20.1.2\",\n    \"@types/node\": \"^20.11.30\",\n    \"@vitejs/plugin-vue\": \"^5.0.4\",\n    \"@vue/eslint-config-prettier\": \"^8.0.0\",\n    \"@vue/eslint-config-typescript\": \"^12.0.0\",\n    \"@vue/tsconfig\": \"^0.5.1\",\n    \"eslint\": \"^8.49.0\",\n    \"eslint-plugin-vue\": \"^9.17.0\",\n    \"npm-run-all2\": \"^6.1.2\",\n    \"prettier\": \"^3.0.3\",\n    \"sass\": \"^1.72.0\",\n    \"typescript\": \"~5.4.0\",\n    \"vite\": \"^5.1.5\",\n    \"vite-plugin-vue-devtools\": \"^7.0.16\",\n    \"vue-tsc\": \"^2.0.6\"\n  }\n}\n"
+        }
+    ]
+}

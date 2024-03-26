@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/locales/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1711430877587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711430959038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+// 다국어 기능\n+\n"
+                },
+                {
+                    "date": 1711430971534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,3 @@\n // 다국어 기능\n \n+import ko from '@/'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711430978049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n // 다국어 기능\n \n-import ko from '@/'\n\\ No newline at end of file\n+import ko from './'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711430983670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n // 다국어 기능\n \n-import ko from './'\n\\ No newline at end of file\n+import ko from './ko/main.json'\n+import ko from './ko/main.json'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711430991243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n // 다국어 기능\n \n import ko from './ko/main.json'\n-import ko from './ko/main.json'\n\\ No newline at end of file\n+import en from './en/main.json'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711430997438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n // 다국어 기능\n \n import ko from './ko/main.json'\n-import en from './en/main.json'\n\\ No newline at end of file\n+import en from './en/main.json'\n+\n+export default {}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711431005337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,8 @@\n \n import ko from './ko/main.json'\n import en from './en/main.json'\n \n-export default {}\n\\ No newline at end of file\n+export default {\n+  'KO': ko,\n+  \n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1711430877587,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}

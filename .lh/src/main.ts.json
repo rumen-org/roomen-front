@@ -1,0 +1,134 @@
+{
+    "sourceFile": "src/main.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 29,
+            "patches": [
+                {
+                    "date": 1711416764245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711416974026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import App from './App.vue'\n import router from './router/index'\n \n const app = createApp(App)\n-app.config.compilerOptions.whitespace = 'preserve'\n+\n app.use(createPinia())\n app.use(router)\n \n app.mount('#app')\n"
+                },
+                {
+                    "date": 1711428375846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n \n+\n const app = createApp(App)\n \n app.use(createPinia())\n app.use(router)\n"
+                },
+                {
+                    "date": 1711428392859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n+import VueI18n from 'vue-i18n'\n \n-\n const app = createApp(App)\n \n+app.use()\n app.use(createPinia())\n app.use(router)\n \n app.mount('#app')\n"
+                },
+                {
+                    "date": 1711428399013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import VueI18n from 'vue-i18n'\n \n const app = createApp(App)\n \n-app.use()\n+app.use(VueI18n)\n app.use(createPinia())\n app.use(router)\n \n app.mount('#app')\n"
+                },
+                {
+                    "date": 1711428459077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import VueI18n from 'vue-i18n'\n \n+\n const app = createApp(App)\n \n-app.use(VueI18n)\n app.use(createPinia())\n app.use(router)\n \n app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430135697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n+import \n \n-\n const app = createApp(App)\n \n app.use(createPinia())\n app.use(router)\n"
+                },
+                {
+                    "date": 1711430142058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import { createApp } from 'vue'\n+import { createPinia } from 'pinia'\n+import App from './App.vue'\n+import router from './router/index'\n+import {createI18n }\n+\n+const app = createApp(App)\n+\n+app.use(createPinia())\n+app.use(router)\n+\n+app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430149248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,12 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import {createI18n }\n+import { createI18n } ''\n \n const app = createApp(App)\n \n app.use(createPinia())\n app.use(router)\n \n app.mount('#app')\n-import { createApp } from 'vue'\n-import { createPinia } from 'pinia'\n-import App from './App.vue'\n-import router from './router/index'\n-import \n-\n-const app = createApp(App)\n-\n-app.use(createPinia())\n-app.use(router)\n-\n-app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430154696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { createI18n } ''\n+import { createI18n } 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430166878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { createI18n } 'vue-i18n'\n+import { create } 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430173096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import { createApp } from 'vue'\n+import { createPinia } from 'pinia'\n+import App from './App.vue'\n+import router from './router/index'\n+import { i18 } 'vue-i18n'\n+\n+const app = createApp(App)\n+\n+app.use(createPinia())\n+app.use(router)\n+\n+app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430188030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,12 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { i18 } 'vue-i18n'\n+import {  } 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n app.use(router)\n \n app.mount('#app')\n-import { createApp } from 'vue'\n-import { createPinia } from 'pinia'\n-import App from './App.vue'\n-import router from './router/index'\n-import { create } 'vue-i18n'\n-\n-const app = createApp(App)\n-\n-app.use(createPinia())\n-app.use(router)\n-\n-app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430193748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import {  } 'vue-i18n'\n+import { i18n } 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430213399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { i18n } 'vue-i18n'\n+import { Create } 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430221534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { Create } 'vue-i18n'\n+import {  } 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430258036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import {  } 'vue-i18n'\n+import { IVueI18n } '@vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430263885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { IVueI18n } '@vue-i18n'\n+import { IVueI18n } 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430275551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { IVueI18n } 'vue-i18n'\n+import { IVueI18n }from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430284811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { IVueI18n }from 'vue-i18n'\n+import { i18 } from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430292436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { i18 } from 'vue-i18n'\n+import { I18nOptions } from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430302695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { I18nOptions } from 'vue-i18n'\n+import  from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430311167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import  from 'vue-i18n'\n+import {} from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430321047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import {} from 'vue-i18n'\n+import { w } from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430326756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import { createApp } from 'vue'\n+import { createPinia } from 'pinia'\n+import App from './App.vue'\n+import router from './router/index'\n+import { p } from 'vue-i18n'\n+\n+const app = createApp(App)\n+\n+app.use(createPinia())\n+app.use(router)\n+\n+app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430333474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import { createApp } from 'vue'\n+import { createPinia } from 'pinia'\n+import App from './App.vue'\n+import router from './router/index'\n+import { i18 } from 'vue-i18n'\n+\n+const app = createApp(App)\n+\n+app.use(createPinia())\n+app.use(router)\n+\n+app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430341768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+import { createApp } from 'vue'\n+import { createPinia } from 'pinia'\n+import App from './App.vue'\n+import router from './router/index'\n+import { vue } from 'vue-i18n'\n+\n+const app = createApp(App)\n+\n+app.use(createPinia())\n+app.use(router)\n+\n+app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430346796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,48 +1,12 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { vue } from 'vue-i18n'\n+import { vue-i18 } from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n app.use(router)\n \n app.mount('#app')\n-import { createApp } from 'vue'\n-import { createPinia } from 'pinia'\n-import App from './App.vue'\n-import router from './router/index'\n-import { i18 } from 'vue-i18n'\n-\n-const app = createApp(App)\n-\n-app.use(createPinia())\n-app.use(router)\n-\n-app.mount('#app')\n-import { createApp } from 'vue'\n-import { createPinia } from 'pinia'\n-import App from './App.vue'\n-import router from './router/index'\n-import { p } from 'vue-i18n'\n-\n-const app = createApp(App)\n-\n-app.use(createPinia())\n-app.use(router)\n-\n-app.mount('#app')\n-import { createApp } from 'vue'\n-import { createPinia } from 'pinia'\n-import App from './App.vue'\n-import router from './router/index'\n-import { w } from 'vue-i18n'\n-\n-const app = createApp(App)\n-\n-app.use(createPinia())\n-app.use(router)\n-\n-app.mount('#app')\n"
+                },
+                {
+                    "date": 1711430364625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n-import { vue-Vuimport VueI18n from 'vue-i18n'\n-eI18n } from 'vue-i18n'\n+import {  } from 'vue-i18n'\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                },
+                {
+                    "date": 1711430411834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { createApp } from 'vue'\n import { createPinia } from 'pinia'\n import App from './App.vue'\n import router from './router/index'\n+import {} from ''\n \n const app = createApp(App)\n \n app.use(createPinia())\n"
+                }
+            ],
+            "date": 1711416764245,
+            "name": "Commit-0",
+            "content": "import { createApp } from 'vue'\nimport { createPinia } from 'pinia'\nimport App from './App.vue'\nimport router from './router/index'\n\nconst app = createApp(App)\napp.config.compilerOptions.whitespace = 'preserve'\napp.use(createPinia())\napp.use(router)\n\napp.mount('#app')\n"
+        }
+    ]
+}

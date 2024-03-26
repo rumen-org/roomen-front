@@ -1,0 +1,58 @@
+{
+    "sourceFile": "src/components/text/Break.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1711417992767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711418123600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n <template>\n+  <div>\n     <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n-      {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n-    </template>\n+    {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n+  </template>\n+  </div>\n </template>\n \n <script setup>\n const props = defineProps({\n"
+                },
+                {
+                    "date": 1711418779313,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n <template>\n-  <div>\n     <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n-    {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n-  </template>\n-  </div>\n+      {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n+    </template>\n </template>\n \n <script setup>\n const props = defineProps({\n"
+                },
+                {
+                    "date": 1711420392464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n+// eslint-disable-next-line vue/multi-word-component-names\n <template>\n-    <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n-      {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n-    </template>\n+  <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n+    {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n+  </template>\n </template>\n \n <script setup>\n const props = defineProps({\n"
+                },
+                {
+                    "date": 1711420402307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+<!-- eslint-disable vue/multi-word-component-names -->\n // eslint-disable-next-line vue/multi-word-component-names\n <template>\n   <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n     {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n"
+                },
+                {
+                    "date": 1711420407979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n <!-- eslint-disable vue/multi-word-component-names -->\n-// eslint-disable-next-line vue/multi-word-component-names\n <template>\n   <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n     {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n   </template>\n"
+                },
+                {
+                    "date": 1711420436873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,10 @@\n         default: false,\n     },\n });\n const getBreakTag = computed(() => {\n-    const string = String(props.breakText);\n+  const string = String(props.breakText);\n+    console.log('string___', string)\n     if (string === 'undefined' || string === 'null') {\n         return [];\n     }\n     const splits = string.split(/<br\\s?\\/?>/);\n"
+                },
+                {
+                    "date": 1711420541501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n   </template>\n </template>\n \n <script setup>\n+\n const props = defineProps({\n     breakText: {\n         type: [String, Number, Boolean, Array, Date],\n         default: '',\n"
+                },
+                {
+                    "date": 1711420549172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,36 @@\n+<!-- eslint-disable vue/multi-word-component-names -->\n+<template>\n+  <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n+    {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n+  </template>\n+</template>\n+\n+<script setup>\n+import {} from 'vue'\n+const props = defineProps({\n+    breakText: {\n+        type: [String, Number, Boolean, Array, Date],\n+        default: '',\n+    },\n+    keepLast: {\n+        type: Boolean,\n+        default: false,\n+    },\n+});\n+const getBreakTag = computed(() => {\n+  const string = String(props.breakText);\n+    console.log('string___', string)\n+    if (string === 'undefined' || string === 'null') {\n+        return [];\n+    }\n+    const splits = string.split(/<br\\s?\\/?>/);\n+    const result =\n+        splits[splits.length - 1] === '' && !props.keepLast\n+            ? splits.filter((split, index, array) => index < array.length - 1)\n+            : splits;\n+    return result;\n+});\n+</script>\n+\n+<style></style>\n+<!-- API로 받은 json 전처리용 컴포넌트 -->\n"
+                },
+                {
+                    "date": 1711420718782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,37 @@\n+<!-- eslint-disable vue/multi-word-component-names -->\n+<template>\n+  <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n+    {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n+  </template>\n+</template>\n+\n+<script setup>\n+import {computed} from 'vue'\n+const props = defineProps({\n+    breakText: {\n+        type: [String, Number, Boolean, Array, Date],\n+        default: '',\n+    },\n+    keepLast: {\n+        type: Boolean,\n+        default: false,\n+    },\n+});\n+const getBreakTag = computed(() => {\n+  const string = String(props.breakText);\n+    console.log('string___', string)\n+    if (string === 'undefined' || string === 'null') {\n+        return [];\n+    }\n+  // const splits = string.split(/<br\\s?\\/?>/);\n+  const splits = string.split(/<br\\s?\\/?>|\\n/);\n+    const result =\n+        splits[splits.length - 1] === '' && !props.keepLast\n+            ? splits.filter((split, index, array) => index < array.length - 1)\n+            : splits;\n+    return result;\n+});\n+</script>\n+\n+<style></style>\n+<!-- API로 받은 json 전처리용 컴포넌트 -->\n"
+                },
+                {
+                    "date": 1711435743826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n     },\n });\n const getBreakTag = computed(() => {\n   const string = String(props.breakText);\n-    console.log('string___', string)\n     if (string === 'undefined' || string === 'null') {\n         return [];\n     }\n   // const splits = string.split(/<br\\s?\\/?>/);\n@@ -34,76 +33,4 @@\n </script>\n \n <style></style>\n <!-- API로 받은 json 전처리용 컴포넌트 -->\n-<!-- eslint-disable vue/multi-word-component-names -->\n-<template>\n-  <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n-    {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n-  </template>\n-</template>\n-\n-<script setup>\n-import {} from 'vue'\n-const props = defineProps({\n-    breakText: {\n-        type: [String, Number, Boolean, Array, Date],\n-        default: '',\n-    },\n-    keepLast: {\n-        type: Boolean,\n-        default: false,\n-    },\n-});\n-const getBreakTag = computed(() => {\n-  const string = String(props.breakText);\n-    console.log('string___', string)\n-    if (string === 'undefined' || string === 'null') {\n-        return [];\n-    }\n-    const splits = string.split(/<br\\s?\\/?>/);\n-    const result =\n-        splits[splits.length - 1] === '' && !props.keepLast\n-            ? splits.filter((split, index, array) => index < array.length - 1)\n-            : splits;\n-    return result;\n-});\n-</script>\n-\n-<style></style>\n-<!-- API로 받은 json 전처리용 컴포넌트 -->\n-<!-- eslint-disable vue/multi-word-component-names -->\n-<template>\n-  <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n-    {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n-  </template>\n-</template>\n-\n-<script setup>\n-\n-const props = defineProps({\n-    breakText: {\n-        type: [String, Number, Boolean, Array, Date],\n-        default: '',\n-    },\n-    keepLast: {\n-        type: Boolean,\n-        default: false,\n-    },\n-});\n-const getBreakTag = computed(() => {\n-  const string = String(props.breakText);\n-    console.log('string___', string)\n-    if (string === 'undefined' || string === 'null') {\n-        return [];\n-    }\n-    const splits = string.split(/<br\\s?\\/?>/);\n-    const result =\n-        splits[splits.length - 1] === '' && !props.keepLast\n-            ? splits.filter((split, index, array) => index < array.length - 1)\n-            : splits;\n-    return result;\n-});\n-</script>\n-\n-<style></style>\n-<!-- API로 받은 json 전처리용 컴포넌트 -->\n"
+                }
+            ],
+            "date": 1711417992767,
+            "name": "Commit-0",
+            "content": "<template>\n    <template v-for=\"(text, index) in getBreakTag\" :key=\"index\">\n      {{ text }} <br v-if=\"index < getBreakTag.length - 1\" />\n    </template>\n</template>\n\n<script setup>\nconst props = defineProps({\n    breakText: {\n        type: [String, Number, Boolean, Array, Date],\n        default: '',\n    },\n    keepLast: {\n        type: Boolean,\n        default: false,\n    },\n});\nconst getBreakTag = computed(() => {\n    const string = String(props.breakText);\n    if (string === 'undefined' || string === 'null') {\n        return [];\n    }\n    const splits = string.split(/<br\\s?\\/?>/);\n    const result =\n        splits[splits.length - 1] === '' && !props.keepLast\n            ? splits.filter((split, index, array) => index < array.length - 1)\n            : splits;\n    return result;\n});\n</script>\n\n<style></style>\n<!-- API로 받은 json 전처리용 컴포넌트 -->\n"
+        }
+    ]
+}
