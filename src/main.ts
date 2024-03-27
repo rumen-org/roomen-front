@@ -3,31 +3,45 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/index'
 import { createI18n } from 'vue-i18n'
-import enUs from '@/locales/en/main.json'
-import koKr from '@/locales/ko/main.json'
+import msg from '@/locales/index'
 
-const app = createApp(App)
-const i18n = createI18n({
+type MessageSchema = typeof msg.ko
+
+const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({
   legacy: false,
   locale: 'ko',
   fallbackLocale: 'en',
+  // messages: {
+  //   'ko': koKr,
+  //   'en': enUs,
+  // },
   messages: {
-    'ko-KR': koKr,
-    'en-US': enUs,
+    'ko': msg.ko,
+    'en': msg.en
   },
   silentTranslationWarn: true,
   datetimeFormats: {
-    'ko-KR': {
+    'ko': {
       short: {
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
         timeZoneName: 'short',
-        timezone: 'Asia/Seoul'
+        timeZone: 'Asia/Seoul',
+      }
+    },
+    'en': {
+      short: {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZoneName: 'short',
+        timeZone: 'America/New_York'
       }
     }
   },
 })
+const app = createApp(App)
 app.use(i18n)
 app.use(createPinia())
 app.use(router)

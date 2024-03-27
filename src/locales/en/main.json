@@ -1,6 +1,6 @@
 
 {
-  "all": {
+  "messages": {
     "text1": "test",
     "group": {
       "text1": "groupText-1"

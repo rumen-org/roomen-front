@@ -1,6 +1,6 @@
 <template>
   <div>main Page
-    <p>{{ t('all.text1') }}</p>
+    <em>{{t('messages.text1')}}</em>
     <select name="lang-select" id="lang" @change="changeLocale" v-model="selectValue">
       <option value="ko" >KR</option>
       <option value="en">EN</option>
@@ -19,30 +19,60 @@
             </li>
         </ul>
     </div>
+    <div>
+      <article class="swiper-test">
+        <swiper
+            :modules="modules"
+            :slides-per-view="1"
+            :space-between="20"
+            navigation
+            :pagination="{ clickable: true }"
+            @swiper="onSwiper"
+            @slideChange="onSlideChange"
+        >
+          <swiper-slide>Slide 1</swiper-slide>
+          <swiper-slide>Slide 2</swiper-slide>
+          <swiper-slide>Slide 3</swiper-slide>
+        </swiper>
+
+      </article>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import WordBreak from '../../text/Break.vue'
-import enUs from '@/locales/en/main.json'
-import koKR from '@/locales/ko/main.json'
-import { createI18n, useI18n } from 'vue-i18n'
-import { ref, watchEffect } from 'vue'
+import { Navigation, Pagination, A11y } from 'swiper/modules';
 
-const { t } = useI18n()
-const messages = {
-  en: enUs,
-  ko: koKR
+const modules = [Navigation, Pagination, A11y]
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+import WordBreak from '../../text/Break.vue'
+import { useI18n } from 'vue-i18n';
+import {computed, ref, watchEffect} from 'vue'
+const onSwiper = (swiper:any) => {
+  console.log(swiper);
+};
+const onSlideChange = () => {
+  console.log('slide change');
+};
+const { t, locale, messages } = useI18n({
+});
+const msgs = computed<object>(()=>{return messages})
+console.log('msgs',msgs)
+const selectValue = ref('ko')
+const changeLocale = () => {
+  locale.value = selectValue.value;
+  console.log('selectValue',selectValue, locale)
 }
 
-const i18n = createI18n({
-  locale: 'ko', // 기본 locale
-  fallbackLocale: 'en', // locale 설정 실패시 사용할 locale
-  messages
-})
-
-
 watchEffect(() => {
-  console.log('messages', i18n.i18n)
+  console.log('messages')
 })
 const data = [
       {
@@ -106,11 +136,6 @@ const data = [
         qId: '157'
       },
 ];
-const selectValue = ref('ko')
-const changeLocale = () => {
-  i18n.locale = selectValue.value;
-  console.log('selectValue',selectValue, i18n.locale)
-}
 
 </script>
 <style lang="scss" scoped>
@@ -131,10 +156,9 @@ body {font-size: 12px;   margin: 0;
 }
 a {text-decoration: none; color: #333;}
 .parent .child {
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
   overflow: hidden;
   height: 240px;
-  border-radius: 30px;
   position: relative;
   border-radius: 12px;
   flex-basis: calc((100% - 60px) / 4);
@@ -157,7 +181,8 @@ a {text-decoration: none; color: #333;}
 }
 .item_area .item_txt .item_tit {font-size: 16px; font-weight: 700;}
 .item_date {margin-left: auto; margin-top: auto; font-size: 12px; letter-spacing: -0.025em;}
-
+.swiper-test {margin: 40px auto 0; max-width: 400px; height: 300px; display: flex; justify-content: stretch; align-items: stretch; text-align: center}
+.swiper-slide {display: flex; justify-content: center; align-items: center;}
 @media (max-width: 640px) {
   .parent .child {
       flex-basis: calc((100% - 40px) / 2);
