@@ -1,0 +1,429 @@
+
+.hide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(0, 0, 0, 0);
+    margin: -1px;
+}
+
+/*** #header ***/
+
+#header {
+    position: fixed;
+    z-index: 9999;
+    top: 60px;
+    left: 60px;
+
+    &:before {
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        width: 100%;
+        height: 130px;
+        background: #fff;
+    }
+
+    h1 > a {
+        display: inline-block;
+        width: 181px;
+        height: 29px;
+        background: url("../images/logo-b.png") no-repeat (center / 100%) auto;
+        text-indent: -9999px;
+    }
+
+    > * {
+        color: #fff;
+    }
+
+    a {
+        font-family: 'GmarketSans', serif;
+        color: #191919;
+    }
+
+    .menu {
+        display: inline-block;
+        margin-top: 75px;
+
+        > ul > li {
+            overflow: hidden;
+            margin-top: 10px;
+
+            > a {
+                padding-right: 18px;
+                background: url("../images/ico-arrow-down-b.png") no-repeat center (right / auto);
+                font-weight: 700;
+
+                span {
+                    font-family: 'GmarketSans', serif;
+                }
+            }
+
+            &:hover {
+                > a {
+                    color: rgba(25, 25, 25, 0.7);
+                    transition: all 0.2s;
+                    -webkit-transition: all 0.2s;
+                    -moz-transition: all 0.2s;
+                }
+
+                > ul {
+                    opacity: 1;
+                }
+            }
+
+            > {
+                a.on {
+                    background: url("../images/ico-arrow-up-b.png") no-repeat center (right / auto);
+                }
+
+                ul {
+                    height: 0;
+                    padding-left: 10px;
+                    transition: all 0.4s ease-in-out;
+                }
+            }
+
+            &.product:hover > ul {
+                height: 25px;
+            }
+
+            &.commu:hover > ul {
+                height: 75px;
+            }
+
+            &:first-child > a {
+                background-image: none;
+            }
+        }
+    }
+
+    .util {
+        position: fixed;
+        top: 50%;
+        margin-bottom: -165px;
+        margin-top: 50px;
+
+        a {
+            display: block;
+            font-weight: 700;
+
+            + a {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .lang {
+        position: fixed;
+        top: 52px;
+        right: 80px;
+
+        a {
+            display: inline-block;
+            line-height: 30px;
+            font-weight: 700;
+            color: rgba(25, 25, 25, 0.5);
+
+            &.curr {
+                border-bottom: 2px solid #191919;
+                color: #191919;
+            }
+
+            + a {
+                margin-left: 16px;
+            }
+        }
+    }
+
+    .insta {
+        position: fixed;
+        left: 60px;
+        bottom: 60px;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: url("../images/ico-insta-b.png") no-repeat (center / 30px) auto;
+    }
+
+    &.top {
+        h1 > a {
+            background: url("../images/logo.png") no-repeat (center / 100%) auto;
+        }
+
+        a {
+            color: #fff;
+
+            span {
+                display: inline-block;
+                margin-top: 5px;
+            }
+        }
+
+        .menu > ul > li {
+            > a {
+                background: url("../images/ico-arrow-down.png") no-repeat center (right / auto);
+            }
+
+            &:hover > a {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            > a.on {
+                background: url("../images/ico-arrow-up.png") no-repeat center (right / auto);
+            }
+        }
+
+        .lang a {
+            color: rgba(255, 255, 255, 0.5);
+
+            &.curr {
+                border-bottom: 2px solid #fff;
+                color: #fff;
+            }
+        }
+
+        .insta {
+            background: url("../images/ico-insta.png") no-repeat (center / 30px) auto;
+        }
+    }
+
+    .btnMenuClose {
+        display: none;
+        z-index: 1001;
+    }
+}
+
+@media (max-width: 1160px) {
+    #header {
+        top: 20px;
+        left: 24px;
+
+        &:before {
+            height: 60px;
+        }
+
+        h1 a {
+            width: 110px;
+            height: 20px;
+        }
+
+        .gnb {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            bottom: 0;
+            padding: 0 60px;
+            width: 300px;
+            background: #fff;
+            box-shadow: 11px 0 5px 8px #000;
+            transition-duration: 0.2s;
+        }
+
+        &.open .gnb {
+            right: -300px;
+        }
+
+        .lang {
+            top: 17px;
+
+            a {
+                font-size: 14px;
+            }
+        }
+
+        .insta {
+            position: absolute;
+        }
+
+        .btnMenu {
+            display: inline-block;
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            width: 30px;
+            height: 20px;
+            line-height: 70px;
+            margin-left: 15px;
+            padding: 2px;
+            box-sizing: content-box;
+
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 30px;
+                height: 1px;
+                background-color: #050707;
+                transform-origin: center;
+                transition-duration: 0.2s;
+            }
+
+            &::before {
+                margin-top: -6px;
+            }
+
+            &::after {
+                margin-top: 7px;
+            }
+
+            em::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 2px;
+
+                /*transform:translate(-50%, -50%);*/
+
+                width: 25px;
+                height: 1px;
+                background-color: #050707;
+            }
+
+            &.on {
+                &::before {
+                    margin-top: 0;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                }
+
+                &::after {
+                    margin-top: 0;
+                    transform: translate(-50%, -50%) rotate(-45deg);
+                }
+
+                em::before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+/*** CONTAINER ***/
+
+#container {
+    margin-bottom: 120px;
+    padding: 172px 60px 60px 300px;
+}
+
+body.bgGray #container {
+    padding: 172px 60px 60px;
+}
+
+@media (max-width: 1160px) {
+    #container, body.bgGray #container {
+        padding: 80px 60px 60px;
+    }
+}
+
+@media (max-width: 940px) {
+    #container, body.bgGray #container {
+        padding: 80px 24px 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    #container, body.bgGray #container {
+        padding: 80px 24px 20px;
+    }
+}
+
+/*** FOOTER ***/
+
+#footer {
+    margin: 0 60px 0 300px;
+    padding: 60px 0 80px;
+    border-top: 1px solid #191919;
+
+    .inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    p > a {
+        display: inline-block;
+        width: 178px;
+        height: 26px;
+        background: url("../images/logo-footer.png") no-repeat (center / 100%) auto;
+    }
+
+    > div {
+        flex: 1;
+        text-align: right;
+
+        > div > {
+            p + p {
+                margin-top: 8px;
+            }
+
+            * {
+                line-height: 26px;
+                font-weight: 400;
+            }
+
+            div {
+                > span {
+                    white-space: nowrap;
+
+                    + span {
+                        margin-left: 30px;
+                    }
+                }
+
+                + div > span {
+                    margin-left: 30px;
+                }
+            }
+        }
+    }
+
+    address {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 1160px) {
+    #footer {
+        margin: 0 60px;
+    }
+}
+
+@media (max-width: 940px) {
+    #footer {
+        margin: 0 24px;
+
+        > div > div > div {
+            > span + span, + div > span {
+                margin-left: 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #footer {
+        padding: 40px 0;
+
+        .inner {
+            display: block;
+            text-align: center;
+        }
+
+        > div > div > {
+            * {
+                font-size: 12px;
+            }
+
+            div + div > span {
+                display: block;
+            }
+        }
+    }
+}

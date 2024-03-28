@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router/index'
 import { createI18n } from 'vue-i18n'
 import msg from '@/locales/index'
-
+import '@/assets/style/style.scss'
 type MessageSchema = typeof msg.ko
 
 const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({

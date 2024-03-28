@@ -10,13 +10,13 @@ export default defineConfig({
     vue(),
     VueDevTools(),
   ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "./src/assets/style/main.scss";`,
-      },
-    },
-  },
+  // scss: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `@import "./src/assets/style/style.scss";`,
+  //     },
+  //   },
+  // },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
