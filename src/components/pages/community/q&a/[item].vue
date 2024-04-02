@@ -1,5 +1,5 @@
 <template>
-  <div><div id="container">
+  <div id="container">
     <div class="contents">
       <!-- conTopArea -->
       <div class="conTopArea">
@@ -37,13 +37,37 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
+          <tr class="bgGray">
             <td class="mNone">3</td>
             <td data-label="문의유형">배송</td>
             <td class="txtL subject" data-label="제목">
               <a href="" class="lock com">배송 문의 드립니다<span class="tag">답변완료</span></a>
+              <div class="conDetail">
+                안녕하세요 미디데스크 오늘 주문 했는데<br/>
+                언제쯤 도착하나요?
+                <div class="img">
+                  <img src="../assets/images/img-gallery01.jpg" alt="">
+                  <div>
+                    <button type="button" class="btn">수정</button>
+                    <button type="button" class="btn">삭제</button>
+                  </div>
+                </div>
+              </div>
             </td>
             <td data-label="작성자">박**</td>
+            <td data-label="작성일">24.03.03</td>
+          </tr>
+          <tr class="bgGray">
+            <td></td>
+            <td></td>
+            <td class="txtL subject" data-label="답변">
+              안녕하세요 루멘입니다.<br/>
+              루멘 상품은 주문제작 상품으로<br/>
+              주문일로부터 2주정도 소요되는 점 참고 부탁드립니다. <br/>
+              회원님의 편안한 쇼핑을 위해 최선을 다하겠습니다. <br/>
+              감사합니다.
+            </td>
+            <td data-label="작성자">루멘</td>
             <td data-label="작성일">24.03.03</td>
           </tr>
           <tr>
@@ -85,6 +109,8 @@
       </div>
       <!--// conBottomArea -->
     </div>
-  </div></div>
+  </div>
 </template>
+
+
 <script setup lang="ts"></script>

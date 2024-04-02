@@ -1,7 +1,7 @@
 <template>
   <SkipComponent/>
   <HeaderComponent />
-  <router-view></router-view>
+  <slot></slot>
   <FooterComponent/>
 </template>
 

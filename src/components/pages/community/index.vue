@@ -1,4 +1,4 @@
 <template>
-  <div>community page</div>
+  <router-view :key="$route.fullPath"></router-view>
 </template>
 <script setup lang="ts"></script>
