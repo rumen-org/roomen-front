@@ -125,7 +125,7 @@
     top: 52px;
     right: 80px;
 
-    a {
+    button {
       display: inline-block;
       line-height: 30px;
       font-weight: 700;
@@ -180,7 +180,7 @@
       }
     }
 
-    .lang a {
+    .lang button {
       color: rgba(255, 255, 255, 0.5);
 
       &.curr {
@@ -233,7 +233,7 @@
     .lang {
       top: 17px;
 
-      a {
+      button {
         font-size: 14px;
       }
     }

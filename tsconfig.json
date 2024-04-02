@@ -29,7 +29,7 @@
     "@stores/*": ["src/stores/*"],
     "@utils/*": ["src/utils/*"],
     "@router/*": ["src/router/*"],
-    "@rocales/*": ["src/rocales/*"],
+    "@locales/*": ["src/locales/*"],
     "@pages/*": ["src/views/*"]
   },
 
