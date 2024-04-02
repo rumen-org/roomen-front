@@ -31,7 +31,7 @@
     "@utils/*": ["src/utils/*"],
     "@router/*": ["src/router/*"],
     "@locales/*": ["src/locales/*"],
-    "@pages/*": ["src/views/*"]
+    "@views/*": ["src/views/*"]
   },
 
   },

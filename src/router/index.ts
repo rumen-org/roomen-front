@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/',
         name: 'Main',
-        component: () => import('@/views/main/index.vue'),
+        component: () => import('@views/main/index.vue'),
         meta: {layout: FullPageLayout, notGnb: true}
       },
       // {
@@ -22,25 +22,25 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/about',
         name: 'ABOUT ROOMEN',
-        component: () => import('@/views/about/index.vue'),
+        component: () => import('@views/about/index.vue'),
         meta: {layout: DefaultLayout}
       },
       {
         path: '/cart',
         name: 'CART',
-        component: () => import('@/views/cart/index.vue'),
+        component: () => import('@views/cart/index.vue'),
         meta: {layout: DefaultLayout, notGnb: true, utils: true, class: 'cart'}
       },
       {
         path: '/product',
         name: 'PRODUCT',
-        component: () => import('@/views/product/index.vue'),
+        component: () => import('@views/product/index.vue'),
         meta: {layout: DefaultLayout,class: 'product'},
         children: [
           {
             path: '/product/MidiDesk',
             name: 'MidiDesk',
-            component: () => import('@/views/product/midiDesk/index.vue'),
+            component: () => import('@views/product/midiDesk/index.vue'),
             meta: {layout: DefaultLayout}
           },
         ],
@@ -48,37 +48,37 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/community',
         name: 'COMMUNITY',
-        component: () => import('@/views/community/index.vue'),
+        component: () => import('@views/community/index.vue'),
         meta: {class: 'commu'},
         children: [
           {
             path: '/community/gallery',
             name: 'GALLERY',
-            component: () => import('@/views/community/gallery/index.vue'),
+            component: () => import('@views/community/gallery/index.vue'),
           meta: {layout: DefaultLayout}
           },
           {
             path: '/community/notice',
             name: 'NOTICE',
-            component: () => import('@/views/community/notice/index.vue'),
+            component: () => import('@views/community/notice/index.vue'),
             meta: {layout: DefaultLayout}
           },
           {
             path: '/community/notice/:item',
             name: 'Notice Item',
-            component: () => import('@/views/community/notice/[item].vue'),
+            component: () => import('@views/community/notice/[item].vue'),
             meta: {layout: DefaultLayout, notGnb: true}
           },
           {
             path: '/community/Q&A',
             name: 'Q&A',
-            component: () => import('@/views/community/q&a/index.vue'),
+            component: () => import('@views/community/q&a/index.vue'),
             meta: {layout: DefaultLayout}
           },
           {
             path: '/community/Q&A/:item',
             name: 'Q&A Item',
-            component: () => import('@/views/community/q&a/[item].vue'),
+            component: () => import('@views/community/q&a/[item].vue'),
             meta: {layout: DefaultLayout, notGnb: true}
           },
         ],
@@ -91,31 +91,31 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: '/login',
             name: 'Login',
-            component: () => import('@/views/login/index.vue'),
+            component: () => import('@views/login/index.vue'),
             meta: {layout: DefaultLayout,notGnb: true, utils: true},
           },
           {
             path: '/login/findID',
             name: 'findID',
-            component: () => import('@/views/login/findId/index.vue'),
+            component: () => import('@views/login/findId/index.vue'),
           },
           {
             path: '/login/findPW',
             name: 'findPW',
-            component: () => import('@/views/login/findPw/index.vue'),
+            component: () => import('@views/login/findPw/index.vue'),
           },
         ]
       },
       {
         path: '/mypage',
         name: 'MY PAGE',
-        component: () => import('@/views/my_page/index.vue'),
+        component: () => import('@views/my_page/index.vue'),
         meta: {layout: DefaultLayout,notGnb: true, utils: true, class: 'mypage'},
       },
       {
         path: '/signup',
         name: 'SignUp',
-        component: () => import('@/views/signUp/index.vue'),
+        component: () => import('@views/signUp/index.vue'),
         meta: {layout: DefaultLayout,notGnb: true}
       }
     ],
@@ -127,7 +127,7 @@ const routes: Array<RouteRecordRaw> = [
       layout: ErrorLayout,
       notGnb: true
     },
-    component: () => import('@/views/404/index.vue'),
+    component: () => import('@views/404/index.vue'),
     // redirect: "/404",
   },
 ]
