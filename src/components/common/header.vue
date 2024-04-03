@@ -1,14 +1,14 @@
 <template>
-  <div id="header" :class="{ top: getActiveSection === 0 }">
+  <div id="header" ref="headerRef"  :class="{ top: getActiveSection === 0,on: isMenuOpen }">
     <!-- inner -->
     <div class="inner">
       <h1><router-link to="/">ROOMEN</router-link></h1>
-      <div class="gnb">
+      <div class="gnb" :style="{ right: isMenuOpen ? '0' : '-100%' }">
         <div class="menu">
           <ul>
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <router-link :to="route.path">{{ route.name }}</router-link>
+                <router-link :to="route.path ? route.path : ''">{{ route.name }}</router-link>
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
                   <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">
@@ -32,7 +32,7 @@
             <Languages/>
         <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
       </div>
-      <button type="button" class="btnMenu"><em><span class="hide">메뉴 열기</span></em></button>
+      <button type="button" class="btnMenu" @click="toggleMenu"><em><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em></button>
     </div>
     <!--// inner -->
   </div>
@@ -43,8 +43,44 @@ import {useRoute} from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
 import { storeToRefs } from "pinia";
-import { watchEffect } from "vue";
+import { watchEffect, ref, onMounted } from "vue";
 const { getActiveSection } = storeToRefs(useMainStore());
+
+const headerRef = ref<HTMLElement | null>(null);
+const isMenuOpen = ref(false);
+// const windowWidth = ref<number>(window.innerWidth);
+//
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+  console.log('isMenuOpen',isMenuOpen.value)
+};
+
+onMounted(() => {
+  if (window.innerWidth < 1161) {
+    const menuLinks = headerRef.value?.querySelectorAll('.menu > ul > li > a');
+    if (menuLinks) {
+      menuLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const ulHeight = (link.nextElementSibling as HTMLElement)?.clientHeight;
+          if (link.classList.contains('curr')) {
+            link.classList.remove('curr');
+            (link.nextElementSibling as HTMLElement)!.style.height = '0';
+          } else {
+            menuLinks.forEach((otherLink: Element) => {
+              if (otherLink !== link) {
+                otherLink.classList.remove('curr');
+                (otherLink.nextElementSibling as HTMLElement)!.style.height = '0';
+              }
+            });
+            link.classList.add('curr');
+            (link.nextElementSibling as HTMLElement)!.style.height = `${ulHeight}px`;
+          }
+        });
+      });
+    }
+  }
+});
 
 watchEffect(() => {
   console.log('activeSectionRef:', getActiveSection.value);
@@ -55,3 +91,6 @@ const filteredRoutes = route.matched[0].children
 const utils = route.matched[0].children
     .filter(child => child.meta?.utils)
 </script>
+
+
+<style scoped></style>

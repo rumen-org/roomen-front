@@ -1,13 +1,13 @@
 <template>
-  <div id="fullpage">
+  <div id="fullpage" ref="onFullpage">
     <div class="quick">
       <ul>
         <li class="menu-point" v-bind:class="{on: activeSection == index}" v-on:click="scrollToSection(index)" v-for="(offset, index) in offsets" v-bind:key="index" ></li>
       </ul>
     </div>
-    <section class="fullsection full1" pageNum="1"></section>
-    <section class="fullsection full2" pageNum="2"><span>2 PAGE</span></section>
-    <section class="fullsection full3" pageNum="3"><span>3 PAGE</span></section>
+    <section class="fullsection full1"></section>
+    <section class="fullsection full2"><span>2 PAGE</span></section>
+    <section class="fullsection full3"><span>3 PAGE</span></section>
   </div>
 
 </template>
@@ -18,8 +18,12 @@ import {useMainStore} from "@/stores/mainPage";
 const inMove = ref(false);
 const inMoveDelay = 400;
 const activeSection = ref(0);
-const offsets = ref([]);
+const offsets = ref<number[]>([]);
 let touchStartY = 0;
+let lastScrollTime = 0;
+let touchMoveDetected = false;
+
+const onFullpage = ref<HTMLElement | null>(null);
 // const {activeValue} = storeToRefs(useMainStore)
 const { setActiveSection } = useMainStore();
 const calculateSectionOffsets = () => {
@@ -32,7 +36,14 @@ const calculateSectionOffsets = () => {
   }
 };
 
-const handleMouseWheel = (e) => {
+const handleMouseWheel = (evt: Event) => {
+  const e = evt as WheelEvent;
+  const currentTime = new Date().getTime();
+  if (currentTime - lastScrollTime < 500) {
+    // 500ms 이내에 다음 스크롤 이벤트를 무시합니다.
+    return false;
+  }
+
   if (e.deltaY < 0 && !inMove.value) {
     moveDown();
   } else if (e.deltaY > 0 && !inMove.value) {
@@ -43,7 +54,14 @@ const handleMouseWheel = (e) => {
   return false;
 };
 
-const handleMouseWheelDOM = (e) => {
+const handleMouseWheelDOM = (evt: Event) => {
+  const e = evt as WheelEvent;
+  const currentTime = new Date().getTime();
+
+  if (currentTime - lastScrollTime < 500) {
+    // 500ms 이내에 다음 스크롤 이벤트를 무시합니다.
+    return false;
+  }
   if (e.detail > 0 && !inMove.value) {
     moveUp();
   } else if (e.detail < 0 && !inMove.value) {
@@ -71,7 +89,7 @@ const moveUp = () => {
   scrollToSection(activeSection.value, true);
 };
 
-const scrollToSection = (id, force = false) => {
+const scrollToSection = (id: number, force = false) => {
   if (inMove.value && !force) return false;
 
   activeSection.value = id;
@@ -88,47 +106,85 @@ const scrollToSection = (id, force = false) => {
   }, inMoveDelay);
 };
 
-const touchStart = (e) => {
-  e.preventDefault();
-
+const touchStart = (evt: Event) => {
+  const e = evt as TouchEvent;
+  touchMoveDetected = false
+  // e.preventDefault();
+  if (e.cancelable) {
+    e.preventDefault();
+    console.log('cancelable')
+  }
+  console.log('touchMoveDetectedOnStart', touchMoveDetected)
   touchStartY = e.touches[0].clientY;
+  return false;
 };
 
-const touchMove = (e) => {
+const touchMove = (evt: Event) => {
+  const e = evt as TouchEvent;
   if (inMove.value) return false;
-  e.preventDefault();
-
   const currentY = e.touches[0].clientY;
+  const swipeUp = touchStartY > currentY;
+  const swipeDown = touchStartY < currentY;
+  const isScrolling = Math.abs(currentY - touchStartY) > 1; // 스크롤 방지 거리 조정
 
-  if (touchStartY < currentY) {
-    moveDown();
-  } else {
-    moveUp();
+  if (isScrolling) {
+    touchMoveDetected = true;
+    if (!e.cancelable) {
+      e.preventDefault();
+    }
+    if (swipeUp) {
+      moveUp();
+      console.log('moveUp')
+    } else if (swipeDown) {
+      moveDown();
+      console.log('moveDown')
+    }
   }
-
+  console.log('touchMoveDetectedOnMove', touchMoveDetected)
   touchStartY = 0;
+
   return false;
+
+};
+const touchEnd = (evt: Event) => {
+  const e = evt as TouchEvent;
+
+  if (!touchMoveDetected) {
+    // If no scrolling detected, prevent the click event
+    e.stopPropagation();
+  }
+  const touchEndY = e.changedTouches[0].clientY;
+  const touchDeltaY = Math.abs(touchStartY - touchEndY);
+
+  // 일정 거리 이내에서 터치를 시작했고, 시간이 너무 오래 걸리지 않았다면 클릭으로 처리
+  if (touchDeltaY < 20) {
+    e.stopPropagation();
+  }
+  console.log('touchMoveDetectedOnEnd', touchMoveDetected)
 };
 watchEffect(() => {
   setActiveSection(activeSection.value);
 });
 onMounted(() => {
-  setActiveSection(activeSection.value);
+  // setActiveSection(activeSection.value);
   calculateSectionOffsets();
+  const tags = document.querySelector('#fullpage');
+  tags.addEventListener('DOMMouseScroll', handleMouseWheelDOM as EventListener);
+  tags.addEventListener('mousewheel', handleMouseWheel as EventListener, { passive: false });
+  tags.addEventListener('touchstart', touchStart as EventListener, { passive: false });
+  tags.addEventListener('touchmove', touchMove as EventListener, { passive: false });
+  tags.addEventListener('touchend', touchEnd as EventListener, { passive: false });
 
-  window.addEventListener('DOMMouseScroll', handleMouseWheelDOM); // Mozilla Firefox
-  window.addEventListener('mousewheel', handleMouseWheel, { passive: false }); // Other browsers
 
-  window.addEventListener('touchstart', touchStart, { passive: false }); // mobile devices
-  window.addEventListener('touchmove', touchMove, { passive: false }); // mobile devices
 });
 
 onUnmounted(() => {
-  window.removeEventListener('DOMMouseScroll', handleMouseWheelDOM); // Mozilla Firefox
-  window.removeEventListener('mousewheel', handleMouseWheel, { passive: false }); // Other browsers
-
-  window.removeEventListener('touchstart', touchStart); // mobile devices
-  window.removeEventListener('touchmove', touchMove); // mobile devices
+  const tags = document.querySelector('#fullpage');
+  tags.removeEventListener('DOMMouseScroll', handleMouseWheelDOM); // Mozilla Firefox
+  tags.removeEventListener('mousewheel', handleMouseWheel); // Other browsers
+  tags.removeEventListener('touchstart', touchStart); // mobile devices
+  tags.removeEventListener('touchmove', touchMove); // mobile devices
+  tags.removeEventListener('touchend', touchEnd); // mobile devices
 });
 </script>
 
