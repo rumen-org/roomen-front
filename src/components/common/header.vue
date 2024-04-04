@@ -1,5 +1,5 @@
 <template>
-  <div id="header" ref="headerRef"  :class="{ top: getActiveSection === 0 && windowWidth >= 1161,on: isMenuOpen }">
+  <div id="header" ref="headerRef"  :class="{ top: getActiveSection === 0 || windowWidth >= 1161,on: isMenuOpen }">
     <!-- inner -->
     <div class="inner">
       <h1><router-link to="/">ROOMEN</router-link></h1>
