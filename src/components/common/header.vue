@@ -1,5 +1,5 @@
 <template>
-  <div id="header" ref="headerRef"  :class="{ top: getActiveSection === 0,on: isMenuOpen }">
+  <div id="header" ref="headerRef"  :class="{ top: getActiveSection === 0 && windowWidth >= 1161,on: isMenuOpen }">
     <!-- inner -->
     <div class="inner">
       <h1><router-link to="/">ROOMEN</router-link></h1>
@@ -43,9 +43,10 @@ import {useRoute} from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
 import { storeToRefs } from "pinia";
-import { watchEffect, ref, onMounted } from "vue";
+import {watchEffect, ref, onMounted, onBeforeMount} from "vue";
 const { getActiveSection } = storeToRefs(useMainStore());
 
+const windowWidth = ref<number>(0);
 const headerRef = ref<HTMLElement | null>(null);
 const isMenuOpen = ref(false);
 // const windowWidth = ref<number>(window.innerWidth);
@@ -54,8 +55,16 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
   console.log('isMenuOpen',isMenuOpen.value)
 };
+const handleResize = () => {
+  windowWidth.value = window.innerWidth;
+  // if (windowWidth < 1161) {
+  //
+  // }
+};
 
 onMounted(() => {
+  window.addEventListener('resize', handleResize);
+
   if (window.innerWidth < 1161) {
     const menuLinks = headerRef.value?.querySelectorAll('.menu > ul > li > a');
     if (menuLinks) {
@@ -81,6 +90,9 @@ onMounted(() => {
     }
   }
 });
+onBeforeMount(() => {
+  window.removeEventListener('resize', handleResize);
+})
 
 watchEffect(() => {
   console.log('activeSectionRef:', getActiveSection.value);
@@ -90,6 +102,9 @@ const filteredRoutes = route.matched[0].children
     .filter(child => !child.meta?.notGnb);
 const utils = route.matched[0].children
     .filter(child => child.meta?.utils)
+
+
+
 </script>
 
 

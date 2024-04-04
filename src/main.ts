@@ -5,6 +5,8 @@ import router from './router/index'
 import { createI18n } from 'vue-i18n'
 import msg from '@/locales/index'
 import '@/assets/style/style.scss'
+import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar';
+import 'vue3-perfect-scrollbar/style.css';
 type MessageSchema = typeof msg.ko
 
 const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({
@@ -45,4 +47,5 @@ const app = createApp(App)
 app.use(i18n)
 app.use(createPinia())
 app.use(router)
+app.use(PerfectScrollbarPlugin)
 app.mount('#app')

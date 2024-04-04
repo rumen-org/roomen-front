@@ -71,21 +71,23 @@
           <!-- terms -->
           <div class="terms">
             <h3>[필수] 이용약관 동의</h3>
-            <div class="scrollArea">
-              제1조(목적)<br/>
-              이 약관은 OO 회사(전자상거래 사업자)가 운영하는 OO 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷
-              관련 서비스(이하 “서비스”라 한다)를 이용함에
-              있어 사이버 몰과 이용자의 권리.의무 및 책임사항을 규정함을
-              목적으로 합니다.
-              <br/>
-              <br/>
-              제1조(목적)<br/>
-              이 약관은 OO 회사(전자상거래 사업자)가 운영하는 OO 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷
-              관련 서비스(이하 “서비스”라 한다)를 이용함에
-              있어 사이버 몰과 이용자의 권리.의무 및 책임사항을 규정함을
-              목적으로 합니다.
+            <PerfectScrollbar class="scrollArea">
+              <div class="scrollInner">
+                제1조(목적)<br/>
+                이 약관은 OO 회사(전자상거래 사업자)가 운영하는 OO 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷
+                관련 서비스(이하 “서비스”라 한다)를 이용함에
+                있어 사이버 몰과 이용자의 권리.의무 및 책임사항을 규정함을
+                목적으로 합니다.
+                <br/>
+                <br/>
+                제1조(목적)<br/>
+                이 약관은 OO 회사(전자상거래 사업자)가 운영하는 OO 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷
+                관련 서비스(이하 “서비스”라 한다)를 이용함에
+                있어 사이버 몰과 이용자의 권리.의무 및 책임사항을 규정함을
+                목적으로 합니다.
 
-            </div>
+              </div>
+            </PerfectScrollbar>
             <div class="txtR">
               <span>이용약관에 동의하십니까?</span>
               <span class="checkbox">
@@ -98,7 +100,8 @@
           <!-- terms -->
           <div class="terms">
             <h3>[필수] 개인정보 수집 및 이용 동의</h3>
-            <div class="scrollArea">
+            <PerfectScrollbar class="scrollArea">
+              <div class="scrollInner">
               ** 본 양식은 쇼핑몰 운영에 도움을 드리고자 샘플로 제공되는 서식으로 쇼핑몰 운영형태에 따른 수정이
               필요합니다. 쇼핑몰에 적용하시기 전, 쇼핑몰 운영사항 등을 확인하시고 적절한 내용을 반영하여 사용하시기
               바랍니다. **
@@ -106,7 +109,8 @@
               1. 개인정보 수집목적 및 이용목적<br/>
               2. 개인정보 수집목적 및 이용목적<br/>
               3. 개인정보 수집목적 및 이용목적
-            </div>
+              </div>
+            </PerfectScrollbar>
             <div class="txtR">
               <span>개인정보 수집 및 이용에 동의하십니까?</span>
               <span class="checkbox">
@@ -119,14 +123,16 @@
           <!-- terms -->
           <div class="terms">
             <h3>[선택] 개인정보 제3자 제공 동의</h3>
-            <div class="scrollArea">
+            <PerfectScrollbar class="scrollArea">
+              <div class="scrollInner">
               아래 내용의 동의 여부는 회원가입에 영향을 미치지 않습니다. 단, 동의 거부시 서비스 이용에 제한이 있을
               수 있습니다.
               <br/><br/>
               - 제공 받는 자 : 하우저,CJ대한통운,경동택배 등 택배사<br/>
               - 제공 항목 : 이름,연락처,주소<br/>
               - 제공 기간 : 2024-03-17 ~ 2024-03-31
-            </div>
+              </div>
+            </PerfectScrollbar>
             <div class="txtR">
               <span>개인정보 제3자 제공에 동의하십니까?</span>
               <span class="checkbox">
@@ -139,12 +145,14 @@
           <!-- terms -->
           <div class="terms">
             <h3>[선택] 쇼핑정보 수신 동의</h3>
-            <div class="scrollArea">
-              할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS나 이메일로 받아보실 수 있습니다.
-              단, 주문/거래 정보 및 주요 정책과 관련된 내용은 수신동의 여부와 관계없이 발송됩니다.
-              선택 약관에 동의하지 않으셔도 회원가입은 가능하며,
-              회원가입 후 회원정보수정 페이지에서 언제든지 수신여부를 변경하실 수 있습니다.
-            </div>
+            <PerfectScrollbar class="scrollArea">
+              <div class="scrollInner">
+                할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS나 이메일로 받아보실 수 있습니다.
+                단, 주문/거래 정보 및 주요 정책과 관련된 내용은 수신동의 여부와 관계없이 발송됩니다.
+                선택 약관에 동의하지 않으셔도 회원가입은 가능하며,
+                회원가입 후 회원정보수정 페이지에서 언제든지 수신여부를 변경하실 수 있습니다.
+              </div>
+            </PerfectScrollbar>
             <div class="flex right mBlock txtR">
               <div>
                 <span>이메일 수신을 동의하십니까?</span>
@@ -175,4 +183,8 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
+<style scoped>
+.scrollInner {padding: 0 30px;}
+</style>

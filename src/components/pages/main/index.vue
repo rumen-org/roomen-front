@@ -162,6 +162,8 @@ const touchEnd = (evt: Event) => {
   }
   console.log('touchMoveDetectedOnEnd', touchMoveDetected)
 };
+
+
 watchEffect(() => {
   setActiveSection(activeSection.value);
 });
@@ -169,22 +171,23 @@ onMounted(() => {
   // setActiveSection(activeSection.value);
   calculateSectionOffsets();
   const tags = document.querySelector('#fullpage');
-  tags.addEventListener('DOMMouseScroll', handleMouseWheelDOM as EventListener);
-  tags.addEventListener('mousewheel', handleMouseWheel as EventListener, { passive: false });
-  tags.addEventListener('touchstart', touchStart as EventListener, { passive: false });
-  tags.addEventListener('touchmove', touchMove as EventListener, { passive: false });
-  tags.addEventListener('touchend', touchEnd as EventListener, { passive: false });
-
+  tags?.addEventListener('DOMMouseScroll', handleMouseWheelDOM as EventListener);
+  tags?.addEventListener('mousewheel', handleMouseWheel as EventListener, { passive: false });
+  tags?.addEventListener('touchstart', touchStart as EventListener, { passive: false });
+  tags?.addEventListener('touchmove', touchMove as EventListener, { passive: false });
+  tags?.addEventListener('touchend', touchEnd as EventListener, { passive: false });
 
 });
 
 onUnmounted(() => {
   const tags = document.querySelector('#fullpage');
-  tags.removeEventListener('DOMMouseScroll', handleMouseWheelDOM); // Mozilla Firefox
-  tags.removeEventListener('mousewheel', handleMouseWheel); // Other browsers
-  tags.removeEventListener('touchstart', touchStart); // mobile devices
-  tags.removeEventListener('touchmove', touchMove); // mobile devices
-  tags.removeEventListener('touchend', touchEnd); // mobile devices
+  tags?.removeEventListener('DOMMouseScroll', handleMouseWheelDOM); // Mozilla Firefox
+  tags?.removeEventListener('mousewheel', handleMouseWheel); // Other browsers
+  tags?.removeEventListener('touchstart', touchStart); // mobile devices
+  tags?.removeEventListener('touchmove', touchMove); // mobile devices
+  tags?.removeEventListener('touchend', touchEnd); // mobile devices
+
+
 });
 </script>
 
