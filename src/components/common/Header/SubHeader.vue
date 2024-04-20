@@ -22,14 +22,14 @@
           </ul>
         </div>
         <div class="util">
-<!--          notGnb: true, utils: true-->
+          <!--          notGnb: true, utils: true-->
           <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>
         </div>
-<!--        <div class="lang">-->
-<!--          <a href="" class="curr">KR</a>-->
-<!--          <a href="">EN</a>-->
-<!--        </div>-->
-            <Languages/>
+        <!--        <div class="lang">-->
+        <!--          <a href="" class="curr">KR</a>-->
+        <!--          <a href="">EN</a>-->
+        <!--        </div>-->
+        <Languages/>
         <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
       </div>
       <button type="button" class="btnMenu" @click="toggleMenu"><em><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em></button>
@@ -38,7 +38,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import Languages from '@components/common/lang.vue'
+import Languages from '@/components/common/lang.vue'
 import {useRoute} from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";

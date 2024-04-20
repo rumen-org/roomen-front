@@ -1,6 +1,6 @@
 <template>
   <div id="fullpage" ref="onFullpage">
-    <div class="quick">
+    <div class="quick" :class="activeSection != 0  ? 'themeBk' : ''">
       <ul>
         <li class="menu-point" v-bind:class="{on: activeSection == index}" v-on:click="scrollToSection(index)" v-for="(offset, index) in offsets" v-bind:key="index" ></li>
       </ul>
@@ -202,4 +202,6 @@ onUnmounted(() => {
 .quick {position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:9999}
 .quick li {margin-bottom:10px; width:10px; height:10px; border-radius:15px; border:2px solid #fff; cursor:pointer}
 .quick .on {background:#fff}
+.quick.themeBk li {border-color: #000;}
+.quick.themeBk .on {background: #000;}
 </style>
