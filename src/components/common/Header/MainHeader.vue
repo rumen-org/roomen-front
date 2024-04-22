@@ -1,5 +1,5 @@
 <template>
-  <div id="header" ref="headerRef"  :class="{ top:  windowWidth >= 1161,on: isMenuOpen }">
+  <div id="header" ref="headerRef"  :class="{ top:  getActiveSection === 0 || windowWidth >= 1161,on: isMenuOpen }">
     <!-- inner -->
     <div class="inner">
       <h1><router-link to="/">ROOMEN</router-link></h1>
@@ -8,7 +8,7 @@
           <ul>
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <router-link :to="route.path ? route.path : ''">{{ route.name }}</router-link>
+                <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
                   <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">

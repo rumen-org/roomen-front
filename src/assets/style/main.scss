@@ -167,7 +167,7 @@
     }
 
     .menu > ul > li {
-      > a {
+      > .hasChild {
         background: url("../images/ico-arrow-down.png") no-repeat center (right / auto);
       }
 
@@ -175,7 +175,7 @@
         color: rgba(255, 255, 255, 0.7);
       }
 
-      > a.on {
+      > a.hasChild.on {
         background: url("../images/ico-arrow-up.png") no-repeat center (right / auto);
       }
     }

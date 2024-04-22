@@ -1,5 +1,5 @@
 <template>
-  <div id="header" ref="headerRef"  :class="{ top: getActiveSection === 0 || windowWidth >= 1161,on: isMenuOpen }">
+  <div id="header" ref="headerRef" :class="{ top: !isMobile && routePath == '/about',on: isMenuOpen }">
     <!-- inner -->
     <div class="inner">
       <h1><router-link to="/">ROOMEN</router-link></h1>
@@ -8,7 +8,7 @@
           <ul>
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <router-link :to="route.path ? route.path : ''">{{ route.name }}</router-link>
+                <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
                   <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">
@@ -40,26 +40,25 @@
 <script setup lang="ts">
 import Languages from '@/components/common/lang.vue'
 import {useRoute} from "vue-router";
-const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
 import { storeToRefs } from "pinia";
-import {watchEffect, ref, onMounted, onBeforeMount} from "vue";
+import {watchEffect, ref, onMounted, onBeforeMount, computed} from "vue";
 const { getActiveSection } = storeToRefs(useMainStore());
-
-const windowWidth = ref<number>(0);
+const route = useRoute();
+const routePath = computed(()=>{
+  return route.path
+})
+const isMobile = ref<boolean>(window.innerWidth < 1161);
 const headerRef = ref<HTMLElement | null>(null);
 const isMenuOpen = ref(false);
 // const windowWidth = ref<number>(window.innerWidth);
-//
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
   console.log('isMenuOpen',isMenuOpen.value)
 };
 const handleResize = () => {
-  windowWidth.value = window.innerWidth;
-  // if (windowWidth < 1161) {
-  //
-  // }
+  isMobile.value = window.innerWidth < 1161;
 };
 
 onMounted(() => {
@@ -96,6 +95,7 @@ onBeforeMount(() => {
 
 watchEffect(() => {
   console.log('activeSectionRef:', getActiveSection.value);
+
 });
 // 2단계 깊이의 라우트만 필터링
 const filteredRoutes = route.matched[0].children

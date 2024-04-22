@@ -1,5 +1,5 @@
 <template>
-  <div><div id="container">
+  <div id="container">
     <div class="contents">
       <!-- conTopArea -->
       <div class="conTopArea">
@@ -39,26 +39,26 @@
           <tbody>
           <tr>
             <td class="mNone">3</td>
-            <td data-label="문의유형">배송</td>
-            <td class="txtL subject" data-label="제목">
+            <td>배송</td>
+            <td class="txtL subject">
               <a href="" class="lock com">배송 문의 드립니다<span class="tag">답변완료</span></a>
             </td>
-            <td data-label="작성자">박**</td>
-            <td data-label="작성일">24.03.03</td>
+            <td>박**</td>
+            <td>24.03.03</td>
           </tr>
           <tr>
             <td class="mNone">2</td>
-            <td data-label="문의유형">상품</td>
-            <td class="txtL subject" data-label="제목"><a href="">크기문의</a></td>
-            <td data-label="작성자">최**</td>
-            <td data-label="작성일">24.03.03</td>
+            <td>상품</td>
+            <td class="txtL subject"><a href="">크기문의</a></td>
+            <td>최**</td>
+            <td>24.03.03</td>
           </tr>
           <tr>
             <td class="mNone">1</td>
-            <td data-label="문의유형">취소/교환/환불</td>
-            <td class="txtL subject" data-label="제목"><a href="">배송 안내</a></td>
-            <td data-label="작성자">최**</td>
-            <td data-label="작성일">24.03.03</td>
+            <td>취소/교환/환불</td>
+            <td class="txtL subject"><a href="">배송 안내</a></td>
+            <td>최**</td>
+            <td>24.03.03</td>
           </tr>
           </tbody>
         </table>
@@ -79,12 +79,12 @@
         <!--// paging -->
         <!-- btnArea -->
         <div class="btnArea">
-          <button type="button" class="btn">문의하기</button>
+          <button type="button" class="btn sL w230">문의하기</button>
         </div>
         <!--// btnArea -->
       </div>
       <!--// conBottomArea -->
     </div>
-  </div></div>
+  </div>
 </template>
 <script setup lang="ts"></script>
