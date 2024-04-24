@@ -1,18 +1,17 @@
-# roomen-frontEnd
+## Roomen-FrontEnd
 
-This template should help get you started developing with Vue 3 in Vite.
+∙ 기반 
+- Vue.js3 & TypeScript
+- Composition Api 기반 구조
+- Vite, Axios, Pinia, Sass
 
-## Recommended IDE Setup
+∙ 구조
+- components/pages를 views/ 에서 Import 컴포넌트 사용
+- 사용자입력 요소 (Input) && 테이블 && layout의 요소등은 컴포넌트안에 구성됨
+- I18n (언어별 Config 파일)은 locales/안에서 수정
+- 레이아웃(메인/서브/에러등)은 layouts/ 내부에 위치하며, 사용은 router/ 참조바람
+- Rest Api 관련 작업등은 stores/ 에서 상태관리 (api/ 이건 기본 CRUD에 대한 예비 세팅)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
