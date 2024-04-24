@@ -1,5 +1,5 @@
 <template>
-  <div id="header" ref="headerRef"  :class="{ top:  getActiveSection === 0 || windowWidth >= 1161,on: isMenuOpen }">
+  <div id="header" ref="headerRef" :class="{ top:  getActiveSection === 0 && windowWidth >= 1161,on: isMenuOpen }">
     <!-- inner -->
     <div class="inner">
       <h1><router-link to="/">ROOMEN</router-link></h1>
@@ -43,7 +43,7 @@ import {useRoute} from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
 import { storeToRefs } from "pinia";
-import {watchEffect, ref, onMounted, onBeforeMount} from "vue";
+import {watchEffect, ref, onMounted, onBeforeMount, watch} from "vue";
 const { getActiveSection } = storeToRefs(useMainStore());
 
 const windowWidth = ref<number>(0);
@@ -93,9 +93,15 @@ onMounted(() => {
 onBeforeMount(() => {
   window.removeEventListener('resize', handleResize);
 })
-
+watch(getActiveSection,(e)=> {
+  console.log('e',e)
+},{
+  immediate: true
+})
 watchEffect(() => {
   console.log('activeSectionRef:', getActiveSection.value);
+  console.log('windowWidth',windowWidth.value)
+  windowWidth.value = window.innerWidth;
 });
 // 2단계 깊이의 라우트만 필터링
 const filteredRoutes = route.matched[0].children

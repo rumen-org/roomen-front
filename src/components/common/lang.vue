@@ -9,7 +9,6 @@ import {ref} from "vue";
 
 const languageType = ref('ko');
 const setLang = (v: string) => {
-
   languageType.value = v
 }
 </script>
