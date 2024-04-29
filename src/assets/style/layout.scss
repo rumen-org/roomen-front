@@ -112,6 +112,7 @@ select + .checkboxWrap {margin-top:20px}
 .mCSB_scrollTools .mCSB_dragger {z-index:1;width: 100%; height:30px; cursor:pointer;}
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {position:relative; margin:0 auto; width:4px; height:100%;-webkit-border-radius:16px;-moz-border-radius:16px; border-radius:16px; text-align:center;background:rgba(25, 25, 25, 0.7)}
 
+#wrap {overflow: hidden;}
 /*** about ***/
 #wrap.about #header:before {background:transparent}
 #wrap.about #container {margin-bottom:0; padding:0}
