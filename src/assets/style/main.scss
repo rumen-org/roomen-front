@@ -54,31 +54,20 @@
       overflow: hidden;
       margin-top: 10px;
 
-      > a {
+      > button {
         padding-right: 18px;
         background: url("../images/ico-arrow-down-b.png") no-repeat center (right / auto);
+        font-family: 'GmarketSans', sans-serif;
         font-weight: 700;
+        font-size:16px;
 
         span {
           font-family: 'GmarketSans', serif;
         }
       }
 
-      // &:hover {
-      //   > a {
-      //     color: rgba(25, 25, 25, 0.7);
-      //     transition: all 0.2s;
-      //     -webkit-transition: all 0.2s;
-      //     -moz-transition: all 0.2s;
-      //   }
-
-      //   > ul {
-      //     opacity: 1;
-      //   }
-      // }
-
       > {
-        a.on {
+        button.curr {
           background: url("../images/ico-arrow-up-b.png") no-repeat center (right / auto);
         }
 
@@ -89,18 +78,19 @@
           li {
             a {
               text-transform:uppercase;
+              color:#191919;
             }
           }
         }
       }
 
       &.product {
-        a.curr + ul {
+        button.curr + ul {
           height: 25px;
         }
       }
       &.commu {
-        a.curr + ul {
+        button.curr + ul {
           height: 75px;
         }
       }
@@ -120,6 +110,7 @@
     a {
       display: block;
       font-weight: 700;
+      color:#fff;
 
       + a {
         margin-top: 20px;
@@ -166,7 +157,7 @@
       background: url("../images/logo.png") no-repeat (center / 100%) auto;
     }
 
-    a {
+    button {
       color: #fff;
 
       span {
@@ -176,16 +167,16 @@
     }
 
     .menu > ul > li {
-      > .hasChild {
+      > button {
         background: url("../images/ico-arrow-down.png") no-repeat center (right / auto);
       }
 
-      &:hover > a {
-        color: rgba(255, 255, 255, 0.7);
+      > button.curr {
+        background: url("../images/ico-arrow-up.png") no-repeat center (right / auto);
       }
 
-      > a.hasChild.on {
-        background: url("../images/ico-arrow-up.png") no-repeat center (right / auto);
+      ul li a {
+        color:#fff
       }
     }
 

@@ -8,8 +8,7 @@
           <ul>
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <!-- <router-link :to="route.path" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link> -->
-                <a href="javascript:void(0);" :class="{ 'hasChild': route.children }">{{ route.name }}</a>
+                <button>{{ route.name }}</button>
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
                   <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">
@@ -67,11 +66,10 @@ onMounted(() => {
   window.addEventListener('resize', handleResize);
 
   if (window.innerWidth > 1160) {
-    const menuLinks = headerRef.value?.querySelectorAll('.menu > ul > li > a');
+    const menuLinks = headerRef.value?.querySelectorAll('.menu > ul > li > button');
     if (menuLinks) {
       menuLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
-          e.preventDefault();
           const ulHeight = link.nextElementSibling as HTMLElement;
           const ul = ulHeight.clientHeight;
           if (link.classList.contains('curr')) {
