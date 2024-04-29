@@ -10,10 +10,10 @@
       <div class="cartList">
         <div class="goods">
           <div class="fixed">
-                            <span class="checkbox noTxt">
-                                <input type="checkbox" id="chk0101">
-                                <label for="chk0101">선택</label>
-                            </span>
+            <span class="checkbox noTxt">
+                <input type="checkbox" id="chk0101">
+                <label for="chk0101">선택</label>
+            </span>
             <p class="img w180"><img src="@/assets/images/img-product-3.jpg" alt=""></p>
           </div>
           <div>

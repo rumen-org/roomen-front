@@ -8,7 +8,7 @@
           <ul>
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <template v-if="index === 0">
+                <template v-if="!route.children">
                   <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
                 </template>
                 <template v-else>

@@ -1,6 +1,6 @@
 <template>
   <SkipComponent/>
-  <div id="wrap" :class="route.path ? routePath : ''" :style="{height: heightGetter+'px' ? heightGetter+'px' : ''}">
+  <div id="wrap" :class="route.path ? routePath : ''">
     <SubHeaderComponent />
     <slot></slot>
     <FooterComponent/>
