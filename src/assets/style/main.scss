@@ -54,7 +54,8 @@
       overflow: hidden;
       margin-top: 10px;
 
-      > button {
+      > button,
+      > a {
         padding-right: 18px;
         background: url("../images/ico-arrow-down-b.png") no-repeat center (right / auto);
         font-family: 'GmarketSans', sans-serif;
@@ -64,6 +65,10 @@
         span {
           font-family: 'GmarketSans', serif;
         }
+      }
+      > a {
+        background:none;
+        color:#fff
       }
 
       > {

@@ -8,7 +8,15 @@
           <ul>
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <button>{{ route.name }}</button>
+                <template v-if="index === 0">
+                  <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
+                </template>
+                <template v-else>
+                  <button>{{ route.name }}</button>
+                </template>
+                <!-- <router-link :to="route.path" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link> -->
+               
+                <!-- <a href="javascript:void(0);" :class="{ 'hasChild': route.children }">{{ route.name }}</a> -->
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
                   <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">
