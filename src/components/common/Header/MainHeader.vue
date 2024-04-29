@@ -8,7 +8,8 @@
           <ul>
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
+                <!-- <router-link :to="route.path" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link> -->
+                <a href="javascript:void(0);" :class="{ 'hasChild': route.children }">{{ route.name }}</a>
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
                   <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">
@@ -65,25 +66,24 @@ const handleResize = () => {
 onMounted(() => {
   window.addEventListener('resize', handleResize);
 
-  if (window.innerWidth < 1161) {
+  if (window.innerWidth > 1160) {
     const menuLinks = headerRef.value?.querySelectorAll('.menu > ul > li > a');
     if (menuLinks) {
       menuLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          const ulHeight = (link.nextElementSibling as HTMLElement)?.clientHeight;
+          const ulHeight = link.nextElementSibling as HTMLElement;
+          const ul = ulHeight.clientHeight;
           if (link.classList.contains('curr')) {
             link.classList.remove('curr');
-            (link.nextElementSibling as HTMLElement)!.style.height = '0';
           } else {
             menuLinks.forEach((otherLink: Element) => {
               if (otherLink !== link) {
                 otherLink.classList.remove('curr');
-                (otherLink.nextElementSibling as HTMLElement)!.style.height = '0';
               }
             });
-            link.classList.add('curr');
-            (link.nextElementSibling as HTMLElement)!.style.height = `${ulHeight}px`;
+            link.classList.toggle('curr');
+            console.log(ul);
           }
         });
       });

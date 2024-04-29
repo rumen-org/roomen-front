@@ -12,7 +12,6 @@
 }
 
 /*** #header ***/
-
 #header {
   position: fixed;
   z-index: 9999;
@@ -65,18 +64,18 @@
         }
       }
 
-      &:hover {
-        > a {
-          color: rgba(25, 25, 25, 0.7);
-          transition: all 0.2s;
-          -webkit-transition: all 0.2s;
-          -moz-transition: all 0.2s;
-        }
+      // &:hover {
+      //   > a {
+      //     color: rgba(25, 25, 25, 0.7);
+      //     transition: all 0.2s;
+      //     -webkit-transition: all 0.2s;
+      //     -moz-transition: all 0.2s;
+      //   }
 
-        > ul {
-          opacity: 1;
-        }
-      }
+      //   > ul {
+      //     opacity: 1;
+      //   }
+      // }
 
       > {
         a.on {
@@ -87,15 +86,23 @@
           height: 0;
           padding-left: 10px;
           transition: all 0.4s ease-in-out;
+          li {
+            a {
+              text-transform:uppercase;
+            }
+          }
         }
       }
 
-      &.product:hover > ul {
-        height: 25px;
+      &.product {
+        a.curr + ul {
+          height: 25px;
+        }
       }
-
-      &.commu:hover > ul {
-        height: 75px;
+      &.commu {
+        a.curr + ul {
+          height: 75px;
+        }
       }
 
       &:first-child > a {
@@ -129,14 +136,16 @@
       display: inline-block;
       line-height: 30px;
       font-weight: 700;
+      font-size:16px;
       color: rgba(25, 25, 25, 0.5);
+      cursor: pointer;
 
       &.curr {
         border-bottom: 2px solid #191919;
         color: #191919;
       }
 
-      + a {
+      + button {
         margin-left: 16px;
       }
     }
