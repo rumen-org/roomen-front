@@ -15,24 +15,30 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <!-- inGallSlider -->
-                    <div class="inGallSlider">
+                    <!-- <div class="inGallSlider">
                         <div class="swiper-wrapper">
-                            <a href="" class="swiper-slide">
+                          <swiper
+                            :slides-per-view="1"
+                            @swiper="inGallSlider"
+                            @slideChange="onSlideChange"
+                            navigation
+                          >
+                            <swiper-slide>
                                 <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
                                 <strong>MMM STUDIO</strong>
-                            </a>
-                            <a href="" class="swiper-slide">
+                            </swiper-slide>
+                            <swiper-slide>
                                 <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
                                 <strong>MMM STUDIO 2</strong>
-                            </a>
-                            <a href="" class="swiper-slide">
+                            </swiper-slide>
+                            <swiper-slide>
                                 <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
                                 <strong>MMM STUDIO 3</strong>
-                            </a>
+                            </swiper-slide>
                         </div>
                         <div class="swiper-button-next v3"></div>
                         <div class="swiper-button-prev v3"></div>
-                    </div>
+                    </div> -->
                     <!--// inGallSlider -->
                 </div>
                 <div class="swiper-slide">
@@ -239,6 +245,13 @@ onUnmounted(() => {
 
 
 });
+
+// section3 inner slider
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+
+
+  import 'swiper/css';
+
 </script>
 
 <style scoped>
