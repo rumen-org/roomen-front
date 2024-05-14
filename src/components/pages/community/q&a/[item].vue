@@ -46,7 +46,7 @@
                 안녕하세요 미디데스크 오늘 주문 했는데<br/>
                 언제쯤 도착하나요?
                 <div class="img">
-                  <img src="../assets/images/img-gallery01.jpg" alt="">
+                  <img src="@/assets/images/img-gallery01.jpg" alt="">
                   <div>
                     <button type="button" class="btn">수정</button>
                     <button type="button" class="btn">삭제</button>

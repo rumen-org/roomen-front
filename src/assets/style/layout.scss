@@ -142,7 +142,7 @@ select + .checkboxWrap {margin-top:20px}
 
 #wrap {overflow: hidden;}
 /*** about ***/
-wrap.about #header:before {background:transparent}
+#wrap.about #header:before {background:transparent}
 #wrap.about #container {margin-bottom:0; padding:0}
 .aboutVisual {position:relative; overflow:hidden}
 .aboutVisual img {width:100%; object-fit:cover}
@@ -1211,7 +1211,7 @@ div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width
 }
 
 /*** galleryList ***/
-.galleryList {margin-top:50px; padding-top:40px; padding-bottom:100%; width:100%; border-top:3px solid #191919}
+.galleryList {margin-top:50px; padding-top:40px; padding-bottom:100px; width:100%; border-top:3px solid #191919}
 .galleryList > ul {display:grid; grid-template-columns:repeat(3, 1fr); gap:90px}
 .galleryList > ul >li {cursor:pointer}
 .galleryList > ul >li > div {position:relative; aspect-ratio:1/1; overflow:hidden}
@@ -1259,6 +1259,8 @@ div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width
 /*** product ***/
 /* list */
 .productList {display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; margin-top:55px; padding-top:40px; border-top:3px solid #191919}
+.productList .product {display:block}
+.productList .product > * {color:#191919}
 .productList .product > p {background:#F8F8F8; aspect-ratio: 1/1;}
 .productList .product p img {width:100%; height:auto; object-fit:cover}
 .productList .product > div {padding-top:25px}
