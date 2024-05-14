@@ -114,12 +114,12 @@ select + .checkboxWrap {margin-top:20px}
 
 #wrap {overflow: hidden;}
 /*** about ***/
-#wrap.about #header:before {background:transparent}
+wrap.about #header:before {background:transparent}
 #wrap.about #container {margin-bottom:0; padding:0}
 .aboutVisual {position:relative; overflow:hidden}
 .aboutVisual img {width:100%; object-fit:cover}
-.aboutVisual > div {position:absolute; top:50%; left:50%; text-align:center; transform:translate(-50%, -50%)}
-.aboutVisual > div .logoImg {padding-bottom:70px; width:460px; height:auto}
+.aboutVisual > div {position:absolute; top:50%; left:50%; max-width:500px; width:100%; text-align:center; transform:translate(-50%, -50%)}
+.aboutVisual > div .logoImg {padding-bottom:70px; max-width:460px; width:100%; height:auto}
 .aboutVisual > div > * {display:block; color:#fff}
 .aboutVisual > div strong {padding-bottom:25px}
 .aboutVisual > div strong.ko {font-weight:700; font-size:20px}
@@ -127,8 +127,47 @@ select + .checkboxWrap {margin-top:20px}
 .aboutVisual > div .eng {font-family:'GmarketSans', sans-serif; font-weight:700; font-size:18px}
 .aboutVisual > div strong.eng {padding-top:40px}
 .aboutVisual > div p.eng {font-weight:300; font-size:16px}
-#wrap.about #footer {position:absolute; bottom:0; padding:30px 0; width:calc(100% - 360px); border-color:#fff; color:#fff}
+#wrap.about #footer {/*position:absolute; bottom:0;*/ padding:30px 0; width:calc(100% - 360px); border-color:#fff; color:#fff}
 #wrap.about #footer p > a {background-image:url("../images/logo-footer-w.png")}
+@media (max-width:1160px) { 
+    #wrap.about #footer {margin:0 20px; width:auto}
+}
+@media (max-width:940px) {
+    .aboutVisual > div {padding:0 30px}
+
+    #wrap.about #footer {margin:0; padding:20px}
+    #wrap.about #footer::before {display:none}
+}
+@media (max-width:768px) {
+    .aboutVisual > div {padding:0 20px; text-align:left}
+    .aboutVisual > div .logoImg {padding-bottom:35px; max-width:204px}
+    .aboutVisual > div p.ko {line-height:24px; font-size:14px}
+
+    #wrap.about #footer {padding:30px 20px}
+    
+}
+
+.aniOne,
+.aniTwo,
+.aniThree,
+.aniFour,
+.aniFive {opacity:0; transform:translateY(100%); animation:aniOne 1s ease-in-out forwards}
+.aniOne {animation-delay:0s}
+.aniTwo {animation-delay:1s}
+.aniThree {animation-delay:2s}
+.aniFour {animation-delay:5s}
+.aniFive {animation-delay:6s}
+  
+@keyframes aniOne {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /*** 컨텐츠 상단영역 ***/
 .conTopArea {position:relative; display:flex; justify-content:space-between; height:40px}
