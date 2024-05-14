@@ -4,6 +4,9 @@
 .fontG {font-family:'GmarketSans', sans-serif !important}
 .fontN {font-family:'NanumSquare', sans-serif !important}
 
+.font16 {font-size:16px !important}
+.font24 {font-size:24px !important}
+
 .bgGray,
 .bgGray #header:before {background:#D9D9D9}
 .bgGrayE6,
@@ -16,9 +19,18 @@
 .txtC {text-align:center !important}
 
 .maxW170 {max-width:170px}
+.w90 {width:90px; max-width:100%}
+.w100 {width:100px; max-width:100%}
+.w130 {width:130px; max-width:100%}
 .w230 {width:230px; max-width:100%}
+.w270 {width:270px; max-width:100%}
+.w290 {width:290px; max-width:100%}
+
+.mTop25 {margin-top:25px}
 
 .btn {background:#191919; font-weight:500; color:#fff}
+.bgWhite {background:#fff !important; border:1px solid #191919; color:#191919 !important}
+.sM {height:40px; font-weight:400; font-size:16px}
 .sL {height:70px; font-weight:600; font-size:20px}
 .blockBtn {display:block; width:100%}
 .iconBtn {padding-left:23px; font-size:16px}
@@ -31,12 +43,15 @@
 .allBtnArea button {background:none; font-weight:300; font-size:18px; color:#191919}
 .allBtnArea button + button {margin-left:40px}
 @media (max-width:768px) {
-    .sL {font-size:16px}
+    .sL {height:55px; font-size:16px}
     .w230 {width:100%}
 
     .allBtnArea {padding:15px; text-align:right}
     .allBtnArea button {font-size:13px}
     .allBtnArea button + button {margin-left:20px}
+
+    .font16 {font-size:12px !important}
+    .font24 {font-size:18px !important}
 }
 
 .flex {display:flex}
@@ -45,10 +60,23 @@
 .flex.left {justify-content:flex-start}
 .flex.right {justify-content:flex-end}
 .flex.mBlock div + div {margin-left:30px}
+
+.conBlock > * {display:block}
+.conBlock > * + * {margin-top:30px !important}
+.conBlock.center {text-align:center}
+.conBlock.center > * {margin:0 auto}
+
 @media (max-width:768px) {
     .flex.mBlock {display:block}
     .flex.mBlock div + div {margin-top:10px}
+
+    .mFlex {display:flex !important}
+
+    .conBlock > * + * {margin-top:20px !important}
 }
+
+
+
 
 /* 가로길이 정해진 레이아웃 영역 */
 .w600 {margin:0 auto; max-width:600px; width:100%}
@@ -485,8 +513,13 @@ div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width
 /*** cart ***/
 /* 주문내역 */
 .orderTable tr td {padding:60px 0}
+.orderTable tr td .option {font-weight:400; font-size:14px}
+.orderTable + .totalPrice {display:flex; justify-content:flex-end; align-items:baseline; padding:25px 0 70px}
+.orderTable + .totalPrice span {padding-right:75px; font-weight:700; font-size:16px}
+.orderTable + .totalPrice em {font-size:32px}
+.orderTable tr td button {margin-top:5px}
 .goodsInfo {display:flex; align-items:center; gap:40px; text-align:left; color:#191919}
-.goodsInfo .img {width:200px; height:200px}
+.goodsInfo .img {width:200px; min-width:100px}
 .goodsInfo .img img {width:100%; height:auto; object-fit:cover}
 .goodsInfo strong {font-weight:700; font-size:22px}
 .goodsInfo p:not(.img) {font-weight:300; font-size:16px}
@@ -499,13 +532,13 @@ div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width
     .goodsInfo {gap:20px}
     .orderTable tr th,
     .orderTable tr td {padding:30px 0; font-size:15px !important}
-    .goodsInfo .img {width:150px; height:150px}
+    .goodsInfo .img {width:150px}
     .goodsInfo strong {font-weight:600; font-size:18px}
     .goodsInfo p:not(.img) {font-size:14px}
     .goodsInfo > div {font-size:12px}
     .goodsInfo > div > div > * {display:inline-block}
     .goodsInfo > div > div > span {margin-top:10px; line-height:16px}
-    .goodsInfo  > div > div > span > span + span {padding-left:10px}
+    .goodsInfo  > div > div > span > span + span {padding-left:10px} 
     .goodsInfo > div > div > span > span + span:before {position:absolute; content:"/"; top:-1px; left:2px}
 }
 @media (max-width:940px) {
@@ -518,23 +551,30 @@ div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width
     .orderTable > table > tbody > tr,
     .orderTable > table > tbody > tr > th,
     .orderTable > table > tbody > tr > td {display:block; height:auto; text-align:left}
-    .orderTable > table > tbody > tr > td:not(:first-child) {position:relative; padding:3px 0 3px 60px}
-    .orderTable > table > tbody > tr > td:before {position:absolute; content:attr(data-label); left:0; font-weight:700}
+    .orderTable > table > tbody > tr > td:not(:first-child) {position:relative; padding:3px 0 3px 80px; text-align:right}
+    .orderTable > table > tbody > tr > td:before {position:absolute; content:attr(data-label); left:0; font-weight:700; font-size:13px}
 
-    .goodsInfo .img {position:absolute; top:30px; left:0; width:100px; height:100px}
+    .goodsInfo .img {position:absolute; top:30px; left:0; width:100px}
     .orderTable > table > tbody > tr {position:relative; padding:20px 0}
-    .orderTable > table > tbody > tr > td {padding:10px 10px 40px 120px}
-    .orderTable > table > tbody > tr > td:not(:first-child) {padding:3px 0 3px 90px; text-align:right}
+    .orderTable > table > tbody > tr > td {margin-left:110px; padding:10px 10px 10px 0}
     .orderTable > table > tbody > tr > td br {display:none}
+    .orderTable > table > tbody > tr > td em {white-space:nowrap}
     .goodsInfo strong {font-size:16px}
     .goodsInfo p:not(.img) {font-size:13px}
     .goodsInfo p:not(.img) + div {padding-top:10px; line-height:17px}
 }
 @media (max-width:768px) {
+    .orderTable + .totalPrice {justify-content:space-between; padding:15px 0}
+    .orderTable + .totalPrice span {padding-right:0; font-size:16px}
+    .orderTable + .totalPrice em {font-size:22px}
     .orderTable tr th,
     .orderTable tr td {font-size:13px !important}
-    .orderTable > table > tbody > tr > td {margin-left:110px; padding:10px 10px 10px 0}
-    .orderTable > table > tbody > tr > td:before {font-size:13px}
+}
+@media (max-width:500px) {
+    .goodsInfo .img {top:20px; width:70px; min-width:70px}
+    .orderTable > table > tbody > tr {padding:5px 0 15px}
+    .orderTable > table > tbody > tr > td {margin-left:85px}
+    .orderTable tr td button {display:block; width:100%}
 }
 
 /* cart */
