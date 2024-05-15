@@ -43,6 +43,10 @@ const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({
     }
   },
 })
+// if (process.env.NODE_ENV === 'development'){
+//   worker.start()
+// }
+
 const app = createApp(App)
 app.use(i18n)
 app.use(createPinia())
