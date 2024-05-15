@@ -7,7 +7,63 @@
     </div>
     <section class="fullsection full1"></section>
     <section class="fullsection full2"><span>2 PAGE</span></section>
-    <section class="fullsection full3"><span>3 PAGE</span></section>
+    <section class="fullsection full3">
+      <div class="inner">
+        <h2>GALLERY</h2>
+        <!-- gallSlider -->
+        <div class="gallSlider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <!-- inGallSlider -->
+                    <!-- <div class="inGallSlider">
+                        <div class="swiper-wrapper">
+                          <swiper
+                            :slides-per-view="1"
+                            @swiper="inGallSlider"
+                            @slideChange="onSlideChange"
+                            navigation
+                          >
+                            <swiper-slide>
+                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                                <strong>MMM STUDIO</strong>
+                            </swiper-slide>
+                            <swiper-slide>
+                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                                <strong>MMM STUDIO 2</strong>
+                            </swiper-slide>
+                            <swiper-slide>
+                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                                <strong>MMM STUDIO 3</strong>
+                            </swiper-slide>
+                        </div>
+                        <div class="swiper-button-next v3"></div>
+                        <div class="swiper-button-prev v3"></div>
+                    </div> -->
+                    <!--// inGallSlider -->
+                </div>
+                <div class="swiper-slide">
+                    <a href="">
+                        <picture><img src="@/assets/images/img-gallery04.png" alt=""></picture>
+                        <strong>SAN HOUSE</strong>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="">
+                        <picture><img src="@/assets/images/img-gallery05.jpg" alt=""></picture>
+                        <strong>JIBLE STUDIO</strong>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="">
+                        <picture><img src="@/assets/images/img-gallery06.jpg" alt=""></picture>
+                        <strong>SINSUNG CHURCH</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--// gallSlider -->
+    </div>
+    </section>
   </div>
 
 </template>
@@ -189,6 +245,13 @@ onUnmounted(() => {
 
 
 });
+
+// section3 inner slider
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+
+
+  import 'swiper/css';
+
 </script>
 
 <style scoped>
