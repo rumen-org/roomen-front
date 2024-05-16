@@ -3,12 +3,7 @@
     <div class="contents">
       <!-- conTopArea -->
       <div class="conTopArea">
-        <div class="sorting">
-          <ul>
-            <li :class="{ 'curr': sortBy === 'latest' }"><button @click="sortByLatest" type="button">최신 순</button></li>
-            <li :class="{ 'curr': sortBy === 'oldest' }"><button @click="sortByOldest" type="button">오래된 순</button></li>
-          </ul>
-        </div>
+        <sorting :sort-by="sortBy" @update:sortBy="handleSorting" />
         <h2>NOTICE</h2>
         <div class="srchArea">
           <input type="text" title="검색" v-model="searchValue">
@@ -66,15 +61,16 @@
 </template>
 <script setup lang="ts">
 import { getSearchVals } from '@/utils/search'
-import listDummy from '@/mocks/json/noticeList.json'
+import { data } from '@/mocks/json/noticeList.json'
 import paging from '@/components/board/pagination.vue'
-// import { useRouter } from 'vue-router'
-// const router = useRouter();
+import sorting from '@/components/board/sort.vue'
+import { computed, ref } from "vue";
+// import { useSorting } from '@/composables/sort'
+// const { sortBy, sortedLists, handleSorting } = useSorting(data);
 
-import {computed, ref, unref} from "vue";
 // 보여질 게시물 목록 ( dummy )
 const allLists = computed(() => {
-  return listDummy?.data;
+  return data;
 })
 const lists = computed(() => {
   if (searchResults.value.length > 0) {
@@ -102,21 +98,33 @@ const currentPage = ref<number>(1);
 // 한 페이지에서 보여질 게시물 갯수
 const perPage = ref<number>(5);
 // 게시물에 따른 총 페이지
-const totalPage = computed(() => Math.ceil(allLists.value.length / perPage.value)
-);
+const totalPage = computed(() => {
+  if (searchResults.value.length > 0) {
+    return Math.ceil(searchResults.value.length / perPage.value)
+  } else {
+    return Math.ceil(allLists.value.length / perPage.value)
+  }
+
+});
 const updateCurrent = (e:number) => {
   currentPage.value = e;
 }
 // 정렬
 const sortBy = ref<string>('latest');
-
+const handleSorting = (e: string) => {
+  sortBy.value = e;
+  if (sortBy.value == 'latest') {
+    sortByLatest();
+  } else if (sortBy.value == 'oldest') {
+    sortByOldest();
+  }
+}
 const sortByLatest = () => {
   sortBy.value = 'latest';
   if (searchResults.value.length > 0) {
     searchResults.value = [...searchResults.value].sort((a, b) => new Date(b.regDtm).getTime() - new Date(a.regDtm).getTime());
   }
 };
-
 const sortByOldest = () => {
   sortBy.value = 'oldest';
   if (searchResults.value.length > 0) {
@@ -132,25 +140,21 @@ const sortedLists = computed(() => {
     return sorted.sort((a, b) => new Date(a.regDtm).getTime() - new Date(b.regDtm).getTime());
   }
 });
+// 검색기능
+const searchValue = ref<string>('');
 const searchResults = ref([]);
-const unSearchResults = unref(searchResults);
-console.log('unSearchResults',unSearchResults)
 const searchItem = () => {
   const searchValues = getSearchVals({
     searchValue: { val: searchValue.value } // 검색값 ref에서 전달
     // 다른 검색 조건 추가 가능
   });
 
-  const filteredLists = allLists.value.filter((item:any) => {
+  const filteredLists = allLists.value.filter((item: any) => {
     return item.title.toLowerCase().includes(searchValues.searchValue.val.toLowerCase());
   });
-
+  console.log('onSearchTotalPage', totalPage)
+  currentPage.value = 1;
   // 필터링된 데이터로 searchResults 업데이트
   searchResults.value = filteredLists;
-  console.log('searchResults',searchResults,filteredLists)
 };
-
-// 검색기능
-const searchValue = ref<string>('');
-
 </script>
