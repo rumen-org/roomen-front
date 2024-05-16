@@ -112,10 +112,16 @@ const sortBy = ref<string>('latest');
 
 const sortByLatest = () => {
   sortBy.value = 'latest';
+  if (searchResults.value.length > 0) {
+    searchResults.value = [...searchResults.value].sort((a, b) => new Date(b.regDtm).getTime() - new Date(a.regDtm).getTime());
+  }
 };
 
 const sortByOldest = () => {
   sortBy.value = 'oldest';
+  if (searchResults.value.length > 0) {
+    searchResults.value = [...searchResults.value].sort((a, b) => new Date(a.regDtm).getTime() - new Date(b.regDtm).getTime());
+  }
 };
 
 const sortedLists = computed(() => {
@@ -135,7 +141,7 @@ const searchItem = () => {
     // 다른 검색 조건 추가 가능
   });
 
-  const filteredLists = allLists.value.filter((item) => {
+  const filteredLists = allLists.value.filter((item:any) => {
     return item.title.toLowerCase().includes(searchValues.searchValue.val.toLowerCase());
   });
 
