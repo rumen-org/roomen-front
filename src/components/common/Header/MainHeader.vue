@@ -12,7 +12,7 @@
                   <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
                 </template>
                 <template v-else>
-                  <button>{{ route.name }}</button>
+                  <button type="button" @click.prevent="toggleBtnIdx(index)" :class="{'curr' : !closed[index]}">{{ route.name }}</button>
                 </template>
                 <!-- <router-link :to="route.path" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link> -->
                
@@ -47,11 +47,11 @@
 </template>
 <script setup lang="ts">
 import Languages from '@/components/common/lang.vue'
-import {useRoute} from "vue-router";
+import { useRoute } from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
 import { storeToRefs } from "pinia";
-import {watchEffect, ref, onMounted, onBeforeMount, watch} from "vue";
+import {watchEffect, ref, onMounted, watch, onBeforeUnmount, onBeforeMount} from "vue";
 const { getActiveSection } = storeToRefs(useMainStore());
 
 const windowWidth = ref<number>(0);
@@ -69,34 +69,16 @@ const handleResize = () => {
   //
   // }
 };
-
+onBeforeMount(()=>{
+  window.addEventListener('resize', handleResize);
+})
 onMounted(() => {
   window.addEventListener('resize', handleResize);
-
   if (window.innerWidth > 1160) {
-    const menuLinks = headerRef.value?.querySelectorAll('.menu > ul > li > button');
-    if (menuLinks) {
-      menuLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-          const ulHeight = link.nextElementSibling as HTMLElement;
-          const ul = ulHeight.clientHeight;
-          if (link.classList.contains('curr')) {
-            link.classList.remove('curr');
-          } else {
-            menuLinks.forEach((otherLink: Element) => {
-              if (otherLink !== link) {
-                otherLink.classList.remove('curr');
-              }
-            });
-            link.classList.toggle('curr');
-            console.log(ul);
-          }
-        });
-      });
-    }
+    console.log('onPc');
   }
 });
-onBeforeMount(() => {
+onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 })
 watch(getActiveSection,(e)=> {
@@ -115,6 +97,16 @@ const filteredRoutes = route.matched[0].children
 const utils = route.matched[0].children
     .filter(child => child.meta?.utils)
 
+const closed = ref(Array(filteredRoutes.length).fill(true));
+const toggleBtnIdx = (index: number) => {
+  for (let i = 0; i < closed.value.length; i++) {
+    if (i !== index) {
+      closed.value[i] = true;
+    }
+  }
+  // Toggle the clicked button
+  closed.value[index] = !closed.value[index];
+};
 
 
 </script>

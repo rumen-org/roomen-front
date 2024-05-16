@@ -12,7 +12,7 @@
                   <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
                 </template>
                 <template v-else>
-                  <button>{{ route.name }}</button>
+                  <button type="button" @click.prevent="toggleBtnIdx(index)" :class="{'curr' : !closed[index]}">{{ route.name }}</button>
                 </template>
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
@@ -30,10 +30,6 @@
           <!--          notGnb: true, utils: true-->
           <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>
         </div>
-        <!--        <div class="lang">-->
-        <!--          <a href="" class="curr">KR</a>-->
-        <!--          <a href="">EN</a>-->
-        <!--        </div>-->
         <Languages/>
         <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
       </div>
@@ -44,10 +40,10 @@
 </template>
 <script setup lang="ts">
 import Languages from '@/components/common/lang.vue'
-import {useRoute} from "vue-router";
+import { useRoute } from "vue-router";
 import { useMainStore } from "@/stores/mainPage";
 import { storeToRefs } from "pinia";
-import {watchEffect, ref, onMounted, onBeforeMount, computed} from "vue";
+import {watchEffect, ref, onMounted, onBeforeUnmount, computed, onBeforeMount} from "vue";
 const { getActiveSection } = storeToRefs(useMainStore());
 const route = useRoute();
 const routePath = computed(()=>{
@@ -68,34 +64,16 @@ const handleResize = () => {
 
 onMounted(() => {
   window.addEventListener('resize', handleResize);
-
   if (window.innerWidth > 1160) {
-    const menuLinks = headerRef.value?.querySelectorAll('.menu > ul > li > button');
-    if (menuLinks) {
-      menuLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-          const ulHeight = link.nextElementSibling as HTMLElement;
-          const ul = ulHeight.clientHeight;
-          if (link.classList.contains('curr')) {
-            link.classList.remove('curr');
-          } else {
-            menuLinks.forEach((otherLink: Element) => {
-              if (otherLink !== link) {
-                otherLink.classList.remove('curr');
-              }
-            });
-            link.classList.toggle('curr');
-            console.log(ul);
-          }
-        });
-      });
-    }
+    console.log('onPc');
   }
 });
-onBeforeMount(() => {
+onBeforeMount(()=>{
+  window.addEventListener('resize', handleResize);
+})
+onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 })
-
 watchEffect(() => {
   console.log('activeSectionRef:', getActiveSection.value);
 
@@ -106,7 +84,16 @@ const filteredRoutes = route.matched[0].children
 const utils = route.matched[0].children
     .filter(child => child.meta?.utils)
 
-
+const closed = ref(Array(filteredRoutes.length).fill(true));
+const toggleBtnIdx = (index: number) => {
+  for (let i = 0; i < closed.value.length; i++) {
+    if (i !== index) {
+      closed.value[i] = true;
+    }
+  }
+  // Toggle the clicked button
+  closed.value[index] = !closed.value[index];
+};
 
 </script>
 
