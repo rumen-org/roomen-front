@@ -15,30 +15,25 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <!-- inGallSlider -->
-                    <!-- <div class="inGallSlider">
-                        <div class="swiper-wrapper">
-                          <swiper
-                            :slides-per-view="1"
-                            @swiper="inGallSlider"
-                            @slideChange="onSlideChange"
-                            navigation
-                          >
-                            <swiper-slide>
-                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                                <strong>MMM STUDIO</strong>
-                            </swiper-slide>
-                            <swiper-slide>
-                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                                <strong>MMM STUDIO 2</strong>
-                            </swiper-slide>
-                            <swiper-slide>
-                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                                <strong>MMM STUDIO 3</strong>
-                            </swiper-slide>
-                        </div>
-                        <div class="swiper-button-next v3"></div>
-                        <div class="swiper-button-prev v3"></div>
-                    </div> -->
+                    <swiper
+                      :slides-per-view="1"
+                      @swiper="inGallSlider"
+                      navigation
+                      class="inGallSlider"
+                    >
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                          <strong>MMM STUDIO</strong>
+                      </swiper-slide>
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                          <strong>MMM STUDIO 2</strong>
+                      </swiper-slide>
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                          <strong>MMM STUDIO 3</strong>
+                      </swiper-slide>
+                    </swiper>
                     <!--// inGallSlider -->
                 </div>
                 <div class="swiper-slide">
@@ -247,10 +242,10 @@ onUnmounted(() => {
 });
 
 // section3 inner slider
-  import { Swiper, SwiperSlide } from 'swiper/vue';
-
-
-  import 'swiper/css';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css/navigation';
+import 'swiper/css';
 
 </script>
 
@@ -264,7 +259,7 @@ onUnmounted(() => {
 .full3 {background:rgba(230, 230, 230, 1)}
 .quick {position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:9999}
 .quick li {margin-bottom:10px; width:10px; height:10px; border-radius:15px; border:2px solid #fff; cursor:pointer}
-.quick .on {background:#fff}
+.quick .on {height:50px; background:#fff}
 .quick.themeBk li {border-color: #000;}
 .quick.themeBk .on {background: #000;}
 </style>
