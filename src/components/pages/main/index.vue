@@ -96,22 +96,22 @@
                   <!-- detailSlider -->
                   <div class="detailSlider" ref="detailSliderRef">
                     <swiper
-                    :slides-per-view="1"
-                    :spaceBetween="150"
-                    @swiper="detailSlider"
-                    navigation
-                    pagination
-                  >
-                    <swiper-slide>
-                          <picture><img src="@/assets/images/img-product.png" alt=""></picture>
-                    </swiper-slide>
-                    <swiper-slide>
-                      <picture><img src="@/assets/images/img-product.png" alt=""></picture>
-                    </swiper-slide>
-                    <swiper-slide>
+                      :slides-per-view="1"
+                      :spaceBetween="150"
+                      @swiper="detailSlider"
+                      navigation
+                      pagination
+                    >
+                      <swiper-slide>
+                            <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                      </swiper-slide>
+                      <swiper-slide>
                         <picture><img src="@/assets/images/img-product.png" alt=""></picture>
-                    </swiper-slide>
-                  </swiper>
+                      </swiper-slide>
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                      </swiper-slide>
+                    </swiper>
                   </div>
                   <!--// detailSlider -->
                   <div class="colorChse right">
