@@ -5,10 +5,12 @@
       <div class="conTopArea">
         <sorting :sort-by="sortBy" @update:sortBy="handleSorting" />
         <h2>NOTICE</h2>
+        <!-- 이 부분 컴포넌트 분할 필요 -->
         <div class="srchArea">
           <input type="text" title="검색" v-model="searchValue">
           <button type="button" class="srchBtn" @click="searchItem"><span class="hide">검색하기</span></button>
         </div>
+        <!-- //이 부분 컴포넌트 분할 필요 -->
       </div>
       <!--// conTopArea -->
       <!-- listTable -->
