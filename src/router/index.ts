@@ -38,9 +38,15 @@ const routes: Array<RouteRecordRaw> = [
         meta: {layout: DefaultLayout,class: 'product'},
         children: [
           {
-            path: '/product/MidiDesk',
+            path: '/product/midiDesk',
             name: 'MidiDesk',
             component: () => import('@/views/product/midiDesk/index.vue'),
+            meta: {layout: DefaultLayout}
+          },
+          {
+            path: '/product/etc',
+            name: 'ETC',
+            component: () => import('@/views/product/etc/index.vue'),
             meta: {layout: DefaultLayout}
           },
         ],
@@ -55,7 +61,7 @@ const routes: Array<RouteRecordRaw> = [
             path: '/community/gallery',
             name: 'GALLERY',
             component: () => import('@/views/community/gallery/index.vue'),
-          meta: {layout: DefaultLayout}
+            meta: {layout: DefaultLayout}
           },
           {
             path: '/community/notice',

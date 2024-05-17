@@ -23,27 +23,50 @@
           </div>
         </div>
         <!--// loginArea -->
+
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import {ref} from "vue";
-import axios from "axios";
+import {ref, watchEffect} from "vue";
+import { useUserStore } from '@/mocks/stores/loginStores';
+// import { storeToRefs } from "pinia";
+// const userStore = storeToRefs(useUserStore());
 
-const memberId = ref<string|null>('');
-const memberPw = ref<string|null>('');
-const login =  async () => {
+import { useRouter } from 'vue-router'
+const router = useRouter();
+// import axios from "axios";
+const authStore = useUserStore();
+const memberId = ref<string>('');
+const memberPw = ref<string>('');
+watchEffect(()=>{
+  console.log('memberId',memberId.value)
+  console.log('memberPw',memberPw.value)
+})
+const login = async () => {
   try {
-    const response = await axios.post('http://15.164.101.152:3000/auth/login', {
-      email: memberId.value,
-      password: memberPw.value
-    });
-    console.log('response',response)
-    // Handle successful login, e.g., store token in local storage
+    // await userStore.login(memberId.value, memberPw.value);
+    // 로그인 성공 시 처리
+    await authStore.login(memberId.value,memberPw.value)
+    await router.push('/');
   } catch (error) {
-    // Handle login error
-    console.error('Login failed:', error);
+    // 로그인 실패 시 에러 처리
+    console.error('로그인 실패:', error);
+    alert(error);
   }
-}
+};
+
+// const login =  async () => {
+//   try {
+//     const response = await axios.post('http://15.164.101.152:3000/auth/login', {
+//       email: memberId.value,
+//       password: memberPw.value
+//     });
+//     console.log('response',response)
+//   } catch (error) {
+//     // Handle login error
+//     console.error('Login failed:', error);
+//   }
+// }
 </script>

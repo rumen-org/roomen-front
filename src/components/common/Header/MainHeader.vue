@@ -14,9 +14,6 @@
                 <template v-else>
                   <button type="button" @click.prevent="toggleBtnIdx(index)" :class="{'curr' : !closed[index]}">{{ route.name }}</button>
                 </template>
-                <!-- <router-link :to="route.path" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link> -->
-               
-                <!-- <a href="javascript:void(0);" :class="{ 'hasChild': route.children }">{{ route.name }}</a> -->
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
                   <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">
@@ -31,12 +28,18 @@
         </div>
         <div class="util">
 <!--          notGnb: true, utils: true-->
-          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>
+<!--          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>-->
+          <template v-if="!isAuthenticated">
+            <router-link :to="loginItem.path" :class="loginItem?.meta?.class ? loginItem.meta.class : ''">{{ loginItem?.name }}</router-link>
+          </template>
+          <template
+              v-if="isAuthenticated"
+          >
+            <router-link :to="cartItem.path" :class="cartItem?.meta?.class ? cartItem.meta.class : ''">{{ cartItem?.name }}</router-link>
+            <LogOut />
+            <router-link :to="myPageItem.path" :class="myPageItem?.meta?.class ? myPageItem.meta.class : ''">{{ myPageItem?.name }}</router-link>
+          </template>
         </div>
-<!--        <div class="lang">-->
-<!--          <a href="" class="curr">KR</a>-->
-<!--          <a href="">EN</a>-->
-<!--        </div>-->
             <Languages/>
         <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
       </div>
@@ -50,24 +53,28 @@ import Languages from '@/components/common/lang.vue'
 import { useRoute } from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
+import { useUserStore } from '@/mocks/stores/loginStores';
+// const userStore = useUserStore();
 import { storeToRefs } from "pinia";
-import {watchEffect, ref, onMounted, watch, onBeforeUnmount, onBeforeMount} from "vue";
+import {watchEffect, ref, onMounted, watch, onBeforeUnmount, onBeforeMount, computed} from "vue";
+import LogOut from '@/components/common/logoutBtn.vue'
+
+const { isAuthenticated } = storeToRefs(useUserStore());
 const { getActiveSection } = storeToRefs(useMainStore());
+
+
 
 const windowWidth = ref<number>(0);
 const headerRef = ref<HTMLElement | null>(null);
 const isMenuOpen = ref(false);
 // const windowWidth = ref<number>(window.innerWidth);
-//
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
   console.log('isMenuOpen',isMenuOpen.value)
 };
 const handleResize = () => {
   windowWidth.value = window.innerWidth;
-  // if (windowWidth < 1161) {
-  //
-  // }
 };
 onBeforeMount(()=>{
   window.addEventListener('resize', handleResize);
@@ -82,12 +89,12 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 })
 watch(getActiveSection,(e)=> {
-  console.log('e',e)
+  console.log('getActiveSection',e)
 },{
   immediate: true
 })
 watchEffect(() => {
-  console.log('activeSectionRef:', getActiveSection.value);
+  console.log('isAuthenticated',isAuthenticated);
   console.log('windowWidth',windowWidth.value)
   windowWidth.value = window.innerWidth;
 });
@@ -96,7 +103,16 @@ const filteredRoutes = route.matched[0].children
     .filter(child => !child.meta?.notGnb);
 const utils = route.matched[0].children
     .filter(child => child.meta?.utils)
+const loginItem = computed(()=>{
+  return utils.find(item=> item.path === '/login')
 
+})
+const cartItem = computed(()=>{
+  return utils.find(item=> item.path === '/cart')
+})
+const myPageItem = computed(()=>{
+  return utils.find(item=> item.path === '/mypage')
+})
 const closed = ref(Array(filteredRoutes.length).fill(true));
 const toggleBtnIdx = (index: number) => {
   for (let i = 0; i < closed.value.length; i++) {
@@ -104,7 +120,6 @@ const toggleBtnIdx = (index: number) => {
       closed.value[i] = true;
     }
   }
-  // Toggle the clicked button
   closed.value[index] = !closed.value[index];
 };
 
@@ -112,4 +127,5 @@ const toggleBtnIdx = (index: number) => {
 </script>
 
 
-<style scoped></style>
+<style scoped>
+</style>

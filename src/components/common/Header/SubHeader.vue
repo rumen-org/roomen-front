@@ -27,10 +27,20 @@
           </ul>
         </div>
         <div class="util">
-          <!--          notGnb: true, utils: true-->
-          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>
+<!--          notGnb: true, utils: true-->
+<!--          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>-->
+          <template v-if="!isAuthenticated">
+            <router-link :to="loginItem.path" :class="loginItem?.meta?.class ? loginItem.meta.class : ''">{{ loginItem?.name }}</router-link>
+          </template>
+          <template
+              v-if="isAuthenticated"
+          >
+            <router-link :to="cartItem.path" :class="cartItem?.meta?.class ? cartItem.meta.class : ''">{{ cartItem?.name }}</router-link>
+            <LogOut />
+            <router-link :to="myPageItem.path" :class="myPageItem?.meta?.class ? myPageItem.meta.class : ''">{{ myPageItem?.name }}</router-link>
+          </template>
         </div>
-        <Languages/>
+            <Languages/>
         <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
       </div>
       <button type="button" class="btnMenu" @click="toggleMenu"><em><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em></button>
@@ -41,11 +51,17 @@
 <script setup lang="ts">
 import Languages from '@/components/common/lang.vue'
 import { useRoute } from "vue-router";
+const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
+import { useUserStore } from '@/mocks/stores/loginStores';
+// const userStore = useUserStore();
 import { storeToRefs } from "pinia";
 import {watchEffect, ref, onMounted, onBeforeUnmount, computed, onBeforeMount} from "vue";
+import LogOut from '@/components/common/logoutBtn.vue'
+
+const { isAuthenticated } = storeToRefs(useUserStore());
 const { getActiveSection } = storeToRefs(useMainStore());
-const route = useRoute();
+
 const routePath = computed(()=>{
   return route.path
 })
@@ -83,7 +99,16 @@ const filteredRoutes = route.matched[0].children
     .filter(child => !child.meta?.notGnb);
 const utils = route.matched[0].children
     .filter(child => child.meta?.utils)
+const loginItem = computed(()=>{
+  return utils.find(item=> item.path === '/login')
 
+})
+const cartItem = computed(()=>{
+  return utils.find(item=> item.path === '/cart')
+})
+const myPageItem = computed(()=>{
+  return utils.find(item=> item.path === '/mypage')
+})
 const closed = ref(Array(filteredRoutes.length).fill(true));
 const toggleBtnIdx = (index: number) => {
   for (let i = 0; i < closed.value.length; i++) {
