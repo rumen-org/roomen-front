@@ -1,1283 +1,466 @@
 @charset "utf-8";
-
-/*** 공통 ***/
-.fontG {font-family:'GmarketSans', sans-serif !important}
-.fontN {font-family:'NanumSquare', sans-serif !important}
-
-.font16 {font-size:16px !important}
-.font24 {font-size:24px !important}
-
-.bgGray,
-.bgGray #header:before {background:#D9D9D9}
-.bgGrayE6,
-.bgGrayE6 #header:before {background:#E6E6E6}
-
-.cRed {color:#FF0000 !important}
-
-.txtL {text-align:left !important}
-.txtR {text-align:right !important}
-.txtC {text-align:center !important}
-
-.maxW170 {max-width:170px}
-.w90 {width:90px; max-width:100%}
-.w100 {width:100px; max-width:100%}
-.w130 {width:130px; max-width:100%}
-.w230 {width:230px; max-width:100%}
-.w270 {width:270px; max-width:100%}
-.w290 {width:290px; max-width:100%}
-
-.mTop25 {margin-top:25px}
-
-.btn {background:#191919; font-weight:500; color:#fff}
-.bgWhite {background:#fff !important; border:1px solid #191919; color:#191919 !important}
-.sM {height:40px; font-weight:400; font-size:16px}
-.sL {height:70px; font-weight:600; font-size:20px}
-.blockBtn {display:block; width:100%}
-.iconBtn {padding-left:23px; font-size:16px}
-.iconBtn.back {background:url("../images/btn-prev.png") no-repeat center left / auto}
-.tableBtn {margin-top:25px}
-.txtBtn {background:none; font-weight:700; font-size:14px; color:#191919}
-
-.bgWhite {background:#fff; color:#191919}
-.allBtnArea {padding:30px 15px}
-.allBtnArea button {background:none; font-weight:300; font-size:18px; color:#191919}
-.allBtnArea button + button {margin-left:40px}
-@media (max-width:768px) {
-    .sL {height:55px; font-size:16px}
-    .w230 {width:100%}
-
-    .allBtnArea {padding:15px; text-align:right}
-    .allBtnArea button {font-size:13px}
-    .allBtnArea button + button {margin-left:20px}
-
-    .font16 {font-size:12px !important}
-    .font24 {font-size:18px !important}
-}
-
-.flex {display:flex}
-.flex.vCenter {align-items:center}
-.flex.between {align-items:center; justify-content:space-between}
-.flex.left {justify-content:flex-start}
-.flex.right {justify-content:flex-end}
-.flex.mBlock div + div {margin-left:30px}
-
-.conBlock > * {display:block}
-.conBlock > * + * {margin-top:30px !important}
-.conBlock.center {text-align:center}
-.conBlock.center > * {margin:0 auto}
-
-@media (max-width:768px) {
-    .flex.mBlock {display:block}
-    .flex.mBlock div + div {margin-top:10px}
-
-    .mFlex {display:flex !important}
-
-    .conBlock > * + * {margin-top:20px !important}
-}
-
-
-
-
-/* 가로길이 정해진 레이아웃 영역 */
-.w600 {margin:0 auto; max-width:600px; width:100%}
-.w670 {margin:0 auto; max-width:670px; width:100%}
-.w943 {margin:0 auto; max-width:943px; width:100%}
-
-/* 체크박스 */
-.checkboxWrap {margin:0 -20px}
-.checkboxWrap .checkbox {display:inline-block; margin:0 20px}
-.checkbox {display:inline-block; position:relative}
-.checkbox input[type=checkbox],
-.checkbox input[type=radio] {position:absolute; top:0; left:0; width:100%; height:100%; opacity:0}
-.checkbox input + label {display:block; padding-left:50px; line-height:30px; font-size:18px; font-weight:400; background:no-repeat left top; background-size:30px auto; transition:all 0.2s; -webkit-transition:all 0.2s; -moz-transition:all 0.2s}
-.checkbox input[type=checkbox] + label {background-image:url("../images/btn-check.png")}
-.checkbox input[type=checkbox]:checked + label {background-image:url("../images/btn-check-on.png")}
-.checkbox input[type=radio] + label {padding-left:35px; background-image:url("../images/btn-radio.png"); background-size:22px auto; background-position:left center}
-.checkbox input[type=radio]:checked + label {background-image:url("../images/btn-radio-on.png")}
-.checkbox.noTxt input[type=checkbox] + label {padding-left:0; min-width:30px; width:30px; text-indent:-9999px}
-.checkbox.noTxt input[type=checkbox] + label {padding-left:0; min-width:30px; width:30px; text-indent:-9999px}
-
-.selectCate {display:flex; flex-wrap:wrap; gap:6px !important}
-.selectCate span {position:relative}
-.selectCate span input[type=radio] {position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer}
-.selectCate span input[type=radio] + label {display:block; padding:0; background-image:none; border-bottom:2px solid transparent; line-height:24px; font-size:16px; color:#505050; transition:all 0.1s; -webkit-transition:all 0.1s; -moz-transition:all 0.1s}
-.selectCate span input[type=radio]:checked + label {position:relative; z-index:1; background-image:none; border-bottom:2px solid #191919; font-weight:700; color:#191919}
-
-select + .checkboxWrap {margin-top:20px}
-@media (max-width:768px) {
-    .checkbox input + label {padding-left:35px; line-height:23px; background-size:22px auto; font-size:14px}
-    .checkbox input[type=radio] + label {padding-left:25px; background-size:17px auto}
-
-    select + .checkboxWrap {margin-top:10px}
-    .selectCate span input[type=radio] + label {font-size:14px}
-}
-
-.inputChck {display:flex; align-items:center; border-bottom:1px solid #191919}
-.inputChck input {border:none}
-.inputChck span {white-space:nowrap; font-weight:700; font-size:13px}
-.inputChck.red {border-color:#FF0000}
-.inputChck.red span {color:#FF0000}
-.inputChck.blue {border-color:#191919}
-.inputChck.blue span {color:#0066FF}
-@media (max-width:600px) {
-    .inputChck {display:block; border:none}
-    .inputChck input {border-bottom:1px solid #191919}
-    .inputChck.red input {border-color:#FF0000}
-    .inputChck.blue input {border-color:#191919}
-    .inputChck span {display:block; padding-top:5px; line-height:16px; white-space:inherit}
-}
-
-/* 디자인스크롤 */
-.mCustomScrollbar {-ms-touch-action:pinch-zoom; touch-action:pinch-zoom}
-.mCustomScrollbar.mCS_no_scrollbar,
-.mCustomScrollbar.mCS_touch_action {-ms-touch-action:auto; touch-action:auto}
-.mCustomScrollBox {overflow:hidden; position:relative; padding:0 30px; height:100%; max-width:100%; outline:none; direction:ltr}
-.mCSB_container {overflow:hidden; width:auto; height:auto}
-.mCSB_scrollTools {position:absolute;top: 0; left:auto; right:0; bottom:0; width:16px; height:auto}
-.mCSB_scrollTools .mCSB_draggerContainer {position:absolute; top:0; left:0; bottom:0; right:0; height:auto}
-.mCSB_scrollTools a + .mCSB_draggerContainer {margin:20px 0}
-.mCSB_scrollTools .mCSB_draggerRail {margin:0 auto; width:1px; height:100%; -webkit-border-radius:16px; -moz-border-radius:16px; border-radius:16px; background:#ddd;}
-.mCSB_scrollTools .mCSB_dragger {z-index:1;width: 100%; height:30px; cursor:pointer;}
-.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {position:relative; margin:0 auto; width:4px; height:100%;-webkit-border-radius:16px;-moz-border-radius:16px; border-radius:16px; text-align:center;background:rgba(25, 25, 25, 0.7)}
-
-#wrap {overflow: hidden;}
-/*** about ***/
-#wrap.about #header:before {background:transparent}
-#wrap.about #container {margin-bottom:0; padding:0}
-.aboutVisual {position:relative; overflow:hidden}
-.aboutVisual img {width:100%; object-fit:cover}
-.aboutVisual > div {position:absolute; top:50%; left:50%; max-width:500px; width:100%; text-align:center; transform:translate(-50%, -50%)}
-.aboutVisual > div .logoImg {padding-bottom:70px; max-width:460px; width:100%; height:auto}
-.aboutVisual > div > * {display:block; color:#fff}
-.aboutVisual > div strong {padding-bottom:25px}
-.aboutVisual > div strong.ko {font-weight:700; font-size:20px}
-.aboutVisual > div p.ko {font-weight:300; font-size:18px}
-.aboutVisual > div .eng {font-family:'GmarketSans', sans-serif; font-weight:700; font-size:18px}
-.aboutVisual > div strong.eng {padding-top:40px}
-.aboutVisual > div p.eng {font-weight:300; font-size:16px}
-#wrap.about #footer {/*position:absolute; bottom:0;*/ padding:30px 0; width:calc(100% - 360px); border-color:#fff; color:#fff}
-#wrap.about #footer p > a {background-image:url("../images/logo-footer-w.png")}
-@media (max-width:1160px) { 
-    #wrap.about #footer {margin:0 20px; width:auto}
-}
-@media (max-width:940px) {
-    .aboutVisual > div {padding:0 30px}
-
-    #wrap.about #footer {margin:0; padding:20px}
-    #wrap.about #footer::before {display:none}
-}
-@media (max-width:768px) {
-    .aboutVisual > div {padding:0 20px; text-align:left}
-    .aboutVisual > div .logoImg {padding-bottom:35px; max-width:204px}
-    .aboutVisual > div p.ko {line-height:24px; font-size:14px}
-
-    #wrap.about #footer {padding:30px 20px}
-    
-}
-
-.aniOne,
-.aniTwo,
-.aniThree,
-.aniFour,
-.aniFive {opacity:0; transform:translateY(100%); animation:aniOne 1s ease-in-out forwards}
-.aniOne {animation-delay:0s}
-.aniTwo {animation-delay:1s}
-.aniThree {animation-delay:2s}
-.aniFour {animation-delay:5s}
-.aniFive {animation-delay:6s}
+/*** HEADER ***/
+#header {
+    position: fixed;
+    z-index: 100;
+    top: 60px;
+    left: 60px;
   
-@keyframes aniOne {
-    from {
-        opacity: 0;
-        transform: translateY(100%);
+    h1 > a {
+      display: inline-block;
+      width: 181px;
+      height: 29px;
+      background: url("../images/logo-b.png") no-repeat (center / 100%) auto;
+      text-indent: -9999px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+  
+    > * {
+      color: #fff;
+    }
+  
+    a, button {
+      font-family: 'GmarketSans', sans-serif;
+      font-size: 18px;
+      color: #191919;
+    }
+  
+    .menu {
+      display: inline-block;
+      margin-top: 75px;
+  
+      > ul > li {
+        overflow: hidden;
+        margin-top: 10px;
+  
+        > {
+          a, button {
+            padding-right: 18px;
+            background: url("../images/ico-arrow-down-b.png") no-repeat center (right / auto);
+            font-weight: 700;
+          }
+  
+          a span #header .menu > ul > li > button {
+            font-family: 'GmarketSans', sans-serif;
+          }
+        }
+  
+        &:hover > {
+          a, button {
+            color: rgba(25, 25, 25, 0.7);
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+          }
+        }
+  
+        > {
+          a.curr, button.curr {
+            background: url("../images/ico-arrow-up-b.png") no-repeat center (right / auto);
+          }
+  
+          ul {
+            height: 0;
+            padding-left: 10px;
+            transition: all 0.4s ease-in-out;
+          }
+        }
+  
+        &.product > button.curr + ul {
+          height: 25px;
+        }
+  
+        &.commu > button.curr + ul {
+          height: 75px;
+        }
+  
+        ul li {
+          text-transform: uppercase;
+        }
+  
+        &:first-child > a {
+          background-image: none;
+        }
+      }
+    }
+  
+    .util {
+      position: fixed;
+      top: 50%;
+      margin-bottom: -165px;
+      margin-top: 50px;
+  
+      a {
+        display: block;
+        font-weight: 700;
+  
+        + a {
+          margin-top: 20px;
+        }
+      }
+    }
+  
+    .lang {
+      position: fixed;
+      top: 52px;
+      right: 80px;
+  
+      button {
+        display: inline-block;
+        line-height: 30px;
+        font-weight: 700;
+        color: rgba(25, 25, 25, 0.5);
+  
+        &.curr {
+          border-bottom: 2px solid #191919;
+          color: #191919;
+        }
+  
+        + button {
+          margin-left: 16px;
+        }
+      }
+    }
+  
+    .insta {
+      position: fixed;
+      left: 60px;
+      bottom: 60px;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: url("../images/ico-insta-b.png") no-repeat (center / 30px) auto;
+    }
+  
+    &.top {
+      h1 > a {
+        background: url("../images/logo.png") no-repeat (center / 100%) auto;
+      }
+  
+      a,
+      button {
+        color: #fff;
+  
+        span {
+          display: inline-block;
+          margin-top: 5px;
+        }
+      }
+  
+      .menu > ul > li {
+        > a,
+        > button {
+          background: url("../images/ico-arrow-down.png") no-repeat center (right / auto);
+        }
+  
+        &:hover {
+            > a,
+            > button {
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+  
+        > a.on,
+        > button.on {
+          background: url("../images/ico-arrow-up.png") no-repeat center (right / auto);
+        }
+      }
+  
+      .lang button {
+        color: rgba(255, 255, 255, 0.5);
+  
+        &.curr {
+          border-bottom: 2px solid #fff;
+          color: #fff;
+        }
+      }
+  
+      .insta {
+        background: url("../images/ico-insta.png") no-repeat (center / 30px) auto;
+      }
+    }
+  
+    .btnMenuClose {
+      display: none;
+      z-index: 1001;
+    }
+  }
+  
+  @media (max-width: 1160px) {
+    #header {
+      top: 20px;
+      left: 24px;
+  
+      &:before {
+        height: 60px;
+      }
+  
+      h1 {
+        position: fixed;
+        z-index: 10;
+  
+        a {
+          width: 110px;
+          height: 20px;
+        }
+      }
+  
+      .gnb {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        padding: 0 25px;
+        width: 100%;
+        background: #191919;
+        transition-duration: 0.2s;
+      }
+  
+      &.open .gnb {
+        right: -300px;
+      }
+  
+      .menu > ul > li {
+        &:hover > a {
+          color: rgba(255, 255, 255, 1);
+        }
+  
+        > ul {
+          padding-top: 5px;
+          padding-left: 20px;
+  
+          > li > a {
+            font-size: 14px;
+          }
+        }
+      }
+  
+      .util {
+        top: 45%;
+        margin-top: 0;
+      }
+  
+      .lang {
+        position: absolute;
+        top: initial;
+        right: 25px;
+        bottom: 93px;
+  
+        button {
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.5);
+  
+          &.curr {
+            border-color: #fff;
+            color: #fff;
+          }
+        }
+      }
+  
+      .insta {
+        position: absolute;
+        left: 25px;
+        bottom: 93px;
+        background-image: url("../images/ico-insta.png");
+      }
+  
+      a,
+      button {
+        color: #fff;
+      }
+  
+      &.on h1 > a {
+        background-image: url("../images/logo.png");
+      }
+  
+      .menu > ul > li {
+        > a,
+        > button {
+            background-image: url("../images/ico-arrow-down.png");
+        }
+      }
+  
+      .btnMenu {
+        display: inline-block;
+        position: fixed;
+        top: 20px;
+        right: 24px;
+        z-index: 10;
+        width: 30px;
+        height: 20px;
+        line-height: 70px;
+        margin-left: 15px;
+        padding: 2px;
+        box-sizing: content-box;
+  
+        &::before, 
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 30px;
+          height: 1px;
+          background-color: #050707;
+          transform-origin: center;
+          transition-duration: 0.2s;
+        }
+  
+        &::before {
+          margin-top: -6px;
+        }
+  
+        &::after {
+          margin-top: 7px;
+        }
+  
+        em::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 2px;
+          width: 25px;
+          height: 1px;
+          background-color: #050707;
+        }
+      }
+
+      &.on {
+        .btnMenu::before {
+          margin-top: 0;
+          transform: translate(-50%, -50%) rotate(45deg);
+          background-color: #fff;
+        }
+
+        .btnMenu::after {
+          margin-top: 0;
+          transform: translate(-50%, -50%) rotate(-45deg);
+          background-color: #fff;
+        }
+
+        em::before {
+          display: none;
+        }
+      } 
+    }
+  }
+
+/*** CONTAINER ***/
+#container {
+    margin-bottom: 120px;
+    padding: 172px 60px 60px 300px;
+}
+
+body.bgGray #container {
+    padding: 172px 60px 60px;
+}
+
+@media (max-width: 1160px) {
+    #container, body.bgGray #container {
+        padding: 80px 60px 60px;
     }
 }
 
-/*** 컨텐츠 상단영역 ***/
-.conTopArea {position:relative; display:flex; justify-content:space-between; height:40px}
-.conTopArea h2 {position:absolute; top:0; left:50%; line-height:35px; font-family:'GmarketSans', sans-serif; font-weight:700; font-size:30px; transform:translateX(-50%)}
-.conTopArea h2.ko {font-family:'NanumSquare', sans-serif}
-.conTopArea > div > ul li {display:inline-block}
-.conTopArea > div > ul li + li {margin-left:40px}
-.conTopArea > div > ul li button {font-size:18px; color:rgba(25, 25, 25, 0.5)}
-.conTopArea > div > ul li.curr button {padding-bottom:15px; border-bottom:3px solid #191919; font-weight:700; color:#191919}
-.conTopArea .srchArea {display:flex; align-items:flex-start}
-.conTopArea .srchArea input {width:200px; border:none; border-bottom:1px solid #191919}
-.conTopArea .srchArea button {margin-left:10px; width:19px; height:30px; background:url("../images/ico-srch-b.png")no-repeat center/100% auto}
-@media (max-width:1500px) {
-    .conTopArea > div > ul li + li {margin-left:15px}
-}
-@media (max-width:940px) {
-    .conTopArea > div > ul li + li {margin-left:10px}
-    .conTopArea > div > ul li button {font-size:14px}
-}
-@media (max-width:768px) {
-    .conTopArea {display:block; height:auto}
-    .conTopArea .sorting {display:none}
-    .conTopArea h2 {left:0; line-height:25px; font-size:20px; transform:translateX(0)}
-    .conTopArea h2.mCenter {position:static; padding-bottom:25px; text-align:center}
-    .conTopArea > div > ul li.curr button {padding-bottom:5px; border-bottom:2px solid #191919}
-    .conTopArea > div > ul li + li {margin-left:7px}
-    .conTopArea .srchArea {margin-top:5px; width:100%; border-bottom:2px solid #191919}
-    .conTopArea .srchArea input {width:100%; height:40px; border-width:0}
-    .conTopArea .srchArea input:focus {outline:none; cursor:none !important; appearance:none !important; caret-color:transparent}
-    .conTopArea .srchArea button {background-position:center top}
-
-    .conTopArea .srchArea.mNone {display:none}
-
-    .conTopArea.v2 {margin-bottom:10px}
-    .conTopArea.v2 h2 {left:50%; transform:translateX(-50%)}
-    .conTopArea.v2 .iconBtn.back {text-indent:-9999px}
-
-    .conTopArea.v3 {height:40px}
-}
-@media (max-width:500px) {
-    .conTopArea > div > ul {display:flex; justify-content:space-around}
+@media (max-width: 940px) {
+    #container, body.bgGray #container {
+        padding: 80px 24px 60px;
+    }
 }
 
-/*** table ***/
-/* 공통 */
-div[class*='Table'] {margin-top:5px}
-div[class*='Table'] table {width:100%}
-div[class*='Table'] thead {border-bottom:3px solid #191919}
-div[class*='Table'] tbody tr {border-bottom:1px solid #191919}
-div[class*='Table'] tr th,
-div[class*='Table'] tr td {height:100px; font-size:18px; text-align:center}
-div[class*='Table'] tr th {font-weight:600}
-div[class*='Table'] tr td {font-weight:400}
-div[class*='Table'] tr td.subject {padding-left:80px}
-div[class*='Table'] tr td.subject a {display:-webkit-inline-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; text-overflow:ellipsis; color:#191919}
-div[class*='Table'] tr td.subject a.lock {padding-left:32px; background:url("../images/ico-lock.png") no-repeat center left / 16px auto}
-div[class*='Table'] tr td.subject a.com {position:relative; padding-right:90px}
-div[class*='Table'] tr td.subject a.com span.tag {position:absolute; top:0; right:0; display:inline-block; padding:0 9px; background:#191919; font-size:12px; color:#fff}
-div[class*='Table'] tr.bgGray {background:#F4F4F4}
-@media (max-width:768px) {
-    div[class*='Table'] thead {border-width:0}
+@media (max-width: 768px) {
+    #container, body.bgGray #container {
+        padding: 80px 24px 20px;
+    }
 }
 
-/* qna */
-.qnaTable > table > tbody > tr > th,
-.qnaTable > table > tbody > tr > td {padding:33px 0; height:auto}
-.qnaTable .conDetail .img {max-width:800px; height:auto}
-.qnaTable .conDetail .img img {width:100%; height:auto}
-.qnaTable .conDetail .img > div {padding-top:20px}
-.qnaTable .conDetail .img button {background:none; font-weight:400; font-size:14px; color:#191919}
-.qnaTable .conDetail .img button + button {margin-left:10px}
-.qnaPw {display:flex; gap:10px; margin-top:20px}
-.qnaPw input {max-width:200px; height:40px; background:none; border:none; border-bottom:1px solid #191919}
-.qnaPw input::placeholder {font-weight:300; font-size:14px; color:#191919}
-.qnaPw button {padding:12px 28px; font-weight:600}
-.inputBtn {display:flex; gap:10px; max-width:290px}
-/* qna 등록 */
-div[class*='Table'].inputTable.qna tr th,
-div[class*='Table'].inputTable.qna tr td {padding-top:30px; vertical-align:top}
-div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width:50px; height:50px; background-size:50px auto}
-/* 이미지 */
-.imgUpload,
-.imgUpload .preview ul {display:flex; gap:10px}
-.imgUpload input[type="file"] {width:80px; height:80px !important; background:#E6E6E6 url("../images/ico-add-img.png") no-repeat center/auto; text-indent:-9999px; cursor:pointer}
-.imgUpload .preview ul li {position:relative; width:80px; height:80px}
-.imgUpload .preview ul li img {width:100%; height:100%; object-fit:cover}
-.imgUpload .preview ul li a {position:absolute; top:0; right:0; width:25px; height:25px; background:#000 url("../images/ico-del-img-w.png")no-repeat center/13px auto; text-indent:-9999px}
-@media (max-width:768px) {
-    div[class*='Table'].inputTable.qna tr th,
-    div[class*='Table'].inputTable.qna tr td {padding-top:15px}
-    div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width:35px; height:35px; background-size:35px auto}
-    div[class*='Table'].inputTable.qna .selectCate {margin:0}
-    div[class*='Table'].inputTable.qna .selectCate span {margin:10px}
+/*** FOOTER ***/
+#footer {
+margin: 0 60px 0 300px;
+padding: 60px 0 80px;
+border-top: 1px solid #191919;
+
+.inner {
+    display: flex;
+    justify-content: space-between;
 }
 
-/* input */
-.inputTable {margin-top:35px !important}
-.inputTable tbody tr {border-bottom:none !important}
-.inputTable tr th,
-.inputTable tr td {padding-top:15px; height:65px !important; text-align:left !important}
-.inputTable tr th {padding-top:25px; vertical-align:top}
-.inputTable tr td input:not([type="checkbox"]):not([type="radio"]),
-.inputTable tr td select {padding:16px 20px !important; height:50px}
-.inputTable tr td select {padding:16px 30px 16px 20px !important; background:url("../images/ico-select-arrow.png") no-repeat center right 20px / 17px auto; border:none; border-bottom:1px solid #191919; font-size:16px; font-weight:600}
-.inputTable tr td input:not([type="checkbox"]):not([type="radio"]),
-.inputTable tr td input:not([type="checkbox"]):not([type="radio"])::placeholder {font-weight:300; font-size:16px !important; color:#191919}
-.inputTable tr td textarea {padding:18px 25px; height:300px; border:1px solid #191919; font-size:16px; color:rgba(25, 25, 25, 0.7)}
-.phone {display:flex; align-items:center}
-.phone span {display:inline-block; min-width:40px}
-.address > input {margin-top:10px}
-.zipCode {display:flex; gap:10px}
-.zipCode input {max-width:170px}
-.zipCode button {max-width:135px; font-size:16px}
-
-@media (max-width:1160px) {
-    div[class*='Table'] tr td.subject {padding-left:40px}
-}
-@media (max-width:940px) {
-    div[class*='Table'] colgroup col.mw100 {width:100px !important}
-    div[class*='Table'] colgroup col.mw150 {width:150px !important}
-    div[class*='Table'] colgroup col.mw300 {width:300px !important}
-    div[class*='Table'] tr th,
-    div[class*='Table'] tr td {padding:10px 5px; height:60px; font-size:16px}
-    div[class*='Table'] tr td.subject a.lock {padding-left:20px; background-size:13px}
-
-    .inputTable tr th,
-    .inputTable tr td {height:30px !important}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"]) {padding:5px 10px !important; height:30px}
-}
-@media (max-width:768px) {
-    div[class*='Table'] {margin-top:0}
-    div[class*='Table'] .mNone {display:none !important}
-    div[class*='Table'] tr th,
-    div[class*='Table'] tr td {padding:10px 5px; height:40px; font-size:13px}
-    div[class*='Table'] tr td.subject {padding-left:10px; font-weight:700}
-    div[class*='Table'] tr td.subject a.lock {padding-left:22px; padding-right:60px; background-position:center left}
-    div[class*='Table'] tr td.subject a.com span.tag {padding:0 7px; font-size:10px}
-    div[class*='Table'] tr td.subject.answer,
-    div[class*='Table'] tr td.subject .conDetail {font-weight:500}
-    div[class*='Table'] tr td.subject.answer {padding-left:0}
-    div[class*='Table'] tr td.subject .conDetail {margin-left:-30px}
-
-    /* qna 모바일 */
-    .qnaTable > table > thead > tr > th {display:none}
-    .qnaTable > table,
-    .qnaTable > table > thead,
-    .qnaTable > table > tbody,
-    .qnaTable > table > tbody > tr,
-    .qnaTable > table > tbody > tr > th,
-    .qnaTable > table > tbody > tr > td {display:block; width:100%; height:auto; text-align:left}
-    .qnaTable > table > tbody > tr {display:flex; position:relative; padding:40px 10px 10px}
-    .qnaTable > table > tbody > tr > td {position:relative; padding:3px 0; width:initial}
-    .qnaTable > table > tbody > tr > td:nth-child(4) {position:absolute; top:13px; left:80px}
-    .qnaTable > table > tbody > tr > td:nth-child(5) {position:absolute; top:13px}
-
-    .qnaPw {gap:5px; margin-top:0; margin-bottom:10px}
-    .qnaPw input {max-width:200px; height:30px}
-    .qnaPw button {padding:5px 18px}
-
-    /* input */
-    .inputTable {margin-top:0 !important}
-    .inputTable > table,
-    .inputTable > table > thead,
-    .inputTable > table > tbody,
-    .inputTable > table > tbody > tr,
-    .inputTable > table > tbody > tr > th,
-    .inputTable > table > tbody > tr > td {display:block; width:100%; text-align:left}
-    .inputTable tr th {margin-top:10px !important; padding:0 !important; height:auto !important}
-    .inputTable tr td {padding:0 !important; height:100% !important}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"]),
-    .inputTable tr td select {padding:5px !important; height:35px}
-    .inputTable tr td select {padding:5px 20px !important; background:url("../images/ico-select-arrow.png") no-repeat center right 10px / 11px auto; font-size:14px}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"]) {font-size:14px !important}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"])::placeholder {font-size:11px !important}
-    .inputTable tr td textarea {padding:10px; height:200px; font-size:12px}
-    .phone span {min-width:15px}
-
-    /* adressTable */
-    .adressTable table {margin-top:30px; border-top:2px solid #191919}
-    .adressTable > table > thead {display:none}
-    .adressTable > table,
-    .adressTable > table > tbody,
-    .adressTable > table > tbody > tr,
-    .adressTable > table > tbody > tr > th,
-    .adressTable > table > tbody > tr > td {display:block; width:100%; text-align:left}
-    .adressTable > table > tbody > tr {position:relative; padding-top:25px; padding-left:40px; padding-bottom:25px}
-    .adressTable > table > tbody > tr > td:first-child {position:absolute; top:25px; left:0}
-    .adressTable > table > tbody > tr > td {padding:5px; height:25px; line-height:16px}
+p > a {
+    display: inline-block;
+    width: 178px;
+    height: 26px;
+    background: url("../images/logo-footer.png") no-repeat (center / 100%) auto;
 }
 
-/*** 컨텐츠 하단영역 ***/
-.conBottomArea {position:relative; margin-top:100px}
-.conBottomArea .btnArea {position:absolute; right:0; bottom:10px}
-.conBottomArea .btnArea .btn {height:70px; font-weight:700; font-size:20px}
-@media (max-width:940px) {
-    .conBottomArea .btnArea .btn {width:190px; height:55px; font-weight:500; font-size:18px}
-}
-@media (max-width:768px) {
-    .conBottomArea {margin-top:40px}
-    .conBottomArea .btnArea {position:static; margin-top:35px; text-align:right}
-    .conBottomArea .btnArea .btn {width:100%}
-}
+    > div {
+        flex: 1;
+        text-align: right;
 
-/* 하단 버튼영역 */
-.bottomBtn {display:flex; justify-content:center; margin-top:80px}
-.bottomBtn button {display:inline-block; height:70px}
-.bottomBtn button + button {margin-left:10px}
-@media (max-width:768px) {
-    .bottomBtn {margin-top:40px}
-    .bottomBtn button {height:50px}
-}
+        > div > {
+        p + p {
+            margin-top: 8px;
+        }
 
-/* paging */
-.paging {display:flex; align-items:center; justify-content:center}
-.paging * {display:block; flex-shrink:0; text-align:center; width:40px; line-height:40px; font-weight:300; font-size:18px; color:rgb(25 25 25 / 50%)}
-.paging strong {font-weight:600; color:#191919}
-.paging .btnPrev,
-.paging .btnNext{margin:0 70px; width:8px; height:17px; text-indent:-9999px; background:no-repeat center / 100% auto}
-.paging .btnPrev {background-image:url("../images/btn-prev.png")}
-.paging .btnNext {background-image:url("../images/btn-next.png")}
-/* disable */
-.paging .btnPrev.disabled,
-.paging .btnNext.disabled{pointer-events:none; opacity:0.5}
-@media (max-width:940px) {
-    .paging .btnPrev,
-    .paging .btnNext{margin:0 30px}
-}
-@media (max-width:768px) {
-    .paging * {margin:0 8px; width:15px; line-height:15px; font-size:14px}
-    .paging .btnPrev,
-    .paging .btnNext{width:8px; height:17px}
-    .paging .btnPrev {margin-right:30px}
-    .paging .btnNext {margin-left:30px}
+        * {
+            line-height: 26px;
+            font-weight: 400;
+        }
+
+        div {
+            > span {
+            white-space: nowrap;
+
+            + span {
+                margin-left: 30px;
+            }
+            }
+
+            + div > span {
+            margin-left: 30px;
+            }
+        }
+        }
+    }
+
+    address {
+        display: inline-block;
+    }
 }
 
-/* 게시판 상세페이지 */
-.detailArea {margin-top:60px}
-.detailArea .top h3 {line-height:34px; font-weight:700; font-size:30px}
-.detailArea .top p {padding-top:15px; font-size:18px}
-.detailArea .con {margin-top:60px; padding:60px 20px; border-top:1px solid #191919; word-break:keep-all}
-@media (max-width:940px) {
-    .detailArea {margin-top:30px}
-    .detailArea .top h3 {line-height:24px; font-size:20px}
-    .detailArea .top p {padding-top:5px; font-size:14px}
-    .detailArea .con {margin-top:30px; padding:20px 0; font-size:14px}
+@media (max-width: 1160px) {
+    #footer {
+        margin: 0 60px;
+    }
 }
 
-/*** 회원서비스 ***/
-/* 로그인 */
-.loginArea {margin-top:40px}
-.loginArea input {height:70px; background-color:transparent}
-.loginArea input,
-.loginArea input::placeholder {font-weight:400; font-size:18px; color:#191919}
-.loginArea button {margin-top:30px; height:80px; font-size:24px}
-.loginArea .util {display:flex; justify-content:space-between; padding:35px 20px 0}
-.loginArea .util a {font-weight:700; font-size:18px; color:#191919}
-.loginArea .util a + a {margin-left:40px}
-@media (max-width:768px) {
-    .loginArea {margin-top:0}
-    .loginArea input {height:45px}
-    .loginArea input,
-    .loginArea input::placeholder {font-size:14px}
-    .loginArea button {margin-top:20px; height:50px; font-size:18px}
-    .loginArea .util {padding:20px 0 0}
-    .loginArea .util a {font-size:14px}
-    .loginArea .util a + a {margin-left:10px}
+@media (max-width: 940px) {
+    #footer {
+        margin: 0 24px;
+
+        > div > div > div {
+            > span + span, + div > span {
+                margin-left: 15px;
+            }
+        }
+    }
 }
 
-/* 회원가입 */
-.termsArea {margin-top:100px}
-.termsArea > .checkboxWrap {margin-bottom:25px}
-.termsArea > .checkboxWrap label {font-weight:600; font-size:18px}
-.termsArea .terms {padding-top:20px}
-.termsArea .terms h3 {font-weight:600; font-size:16px}
-.termsArea .terms .scrollArea {margin:15px 0; padding:20px 0; height:150px; overflow-y:auto; border:1px solid #191919; font-weight:300; font-size:14px}
-.termsArea .terms .checkbox {margin-left:20px}
-.termsArea .terms label {font-size:16px}
-@media (max-width:768px) {
-    .termsArea {margin-top:40px}
-    .termsArea > .checkboxWrap {margin-bottom:0}
-    .termsArea > .checkboxWrap label {font-weight:600; font-size:16px}
-    .termsArea .terms {padding-top:40px}
-    .termsArea .terms h3 {font-weight:600; font-size:16px}
-    .termsArea .terms .scrollArea {margin:15px 0; padding:20px 0; height:150px; overflow-y:auto; border:1px solid #191919; font-weight:300; font-size:14px}
-    .termsArea .terms .checkbox {margin-left:20px}
-    .termsArea .terms label {font-size:16px}
-}
+@media (max-width: 768px) {
+    #footer {
+        padding: 40px 0;
 
-/* 아이디찾기_결과 */
-.resultArea > div:not(.bottomBtn) {margin-top:50px}
-.resultArea > div p {line-height:34px; font-weight:300; font-size:20px}
-.resultArea > div > p {padding-bottom:40px}
-.resultArea > div > div {padding:35px 100px; border-top:1px solid #191919; border-bottom:1px solid #191919}
-.resultArea > div > div > * {font-size:20px}
-.resultArea > div > div dl {display:flex}
-.resultArea > div > div dl dt {min-width:200px; font-weight:600; text-align:left}
-.resultArea > div > div dl dd {font-weight:500}
-.resultArea > div > div dl + dl {padding-top:35px}
-@media (max-width:768px) {
-    .resultArea > div:not(.bottomBtn) {margin-top:0}
-    .resultArea > div p {line-height:24px; font-size:16px}
-    .resultArea > div > p {padding-bottom:20px}
-    .resultArea > div > div {padding:20px}
-    .resultArea .checkboxWrap .checkbox {margin:0 10px}
-    .resultArea > div > div > * {font-size:14px}
-    .resultArea > div > div dl dt {min-width:120px}
-    .resultArea > div > div dl + dl {padding-top:10px}
-}
-@media (max-width:370px) {
-    .resultArea > div > div dl {display:block}
-    .resultArea > div > div dl + dl {padding-top:20px}
-    .resultArea > div > div dl > * {text-align:left}
-}
+        .inner {
+            display: block;
+            text-align: center;
+        }
 
-/*** cart ***/
-/* 주문내역 */
-.orderTable tr td {padding:60px 0}
-.orderTable tr td .option {font-weight:400; font-size:14px}
-.orderTable + .totalPrice {display:flex; justify-content:flex-end; align-items:baseline; padding:25px 0 70px}
-.orderTable + .totalPrice span {padding-right:75px; font-weight:700; font-size:16px}
-.orderTable + .totalPrice em {font-size:32px}
-.orderTable tr td button {margin-top:5px}
-.goodsInfo {display:flex; align-items:center; gap:40px; text-align:left; color:#191919}
-.goodsInfo .img {width:200px; min-width:100px}
-.goodsInfo .img img {width:100%; height:auto; object-fit:cover}
-.goodsInfo strong {font-weight:700; font-size:22px}
-.goodsInfo p:not(.img) {font-weight:300; font-size:16px}
-.goodsInfo > div {font-weight:300; font-size:14px}
-.goodsInfo ul {margin-top:20px}
-.goodsInfo > div > div > span {display:inline}
-.goodsInfo > div > div > span > span + span {position:relative; padding-left:15px}
-.goodsInfo > div > div > span > span + span:before {position:absolute; content:"/"; left:4px}
-@media (max-width:1160px) {
-    .goodsInfo {gap:20px}
-    .orderTable tr th,
-    .orderTable tr td {padding:30px 0; font-size:15px !important}
-    .goodsInfo .img {width:150px}
-    .goodsInfo strong {font-weight:600; font-size:18px}
-    .goodsInfo p:not(.img) {font-size:14px}
-    .goodsInfo > div {font-size:12px}
-    .goodsInfo > div > div > * {display:inline-block}
-    .goodsInfo > div > div > span {margin-top:10px; line-height:16px}
-    .goodsInfo  > div > div > span > span + span {padding-left:10px} 
-    .goodsInfo > div > div > span > span + span:before {position:absolute; content:"/"; top:-1px; left:2px}
-}
-@media (max-width:940px) {
-    .orderTable {margin-top:30px !important}
-    .orderTable > table > thead {border-width:2px}
-    .orderTable > table > thead > tr > th {display:none}
-    .orderTable > table,
-    .orderTable > table > thead,
-    .orderTable > table > tbody,
-    .orderTable > table > tbody > tr,
-    .orderTable > table > tbody > tr > th,
-    .orderTable > table > tbody > tr > td {display:block; height:auto; text-align:left}
-    .orderTable > table > tbody > tr > td:not(:first-child) {position:relative; padding:3px 0 3px 80px; text-align:right}
-    .orderTable > table > tbody > tr > td:before {position:absolute; content:attr(data-label); left:0; font-weight:700; font-size:13px}
+        > div > div > {
+            * {
+                font-size: 12px;
+            }
 
-    .goodsInfo .img {position:absolute; top:30px; left:0; width:100px}
-    .orderTable > table > tbody > tr {position:relative; padding:20px 0}
-    .orderTable > table > tbody > tr > td {margin-left:110px; padding:10px 10px 10px 0}
-    .orderTable > table > tbody > tr > td br {display:none}
-    .orderTable > table > tbody > tr > td em {white-space:nowrap}
-    .goodsInfo strong {font-size:16px}
-    .goodsInfo p:not(.img) {font-size:13px}
-    .goodsInfo p:not(.img) + div {padding-top:10px; line-height:17px}
-}
-@media (max-width:768px) {
-    .orderTable + .totalPrice {justify-content:space-between; padding:15px 0}
-    .orderTable + .totalPrice span {padding-right:0; font-size:16px}
-    .orderTable + .totalPrice em {font-size:22px}
-    .orderTable tr th,
-    .orderTable tr td {font-size:13px !important}
-}
-@media (max-width:500px) {
-    .goodsInfo .img {top:20px; width:70px; min-width:70px}
-    .orderTable > table > tbody > tr {padding:5px 0 15px}
-    .orderTable > table > tbody > tr > td {margin-left:85px}
-    .orderTable tr td button {display:block; width:100%}
-}
-
-/* cart */
-.cartList {margin-top:50px; border-top:3px solid #191919; border-bottom:1px solid #191919}
-.cartList .goods {display:flex; position:relative; padding:60px 40px 80px 255px}
-.cartList .goods .fixed {display:flex; position:absolute; left:0}
-.cartList .goods .img {margin-left:15px}
-.cartList .goods .img.w180 {width:180px; height:180px}
-.cartList .goods .img.w180 img {width:100%; height:auto; object-fit:cover}
-.cartList .goods .name strong {font-weight:700; font-size:22px}
-.cartList .goods .name span {padding-left:10px; font-weight:300; font-size:16px}
-.cartList .goods .price {font-size:16px; font-weight:600}
-.cartList .goods .price em {font-weight:400}
-.cartList .goods .option {margin-top:35px; margin-bottom:15px; word-break:keep-all}
-.cartList .goods .count,
-.cartList .goods .count > div {display:flex}
-.cartList .goods .count > div > * {border:1px solid #A4A4A4}
-.cartList .goods .count button {width:26px; height:26px; background:no-repeat center / auto}
-.cartList .goods .count button.minusBtn {background-image:url("../images/ico-count-minus.png")}
-.cartList .goods .count button.plusBtn {background-image:url("../images/ico-count-plus.png")}
-.cartList .goods .count span {display:inline-block; margin:0 -1px; width:40px; height:26px; text-align:center}
-.cartList .goods .count > div + button {margin-left:10px; padding:0 2px; width:60px; height:26px; border:1px solid #A4A4A4}
-.cartList .goods > a {display:inline-block; position:absolute; right:0; width:30px; height:30px; background:url("../images/btn-cart-del.png") no-repeat center / 30px auto}
-.totalPrice {flex:1; text-align:right; padding-top:5px; padding-right:32px; font-size:24px; white-space:nowrap}
-.totalPrice em {font-weight:500}
-@media (max-width:940px) {
-    .cartList {margin-top:30px}
-    .cartList .goods {padding:30px 30px 40px 165px}
-    .cartList .goods .img.w180 {width:100px; height:100px}
-    .cartList .goods .name strong {font-size:16px}
-    .cartList .goods .name span {padding-left:0; padding-bottom:10px; font-size:13px}
-    .cartList .goods .option {margin-top:15px; line-height:20px; font-size:12px}
-    .cartList .goods .price {font-size:14px}
-    .totalPrice {padding-top:0; padding-right:0; font-size:16px}
-    .cartList .goods .count > div + button {margin-left:5px}
-    .cartList .goods > a {width:16px; height:16px; background-size:16px auto}
-}
-@media (max-width:768px) {
-    .cartList {margin-top:0}
-    .cartList .goods {display:block; padding:30px 30px 40px 120px}
-    .cartList .goods .img {margin-left:0}
-    .cartList .goods .img.w180 {width:80px; height:80px}
-    .cartList .goods .name > * {display:block}
-    .totalPrice {padding-top:30px; text-align:left}
-    .cartList .goods .count span {width:35px}
-    .cartList .goods > a {top:30px}
-}
-
-/*** galleryList ***/
-.galleryList {margin-top:50px; padding-top:40px; padding-bottom:100%; width:100%; border-top:3px solid #191919}
-.galleryList > ul {display:grid; grid-template-columns:repeat(3, 1fr); gap:90px}
-.galleryList > ul >li > div {position:relative; aspect-ratio:1/1; overflow:hidden}
-.galleryList > ul >li > div > p > img {position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition:all 0.3s; -webkit-transition:all 0.3s; -moz-transition:all 0.3s}
-.galleryList > ul >li > div:hover > p > img {transform: scale(1.15); -webkit-transform: scale(1.15); -moz-transform: scale(1.15)}
-.galleryList > ul >li > div span {position:absolute; right:25px; bottom:20px; font-weight:700; font-size:14px; color:#fff}
-
-.galleryList .detail {position:fixed; z-index:9900; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7)}
-.galleryList .detail .inner {position:relative; top:50%; left:50%; width:1300px; max-width:100%; /*height:e;*/ transform:translate(-50%, -50%)}
-.detailSlider,
-.galleryList .inner > div + div {margin:0 200px}
-.detailSlider {overflow:hidden}
-.detailSlider img {width:100%; object-fit:cover}
-.galleryList .detail .inner > a {position:absolute; top:0; right:0; display:block; width:60px; height:60px; background:url("../images/btn-close-w.png") no-repeat center / 100% auto}
-.detailSlider .swiper-button-next,
-.detailSlider .swiper-button-prev {width:30px; height:60px}
-.detailSlider .swiper-button-next:after,
-.detailSlider .swiper-button-prev:after {display:none}
-.detailSlider .swiper-button-next {background:url("../images/btn-next-w.png") no-repeat center /auto}
-.detailSlider .swiper-button-prev {background:url("../images/btn-prev-w.png") no-repeat center /auto}
-.galleryList .inner > div + div {margin-top:40px; font-family: 'GmarketSans', sans-serif; font-weight:700; font-size:24px; color:#fff}
-.galleryList .inner > div + div > ul {margin-top:20px; font-family:'NanumSquare', sans-serif; font-weight:400; font-size:18px}
-.galleryList .inner > div + div > ul li {display:inline-block}
-.galleryList .inner > div + div > ul li {margin-right:18px}
-@media (max-width:1160px) {
-    .detailSlider,
-    .galleryList .inner > div + div {margin:0 100px}
-}
-@media (max-width:940px) {
-    .galleryList > ul {grid-template-columns:repeat(2, 1fr); gap:45px}
-}
-@media (max-width:767px) {
-    .galleryList {margin-top:0; padding-top:30px; border-top:none}
-    .galleryList > ul {gap:50px 35px}
-    .galleryList > ul >li > div {overflow:inherit}
-    .galleryList > ul >li > div span {right:inherit; bottom:-30px; font-weight:400; color:#000}
-    .galleryList > ul >li > div:hover > p > img {transform: scale(1); -webkit-transform: scale(1); -moz-transform: scale(1)}
-    .detailSlider {position:relative}
-    .detailSlider,
-    .galleryList .inner > div + div {margin:0}
-    .galleryList .inner > div + div {margin:24px}
-    .galleryList .detail .inner > a {top:-55px; right:24px; width:35px; height:35px}
-}
-/*** 공통 ***/
-.fontG {font-family:'GmarketSans', sans-serif !important}
-.fontN {font-family:'NanumSquare', sans-serif !important}
-
-.bgGray,
-.bgGray #header:before {background:#D9D9D9}
-.bgGrayE6,
-.bgGrayE6 #header:before {background:#E6E6E6}
-
-.cRed {color:#FF0000 !important}
-
-.txtL {text-align:left !important}
-.txtR {text-align:right !important}
-.txtC {text-align:center !important}
-
-.maxW170 {max-width:170px}
-.w230 {width:230px; max-width:100%}
-
-.btn {background:#191919; font-weight:500; color:#fff}
-.sL {height:70px; font-weight:600; font-size:20px}
-.blockBtn {display:block; width:100%}
-.iconBtn {padding-left:23px; font-size:16px}
-.iconBtn.back {background:url("../images/btn-prev.png") no-repeat center left / auto}
-.tableBtn {margin-top:25px}
-.txtBtn {background:none; font-weight:700; font-size:14px; color:#191919}
-
-.bgWhite {background:#fff; color:#191919}
-.allBtnArea {padding:30px 15px}
-.allBtnArea button {background:none; font-weight:300; font-size:18px; color:#191919}
-.allBtnArea button + button {margin-left:40px}
-@media (max-width:768px) {
-    .sL {font-size:16px}
-    .w230 {width:100%}
-
-    .allBtnArea {padding:15px; text-align:right}
-    .allBtnArea button {font-size:13px}
-    .allBtnArea button + button {margin-left:20px}
-}
-
-.flex {display:flex}
-.flex.vCenter {align-items:center}
-.flex.between {align-items:center; justify-content:space-between}
-.flex.left {justify-content:flex-start}
-.flex.right {justify-content:flex-end}
-.flex.mBlock div + div {margin-left:30px}
-@media (max-width:768px) {
-    .flex.mBlock {display:block}
-    .flex.mBlock div + div {margin-top:10px}
-}
-
-/* 가로길이 정해진 레이아웃 영역 */
-.w600 {margin:0 auto; max-width:600px; width:100%}
-.w670 {margin:0 auto; max-width:670px; width:100%}
-.w943 {margin:0 auto; max-width:943px; width:100%}
-
-/* 체크박스 */
-.checkboxWrap {margin:0 -20px}
-.checkboxWrap .checkbox {display:inline-block; margin:0 20px}
-.checkbox {display:inline-block; position:relative}
-.checkbox input[type=checkbox],
-.checkbox input[type=radio] {position:absolute; top:0; left:0; width:100%; height:100%; opacity:0}
-.checkbox input + label {display:block; padding-left:50px; line-height:30px; font-size:18px; font-weight:400; background:no-repeat left top; background-size:30px auto; transition:all 0.2s; -webkit-transition:all 0.2s; -moz-transition:all 0.2s}
-.checkbox input[type=checkbox] + label {background-image:url("../images/btn-check.png")}
-.checkbox input[type=checkbox]:checked + label {background-image:url("../images/btn-check-on.png")}
-.checkbox input[type=radio] + label {padding-left:35px; background-image:url("../images/btn-radio.png"); background-size:22px auto; background-position:left center}
-.checkbox input[type=radio]:checked + label {background-image:url("../images/btn-radio-on.png")}
-.checkbox.noTxt input[type=checkbox] + label {padding-left:0; min-width:30px; width:30px; text-indent:-9999px}
-.checkbox.noTxt input[type=checkbox] + label {padding-left:0; min-width:30px; width:30px; text-indent:-9999px}
-
-.selectCate {display:flex; flex-wrap:wrap; gap:6px !important}
-.selectCate span {position:relative}
-.selectCate span input[type=radio] {position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer}
-.selectCate span input[type=radio] + label {display:block; padding:0; background-image:none; border-bottom:2px solid transparent; line-height:24px; font-size:16px; color:#505050; transition:all 0.1s; -webkit-transition:all 0.1s; -moz-transition:all 0.1s}
-.selectCate span input[type=radio]:checked + label {position:relative; z-index:1; background-image:none; border-bottom:2px solid #191919; font-weight:700; color:#191919}
-
-select + .checkboxWrap {margin-top:20px}
-@media (max-width:768px) {
-    .checkbox input + label {padding-left:35px; line-height:23px; background-size:22px auto; font-size:14px}
-    .checkbox input[type=radio] + label {padding-left:25px; background-size:17px auto}
-
-    select + .checkboxWrap {margin-top:10px}
-    .selectCate span input[type=radio] + label {font-size:14px}
-}
-
-.inputChck {display:flex; align-items:center; border-bottom:1px solid #191919}
-.inputChck input {border:none}
-.inputChck span {white-space:nowrap; font-weight:700; font-size:13px}
-.inputChck.red {border-color:#FF0000}
-.inputChck.red span {color:#FF0000}
-.inputChck.blue {border-color:#191919}
-.inputChck.blue span {color:#0066FF}
-@media (max-width:600px) {
-    .inputChck {display:block; border:none}
-    .inputChck input {border-bottom:1px solid #191919}
-    .inputChck.red input {border-color:#FF0000}
-    .inputChck.blue input {border-color:#191919}
-    .inputChck span {display:block; padding-top:5px; line-height:16px; white-space:inherit}
-}
-
-/* 디자인스크롤 */
-.mCustomScrollbar {-ms-touch-action:pinch-zoom; touch-action:pinch-zoom}
-.mCustomScrollbar.mCS_no_scrollbar,
-.mCustomScrollbar.mCS_touch_action {-ms-touch-action:auto; touch-action:auto}
-.mCustomScrollBox {overflow:hidden; position:relative; padding:0 30px; height:100%; max-width:100%; outline:none; direction:ltr}
-.mCSB_container {overflow:hidden; width:auto; height:auto}
-.mCSB_scrollTools {position:absolute;top: 0; left:auto; right:0; bottom:0; width:16px; height:auto}
-.mCSB_scrollTools .mCSB_draggerContainer {position:absolute; top:0; left:0; bottom:0; right:0; height:auto}
-.mCSB_scrollTools a + .mCSB_draggerContainer {margin:20px 0}
-.mCSB_scrollTools .mCSB_draggerRail {margin:0 auto; width:1px; height:100%; -webkit-border-radius:16px; -moz-border-radius:16px; border-radius:16px; background:#ddd;}
-.mCSB_scrollTools .mCSB_dragger {z-index:1;width: 100%; height:30px; cursor:pointer;}
-.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {position:relative; margin:0 auto; width:4px; height:100%;-webkit-border-radius:16px;-moz-border-radius:16px; border-radius:16px; text-align:center;background:rgba(25, 25, 25, 0.7)}
-
-/*** about ***/
-#wrap.about #header:before {background:transparent}
-#wrap.about #container {margin-bottom:0; padding:0}
-.aboutVisual {position:relative; overflow:hidden}
-.aboutVisual img {width:100%; object-fit:cover}
-.aboutVisual > div {position:absolute; top:50%; left:50%; text-align:center; transform:translate(-50%, -50%)}
-.aboutVisual > div .logoImg {padding-bottom:70px; width:460px; height:auto}
-.aboutVisual > div > * {display:block; color:#fff}
-.aboutVisual > div strong {padding-bottom:25px}
-.aboutVisual > div strong.ko {font-weight:700; font-size:20px}
-.aboutVisual > div p.ko {font-weight:300; font-size:18px}
-.aboutVisual > div .eng {font-family:'GmarketSans', sans-serif; font-weight:700; font-size:18px}
-.aboutVisual > div strong.eng {padding-top:40px}
-.aboutVisual > div p.eng {font-weight:300; font-size:16px}
-#wrap.about #footer {position:absolute; bottom:0; padding:30px 0; width:calc(100% - 360px); border-color:#fff; color:#fff}
-#wrap.about #footer p > a {background-image:url("../images/logo-footer-w.png")}
-
-/*** 컨텐츠 상단영역 ***/
-.conTopArea {position:relative; display:flex; justify-content:space-between; height:40px}
-.conTopArea h2 {position:absolute; top:0; left:50%; line-height:35px; font-family:'GmarketSans', sans-serif; font-weight:700; font-size:30px; transform:translateX(-50%)}
-.conTopArea h2.ko {font-family:'NanumSquare', sans-serif}
-.conTopArea > div > ul li {display:inline-block}
-.conTopArea > div > ul li + li {margin-left:40px}
-.conTopArea > div > ul li button {font-size:18px; color:rgba(25, 25, 25, 0.5)}
-.conTopArea > div > ul li.curr button {padding-bottom:15px; border-bottom:3px solid #191919; font-weight:700; color:#191919}
-.conTopArea .srchArea {display:flex; align-items:flex-start}
-.conTopArea .srchArea input {width:200px; border:none; border-bottom:1px solid #191919}
-.conTopArea .srchArea button {margin-left:10px; width:19px; height:30px; background:url("../images/ico-srch-b.png")no-repeat center/100% auto}
-@media (max-width:1500px) {
-    .conTopArea > div > ul li + li {margin-left:15px}
-}
-@media (max-width:940px) {
-    .conTopArea > div > ul li + li {margin-left:10px}
-    .conTopArea > div > ul li button {font-size:14px}
-}
-@media (max-width:768px) {
-    .conTopArea {display:block; height:auto}
-    .conTopArea .sorting {display:none}
-    .conTopArea h2 {left:0; line-height:25px; font-size:20px; transform:translateX(0)}
-    .conTopArea h2.mCenter {position:static; padding-bottom:25px; text-align:center}
-    .conTopArea > div > ul li.curr button {padding-bottom:5px; border-bottom:2px solid #191919}
-    .conTopArea > div > ul li + li {margin-left:7px}
-    .conTopArea .srchArea {margin-top:5px; width:100%; border-bottom:2px solid #191919}
-    .conTopArea .srchArea input {width:100%; height:40px; border-width:0}
-    .conTopArea .srchArea input:focus {outline:none; cursor:none !important; appearance:none !important; caret-color:transparent}
-    .conTopArea .srchArea button {background-position:center top}
-
-    .conTopArea .srchArea.mNone {display:none}
-
-    .conTopArea.v2 {margin-bottom:10px}
-    .conTopArea.v2 h2 {left:50%; transform:translateX(-50%)}
-    .conTopArea.v2 .iconBtn.back {text-indent:-9999px}
-
-    .conTopArea.v3 {height:40px}
-}
-@media (max-width:500px) {
-    .conTopArea > div > ul {display:flex; justify-content:space-around}
-}
-
-/*** table ***/
-/* 공통 */
-div[class*='Table'] {margin-top:5px}
-div[class*='Table'] table {width:100%}
-div[class*='Table'] thead {border-bottom:3px solid #191919}
-div[class*='Table'] tbody tr {border-bottom:1px solid #191919}
-div[class*='Table'] tr th,
-div[class*='Table'] tr td {height:100px; font-size:18px; text-align:center}
-div[class*='Table'] tr th {font-weight:600}
-div[class*='Table'] tr td {font-weight:400}
-div[class*='Table'] tr td.subject {padding-left:80px}
-div[class*='Table'] tr td.subject a {display:-webkit-inline-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; text-overflow:ellipsis; color:#191919}
-div[class*='Table'] tr td.subject a.lock {padding-left:32px; background:url("../images/ico-lock.png") no-repeat center left / 16px auto}
-div[class*='Table'] tr td.subject a.com {position:relative; padding-right:90px}
-div[class*='Table'] tr td.subject a.com span.tag {position:absolute; top:0; right:0; display:inline-block; padding:0 9px; background:#191919; font-size:12px; color:#fff}
-div[class*='Table'] tr.bgGray {background:#F4F4F4}
-@media (max-width:768px) {
-    div[class*='Table'] thead {border-width:0}
-}
-
-/* qna */
-.qnaTable > table > tbody > tr > th,
-.qnaTable > table > tbody > tr > td {padding:33px 0; height:auto}
-.qnaTable .conDetail .img {max-width:800px; height:auto}
-.qnaTable .conDetail .img img {width:100%; height:auto}
-.qnaTable .conDetail .img > div {padding-top:20px}
-.qnaTable .conDetail .img button {background:none; font-weight:400; font-size:14px; color:#191919}
-.qnaTable .conDetail .img button + button {margin-left:10px}
-.qnaPw {display:flex; gap:10px; margin-top:20px}
-.qnaPw input {max-width:200px; height:40px; background:none; border:none; border-bottom:1px solid #191919}
-.qnaPw input::placeholder {font-weight:300; font-size:14px; color:#191919}
-.qnaPw button {padding:12px 28px; font-weight:600}
-.inputBtn {display:flex; gap:10px; max-width:290px}
-/* qna 등록 */
-div[class*='Table'].inputTable.qna tr th,
-div[class*='Table'].inputTable.qna tr td {padding-top:30px; vertical-align:top}
-div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width:50px; height:50px; background-size:50px auto}
-/* 이미지 */
-.imgUpload,
-.imgUpload .preview ul {display:flex; gap:10px}
-.imgUpload input[type="file"] {width:80px; height:80px !important; background:#E6E6E6 url("../images/ico-add-img.png") no-repeat center/auto; text-indent:-9999px; cursor:pointer}
-.imgUpload .preview ul li {position:relative; width:80px; height:80px}
-.imgUpload .preview ul li img {width:100%; height:100%; object-fit:cover}
-.imgUpload .preview ul li a {position:absolute; top:0; right:0; width:25px; height:25px; background:#000 url("../images/ico-del-img-w.png")no-repeat center/13px auto; text-indent:-9999px}
-@media (max-width:768px) {
-    div[class*='Table'].inputTable.qna tr th,
-    div[class*='Table'].inputTable.qna tr td {padding-top:15px}
-    div[class*='Table'].inputTable.qna .checkbox input[type=checkbox] + label {width:35px; height:35px; background-size:35px auto}
-    div[class*='Table'].inputTable.qna .selectCate {margin:0}
-    div[class*='Table'].inputTable.qna .selectCate span {margin:10px}
-}
-
-/* input */
-.inputTable {margin-top:35px !important}
-.inputTable tbody tr {border-bottom:none !important}
-.inputTable tr th,
-.inputTable tr td {padding-top:15px; height:65px !important; text-align:left !important}
-.inputTable tr th {padding-top:25px; vertical-align:top}
-.inputTable tr td input:not([type="checkbox"]):not([type="radio"]),
-.inputTable tr td select {padding:16px 20px !important; height:50px}
-.inputTable tr td select {padding:16px 30px 16px 20px !important; background:url("../images/ico-select-arrow.png") no-repeat center right 20px / 17px auto; border:none; border-bottom:1px solid #191919; font-size:16px; font-weight:600}
-.inputTable tr td input:not([type="checkbox"]):not([type="radio"]),
-.inputTable tr td input:not([type="checkbox"]):not([type="radio"])::placeholder {font-weight:300; font-size:16px !important; color:#191919}
-.inputTable tr td textarea {padding:18px 25px; height:300px; border:1px solid #191919; font-size:16px; color:rgba(25, 25, 25, 0.7)}
-.phone {display:flex; align-items:center}
-.phone span {display:inline-block; min-width:40px}
-.address > input {margin-top:10px}
-.zipCode {display:flex; gap:10px}
-.zipCode input {max-width:170px}
-.zipCode button {max-width:135px; font-size:16px}
-
-@media (max-width:1160px) {
-    div[class*='Table'] tr td.subject {padding-left:40px}
-}
-@media (max-width:940px) {
-    div[class*='Table'] colgroup col.mw100 {width:100px !important}
-    div[class*='Table'] colgroup col.mw150 {width:150px !important}
-    div[class*='Table'] colgroup col.mw300 {width:300px !important}
-    div[class*='Table'] tr th,
-    div[class*='Table'] tr td {padding:10px 5px; height:60px; font-size:16px}
-    div[class*='Table'] tr td.subject a.lock {padding-left:20px; background-size:13px}
-
-    .inputTable tr th,
-    .inputTable tr td {height:30px !important}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"]) {padding:5px 10px !important; height:30px}
-}
-@media (max-width:768px) {
-    div[class*='Table'] {margin-top:0}
-    div[class*='Table'] .mNone {display:none !important}
-    div[class*='Table'] tr th,
-    div[class*='Table'] tr td {padding:10px 5px; height:40px; font-size:13px}
-    div[class*='Table'] tr td.subject {padding-left:10px; font-weight:700}
-    div[class*='Table'] tr td.subject a.lock {padding-left:22px; padding-right:60px; background-position:center left}
-    div[class*='Table'] tr td.subject a.com span.tag {padding:0 7px; font-size:10px}
-    div[class*='Table'] tr td.subject.answer,
-    div[class*='Table'] tr td.subject .conDetail {font-weight:500}
-    div[class*='Table'] tr td.subject.answer {padding-left:0}
-    div[class*='Table'] tr td.subject .conDetail {margin-left:-30px}
-
-    /* qna 모바일 */
-    .qnaTable > table > thead > tr > th {display:none}
-    .qnaTable > table,
-    .qnaTable > table > thead,
-    .qnaTable > table > tbody,
-    .qnaTable > table > tbody > tr,
-    .qnaTable > table > tbody > tr > th,
-    .qnaTable > table > tbody > tr > td {display:block; width:100%; height:auto; text-align:left}
-    .qnaTable > table > tbody > tr {display:flex; position:relative; padding:40px 10px 10px}
-    .qnaTable > table > tbody > tr > td {position:relative; padding:3px 0; width:initial}
-    .qnaTable > table > tbody > tr > td:nth-child(4) {position:absolute; top:13px; left:80px}
-    .qnaTable > table > tbody > tr > td:nth-child(5) {position:absolute; top:13px}
-
-    .qnaPw {gap:5px; margin-top:0; margin-bottom:10px}
-    .qnaPw input {max-width:200px; height:30px}
-    .qnaPw button {padding:5px 18px}
-
-    /* input */
-    .inputTable {margin-top:0 !important}
-    .inputTable > table,
-    .inputTable > table > thead,
-    .inputTable > table > tbody,
-    .inputTable > table > tbody > tr,
-    .inputTable > table > tbody > tr > th,
-    .inputTable > table > tbody > tr > td {display:block; width:100%; text-align:left}
-    .inputTable tr th {margin-top:10px !important; padding:0 !important; height:auto !important}
-    .inputTable tr td {padding:0 !important; height:100% !important}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"]),
-    .inputTable tr td select {padding:5px !important; height:35px}
-    .inputTable tr td select {padding:5px 20px !important; background:url("../images/ico-select-arrow.png") no-repeat center right 10px / 11px auto; font-size:14px}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"]) {font-size:14px !important}
-    .inputTable tr td input:not([type="checkbox"]):not([type="radio"])::placeholder {font-size:11px !important}
-    .inputTable tr td textarea {padding:10px; height:200px; font-size:12px}
-    .phone span {min-width:15px}
-
-    /* adressTable */
-    .adressTable table {margin-top:30px; border-top:2px solid #191919}
-    .adressTable > table > thead {display:none}
-    .adressTable > table,
-    .adressTable > table > tbody,
-    .adressTable > table > tbody > tr,
-    .adressTable > table > tbody > tr > th,
-    .adressTable > table > tbody > tr > td {display:block; width:100%; text-align:left}
-    .adressTable > table > tbody > tr {position:relative; padding-top:25px; padding-left:40px; padding-bottom:25px}
-    .adressTable > table > tbody > tr > td:first-child {position:absolute; top:25px; left:0}
-    .adressTable > table > tbody > tr > td {padding:5px; height:25px; line-height:16px}
-}
-
-/*** 컨텐츠 하단영역 ***/
-.conBottomArea {position:relative; margin-top:100px}
-.conBottomArea .btnArea {position:absolute; right:0; bottom:10px}
-.conBottomArea .btnArea .btn {height:70px; font-weight:700; font-size:20px}
-@media (max-width:940px) {
-    .conBottomArea .btnArea .btn {width:190px; height:55px; font-weight:500; font-size:18px}
-}
-@media (max-width:768px) {
-    .conBottomArea {margin-top:40px}
-    .conBottomArea .btnArea {position:static; margin-top:35px; text-align:right}
-    .conBottomArea .btnArea .btn {width:100%}
-}
-
-/* 하단 버튼영역 */
-.bottomBtn {display:flex; justify-content:center; margin-top:80px}
-.bottomBtn button {display:inline-block; height:70px}
-.bottomBtn button + button {margin-left:10px}
-@media (max-width:768px) {
-    .bottomBtn {margin-top:40px}
-    .bottomBtn button {height:50px}
-}
-
-/* paging */
-.paging {display:flex; align-items:center; justify-content:center}
-.paging * {display:block; flex-shrink:0; text-align:center; width:40px; line-height:40px; font-weight:300; font-size:18px; color:rgb(25 25 25 / 50%)}
-.paging strong {font-weight:600; color:#191919}
-.paging .btnPrev,
-.paging .btnNext{margin:0 70px; width:8px; height:17px; text-indent:-9999px; background:no-repeat center / 100% auto}
-.paging .btnPrev {background-image:url("../images/btn-prev.png")}
-.paging .btnNext {background-image:url("../images/btn-next.png")}
-/* disable */
-.paging .btnPrev.disabled,
-.paging .btnNext.disabled{pointer-events:none; opacity:0.5}
-@media (max-width:940px) {
-    .paging .btnPrev,
-    .paging .btnNext{margin:0 30px}
-}
-@media (max-width:768px) {
-    .paging * {margin:0 8px; width:15px; line-height:15px; font-size:14px}
-    .paging .btnPrev,
-    .paging .btnNext{width:8px; height:17px}
-    .paging .btnPrev {margin-right:30px}
-    .paging .btnNext {margin-left:30px}
-}
-
-/* 게시판 상세페이지 */
-.detailArea {margin-top:60px}
-.detailArea .top h3 {line-height:34px; font-weight:700; font-size:30px}
-.detailArea .top p {padding-top:15px; font-size:18px}
-.detailArea .con {margin-top:60px; padding:60px 20px; border-top:1px solid #191919; word-break:keep-all}
-@media (max-width:940px) {
-    .detailArea {margin-top:30px}
-    .detailArea .top h3 {line-height:24px; font-size:20px}
-    .detailArea .top p {padding-top:5px; font-size:14px}
-    .detailArea .con {margin-top:30px; padding:20px 0; font-size:14px}
-}
-
-/*** 회원서비스 ***/
-/* 로그인 */
-.loginArea {margin-top:40px}
-.loginArea input {height:70px; background-color:transparent}
-.loginArea input,
-.loginArea input::placeholder {font-weight:400; font-size:18px; color:#191919}
-.loginArea button {margin-top:30px; height:80px; font-size:24px}
-.loginArea .util {display:flex; justify-content:space-between; padding:35px 20px 0}
-.loginArea .util a {font-weight:700; font-size:18px; color:#191919}
-.loginArea .util a + a {margin-left:40px}
-@media (max-width:768px) {
-    .loginArea {margin-top:0}
-    .loginArea input {height:45px}
-    .loginArea input,
-    .loginArea input::placeholder {font-size:14px}
-    .loginArea button {margin-top:20px; height:50px; font-size:18px}
-    .loginArea .util {padding:20px 0 0}
-    .loginArea .util a {font-size:14px}
-    .loginArea .util a + a {margin-left:10px}
-}
-
-/* 회원가입 */
-.termsArea {margin-top:100px}
-.termsArea > .checkboxWrap {margin-bottom:25px}
-.termsArea > .checkboxWrap label {font-weight:600; font-size:18px}
-.termsArea .terms {padding-top:20px}
-.termsArea .terms h3 {font-weight:600; font-size:16px}
-.termsArea .terms .scrollArea {margin:15px 0; padding:20px 0; height:150px; overflow-y:auto; border:1px solid #191919; font-weight:300; font-size:14px}
-.termsArea .terms .checkbox {margin-left:20px}
-.termsArea .terms label {font-size:16px}
-@media (max-width:768px) {
-    .termsArea {margin-top:40px}
-    .termsArea > .checkboxWrap {margin-bottom:0}
-    .termsArea > .checkboxWrap label {font-weight:600; font-size:16px}
-    .termsArea .terms {padding-top:40px}
-    .termsArea .terms h3 {font-weight:600; font-size:16px}
-    .termsArea .terms .scrollArea {margin:15px 0; padding:20px 0; height:150px; overflow-y:auto; border:1px solid #191919; font-weight:300; font-size:14px}
-    .termsArea .terms .checkbox {margin-left:20px}
-    .termsArea .terms label {font-size:16px}
-}
-
-/* 아이디찾기_결과 */
-.resultArea > div:not(.bottomBtn) {margin-top:50px}
-.resultArea > div p {line-height:34px; font-weight:300; font-size:20px}
-.resultArea > div > p {padding-bottom:40px}
-.resultArea > div > div {padding:35px 100px; border-top:1px solid #191919; border-bottom:1px solid #191919}
-.resultArea > div > div > * {font-size:20px}
-.resultArea > div > div dl {display:flex}
-.resultArea > div > div dl dt {min-width:200px; font-weight:600; text-align:left}
-.resultArea > div > div dl dd {font-weight:500}
-.resultArea > div > div dl + dl {padding-top:35px}
-@media (max-width:768px) {
-    .resultArea > div:not(.bottomBtn) {margin-top:0}
-    .resultArea > div p {line-height:24px; font-size:16px}
-    .resultArea > div > p {padding-bottom:20px}
-    .resultArea > div > div {padding:20px}
-    .resultArea .checkboxWrap .checkbox {margin:0 10px}
-    .resultArea > div > div > * {font-size:14px}
-    .resultArea > div > div dl dt {min-width:120px}
-    .resultArea > div > div dl + dl {padding-top:10px}
-}
-@media (max-width:370px) {
-    .resultArea > div > div dl {display:block}
-    .resultArea > div > div dl + dl {padding-top:20px}
-    .resultArea > div > div dl > * {text-align:left}
-}
-
-/*** cart ***/
-/* 주문내역 */
-.orderTable tr td {padding:60px 0}
-.goodsInfo {display:flex; align-items:center; gap:40px; text-align:left; color:#191919}
-.goodsInfo .img {width:200px; height:200px}
-.goodsInfo .img img {width:100%; height:auto; object-fit:cover}
-.goodsInfo strong {font-weight:700; font-size:22px}
-.goodsInfo p:not(.img) {font-weight:300; font-size:16px}
-.goodsInfo > div {font-weight:300; font-size:14px}
-.goodsInfo ul {margin-top:20px}
-.goodsInfo > div > div > span {display:inline}
-.goodsInfo > div > div > span > span + span {position:relative; padding-left:15px}
-.goodsInfo > div > div > span > span + span:before {position:absolute; content:"/"; left:4px}
-@media (max-width:1160px) {
-    .goodsInfo {gap:20px}
-    .orderTable tr th,
-    .orderTable tr td {padding:30px 0; font-size:15px !important}
-    .goodsInfo .img {width:150px; height:150px}
-    .goodsInfo strong {font-weight:600; font-size:18px}
-    .goodsInfo p:not(.img) {font-size:14px}
-    .goodsInfo > div {font-size:12px}
-    .goodsInfo > div > div > * {display:inline-block}
-    .goodsInfo > div > div > span {margin-top:10px; line-height:16px}
-    .goodsInfo  > div > div > span > span + span {padding-left:10px}
-    .goodsInfo > div > div > span > span + span:before {position:absolute; content:"/"; top:-1px; left:2px}
-}
-@media (max-width:940px) {
-    .orderTable {margin-top:30px !important}
-    .orderTable > table > thead {border-width:2px}
-    .orderTable > table > thead > tr > th {display:none}
-    .orderTable > table,
-    .orderTable > table > thead,
-    .orderTable > table > tbody,
-    .orderTable > table > tbody > tr,
-    .orderTable > table > tbody > tr > th,
-    .orderTable > table > tbody > tr > td {display:block; height:auto; text-align:left}
-    .orderTable > table > tbody > tr > td:not(:first-child) {position:relative; padding:3px 0 3px 60px}
-    .orderTable > table > tbody > tr > td:before {position:absolute; content:attr(data-label); left:0; font-weight:700}
-
-    .goodsInfo .img {position:absolute; top:30px; left:0; width:100px; height:100px}
-    .orderTable > table > tbody > tr {position:relative; padding:20px 0}
-    .orderTable > table > tbody > tr > td {padding:10px 10px 40px 120px}
-    .orderTable > table > tbody > tr > td:not(:first-child) {padding:3px 0 3px 90px; text-align:right}
-    .orderTable > table > tbody > tr > td br {display:none}
-    .goodsInfo strong {font-size:16px}
-    .goodsInfo p:not(.img) {font-size:13px}
-    .goodsInfo p:not(.img) + div {padding-top:10px; line-height:17px}
-}
-@media (max-width:768px) {
-    .orderTable tr th,
-    .orderTable tr td {font-size:13px !important}
-    .orderTable > table > tbody > tr > td {margin-left:110px; padding:10px 10px 10px 0}
-    .orderTable > table > tbody > tr > td:before {font-size:13px}
-}
-
-/* cart */
-.cartList {margin-top:50px; border-top:3px solid #191919; border-bottom:1px solid #191919}
-.cartList .goods {display:flex; position:relative; padding:60px 40px 80px 255px}
-.cartList .goods .fixed {display:flex; position:absolute; left:0}
-.cartList .goods .img {margin-left:15px}
-.cartList .goods .img.w180 {width:180px; height:180px}
-.cartList .goods .img.w180 img {width:100%; height:auto; object-fit:cover}
-.cartList .goods .name strong {font-weight:700; font-size:22px}
-.cartList .goods .name span {padding-left:10px; font-weight:300; font-size:16px}
-.cartList .goods .price {font-size:16px; font-weight:600}
-.cartList .goods .price em {font-weight:400}
-.cartList .goods .option {margin-top:35px; margin-bottom:15px; word-break:keep-all}
-.cartList .goods .count,
-.cartList .goods .count > div {display:flex}
-.cartList .goods .count > div > * {border:1px solid #A4A4A4}
-.cartList .goods .count button {width:26px; height:26px; background:no-repeat center / auto}
-.cartList .goods .count button.minusBtn {background-image:url("../images/ico-count-minus.png")}
-.cartList .goods .count button.plusBtn {background-image:url("../images/ico-count-plus.png")}
-.cartList .goods .count span {display:inline-block; margin:0 -1px; width:40px; height:26px; text-align:center}
-.cartList .goods .count > div + button {margin-left:10px; padding:0 2px; width:60px; height:26px; border:1px solid #A4A4A4}
-.cartList .goods > a {display:inline-block; position:absolute; right:0; width:30px; height:30px; background:url("../images/btn-cart-del.png") no-repeat center / 30px auto}
-.totalPrice {flex:1; text-align:right; padding-top:5px; padding-right:32px; font-size:24px; white-space:nowrap}
-.totalPrice em {font-weight:500}
-@media (max-width:940px) {
-    .cartList {margin-top:30px}
-    .cartList .goods {padding:30px 30px 40px 165px}
-    .cartList .goods .img.w180 {width:100px; height:100px}
-    .cartList .goods .name strong {font-size:16px}
-    .cartList .goods .name span {padding-left:0; padding-bottom:10px; font-size:13px}
-    .cartList .goods .option {margin-top:15px; line-height:20px; font-size:12px}
-    .cartList .goods .price {font-size:14px}
-    .totalPrice {padding-top:0; padding-right:0; font-size:16px}
-    .cartList .goods .count > div + button {margin-left:5px}
-    .cartList .goods > a {width:16px; height:16px; background-size:16px auto}
-}
-@media (max-width:768px) {
-    .cartList {margin-top:0}
-    .cartList .goods {display:block; padding:30px 30px 40px 120px}
-    .cartList .goods .img {margin-left:0}
-    .cartList .goods .img.w180 {width:80px; height:80px}
-    .cartList .goods .name > * {display:block}
-    .totalPrice {padding-top:30px; text-align:left}
-    .cartList .goods .count span {width:35px}
-    .cartList .goods > a {top:30px}
-}
-
-/*** galleryList ***/
-.galleryList {margin-top:50px; padding-top:40px; padding-bottom:100px; width:100%; border-top:3px solid #191919}
-.galleryList > ul {display:grid; grid-template-columns:repeat(3, 1fr); gap:90px}
-.galleryList > ul >li {cursor:pointer}
-.galleryList > ul >li > div {position:relative; aspect-ratio:1/1; overflow:hidden}
-.galleryList > ul >li > div > p > img {position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition:all 0.3s; -webkit-transition:all 0.3s; -moz-transition:all 0.3s}
-.galleryList > ul >li > div:hover > p > img {transform: scale(1.15); -webkit-transform: scale(1.15); -moz-transform: scale(1.15)}
-.galleryList > ul >li > div span {position:absolute; right:25px; bottom:20px; font-weight:700; font-size:14px; color:#fff}
-
-.galleryList .detail {position:fixed; z-index:9900; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7)}
-.galleryList .detail .inner {position:relative; top:50%; left:50%; width:1300px; max-width:100%; /*height:e;*/ transform:translate(-50%, -50%)}
-.detailSlider,
-.galleryList .inner > div + div {margin:0 200px}
-.detailSlider {overflow:hidden}
-.detailSlider img {width:100%; object-fit:cover}
-.galleryList .detail .inner > a {position:absolute; top:0; right:0; display:block; width:60px; height:60px; background:url("../images/btn-close-w.png") no-repeat center / 100% auto}
-.detailSlider .swiper-button-next,
-.detailSlider .swiper-button-prev {width:30px; height:60px}
-.detailSlider .swiper-button-next:after,
-.detailSlider .swiper-button-prev:after {display:none}
-.detailSlider .swiper-button-next {background:url("../images/btn-next-w.png") no-repeat center /auto}
-.detailSlider .swiper-button-prev {background:url("../images/btn-prev-w.png") no-repeat center /auto}
-.galleryList .inner > div + div {margin-top:40px; font-family: 'GmarketSans', sans-serif; font-weight:700; font-size:24px; color:#fff}
-.galleryList .inner > div + div > ul {margin-top:20px; font-family:'NanumSquare', sans-serif; font-weight:400; font-size:18px}
-.galleryList .inner > div + div > ul li {display:inline-block}
-.galleryList .inner > div + div > ul li {margin-right:18px}
-@media (max-width:1160px) {
-    .detailSlider,
-    .galleryList .inner > div + div {margin:0 100px}
-}
-@media (max-width:940px) {
-    .galleryList > ul {grid-template-columns:repeat(2, 1fr); gap:45px}
-}
-@media (max-width:767px) {
-    .galleryList {margin-top:0; padding-top:30px; border-top:none}
-    .galleryList > ul {gap:50px 35px}
-    .galleryList > ul >li > div {overflow:inherit}
-    .galleryList > ul >li > div span {right:inherit; bottom:-30px; font-weight:400; color:#000}
-    .galleryList > ul >li > div:hover > p > img {transform: scale(1); -webkit-transform: scale(1); -moz-transform: scale(1)}
-    .detailSlider {position:relative}
-    .detailSlider,
-    .galleryList .inner > div + div {margin:0}
-    .galleryList .inner > div + div {margin:24px}
-    .galleryList .detail .inner > a {top:-55px; right:24px; width:35px; height:35px}
-}
-
-/*** product ***/
-/* list */
-.productList {display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; margin-top:55px; padding-top:40px; border-top:3px solid #191919}
-.productList .product {display:block}
-.productList .product > * {color:#191919}
-.productList .product > p {background:#F8F8F8; aspect-ratio: 1/1;}
-.productList .product p img {width:100%; height:auto; object-fit:cover}
-.productList .product > div {padding-top:25px}
-.productList .product strong.tit {font-weight:700; font-size:24px}
-.productList .product .subTit {padding-top:5px; font-weight:300; font-size:20px}
-.productList .product .price {padding-top:25px}
-.productList .product .price span {padding-right:30px; font-weight:600; font-size:24px}
-.productList .product .price strike {font-weight:300; font-size:22px; color:rgba(25, 25, 25, 0.5)}
-@media (max-width:767px) {
-    .productList {margin-top:0; padding-top:30px; border-top:none}
-    .productList .product > div {padding-top:15px}
-    .productList .product strong.tit {font-size:18px}
-    .productList .product .subTit {padding-top:0; font-size:13px}
-    .productList .product .price {padding-top:15px}
-    .productList .product .price span {padding-right:15px;font-size:16px}
-    .productList .product .price strike {font-size:14px}   
-}
-@media (max-width:450px) {
-    .productList {grid-template-columns:1fr; gap:50px 0}
+            div + div > span {
+                display: block;
+            }
+        }
+    }
 }

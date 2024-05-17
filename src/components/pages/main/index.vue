@@ -6,7 +6,139 @@
       </ul>
     </div>
     <section class="fullsection full1"></section>
-    <section class="fullsection full2"><span>2 PAGE</span></section>
+    <section class="fullsection full2">
+      <div class="inner">
+        <!-- productSlider -->
+        <div class="productSlider">
+          <swiper
+            :slides-per-view="1"
+            @swiper="productSlider"
+            :effect="'fade'"
+            navigation
+          >
+            <swiper-slide>
+              <div class="sliderTit txtC">
+                  <strong ref="strongRef">MIDI DESK</strong>
+                  <p>다양한 색 조합으로 나만의 개성을 담은 데스크를 만들어 보세요.</p>
+              </div>
+              <div class="item">
+                  <div class="colorChse left">
+                      <ul>
+                          <li class="curr cWhite"><a href=""><span class="hide">화이트</span></a></li>
+                          <li class="cBlack"><a href=""><span class="hide">블랙</span></a></li>
+                          <li class="cGray"><a href=""><span class="hide">그레이</span></a></li>
+                          <li class="cBrown"><a href=""><span class="hide">브라운</span></a></li>
+                          <li class="cRed"><a href=""><span class="hide">레드</span></a></li>
+                          <li class="cYellow"><a href=""><span class="hide">옐로우</span></a></li>
+                          <li class="cBeige"><a href=""><span class="hide">베이지</span></a></li>
+                          <li class="cBlue"><a href=""><span class="hide">블루</span></a></li>
+                          <li class="cGreen"><a href=""><span class="hide">그린</span></a></li>
+                          <li class="cPurple"><a href=""><span class="hide">퍼블</span></a></li>
+                      </ul>
+                  </div>
+                  <!-- detailSlider -->
+                  <div class="detailSlider" ref="detailSliderRef">
+                    <swiper
+                    :slides-per-view="1"
+                    :spaceBetween="150"
+                    @swiper="detailSlider"
+                    navigation
+                    pagination
+                  >
+                    <swiper-slide>
+                          <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                    </swiper-slide>
+                    <swiper-slide>
+                      <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                    </swiper-slide>
+                  </swiper>
+                  </div>
+                  <!--// detailSlider -->
+                  <div class="colorChse right">
+                      <ul>
+                          <li class="curr cBlack"><a href=""><span class="hide">블랙</span></a></li>
+                          <li class="cWhite"><a href=""><span class="hide">화이트</span></a></li>
+                          <li class="cGray"><a href=""><span class="hide">그레이</span></a></li>
+                          <li class="cBrown"><a href=""><span class="hide">브라운</span></a></li>
+                          <li class="cRed"><a href=""><span class="hide">레드</span></a></li>
+                          <li class="cYellow"><a href=""><span class="hide">옐로우</span></a></li>
+                          <li class="cBeige"><a href=""><span class="hide">베이지</span></a></li>
+                          <li class="cBlue"><a href=""><span class="hide">블루</span></a></li>
+                          <li class="cGreen"><a href=""><span class="hide">그린</span></a></li>
+                          <li class="cPurple"><a href=""><span class="hide">퍼블</span></a></li>
+                      </ul>
+                  </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div class="sliderTit txtC">
+                  <strong ref="strongRef">MIDI DESK</strong>
+                  <p>다양한 색 조합으로 나만의 개성을 담은 데스크를 만들어 보세요.</p>
+              </div>
+              <div class="item">
+                  <div class="colorChse left">
+                      <ul>
+                          <li class="curr cWhite"><a href=""><span class="hide">화이트</span></a></li>
+                          <li class="cBlack"><a href=""><span class="hide">블랙</span></a></li>
+                          <li class="cGray"><a href=""><span class="hide">그레이</span></a></li>
+                          <li class="cBrown"><a href=""><span class="hide">브라운</span></a></li>
+                          <li class="cRed"><a href=""><span class="hide">레드</span></a></li>
+                          <li class="cYellow"><a href=""><span class="hide">옐로우</span></a></li>
+                          <li class="cBeige"><a href=""><span class="hide">베이지</span></a></li>
+                          <li class="cBlue"><a href=""><span class="hide">블루</span></a></li>
+                          <li class="cGreen"><a href=""><span class="hide">그린</span></a></li>
+                          <li class="cPurple"><a href=""><span class="hide">퍼블</span></a></li>
+                      </ul>
+                  </div>
+                  <!-- detailSlider -->
+                  <div class="detailSlider" ref="detailSliderRef">
+                    <swiper
+                      :slides-per-view="1"
+                      :spaceBetween="150"
+                      @swiper="detailSlider"
+                      navigation
+                      pagination
+                    >
+                      <swiper-slide>
+                            <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                      </swiper-slide>
+                      <swiper-slide>
+                        <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                      </swiper-slide>
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                      </swiper-slide>
+                    </swiper>
+                  </div>
+                  <!--// detailSlider -->
+                  <div class="colorChse right">
+                      <ul>
+                          <li class="curr cBlack"><a href=""><span class="hide">블랙</span></a></li>
+                          <li class="cWhite"><a href=""><span class="hide">화이트</span></a></li>
+                          <li class="cGray"><a href=""><span class="hide">그레이</span></a></li>
+                          <li class="cBrown"><a href=""><span class="hide">브라운</span></a></li>
+                          <li class="cRed"><a href=""><span class="hide">레드</span></a></li>
+                          <li class="cYellow"><a href=""><span class="hide">옐로우</span></a></li>
+                          <li class="cBeige"><a href=""><span class="hide">베이지</span></a></li>
+                          <li class="cBlue"><a href=""><span class="hide">블루</span></a></li>
+                          <li class="cGreen"><a href=""><span class="hide">그린</span></a></li>
+                          <li class="cPurple"><a href=""><span class="hide">퍼블</span></a></li>
+                      </ul>
+                  </div>
+              </div>
+            </swiper-slide>
+          </swiper>
+        </div>
+
+        <!--// productSlider -->
+        <div class="shopBtn txtC">
+          <button type="button" class="btn bgBlack sL w270"><span>SHOP NOW</span></button>
+        </div>
+      </div>
+    </section>
     <section class="fullsection full3">
       <div class="inner">
         <h2>GALLERY</h2>
@@ -15,30 +147,25 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <!-- inGallSlider -->
-                    <!-- <div class="inGallSlider">
-                        <div class="swiper-wrapper">
-                          <swiper
-                            :slides-per-view="1"
-                            @swiper="inGallSlider"
-                            @slideChange="onSlideChange"
-                            navigation
-                          >
-                            <swiper-slide>
-                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                                <strong>MMM STUDIO</strong>
-                            </swiper-slide>
-                            <swiper-slide>
-                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                                <strong>MMM STUDIO 2</strong>
-                            </swiper-slide>
-                            <swiper-slide>
-                                <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                                <strong>MMM STUDIO 3</strong>
-                            </swiper-slide>
-                        </div>
-                        <div class="swiper-button-next v3"></div>
-                        <div class="swiper-button-prev v3"></div>
-                    </div> -->
+                    <swiper
+                      :slides-per-view="1"
+                      @swiper="inGallSlider"
+                      navigation
+                      class="inGallSlider"
+                    >
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                          <strong>MMM STUDIO</strong>
+                      </swiper-slide>
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                          <strong>MMM STUDIO 2</strong>
+                      </swiper-slide>
+                      <swiper-slide>
+                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                          <strong>MMM STUDIO 3</strong>
+                      </swiper-slide>
+                    </swiper>
                     <!--// inGallSlider -->
                 </div>
                 <div class="swiper-slide">
@@ -247,24 +374,25 @@ onUnmounted(() => {
 });
 
 // section3 inner slider
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation, Pagination, EffectFade } from 'swiper/core';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/swiper-bundle.css'; 
 
+const windowWidth = ref<number>(0);
+const detailSliderRef = ref<HTMLElement | null>(null);
+const strongRef = ref(0);
 
-  import 'swiper/css';
+const handleResize = () => {
+  windowWidth.value = window.innerWidth;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+  console.log(strongRef.value.offsetWidth)
+  // titWidthRef.value.style.width = `${titWidth}px`;
+});
+// watchEffect(() => {
+//   console.log(titWidth.clientWidth);
+// });
 
 </script>
-
-<style scoped>
-#fullpage {position:relative; top:0; z-index:9; width:100%; height:100%; }
-#fullpage span {display:block; position:absolute; top:50%; left:50%; font-weight:bold; font-size:4em; transform:translate(-50%,-50%)}
-.fullsection {position:relative; width:100%; height:100%; min-height: 100vh;}
-.full1 {background:url("@/assets/images/img-visual.jpg")no-repeat center / auto}
-.full2 {background:#fff}
-.full2 span {color:#000}
-.full3 {background:rgba(230, 230, 230, 1)}
-.quick {position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:9999}
-.quick li {margin-bottom:10px; width:10px; height:10px; border-radius:15px; border:2px solid #fff; cursor:pointer}
-.quick .on {background:#fff}
-.quick.themeBk li {border-color: #000;}
-.quick.themeBk .on {background: #000;}
-</style>
