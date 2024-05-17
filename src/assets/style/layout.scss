@@ -78,7 +78,7 @@
         }
   
         &:first-child > a {
-          background-image: none;
+          background: none;
         }
       }
     }
@@ -89,13 +89,17 @@
       margin-bottom: -165px;
       margin-top: 50px;
   
-      a {
+      a,
+      button {
         display: block;
         font-weight: 700;
   
         + a {
           margin-top: 20px;
         }
+      }
+      button {
+        margin-top:20px;
       }
     }
   
@@ -162,6 +166,10 @@
         > a.on,
         > button.on {
           background: url("../images/ico-arrow-up.png") no-repeat center (right / auto);
+        }
+
+        &:first-child > a {
+            background: none;
         }
       }
   
