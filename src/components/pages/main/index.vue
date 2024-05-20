@@ -11,14 +11,28 @@
         <!-- productSlider -->
         <div class="productSlider">
           <swiper
+            ref="main2WrapSwiper"
             :slides-per-view="1"
-            @swiper="productSlider"
             :effect="'fade'"
-            navigation
+            :loop="true"
+            :speed="800"
+            :modules="[Navigation, Pagination, EffectFade]"
+            @swiper="refreshSwiper"
+            :observer="true"
+            :observeParents="true"
+            :pagination="{
+              el: '._productPaging',
+              clickable: true
+            }"
+            :navigation="{
+              enabled: true,
+              nextEl: '._productPrev',
+              prevEl: '._productNext'
+            }"
           >
             <swiper-slide>
               <div class="sliderTit txtC">
-                  <strong ref="strongRef">MIDI DESK</strong>
+                  <strong>MIDI DESK</strong>
                   <p>다양한 색 조합으로 나만의 개성을 담은 데스크를 만들어 보세요.</p>
               </div>
               <div class="item">
@@ -41,18 +55,17 @@
                     <swiper
                     :slides-per-view="1"
                     :spaceBetween="150"
-                    @swiper="detailSlider"
                     navigation
                     pagination
                   >
                     <swiper-slide>
-                          <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                      <picture><img src="@/assets/images/img-product.png" alt=""></picture>
                     </swiper-slide>
                     <swiper-slide>
                       <picture><img src="@/assets/images/img-product.png" alt=""></picture>
                     </swiper-slide>
                     <swiper-slide>
-                        <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                      <picture><img src="@/assets/images/img-product.png" alt=""></picture>
                     </swiper-slide>
                   </swiper>
                   </div>
@@ -75,7 +88,7 @@
             </swiper-slide>
             <swiper-slide>
               <div class="sliderTit txtC">
-                  <strong ref="strongRef">MIDI DESK</strong>
+                  <strong>MIDI DESK2</strong>
                   <p>다양한 색 조합으로 나만의 개성을 담은 데스크를 만들어 보세요.</p>
               </div>
               <div class="item">
@@ -130,6 +143,13 @@
                   </div>
               </div>
             </swiper-slide>
+            <div class="swiperBtn">
+              <button class="_productPrev" @click.prevent="main2WrapPrev">Prev</button>
+              <button class="_productNext" @click.prevent="main2WrapNext">Next</button>
+            </div>
+            <div class="swiperPaging">
+              <span class="_productPaging">1</span>
+            </div>
           </swiper>
         </div>
 
@@ -195,7 +215,7 @@
 
 </template>
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted, watchEffect} from 'vue';
+import {ref, onMounted, onUnmounted, watchEffect, nextTick, watch} from 'vue';
 
 import {useMainStore} from "@/stores/mainPage";
 const inMove = ref(false);
@@ -209,6 +229,34 @@ let touchMoveDetected = false;
 const onFullpage = ref<HTMLElement | null>(null);
 // const {activeValue} = storeToRefs(useMainStore)
 const { setActiveSection } = useMainStore();
+
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation, Pagination, EffectFade } from 'swiper/modules';
+import type { Swiper as SwiperInstance } from 'swiper';
+import 'swiper/swiper-bundle.css';
+
+
+const main2WrapSwiper =ref<SwiperInstance | null>(null);
+const detailSlider = ref<SwiperInstance | null>(null);
+const inGallSlider = ref<SwiperInstance | null>();
+// const swiperRef2 = ref<Swiper | null>(null);
+const refreshSwiper = async (main2WrapSwiper: swiper) => {
+  await nextTick()
+  swiper.update();
+  main2WrapSwiper.value = swiper;
+}
+
+
+// const onMain2Wrap = (swiper: any) => {
+//   main2WrapSwiper.value = swiper;
+//   console.log('main2WrapSwiper',main2WrapSwiper.value)
+// }
+const main2WrapPrev = () => {
+  main2WrapSwiper.value.slidePrev()
+};
+const main2WrapNext = () => {
+  main2WrapSwiper.value.slideNext()
+};
 const calculateSectionOffsets = () => {
   const sections = document.getElementsByTagName('section');
   const length = sections.length;
@@ -349,6 +397,8 @@ const touchEnd = (evt: Event) => {
 
 watchEffect(() => {
   setActiveSection(activeSection.value);
+  console.log('main2WrapSwiper', main2WrapSwiper)
+
 });
 onMounted(() => {
   // setActiveSection(activeSection.value);
@@ -373,14 +423,10 @@ onUnmounted(() => {
 
 });
 
-// section3 inner slider
-import { Navigation, Pagination, EffectFade } from 'swiper/core';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/swiper-bundle.css'; 
-
 const windowWidth = ref<number>(0);
 const detailSliderRef = ref<HTMLElement | null>(null);
-const strongRef = ref(0);
+// const strongRef = ref<HTMLElement|null>(null);
+
 
 const handleResize = () => {
   windowWidth.value = window.innerWidth;
@@ -388,7 +434,7 @@ const handleResize = () => {
 
 onMounted(() => {
   window.addEventListener('resize', handleResize);
-  console.log(strongRef.value.offsetWidth)
+  // console.log('strongRef.value',strongRef.value)
   // titWidthRef.value.style.width = `${titWidth}px`;
 });
 // watchEffect(() => {
@@ -396,3 +442,11 @@ onMounted(() => {
 // });
 
 </script>
+<style scoped >
+.productSlider {position: relative;}
+.swiperBtn {position: absolute; left: 0; right: 0; top: 0; z-index: 9999;}
+._productPrev {width: 40px; height: 40px; background: #000; text-indent: -9999px; position: absolute; left: 0px; top: 0px;}
+._productNext {width: 40px; height: 40px; background: #000; text-indent: -9999px; position: absolute; right: 0px; top: 0px;}
+.productSlider > .swiper > .swiper-wrapper > .swiper-slide {opacity: 0 !important;}
+.productSlider > .swiper > .swiper-wrapper > .swiper-slide.swiper-slide-active {opacity: 1 !important;;}
+</style>
