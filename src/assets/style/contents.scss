@@ -335,10 +335,6 @@
       min-width: 30px;
       width: 30px;
       text-indent: -9999px;
-      padding-left: 0;
-      min-width: 30px;
-      width: 30px;
-      text-indent: -9999px;
     }
   }
   
@@ -1223,7 +1219,7 @@
         }
   
         select {
-          padding: 16px 20px !important;
+          //padding: 16px 20px !important;
           height: 50px;
           padding: 16px 30px 16px 20px !important;
           background: url("../images/ico-select-arrow.png") no-repeat center right 20px / 17px auto;
@@ -2906,7 +2902,7 @@
     }
   }
   
-  .galleryList .detail .inner > a {
+  .galleryList .detail .inner > button {
     position: absolute;
     top: 0;
     right: 0;
@@ -3017,7 +3013,7 @@
         margin: 24px;
       }
   
-      .detail .inner > a {
+      .detail .inner > button {
         top: -55px;
         right: 24px;
         width: 35px;

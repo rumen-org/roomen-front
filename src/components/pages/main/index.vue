@@ -17,7 +17,6 @@
             :loop="true"
             :speed="800"
             :modules="[Navigation, Pagination, EffectFade]"
-            @swiper="refreshSwiper"
             :observer="true"
             :observeParents="true"
             :pagination="{
@@ -59,6 +58,8 @@
                       :navigation="true"
                     >
                     <swiper-slide>
+<!--                      <img style="filter: opacity(0.5) drop-shadow(0 0 0 #191919);
+" src="@/assets/images/img-product.png" alt="">-->
                       <picture><img src="@/assets/images/img-product.png" alt=""></picture>
                     </swiper-slide>
                     <swiper-slide>
@@ -143,8 +144,8 @@
               </div>
             </swiper-slide>
             <div class="swiperBtn">
-              <button class="_productPrev" @click.prevent="main2WrapPrev">Prev</button>
-              <button class="_productNext" @click.prevent="main2WrapNext">Next</button>
+              <button class="_productPrev">Prev</button>
+              <button class="_productNext">Next</button>
             </div>
             <div class="swiperPaging">
               <span class="_productPaging">1</span>
@@ -221,7 +222,7 @@
 
 </template>
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted, watchEffect, nextTick, watch} from 'vue';
+import {ref, onMounted, onUnmounted, watchEffect, watch} from 'vue';
 
 import {useMainStore} from "@/stores/mainPage";
 const inMove = ref(false);
@@ -243,26 +244,26 @@ import 'swiper/swiper-bundle.css';
 
 
 const main2WrapSwiper =ref<SwiperInstance | null>(null);
-const detailSlider = ref<SwiperInstance | null>(null);
-const inGallSlider = ref<SwiperInstance | null>();
+// const detailSlider = ref<SwiperInstance | null>(null);
+// const inGallSlider = ref<SwiperInstance | null>();
 // const swiperRef2 = ref<Swiper | null>(null);
-const refreshSwiper = async (main2WrapSwiper: swiper) => {
-  await nextTick()
-  swiper.update();
-  main2WrapSwiper.value = swiper;
-}
-
+// const refreshSwiper = async (main2WrapSwiper: Swiper) => {
+//   await nextTick()
+//   swiper.update();
+//   main2WrapSwiper.value = swiper;
+// }
+// watch(()=>{})
 
 // const onMain2Wrap = (swiper: any) => {
 //   main2WrapSwiper.value = swiper;
 //   console.log('main2WrapSwiper',main2WrapSwiper.value)
 // }
-const main2WrapPrev = () => {
-  main2WrapSwiper.value.slidePrev()
-};
-const main2WrapNext = () => {
-  main2WrapSwiper.value.slideNext()
-};
+// const main2WrapPrev = () => {
+//   main2WrapSwiper.value.slidePrev()
+// };
+// const main2WrapNext = () => {
+//   main2WrapSwiper.value.slideNext()
+// };
 const calculateSectionOffsets = () => {
   const sections = document.getElementsByTagName('section');
   const length = sections.length;
@@ -278,23 +279,22 @@ const isMobile = ref(window.innerWidth < 768); // 768px is a common breakpoint f
 watch(isMobile, (newValue, oldValue) => {
   if (newValue) {
     // Initialize Swiper for mobile
-    initMobileSwiper();
-  } else {
+    // initMobileSwiper();
+  } else if(oldValue) {
     // Destroy Swiper instance (if it exists)
-    destroySwiper();
+    // destroySwiper();
   }
 });
 
-function initMobileSwiper() {
-  const swiper = new Swiper('.swiper-container', {
-  });
-}
-function destroySwiper() {
-  if (swiper) {
-    swiper.destroy(true);
-    swiper = null;
-  }
-}
+// function initMobileSwiper() {
+//   const swiper = ;
+// }
+// function destroySwiper() {
+//   if (swiper) {
+//     swiper.destroy(true);
+//     swiper = null;
+//   }
+// }
 
 
 
@@ -455,7 +455,7 @@ onUnmounted(() => {
 });
 
 const windowWidth = ref<number>(0);
-const detailSliderRef = ref<HTMLElement | null>(null);
+// const detailSliderRef = ref<HTMLElement | null>(null);
 // const strongRef = ref<HTMLElement|null>(null);
 
 
