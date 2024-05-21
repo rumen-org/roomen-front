@@ -51,13 +51,13 @@
                       </ul>
                   </div>
                   <!-- detailSlider -->
-                  <div class="detailSlider" ref="detailSliderRef">
+                  <div class="detailSlider">
                     <swiper
-                    :slides-per-view="1"
-                    :spaceBetween="150"
-                    navigation
-                    pagination
-                  >
+                      :slides-per-view="1"
+                      :spaceBetween="150"
+                      :modules="[Navigation]"
+                      :navigation="true"
+                    >
                     <swiper-slide>
                       <picture><img src="@/assets/images/img-product.png" alt=""></picture>
                     </swiper-slide>
@@ -107,13 +107,11 @@
                       </ul>
                   </div>
                   <!-- detailSlider -->
-                  <div class="detailSlider" ref="detailSliderRef">
+                  <div class="detailSlider">
                     <swiper
                       :slides-per-view="1"
                       :spaceBetween="150"
-                      @swiper="detailSlider"
                       navigation
-                      pagination
                     >
                       <swiper-slide>
                             <picture><img src="@/assets/images/img-product.png" alt=""></picture>
@@ -442,11 +440,3 @@ onMounted(() => {
 // });
 
 </script>
-<style scoped >
-.productSlider {position: relative;}
-.swiperBtn {position: absolute; left: 0; right: 0; top: 0; z-index: 9999;}
-._productPrev {width: 40px; height: 40px; background: #000; text-indent: -9999px; position: absolute; left: 0px; top: 0px;}
-._productNext {width: 40px; height: 40px; background: #000; text-indent: -9999px; position: absolute; right: 0px; top: 0px;}
-.productSlider > .swiper > .swiper-wrapper > .swiper-slide {opacity: 0 !important;}
-.productSlider > .swiper > .swiper-wrapper > .swiper-slide.swiper-slide-active {opacity: 1 !important;;}
-</style>
