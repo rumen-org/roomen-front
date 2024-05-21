@@ -2,7 +2,7 @@
   <div id="fullpage" ref="onFullpage">
     <div class="quick" :class="activeSection != 0  ? 'themeBk' : ''">
       <ul>
-        <li class="menu-point" v-bind:class="{on: activeSection == index}" v-on:click="scrollToSection(index)" v-for="(offset, index) in offsets" v-bind:key="index" ></li>
+        <li class="menu-point" v-bind:class="{on: activeSection == index}" v-on:click="scrollToSection(index)" v-for="(offset, index) in offsets" v-bind:key="index" ><span class="dp-block blind-text">{{offset}}</span></li>
       </ul>
     </div>
     <section class="fullsection full1"></section>
@@ -116,29 +116,30 @@
                       :navigation="true"
                     >
                       <swiper-slide>
-                            <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                        <div>{{getColor}}</div>
+                            <picture><img :style="getColor" src="@/assets/images/img-product.png" alt=""></picture>
                       </swiper-slide>
                       <swiper-slide>
-                        <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                        <picture><img :style="getColor" src="@/assets/images/img-product.png" alt=""></picture>
                       </swiper-slide>
                       <swiper-slide>
-                          <picture><img src="@/assets/images/img-product.png" alt=""></picture>
+                          <picture><img  :style="getColor" src="@/assets/images/img-product.png" alt=""></picture>
                       </swiper-slide>
                     </swiper>
                   </div>
                   <!--// detailSlider -->
-                  <div class="colorChse right">
+                  <div class="colorChse right 22rf">
                       <ul>
-                          <li class="curr cBlack"><a href=""><span class="hide">블랙</span></a></li>
-                          <li class="cWhite"><a href=""><span class="hide">화이트</span></a></li>
-                          <li class="cGray"><a href=""><span class="hide">그레이</span></a></li>
-                          <li class="cBrown"><a href=""><span class="hide">브라운</span></a></li>
-                          <li class="cRed"><a href=""><span class="hide">레드</span></a></li>
-                          <li class="cYellow"><a href=""><span class="hide">옐로우</span></a></li>
-                          <li class="cBeige"><a href=""><span class="hide">베이지</span></a></li>
-                          <li class="cBlue"><a href=""><span class="hide">블루</span></a></li>
-                          <li class="cGreen"><a href=""><span class="hide">그린</span></a></li>
-                          <li class="cPurple"><a href=""><span class="hide">퍼블</span></a></li>
+                          <li class="curr cBlack"><a @click="changeColor('191919')" href="javascript:void(0)"><span class="hide">블랙</span></a></li>
+                          <li class="cWhite"><a @click="changeColor('ffffff')" href="javascript:void(0)"><span class="hide">화이트</span></a></li>
+                          <li class="cGray"><a @click="changeColor('939393')" href="javascript:void(0)"><span class="hide">그레이</span></a></li>
+                          <li class="cBrown"><a @click="changeColor('855937')" href="javascript:void(0)"><span class="hide">브라운</span></a></li>
+                          <li class="cRed"><a @click="changeColor('EA5D5D')" href="javascript:void(0)"><span class="hide">레드</span></a></li>
+                          <li class="cYellow"><a @click="changeColor('FDD33F')" href="javascript:void(0)"><span class="hide">옐로우</span></a></li>
+                          <li class="cBeige"><a @click="changeColor('DEC9A6')" href="javascript:void(0)"><span class="hide">베이지</span></a></li>
+                          <li class="cBlue"><a @click="changeColor('3EBAEF')" href="javascript:void(0)"><span class="hide">블루</span></a></li>
+                          <li class="cGreen"><a @click="changeColor('58FFAF')" href="javascript:void(0)"><span class="hide">그린</span></a></li>
+                          <li class="cPurple"><a @click="changeColor('B661F9')" href="javascript:void(0)"><span class="hide">퍼블</span></a></li>
                       </ul>
                   </div>
               </div>
@@ -163,57 +164,45 @@
       <div class="inner">
         <h2>GALLERY</h2>
         <!-- gallSlider -->
-        <div v-if="isMobile">
-            <swiper
-              :slides-per-view="1"
-              :spaceBetween="150"
-              :modules="[Navigation]"
-              :navigation="true"
-              class="gallSlider"
-            >
-              <swiper-slide>
-                <!-- inGallSlider -->
-                <swiper
+        <div class="gallSlider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <!-- inGallSlider -->
+              <swiper
                   :slides-per-view="1"
                   :spaceBetween="150"
                   :modules="[Navigation]"
                   :navigation="true"
                   class="inGallSlider"
-                >
-                  <swiper-slide>
-                      <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                      <strong>MMM STUDIO</strong>
-                  </swiper-slide>
-                  <swiper-slide>
-                      <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                      <strong>MMM STUDIO 2</strong>
-                  </swiper-slide>
-                  <swiper-slide>
-                      <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                      <strong>MMM STUDIO 3</strong>
-                  </swiper-slide>
-                </swiper>
-                <!--// inGallSlider -->
-              </swiper-slide>
-              <swiper-slide>
-                <a href="">
-                    <picture><img src="@/assets/images/img-gallery04.png" alt=""></picture>
-                    <strong>SAN HOUSE</strong>
-                </a>
-              </swiper-slide>
-              <swiper-slide>
-                <a href="">
-                    <picture><img src="@/assets/images/img-gallery05.jpg" alt=""></picture>
-                    <strong>JIBLE STUDIO</strong>
-                </a>
-              </swiper-slide>
-              <swiper-slide>
-                <a href="">
-                    <picture><img src="@/assets/images/img-gallery06.jpg" alt=""></picture>
-                    <strong>SINSUNG CHURCH</strong>
-                </a>
-              </swiper-slide>
-            </swiper>
+              >
+                <swiper-slide>
+                  <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                  <strong>MMM STUDIO</strong>
+                </swiper-slide>
+                <swiper-slide>
+                  <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                  <strong>MMM STUDIO 2</strong>
+                </swiper-slide>
+                <swiper-slide>
+                  <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                  <strong>MMM STUDIO 3</strong>
+                </swiper-slide>
+              </swiper>
+              <!--// inGallSlider -->
+            </div>
+            <div class="swiper-slide">
+              <picture><img src="@/assets/images/img-gallery04.png" alt=""></picture>
+              <strong>MMM STUDIO</strong>
+            </div>
+            <div class="swiper-slide">
+              <picture><img src="@/assets/images/img-gallery05.jpg" alt=""></picture>
+              <strong>MMM STUDIO 2</strong>
+            </div>
+            <div class="swiper-slide">
+              <picture><img src="@/assets/images/img-gallery06.jpg" alt=""></picture>
+              <strong>MMM STUDIO 3</strong>
+            </div>
+          </div>
         </div>
         <!--// gallSlider -->
       </div>
@@ -222,7 +211,7 @@
 
 </template>
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted, watchEffect, watch} from 'vue';
+import {ref, onMounted, onUnmounted, watchEffect, computed} from 'vue';
 
 import {useMainStore} from "@/stores/mainPage";
 const inMove = ref(false);
@@ -244,26 +233,7 @@ import 'swiper/swiper-bundle.css';
 
 
 const main2WrapSwiper =ref<SwiperInstance | null>(null);
-// const detailSlider = ref<SwiperInstance | null>(null);
-// const inGallSlider = ref<SwiperInstance | null>();
-// const swiperRef2 = ref<Swiper | null>(null);
-// const refreshSwiper = async (main2WrapSwiper: Swiper) => {
-//   await nextTick()
-//   swiper.update();
-//   main2WrapSwiper.value = swiper;
-// }
-// watch(()=>{})
 
-// const onMain2Wrap = (swiper: any) => {
-//   main2WrapSwiper.value = swiper;
-//   console.log('main2WrapSwiper',main2WrapSwiper.value)
-// }
-// const main2WrapPrev = () => {
-//   main2WrapSwiper.value.slidePrev()
-// };
-// const main2WrapNext = () => {
-//   main2WrapSwiper.value.slideNext()
-// };
 const calculateSectionOffsets = () => {
   const sections = document.getElementsByTagName('section');
   const length = sections.length;
@@ -273,31 +243,6 @@ const calculateSectionOffsets = () => {
     offsets.value.push(sectionOffset);
   }
 };
-
-const isMobile = ref(window.innerWidth < 768); // 768px is a common breakpoint for mobile devices
-
-watch(isMobile, (newValue, oldValue) => {
-  if (newValue) {
-    // Initialize Swiper for mobile
-    // initMobileSwiper();
-  } else if(oldValue) {
-    // Destroy Swiper instance (if it exists)
-    // destroySwiper();
-  }
-});
-
-// function initMobileSwiper() {
-//   const swiper = ;
-// }
-// function destroySwiper() {
-//   if (swiper) {
-//     swiper.destroy(true);
-//     swiper = null;
-//   }
-// }
-
-
-
 const handleMouseWheel = (evt: Event) => {
   const e = evt as WheelEvent;
   const currentTime = new Date().getTime();
@@ -468,8 +413,16 @@ onMounted(() => {
   // console.log('strongRef.value',strongRef.value)
   // titWidthRef.value.style.width = `${titWidth}px`;
 });
-// watchEffect(() => {
-//   console.log(titWidth.clientWidth);
-// });
+const previewColor = ref<string>('000000')
+const getColor = computed(() => ({
+  filter: `opacity(0.5) drop-shadow(0 0 0 #${previewColor.value})`
+}));
+const changeColor = (p:string) => {
+  previewColor.value = p;
+  console.log('p',p)
+}
 
 </script>
+<style scoped>
+.dp-block {display: inline-block; text-indent: -9999px}
+</style>
