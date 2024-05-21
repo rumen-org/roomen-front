@@ -111,7 +111,8 @@
                     <swiper
                       :slides-per-view="1"
                       :spaceBetween="150"
-                      navigation
+                      :modules="[Navigation]"
+                      :navigation="true"
                     >
                       <swiper-slide>
                             <picture><img src="@/assets/images/img-product.png" alt=""></picture>
@@ -167,8 +168,9 @@
                     <!-- inGallSlider -->
                     <swiper
                       :slides-per-view="1"
-                      @swiper="inGallSlider"
-                      navigation
+                      :spaceBetween="150"
+                      :modules="[Navigation]"
+                      :navigation="true"
                       class="inGallSlider"
                     >
                       <swiper-slide>
