@@ -61,10 +61,10 @@
         <div class="termsArea">
           <!-- checkboxWrap -->
           <div class="checkboxWrap">
-                            <span class="checkbox">
-                                <input type="checkbox" id="chk0101" class="chckAll">
-                                <label for="chk0101">이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</label>
-                            </span>
+            <span class="checkbox">
+                <input type="checkbox" id="chk0101" class="chckAll" v-model="allCheck">
+                <label for="chk0101">이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</label>
+            </span>
           </div>
           <!--// checkboxWrap -->
 
@@ -91,7 +91,7 @@
             <div class="txtR">
               <span>이용약관에 동의하십니까?</span>
               <span class="checkbox">
-                                    <input type="checkbox" id="chk0102">
+                                    <input type="checkbox" id="chk0102" v-model="checks.agreement.value">
                                     <label for="chk0102">동의함</label>
                                 </span>
             </div>
@@ -114,7 +114,7 @@
             <div class="txtR">
               <span>개인정보 수집 및 이용에 동의하십니까?</span>
               <span class="checkbox">
-                                    <input type="checkbox" id="chk0103">
+                                    <input type="checkbox" id="chk0103" v-model="checks.privacy.value">
                                     <label for="chk0103">동의함</label>
                                 </span>
             </div>
@@ -136,7 +136,7 @@
             <div class="txtR">
               <span>개인정보 제3자 제공에 동의하십니까?</span>
               <span class="checkbox">
-                                    <input type="checkbox" id="chk0104">
+                                    <input type="checkbox" id="chk0104" v-model="checks.thirdParty.value">
                                     <label for="chk0104">동의함</label>
                                 </span>
             </div>
@@ -157,19 +157,20 @@
               <div>
                 <span>이메일 수신을 동의하십니까?</span>
                 <span class="checkbox">
-                                        <input type="checkbox" id="chk0105">
+                                        <input type="checkbox" id="chk0105" v-model="checks.shoppingInfo.value">
                                         <label for="chk0105">동의함</label>
                                     </span>
               </div>
               <div>
                 <span>SMS 수신을 동의하십니까?</span>
                 <span class="checkbox">
-                                        <input type="checkbox" id="chk0106">
+                                        <input type="checkbox" id="chk0106" v-model="checks.sms.value">
                                         <label for="chk0106">동의함</label>
                                     </span>
               </div>
             </div>
           </div>
+
           <!--// terms -->
         </div>
         <!--// termsArea -->
@@ -184,6 +185,35 @@
 </template>
 
 <script setup lang="ts">
+import {computed, Ref, ref} from "vue";
+
+interface Checks {
+  agreement: Ref<boolean>;
+  privacy: Ref<boolean>;
+  thirdParty: Ref<boolean>;
+  shoppingInfo: Ref<boolean>;
+  sms: Ref<boolean>;
+}
+
+const checks: Checks = {
+  agreement: ref<boolean>(false),
+  privacy: ref<boolean>(false),
+  thirdParty: ref<boolean>(false),
+  shoppingInfo: ref<boolean>(false),
+  sms: ref<boolean>(false),
+};
+const allCheck = computed<boolean>({
+  get: () => {
+    // 모든 체크박스가 선택되어 있는지 확인
+    return Object.values(checks).every(check => check.value);
+  },
+  set: (value) => {
+    // 전체 선택 상태 변경 시 각 체크박스의 상태 변경
+    Object.keys(checks).forEach(key => {
+      checks[key as keyof Checks].value = value;
+    });
+  }
+});
 </script>
 <style scoped>
 .scrollInner {padding: 0 30px;}
