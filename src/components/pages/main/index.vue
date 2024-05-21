@@ -162,54 +162,60 @@
       <div class="inner">
         <h2>GALLERY</h2>
         <!-- gallSlider -->
-        <div class="gallSlider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <!-- inGallSlider -->
-                    <swiper
-                      :slides-per-view="1"
-                      :spaceBetween="150"
-                      :modules="[Navigation]"
-                      :navigation="true"
-                      class="inGallSlider"
-                    >
-                      <swiper-slide>
-                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                          <strong>MMM STUDIO</strong>
-                      </swiper-slide>
-                      <swiper-slide>
-                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                          <strong>MMM STUDIO 2</strong>
-                      </swiper-slide>
-                      <swiper-slide>
-                          <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
-                          <strong>MMM STUDIO 3</strong>
-                      </swiper-slide>
-                    </swiper>
-                    <!--// inGallSlider -->
-                </div>
-                <div class="swiper-slide">
-                    <a href="">
-                        <picture><img src="@/assets/images/img-gallery04.png" alt=""></picture>
-                        <strong>SAN HOUSE</strong>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="">
-                        <picture><img src="@/assets/images/img-gallery05.jpg" alt=""></picture>
-                        <strong>JIBLE STUDIO</strong>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="">
-                        <picture><img src="@/assets/images/img-gallery06.jpg" alt=""></picture>
-                        <strong>SINSUNG CHURCH</strong>
-                    </a>
-                </div>
-            </div>
+        <div v-if="isMobile">
+            <swiper
+              :slides-per-view="1"
+              :spaceBetween="150"
+              :modules="[Navigation]"
+              :navigation="true"
+              class="gallSlider"
+            >
+              <swiper-slide>
+                <!-- inGallSlider -->
+                <swiper
+                  :slides-per-view="1"
+                  :spaceBetween="150"
+                  :modules="[Navigation]"
+                  :navigation="true"
+                  class="inGallSlider"
+                >
+                  <swiper-slide>
+                      <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                      <strong>MMM STUDIO</strong>
+                  </swiper-slide>
+                  <swiper-slide>
+                      <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                      <strong>MMM STUDIO 2</strong>
+                  </swiper-slide>
+                  <swiper-slide>
+                      <picture><img src="@/assets/images/img-gallery01.jpg" alt=""></picture>
+                      <strong>MMM STUDIO 3</strong>
+                  </swiper-slide>
+                </swiper>
+                <!--// inGallSlider -->
+              </swiper-slide>
+              <swiper-slide>
+                <a href="">
+                    <picture><img src="@/assets/images/img-gallery04.png" alt=""></picture>
+                    <strong>SAN HOUSE</strong>
+                </a>
+              </swiper-slide>
+              <swiper-slide>
+                <a href="">
+                    <picture><img src="@/assets/images/img-gallery05.jpg" alt=""></picture>
+                    <strong>JIBLE STUDIO</strong>
+                </a>
+              </swiper-slide>
+              <swiper-slide>
+                <a href="">
+                    <picture><img src="@/assets/images/img-gallery06.jpg" alt=""></picture>
+                    <strong>SINSUNG CHURCH</strong>
+                </a>
+              </swiper-slide>
+            </swiper>
         </div>
         <!--// gallSlider -->
-    </div>
+      </div>
     </section>
   </div>
 
@@ -266,6 +272,31 @@ const calculateSectionOffsets = () => {
     offsets.value.push(sectionOffset);
   }
 };
+
+const isMobile = ref(window.innerWidth < 768); // 768px is a common breakpoint for mobile devices
+
+watch(isMobile, (newValue, oldValue) => {
+  if (newValue) {
+    // Initialize Swiper for mobile
+    initMobileSwiper();
+  } else {
+    // Destroy Swiper instance (if it exists)
+    destroySwiper();
+  }
+});
+
+function initMobileSwiper() {
+  const swiper = new Swiper('.swiper-container', {
+  });
+}
+function destroySwiper() {
+  if (swiper) {
+    swiper.destroy(true);
+    swiper = null;
+  }
+}
+
+
 
 const handleMouseWheel = (evt: Event) => {
   const e = evt as WheelEvent;
