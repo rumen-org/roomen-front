@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw, } from 'vue-router'
 import DefaultLayout from '@/layouts/default.vue'
 import FullPageLayout from '@/layouts/fullMain.vue'
 import ErrorLayout from '@/layouts/error.vue'
-// Ts, Vue-router - 240322 한준희 
+// Ts, Vue-router - 240322 한준희
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -67,26 +67,44 @@ const routes: Array<RouteRecordRaw> = [
             path: '/community/notice',
             name: 'NOTICE',
             component: () => import('@/views/community/notice/index.vue'),
-            meta: {layout: DefaultLayout}
-          },
-          {
-            path: '/community/notice/:item',
-            name: 'Notice Item',
-            component: () => import('@/views/community/notice/[item].vue'),
-            meta: {layout: DefaultLayout, notGnb: true}
+            meta: {layout: DefaultLayout},
+            children:[
+              {
+                path: '',
+                name: 'NOTICE',
+                component: () => import('@/views/community/notice/list.vue'),
+              },
+              {
+                path: ':item',
+                name: 'NoticeItem',
+                component: () => import('@/views/community/notice/[item].vue')
+              },
+            ]
           },
           {
             path: '/community/Q&A',
             name: 'Q&A',
             component: () => import('@/views/community/q&a/index.vue'),
-            meta: {layout: DefaultLayout}
+            meta: {layout: DefaultLayout},
+            children: [
+              {
+                name: 'Q&A',
+                path: '',
+                component: () => import('@/views/community/q&a/list.vue'),
+              },
+              {
+                name: 'Q&A_write',
+                path: 'write',
+                component: () => import('@/views/community/q&a/write.vue')
+              },
+              {
+                path: ':id',
+                name: 'Q&AItem',
+                component: () => import('@/views/community/q&a/[id].vue')
+              }
+            ]
           },
-          {
-            path: '/community/Q&A/:item',
-            name: 'Q&A Item',
-            component: () => import('@/views/community/q&a/[item].vue'),
-            meta: {layout: DefaultLayout, notGnb: true}
-          },
+
         ],
       },
       {
@@ -128,7 +146,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/:pathMatch(.*)*',
-
+    name: 'ErrorPage',
     meta: {
       layout: ErrorLayout,
       notGnb: true

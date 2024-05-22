@@ -1,0 +1,64 @@
+{
+  "data":[
+    {
+      "number": 4,
+      "id": "q3j549",
+      "type": "기타",
+      "title": "없는 제품도 제작 가능할까요?",
+      "private": "Y",
+      "password": "test1234",
+      "regUser": "시진핑",
+      "regDtm": "2024-05-01 12:02:04",
+      "content": "<p>안녕하세요. 제가 필요한 제품이 있는데,</p><p>혹시 나무로 된 기타스탠드로 만들어 주실 수 있을까요?</p>",
+      "answerYn": "Y",
+      "answerContents": "<div>안녕하세요. 루멘입니다.<br/>답변 내용입니다.</div>",
+      "adminName": "루멘",
+      "answerDtm": "2024-05-01 15:34:24"
+    },
+    {
+      "number": 3,
+      "id": "q3j542",
+      "type": "상품",
+      "title": "할인 되나요?",
+      "private": "Y",
+      "password": "test1234",
+      "regUser": "빌게이츠",
+      "regDtm": "2024-05-01 12:02:04",
+      "content": "<p>돈이 너무 없어요..</p><br/><img style=\"max-width: 200px;\" src=\"https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202201/06/wavve/202201060806460040fah.jpeg\" ><p>싸게 좀 부탁드려요</p>",
+      "answerYn": "Y",
+      "answerContents": "<div>안녕하세요. 루멘입니다.<br/>답변 내용입니다.</div>",
+      "adminName": "루멘",
+      "answerDtm": "2024-05-01 17:56:12"
+    },
+    {
+      "number": 2,
+      "id": "q3j5t2",
+      "type": "취소/교환/환불",
+      "private": "N",
+      "title": "이거 환불 됩니까?",
+      "password": "test1234",
+      "regUser": "트럼프",
+      "regDtm": "2024-05-01 12:02:04",
+      "content": "<p>질문 내용입니다.</p><br/><img style=\"max-width: 200px;\" src=\"src/assets/images/img-gallery04.png\">",
+      "answerYn": "N",
+      "answerContents": "",
+      "adminName": "",
+      "answerDtm": ""
+    },
+    {
+      "number": 1,
+      "id": "3fg5hgh",
+      "type": "배송",
+      "title": "언제와요?",
+      "private": "N",
+      "password": "test1234",
+      "regUser": "트럼프",
+      "regDtm": "2024-05-01 12:02:04",
+      "content": "<p>질문 내용입니다.</p><br/><img style=\"max-width: 200px;\" src=\"src/assets/images/img-gallery04.png\">",
+      "answerYn": "Y",
+      "answerContents": "<div>안녕하세요. 루멘입니다.<br/>답변 내용입니다.</div>",
+      "adminName": "루멘",
+      "answerDtm": "2024-05-01 13:21:11"
+    }
+  ]
+}

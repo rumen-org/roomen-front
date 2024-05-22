@@ -4,7 +4,7 @@
       <!-- conTopArea -->
       <div class="conTopArea">
         <div class="btnArea">
-          <button type="button" class="iconBtn back">돌아가기</button>
+          <backButton/>
         </div>
         <h2>NOTICE</h2>
       </div>
@@ -34,6 +34,7 @@ import { computed, watchEffect } from 'vue'
 import {useRoute} from 'vue-router'
 import BreakText from '@/components/text/Break.vue'
 import data from '@/mocks/json/noticeDetails.json'
+import backButton from '@/components/button/backButton.vue'
 const params = useRoute().params?.item;
 const sameItem = computed(()=>{
   return data?.data.find(item => item.id === params);
