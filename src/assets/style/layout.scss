@@ -31,17 +31,20 @@
       > ul > li {
         overflow: hidden;
         margin-top: 10px;
+        text-transform: uppercase;
   
         > {
-          a, button {
+          a, 
+          button {
             padding-right: 18px;
-            background: url("../images/ico-arrow-down-b.png") no-repeat center (right / auto);
+            background: url("../images/ico-arrow-b.png") no-repeat center (right / auto);
             font-weight: 700;
           }
-  
-          a span #header .menu > ul > li > button {
-            font-family: 'GmarketSans', sans-serif;
-          }
+        }
+
+        a.nav-active,
+        button.curr {
+          color:#939393;
         }
   
         &:hover > {
@@ -50,12 +53,15 @@
             transition: all 0.2s;
             -webkit-transition: all 0.2s;
             -moz-transition: all 0.2s;
+            background: url("../images/ico-arrow-g.png") no-repeat center (right / auto);
           }
         }
   
         > {
-          a.curr, button.curr {
-            background: url("../images/ico-arrow-up-b.png") no-repeat center (right / auto);
+          a.curr, 
+          button.curr {
+            background: url("../images/ico-arrow-up-g.png") no-repeat center (right / auto);
+            color:#939393;
           }
   
           ul {
@@ -71,10 +77,6 @@
   
         &.commu > button.curr + ul {
           height: 75px;
-        }
-  
-        ul li {
-          text-transform: uppercase;
         }
   
         &:first-child > a {
