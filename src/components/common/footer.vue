@@ -2,6 +2,7 @@
   <div id="footer">
     <div class="inner">
       <p><a href=""><span class="hide">ROOMEN</span></a></p>
+      <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
       <div>
         <div>
           <span>대표 : <em>김준영</em></span>
