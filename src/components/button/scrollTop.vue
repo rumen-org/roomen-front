@@ -7,18 +7,18 @@
     const scrollTop = ref(0);
 
     const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const onScroll = () => {
-    scrollTop.value = window.scrollY;
+        scrollTop.value = window.scrollY;
     };
 
     onMounted(() => {
-    window.addEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll);
     });
 
     onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('scroll', onScroll);
     });
   </script>
