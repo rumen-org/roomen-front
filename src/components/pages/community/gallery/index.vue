@@ -21,7 +21,7 @@
               <template v-if="isShowModal == true">
                 <layerPop @close="closeModal">
                   <template #body>
-                    <div class="detailSlider">
+                    <div class="galDetailSlider">
                       <div class="swiper-wrapper">
                         <swiper
                             ref="modalSwiper"
