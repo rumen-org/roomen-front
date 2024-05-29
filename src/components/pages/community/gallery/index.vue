@@ -42,7 +42,7 @@
                               prevEl: '._GalleryNext'
                             }"
                         >
-                          <swiper-slide v-for="(item, i) in layerImg" :key="i"><p class="swiper-slide"><img :src="`src/assets/images/${item}`" alt="">{{item}}</p></swiper-slide>
+                          <swiper-slide v-for="(item, i) in layerImg" :key="i"><p class="swiper-slide"><img :src="`src/assets/images/${item}`" alt=""></p></swiper-slide>
                         </swiper>
 
                       </div>

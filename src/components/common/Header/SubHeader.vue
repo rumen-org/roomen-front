@@ -41,7 +41,7 @@
           </template>
         </div>
             <Languages/>
-        <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
+            <SnsList/>
       </div>
       <button type="button" class="btnMenu" @click="toggleMenu"><em><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em></button>
     </div>
@@ -49,7 +49,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import Languages from '@/components/common/lang.vue'
+import Languages from '@/components/common/lang.vue';
+import SnsList from '@/components/common/snsList.vue'
 import { useRoute } from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";

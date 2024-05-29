@@ -9,10 +9,10 @@
   // 모듈 번들러 - 20240322 한준희
 //  "moduleResolution": "Bundler",
     "moduleResolution": "Node",
-  "allowImportingTsExtensions": true,
+//  "allowImportingTsExtensions": true,
   "resolveJsonModule": true,
   "isolatedModules": true,
-  "noEmit": true,
+//  "noEmit": true,
   "jsx": "preserve",
 
   // 린트 - 20240322 한준희

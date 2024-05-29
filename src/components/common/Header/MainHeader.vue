@@ -41,7 +41,7 @@
           </template>
         </div>
             <Languages/>
-        <a href="https://www.instagram.com/jible_studio/" class="insta"><span class="hide">인스타그램</span></a>
+            <SnsList/>
       </div>
       <button type="button" class="btnMenu" @click="toggleMenu"><em><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em></button>
     </div>
@@ -58,6 +58,7 @@ import { useUserStore } from '@/mocks/stores/loginStores';
 import { storeToRefs } from "pinia";
 import {watchEffect, ref, onMounted, watch, onBeforeUnmount, onBeforeMount, computed} from "vue";
 import LogOut from '@/components/common/logoutBtn.vue'
+import SnsList from "@/components/common/snsList.vue";
 
 const { isAuthenticated } = storeToRefs(useUserStore());
 const { getActiveSection } = storeToRefs(useMainStore());
