@@ -1,9 +1,9 @@
 
 <template>
-    <MidiDesk />
-  </template>
-  
-  <script setup lang="ts">
-  import MidiDesk from '@components/pages/product/midiDesk/index.vue'
-  </script>
-  
+  <MidiDeskList />
+
+</template>
+
+<script setup lang="ts">
+import MidiDeskList from '@components/pages/product/midiDesk/list.vue'
+</script>

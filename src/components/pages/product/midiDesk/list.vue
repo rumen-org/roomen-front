@@ -22,7 +22,7 @@
         <!--// conTopArea -->
         <!-- productList -->
         <div class="productList">
-          <router-link :to="`midiDesk/${item.id}`" class="product">
+          <router-link :to="`midiDesk/${item[0].id}`" class="product">
             <p><img src="@/assets/images/img-product-4.png" alt=""></p>
             <div>
               <strong class="tit">루멘 미디데스크</strong>
@@ -67,5 +67,10 @@
   </template>
   
   <script setup lang="ts">
+  const item = [
+      {id: "id1", contents: "text..."},
+      {id: "id2", contents: "text..."},
+      {id: "id3", contents: "text..."}
+  ]
   </script>
   
