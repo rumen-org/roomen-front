@@ -64,5 +64,6 @@
       {id: "id3",title: "루멘 미디데스크3" ,subTit: "Roomen MIDI DESK3", price: "1,550,003", discount: "1,350,003" , contents: "text...",ThumbImg: "/assets/images/img-product-4.png", ThumbAlt: "상품_섬네일3"},
 
   ]
+
   </script>
   

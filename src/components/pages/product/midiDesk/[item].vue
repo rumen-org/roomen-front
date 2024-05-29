@@ -15,14 +15,18 @@
                     <!-- imgList -->
                     <div class="imgList">
                         <div class="preList">
-                            <a href=""><img src="../assets/images/img-product-4.png" alt=""></a>
-                            <a href=""><img src="../assets/images/img-product.jpg" alt=""></a>
-                            <a href=""><img src="../assets/images/img-product-4.png" alt=""></a>
-                            <a href=""><img src="../assets/images/img-product.png" alt=""></a>
-                            <a href=""><img src="../assets/images/img-product-5.png" alt=""></a>
+                            <!-- <a href=""><img src="@/assets/images/img-product-4.png" alt=""></a>
+                            <a href=""><img src="@/assets/images/img-product.jpg" alt=""></a>
+                            <a href=""><img src="@/assets/images/img-product-4.png" alt=""></a>
+                            <a href=""><img src="@/assets/images/img-product.png" alt=""></a>
+                            <a href=""><img src="@/assets/images/img-product-5.png" alt=""></a> -->
+                            <a href="#" v-for="(img, index) in images" :key="index" @click="setActiveImage($event, img.src)">
+                                <img :src="img.src" :alt="img.alt">
+                            </a>
                         </div>
                         <div class="preArea">
-                            <img src="../assets/images/img-product-4.png" alt="">
+                            <!-- <img src="@/assets/images/img-product-4.png" alt=""> -->
+                            <img :src="activeImage" alt="Active Image">
                         </div>
                     </div>
                     <!--// imgList -->
@@ -197,5 +201,59 @@
     </div>
 </template>
 <script setup lang="ts">
+    import { ref, onMounted, watchEffect } from 'vue';
 
+    // 이미지 목록을 정의합니다.
+    const images = ref([
+        { src: 'src/assets/images/img-product-4.png', alt: 'Image 1' },
+        { src: 'src/assets/images/img-product.jpg', alt: 'Image 2' },
+        { src: 'src/assets/images/img-product-4.png', alt: 'Image 3' },
+        { src: 'src/assets/images/img-product.png', alt: 'Image 4' },
+        { src: 'src/assets/images/img-product-5.png', alt: 'Image 5' }
+    ]);
+
+    // 활성화된 이미지의 src를 저장합니다.
+    const activeImage = ref(images.value[0].src);
+
+    // 이미지 클릭 시 활성화된 이미지를 설정합니다.
+    const setActiveImage = (event, imgSrc) => {
+    event.preventDefault();
+    activeImage.value = imgSrc;
+    
+    // 모든 링크에서 active 클래스를 제거합니다.
+    const links = document.querySelectorAll('.preList a');
+    links.forEach(link => link.classList.remove('active'));
+
+    // 클릭된 링크에 active 클래스를 추가합니다.
+    event.currentTarget.classList.add('active');
+    };
+
+    onMounted(() => {
+        if (window.innerWidth >= 768) {
+            const floatMenu = document.querySelector('.floatMenu');
+            const footer = document.querySelector('#footer');
+            const initialTop = parseInt(window.getComputedStyle(floatMenu).top, 10);
+
+            const handleScroll = () => {
+            const scrollY = window.scrollY || window.pageYOffset;
+            const footerRect = footer.getBoundingClientRect();
+            const floatMenuHeight = floatMenu.offsetHeight;
+            const floatMenuBottom = scrollY + floatMenu.getBoundingClientRect().top + floatMenuHeight;
+
+            if (footerRect.top <= window.innerHeight) {
+                floatMenu.classList.add('sticky');
+            } else {
+                floatMenu.classList.remove('sticky');
+            }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            watchEffect((onInvalidate) => {
+            onInvalidate(() => {
+                window.removeEventListener('scroll', handleScroll);
+            });
+            });
+        }
+        });
 </script>
