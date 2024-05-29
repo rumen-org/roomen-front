@@ -3287,18 +3287,17 @@
         &.blue input[type=radio] + label:before {background-color:#2362C0; border:2px solid #2362C0}
         &.yellow input[type=radio] + label:before {background-color:#FDD33F; border:2px solid #FDD33F}
         &.green input[type=radio] + label:before {background-color:#2D8D53; border:2px solid #2D8D53}
-        &.purple input[type=radio] + label:before {background-color:#743C97; border:2px solid #743C97}
-        
-        dl {
-          display:grid; grid-template-columns:85px 1fr; align-items:center; margin-top:40px;
-
-          dd select {padding:12px 15px; height:40px; font-weight:100; border-bottom-color:#A4A4A4; background:url("../images/ico-select-arrow.png") no-repeat center right 10px / 17px auto}
-        }
-        dl + dl {margin-top:20px}
-        
+        &.purple input[type=radio] + label:before {background-color:#743C97; border:2px solid #743C97}        
       }
 
     }
+
+    dl {
+      display:grid; grid-template-columns:85px 1fr; align-items:center; margin-top:40px;
+
+      dd select {padding:12px 15px; height:40px; font-weight:100; border-bottom-color:#A4A4A4; background:url("../images/ico-select-arrow.png") no-repeat center right 10px / 17px auto}
+    }
+    dl + dl {margin-top:20px}
 
     .totalPrice {
       display:flex; justify-content:space-between; align-items:flex-end; margin-top:40px; padding-top:30px; padding-right:0; border-top:1px solid #A4A4A4;
