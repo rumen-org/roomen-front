@@ -22,7 +22,7 @@
       <!--// conTopArea -->
       <!-- productList -->
       <div class="productList">
-        <a href="" class="product">
+        <router-link :to="`midiDesk/detail`" class="product">
           <p><img src="@/assets/images/img-product-4.png" alt=""></p>
           <div>
             <strong class="tit">루멘 미디데스크</strong>
@@ -32,7 +32,7 @@
               <del>₩ 1,550,000</del>
             </p>
           </div>
-        </a>
+        </router-link>
         <a href="" class="product">
           <p><img src="@/assets/images/img-product-2.png" alt=""></p>
           <div>

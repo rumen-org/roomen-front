@@ -41,7 +41,19 @@ const routes: Array<RouteRecordRaw> = [
             path: '/product/midiDesk',
             name: 'MidiDesk',
             component: () => import('@/views/product/midiDesk/index.vue'),
-            meta: {layout: DefaultLayout}
+            meta: {layout: DefaultLayout},
+            children:[
+              {
+                path: '',
+                name: 'MidiDesk',
+                component: () => import('@/views/product/midiDesk/index.vue'),
+              },
+              {
+                path: ':item',
+                name: 'MidiDeskDetail',
+                component: () => import('@/views/product/midiDesk/[item].vue'),
+              }
+            ]
           },
           {
             path: '/product/etc',
