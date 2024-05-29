@@ -17,5 +17,23 @@ export interface InputRadioModel {
     inputStyle: string;
     radioName: string;
     radios: Ref<LabelValueType[]>;
-    setValue?: (value: string) => void;
+    // setValue?: (value: string) => void;
+}
+export interface InputCheckboxModel {
+    value: Ref<string>;
+    label: string;
+    labelStyle: string;
+    required: boolean;
+    inputStyle: string;
+    checkName: string;
+    checks: Ref<LabelValueType[]>;
+    // setValue?: (value: string) => void;
+}
+export interface InputSelectModel {
+    id: string;
+    required: boolean;
+    value: Ref<string>;
+    style: string;
+    options: Ref<LabelValueType[]>;
+    // setValue?: (value: string) => void;
 }
