@@ -152,14 +152,7 @@
                         <div class="totalArea">
                             <p><span>루멘 미디데스크</span> - 옐로우/화이트 /수도권 (서울,경기,인천) (+ ₩50 ,000)/없음</p>
                             <div>
-                                <div class="count">
-                                    <div>
-                                        <button type="button" class="minusBtn"><span class="hide">빼기</span></button>
-                                        <span>1</span>
-                                        <button type="button" class="plusBtn"><span class="hide">더하기</span></button>
-                                    </div>
-                                    <button type="button"><span class="hide">옵션삭제</span></button>
-                                </div>
+                                <count/>
                             </div>
                         </div>
                         <div class="totalPrice">
@@ -202,6 +195,7 @@
 </template>
 <script setup lang="ts">
     import { ref, onMounted, watchEffect } from 'vue';
+    import count from '@/components/button/count.vue'
 
     // 이미지 목록을 정의합니다.
     const images = ref([
