@@ -14,10 +14,7 @@
             </ul>
           </div>
           <h2>MIDI DESK</h2>
-          <div class="srchArea">
-            <input type="text" title="검색">
-            <button type="button" class="srchBtn"><span class="hide">검색하기</span></button>
-          </div>
+          <search/>
         </div>
         <!--// conTopArea -->
         <!-- productList -->
@@ -58,11 +55,12 @@
   </template>
   
   <script setup lang="ts">
+    import search from '@/components/search/search.vue'
+
   const itemBox = [
       {id: "id1",title: "루멘 미디데스크1" ,subTit: "Roomen MIDI DESK1", price: "1,550,001", discount: "1,350,001" , contents: "text...",ThumbImg: "/assets/images/img-product-4.png", ThumbAlt: "상품_섬네일1"},
       {id: "id2",title: "루멘 미디데스크2" ,subTit: "Roomen MIDI DESK2", price: "1,550,002", discount: "1,350,002" , contents: "text...",ThumbImg: "/assets/images/img-product-2.png", ThumbAlt: "상품_섬네일2"},
       {id: "id3",title: "루멘 미디데스크3" ,subTit: "Roomen MIDI DESK3", price: "1,550,003", discount: "1,350,003" , contents: "text...",ThumbImg: "/assets/images/img-product-4.png", ThumbAlt: "상품_섬네일3"},
-
   ]
 
   </script>
