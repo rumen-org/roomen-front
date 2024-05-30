@@ -2913,7 +2913,7 @@
   }
   
   .galDetailSlider, .galleryList .inner > div + div {
-    margin: 0 20%;
+    margin: 0 10%;
   }
   
   .galDetailSlider {
@@ -2921,7 +2921,46 @@
   
     img {
       width: 100%;
-      object-fit: cover;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .swiper-slide {
+      max-height:650px;
+      text-align:center;
+
+      p {
+        height:100%;
+      }
+    }
+
+    .swiper-slide,
+    .swiper-slide-prev,
+    .swiper-slide-next {
+      opacity:0 !important;
+    }
+
+    .swiper-slide-active {
+      opacity:1 !important;
+    }
+
+    .swiper-button-next, 
+    .swiper-button-prev {
+      width: 30px;
+      height: 60px;
+    }
+  
+    .swiper-button-next:after, 
+    .swiper-button-prev:after {
+      display: none;
+    }
+  
+    .swiper-button-next {
+      background: url("../images/btn-next-w.png") no-repeat (center / auto);
+    }
+  
+    .swiper-button-prev {
+      background: url("../images/btn-prev-w.png") no-repeat (center / auto);
     }
   }
   
@@ -2933,25 +2972,6 @@
     width: 60px;
     height: 60px;
     background: url("../images/btn-close-w.png") no-repeat (center / 100%) auto;
-  }
-  
-  .galDetailSlider {
-    .swiper-button-next, .swiper-button-prev {
-      width: 30px;
-      height: 60px;
-    }
-  
-    .swiper-button-next:after, .swiper-button-prev:after {
-      display: none;
-    }
-  
-    .swiper-button-next {
-      background: url("../images/btn-next-w.png") no-repeat (center / auto);
-    }
-  
-    .swiper-button-prev {
-      background: url("../images/btn-prev-w.png") no-repeat (center / auto);
-    }
   }
   
   .galleryList .inner > div + div {
@@ -2973,10 +2993,22 @@
       }
     }
   }
-  
+  @media (min-height: 840px) {
+    .galDetailSlider{
+      .swiper-slide {
+        max-height:600px;
+      }
+    }
+  }
   @media (max-width: 1160px) {
     .galDetailSlider, .galleryList .inner > div + div {
-      margin: 30px 20% 0;
+      margin: 30px 10% 0;
+    }
+
+    .galDetailSlider{
+      .swiper-slide {
+        max-height:450px;
+      }
     }
   }
   

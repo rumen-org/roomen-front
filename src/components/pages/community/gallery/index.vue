@@ -38,11 +38,11 @@
                             }"
                             :navigation="{
                               enabled: true,
-                              nextEl: '._GalleryPrev',
-                              prevEl: '._GalleryNext'
+                              nextEl: '._GalleryNext',
+                              prevEl: '._GalleryPrev'
                             }"
                         >
-                          <swiper-slide v-for="(item, i) in layerImg" :key="i"><p class="swiper-slide"><img :src="`src/assets/images/${item}`" alt=""></p></swiper-slide>
+                          <swiper-slide v-for="(item, i) in layerImg" :key="i"><p><img :src="`src/assets/images/${item}`" alt=""></p></swiper-slide>
                         </swiper>
 
                       </div>
