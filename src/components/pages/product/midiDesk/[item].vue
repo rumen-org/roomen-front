@@ -40,7 +40,7 @@
                             <del>₩ 1,550,000</del>
                         </p>
                         <div class="option">
-                            <p>색상1 : 상판, 하부다리, 후면가림판</p>
+                            <p>색상1 : 상판, 하부다리, 후면가림판, 상판, 하부다리, 후면가림판</p>
                             <!-- checkboxWrap -->
                             <div class="checkboxWrap">
                                 <span class="checkbox noTxt white">
@@ -87,7 +87,7 @@
                             <!--// checkboxWrap -->
                         </div>
                         <div class="option">
-                            <p>색상2 : 건반트레이, 다리, 상단선반, 칸막이</p>
+                            <p>색상2 : 건반트레이, 다리, 상단선반, 칸막이, 상판, 하부다리, 후면가림판</p>
                             <!-- checkboxWrap -->
                             <div class="checkboxWrap">
                                 <span class="checkbox noTxt white">
