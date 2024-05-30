@@ -18,7 +18,7 @@
             <tbody>
             <tr>
               <th scope="row">아이디 <span class="req cRed"><span class="hide">필수입력항목</span>*</span></th>
-              <td><input type="text" title="아이디"></td>
+              <td><input type="text" title="아이디" placeholder="6-12자 영문,숫자 사용가능"></td>
             </tr>
             <tr>
               <th scope="row">비밀번호 <span class="req cRed"><span class="hide">필수입력항목</span>*</span></th>

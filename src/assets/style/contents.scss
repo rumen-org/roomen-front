@@ -1047,6 +1047,7 @@
             overflow:hidden;
             text-overflow:ellipsis;
             color:#191919;
+            word-break:break-word;
   
             &.lock {
               padding-left:32px;
