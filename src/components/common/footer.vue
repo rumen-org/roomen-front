@@ -1,5 +1,6 @@
 <template>
   <scrollTop/>
+  <scrollDown/>
   <div id="footer">
     <div class="inner">
       <p><a href=""><span class="hide">ROOMEN</span></a></p>
@@ -21,4 +22,5 @@
 </template>
 <script setup lang="ts">
   import scrollTop from '@/components/button/scrollTop.vue'
+  import scrollDown from '@/components/button/scrollDown.vue'
 </script>
