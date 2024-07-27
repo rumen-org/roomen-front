@@ -66,10 +66,22 @@ import { getSearchVals } from '@/utils/search'
 import { data } from '@/mocks/json/noticeList.json'
 import paging from '@/components/board/pagination.vue'
 import sorting from '@/components/board/sort.vue'
-import { computed, ref } from "vue";
+import {computed, onMounted, ref} from "vue";
+import { getNoticeList } from '@/api/notice'  // 로컬 spring boot 데이터 테스트용
 // import { useSorting } from '@/composables/sort'
 // const { sortBy, sortedLists, handleSorting } = useSorting(data);
-
+onMounted(() => {
+  fetchList();
+})
+const noticeList = ref<any[]>([]);
+const fetchList = async () => {
+  try {
+    const listResponse = await getNoticeList();
+    noticeList.value = listResponse.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 // 보여질 게시물 목록 ( dummy )
 const allLists = computed(() => {
   return data;
