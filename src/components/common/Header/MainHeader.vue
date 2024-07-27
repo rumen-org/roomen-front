@@ -30,10 +30,10 @@
 <!--          notGnb: true, utils: true-->
 <!--          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>-->
           <template v-if="!isAuthenticated">
-            <router-link :to="loginItem.path" :class="loginItem?.meta?.class ? loginItem.meta.class : ''">{{ loginItem?.name }}</router-link>
+            <router-link :to="loginItem?.path" :class="loginItem?.meta?.class ? loginItem.meta.class : ''">{{ loginItem?.name }}</router-link>
           </template>
           <template
-              v-if="isAuthenticated"
+              v-if="isAuthenticated && cartItem && myPageItem"
           >
             <router-link :to="cartItem.path" :class="cartItem?.meta?.class ? cartItem.meta.class : ''">{{ cartItem?.name }}</router-link>
             <LogOut />

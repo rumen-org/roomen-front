@@ -247,7 +247,6 @@ const handleMouseWheel = (evt: Event) => {
   const e = evt as WheelEvent;
   const currentTime = new Date().getTime();
   if (currentTime - lastScrollTime < 500) {
-    // 500ms 이내에 다음 스크롤 이벤트를 무시합니다.
     return false;
   }
 
