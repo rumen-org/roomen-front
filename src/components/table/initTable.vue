@@ -2,7 +2,9 @@
   <div>
     <table>
       <caption>{{ tblData.tit }}</caption>
-      <slot v-if="tblData.tHead">
+        <colgroup>
+          <col :style="{width: item.width+'px'}" :class="item.className"  v-for="(item, index) in tblData.colGroups.col" :key="index">
+        </colgroup>
         <thead>
           <tr v-for="(trItem, idx) in tblData.tHead" :key="idx">
             <slot v-if="trItem.th">
@@ -23,7 +25,6 @@
             </slot>
           </tr>
         </tbody>
-      </slot>
     </table>
   </div>
 </template>
@@ -42,20 +43,26 @@
 // })
 const tblData = {
   tit: '테이블1',
-  colgroups: [
-    {width: ''},
-  ],
+  colGroups: {
+    col: [
+      {width: '', className: ''}
+    ]
+  },
   tHead: {
     tr: {
       th: {
-      con: { text: '', img: '', btn: '', btn_fn: ''},
-      // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정
-      options: { cSpan: '1', rSpan: '', pd: '' },  
-      // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리
-      style: {style: ''}
+        con: [
+          { text: '', img: '', btn: '', btn_fn: ''}
+        ],
+        // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정
+        options: { cSpan: '1', rSpan: '', pd: '' },
+        // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리
+        style: {style: ''}
       },
       td: {
-        con: { text: '', img: '', btn: '', btn_fn: ''},
+        con: [
+          { text: '', img: '', btn: '', btn_fn: ''}
+        ],
         // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정
         options: { cSpan: '1', rSpan: '', pd: '' },  
         // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리
@@ -66,14 +73,18 @@ const tblData = {
   tBody: {
     tr: {
       th: {
-        con: { text: '', img: '', btn: '', btn_fn: ''},
+        con: [
+          { text: '', img: '', btn: '', btn_fn: ''}
+        ],
         // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정
         options: { cSpan: '1', rSpan: '', pd: '' },  
         // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리
         style: {style: ''}
       },
       td: {
-        con: { text: '', img: '', btn: '', btn_fn: ''},
+        con: [
+          { text: '', img: '', btn: '', btn_fn: ''}
+        ],
         // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정
         options: { cSpan: '1', rSpan: '', pd: '' },  
         // 여러 유형의 동적 값에 맞추어 colSpan, RowSpan처리 가능하게 처리

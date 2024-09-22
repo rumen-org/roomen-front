@@ -36,9 +36,9 @@
           </tr>
           <template v-else>
             <tr v-for="(item, idx) in lists" :key="idx">
-              <td class="mNone">{{ item.num }}</td>
+              <td class="mNone">{{ item.id }}</td>
               <td class="txtL subject"><router-link :to="`notice/${item.id}`">{{ item.title }}</router-link></td>
-              <td>{{ formatDate(item.regDtm) }}</td>
+              <td>{{ formatDate(item.creDate) }}</td>
             </tr>
           </template>
           </tbody>
@@ -61,114 +61,102 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-import { getSearchVals } from '@/utils/search'
-import { data } from '@/mocks/json/noticeList.json'
-import paging from '@/components/board/pagination.vue'
-import sorting from '@/components/board/sort.vue'
-import {computed, onMounted, ref} from "vue";
-import { getNoticeList } from '@/api/notice'  // 로컬 spring boot 데이터 테스트용
-// import { useSorting } from '@/composables/sort'
-// const { sortBy, sortedLists, handleSorting } = useSorting(data);
-onMounted(() => {
-  fetchList();
-})
-const noticeList = ref<any[]>([]);
+import { computed, onMounted, ref } from 'vue';
+// import { RouteLocationNormalized } from 'vue-router';
+import { getSearchVals } from '@/utils/search';
+import paging from '@/components/board/pagination.vue';
+import sorting from '@/components/board/sort.vue';
+import { getNoticeList } from '@/api/notice';
+
+// Define TypeScript types
+interface NoticeItem {
+  id: number;
+  title: string;
+  creDate: string;
+}
+
+const noticeList = ref<NoticeItem[]>([]);
+const searchValue = ref<string>('');
+const searchResults = ref<NoticeItem[]>([]);
+const currentPage = ref<number>(1);
+const perPage = ref<number>(5);
+const sortBy = ref<string>('latest');
+
 const fetchList = async () => {
   try {
-    const listResponse = await getNoticeList();
-    noticeList.value = listResponse.data;
+    const response = await getNoticeList();
+    noticeList.value = response.data;
   } catch (error) {
     console.error(error);
   }
-}
-// 보여질 게시물 목록 ( dummy )
-const allLists = computed(() => {
-  return data;
-})
-const lists = computed(() => {
-  if (searchResults.value.length > 0) {
-    const first = (currentPage.value - 1) * perPage.value;
-    const last = first + perPage.value;
-    return searchResults.value.slice(first, last);
-  } else if (searchResults.value.length == 0 && searchValue.value.length > 0) {
-    // const first = (currentPage.value - 1) * perPage.value;
-    // const last = first + perPage.value;
-    return [];
-  } else {
-    const first = (currentPage.value - 1) * perPage.value;
-    const last = first + perPage.value;
-    return sortedLists.value.slice(first, last);
-  }
-});
-// 보여질 날짜 형태에 대한 필터처리 ( Api 개발상태에 따라 달라질 수 있음)
-const formatDate = (value: string) => {
-  const date = new Date(value);
-  console.log('date',date)
-  return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
-}
-// 현재 페이지
-const currentPage = ref<number>(1);
-// 한 페이지에서 보여질 게시물 갯수
-const perPage = ref<number>(5);
-// 게시물에 따른 총 페이지
-const totalPage = computed(() => {
-  if (searchResults.value.length > 0) {
-    return Math.ceil(searchResults.value.length / perPage.value)
-  } else {
-    return Math.ceil(allLists.value.length / perPage.value)
-  }
+};
 
+const allLists = computed(() => noticeList.value);
+const lists = computed(() => {
+  const filtered = searchResults.value.length > 0 ? searchResults.value : sortedLists.value;
+  const first = (currentPage.value - 1) * perPage.value;
+  const last = first + perPage.value;
+  return filtered.slice(first, last);
 });
-const updateCurrent = (e:number) => {
-  currentPage.value = e;
-}
-// 정렬
-const sortBy = ref<string>('latest');
-const handleSorting = (e: string) => {
-  sortBy.value = e;
-  if (sortBy.value == 'latest') {
+
+const totalPage = computed(() => {
+  const count = searchResults.value.length > 0 ? searchResults.value.length : allLists.value.length;
+  return Math.ceil(count / perPage.value);
+});
+
+const formatDate = (value: string): string => {
+  const date = new Date(value);
+  return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+};
+
+const updateCurrent = (page: number) => {
+  currentPage.value = page;
+};
+
+const handleSorting = (sortOrder: string) => {
+  sortBy.value = sortOrder;
+  if (sortBy.value === 'latest') {
     sortByLatest();
-  } else if (sortBy.value == 'oldest') {
+  } else if (sortBy.value === 'oldest') {
     sortByOldest();
   }
-}
+};
+
 const sortByLatest = () => {
-  sortBy.value = 'latest';
   if (searchResults.value.length > 0) {
-    searchResults.value = [...searchResults.value].sort((a, b) => new Date(b.regDtm).getTime() - new Date(a.regDtm).getTime());
+    searchResults.value.sort((a, b) => new Date(b.creDate).getTime() - new Date(a.creDate).getTime());
   }
 };
+
 const sortByOldest = () => {
-  sortBy.value = 'oldest';
   if (searchResults.value.length > 0) {
-    searchResults.value = [...searchResults.value].sort((a, b) => new Date(a.regDtm).getTime() - new Date(b.regDtm).getTime());
+    searchResults.value.sort((a, b) => new Date(a.creDate).getTime() - new Date(b.creDate).getTime());
   }
 };
 
 const sortedLists = computed(() => {
-  const sorted = [...allLists.value]; // Create a copy of the original array
+  const sorted = [...allLists.value];
   if (sortBy.value === 'latest') {
-    return sorted.sort((a, b) => new Date(b.regDtm).getTime() - new Date(a.regDtm).getTime());
+    return sorted.sort((a, b) => new Date(b.creDate).getTime() - new Date(a.creDate).getTime());
   } else {
-    return sorted.sort((a, b) => new Date(a.regDtm).getTime() - new Date(b.regDtm).getTime());
+    return sorted.sort((a, b) => new Date(a.creDate).getTime() - new Date(b.creDate).getTime());
   }
 });
-// 검색기능
-const searchValue = ref<string>('');
-const searchResults = ref([]);
+
 const searchItem = () => {
   const searchValues = getSearchVals({
-    searchValue: { val: searchValue.value } // 검색값 ref에서 전달
-    // 다른 검색 조건 추가 가능
+    searchValue: { val: searchValue.value }
   });
 
-  const filteredLists = allLists.value.filter((item: any) => {
-    return item.title.toLowerCase().includes(searchValues.searchValue.val.toLowerCase());
-  });
-  console.log('onSearchTotalPage', totalPage)
+  searchResults.value = allLists.value.filter((item: NoticeItem) =>
+      item.title.toLowerCase().includes(searchValues.searchValue.val.toLowerCase())
+  );
   currentPage.value = 1;
-  // 필터링된 데이터로 searchResults 업데이트
-  searchResults.value = filteredLists;
 };
+
+onMounted(() => {
+  fetchList();
+});
 </script>

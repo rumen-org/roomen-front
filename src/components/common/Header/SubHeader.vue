@@ -54,7 +54,7 @@ import SnsList from '@/components/common/snsList.vue'
 import { useRoute } from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
-import { useUserStore } from '@/mocks/stores/loginStores';
+import { useUserStore } from '@/stores/loginStores';
 // const userStore = useUserStore();
 import { storeToRefs } from "pinia";
 import {watchEffect, ref, onMounted, onBeforeUnmount, computed, onBeforeMount} from "vue";

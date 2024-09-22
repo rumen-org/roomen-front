@@ -19,5 +19,14 @@ export default defineConfig({
             '@locales': fileURLToPath(new URL('./src/locales', import.meta.url)),
             '@views': fileURLToPath(new URL('./src/views', import.meta.url)),
         }
+    },
+    server: {
+        port: 3000,
+        proxy: {
+            '^/api': {
+                target: 'http://localhost:8000',
+                changeOrigin: true
+            }
+        }
     }
 });

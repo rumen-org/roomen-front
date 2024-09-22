@@ -337,7 +337,18 @@
       text-indent: -9999px;
     }
   }
-  
+
+  div.html-contents {
+    & table {
+      width: 100%;
+      border: 1px solid #333333;
+      box-sizing: border-box;
+      & th, & td {
+        padding: 0.25rem;
+        font-size: 1rem;
+      }
+    }
+  }
   .selectCate {
     display: flex;
     flex-wrap: wrap;

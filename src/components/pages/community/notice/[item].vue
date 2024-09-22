@@ -14,14 +14,14 @@
         <!-- top -->
         <div class="top txtC">
           <h3>{{ sameItem?.title }}</h3>
-          <p>{{ sameItem?.regDtm }}
+          <p>{{ formatDate(sameItem?.creDate) }}
 
           </p>
         </div>
         <!--// top -->
         <!-- con -->
-        <div class="con">
-          <BreakText :break-text="sameItem?.content" />
+        <div class="con html-contents">
+          <section v-dompurify-html="sameItem?.content"></section>
         </div>
         <!--// con -->
       </div>
@@ -30,20 +30,34 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, watchEffect } from 'vue'
-import {useRoute} from 'vue-router'
-import BreakText from '@/components/text/Break.vue'
-import data from '@/mocks/json/noticeDetails.json'
-import backButton from '@/components/button/backButton.vue'
-const params = useRoute().params?.item;
-const sameItem = computed(()=>{
-  return data?.data.find(item => item.id === params);
-});
+import {computed, onMounted, ref} from 'vue';
+import {type RouteParamValue, useRoute} from 'vue-router';
+// import BreakText from '@/components/text/Break.vue';
 
-console.log('test');
-watchEffect(()=>{
-  console.log('sameItem',sameItem)
-  console.log('sameItem',sameItem.value)
+import backButton from '@/components/button/backButton.vue';
+import { getNoticeDetail } from '@/api/notice'
+const noticeDetail = ref<any>(null);
+
+const params = useRoute().params?.item;
+const sameItem = computed(() => noticeDetail.value);
+
+
+import { useFormatDate } from '@/composables/dateType';
+
+const { formatDate } = useFormatDate();
+
+onMounted(() => {
+  fetchDetail(params); // 바로 params.value 사용
+
 })
+
+const fetchDetail = async (p: string | RouteParamValue[] | undefined) => {
+  try {
+    const responseDetail = await getNoticeDetail(p);
+    noticeDetail.value = responseDetail.data
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 </script>

@@ -11,7 +11,7 @@
 // const props = defineProps();
 const emits = defineEmits(['close']);
 const closePop = () => {
-  emits('close')
+  emits('close');
 }
 
 

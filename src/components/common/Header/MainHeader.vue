@@ -53,7 +53,7 @@ import Languages from '@/components/common/lang.vue'
 import { useRoute } from "vue-router";
 const route = useRoute();
 import { useMainStore } from "@/stores/mainPage";
-import { useUserStore } from '@/mocks/stores/loginStores';
+import { useUserStore } from '@/stores/loginStores';
 // const userStore = useUserStore();
 import { storeToRefs } from "pinia";
 import {watchEffect, ref, onMounted, watch, onBeforeUnmount, onBeforeMount, computed} from "vue";
