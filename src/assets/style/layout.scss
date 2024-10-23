@@ -361,9 +361,15 @@
   }
 
 /*** CONTAINER ***/
-#container {
+#wrap {
+  #container {
     margin-bottom: 120px;
     padding: 172px 60px 60px 300px;
+    &.products {
+      padding: 100px 60px 60px 300px;
+    }
+  }
+
 }
 
 body.bgGray #container {
@@ -371,29 +377,30 @@ body.bgGray #container {
 }
 
 @media (max-width: 1160px) {
-    #container, body.bgGray #container {
-        padding: 80px 60px 60px;
-    }
+  #wrap #container, body.bgGray #container {
+      padding: 80px 60px 60px;
+  }
 }
 
 @media (max-width: 940px) {
-    #container, body.bgGray #container {
+  #wrap #container, body.bgGray #container {
         padding: 80px 24px 60px;
-    }
+  }
 }
 
 @media (max-width: 768px) {
-    #container, body.bgGray #container {
+  #wrap #container, body.bgGray #container {
         padding: 80px 24px 20px;
     }
 }
 
 /*** FOOTER ***/
 #footer {
-margin: 0 60px 0 300px;
-padding: 60px 0 80px;
-border-top: 1px solid #191919;
-
+  margin: 0 60px 0 300px;
+  padding: 60px 0 80px;
+  border-top: 1px solid #191919;
+  position: relative;
+  background: #ffffff;
 .inner {
     display: flex;
     justify-content: space-between;

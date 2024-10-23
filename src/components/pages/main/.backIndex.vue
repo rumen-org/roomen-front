@@ -168,12 +168,16 @@ a {text-decoration: none; color: #333;}
 .item_area {height: 100%; font-size: 14px;}
 .item_area .item_bg {display: block; height: 92px;}
 .item_area .item_txt {display: flex; flex-direction: column;padding: 1.0417vw; gap: 10px;}
-.blind-text {    position: absolute;
+.blind {
+  position: absolute;
   width: 1px;
   height: 1px;
+  padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip-path: polygon(0 0, 0 0, 0 0);
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .clamp {
   display: -webkit-box;

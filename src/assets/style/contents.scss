@@ -7,7 +7,10 @@
   .fontN {
     font-family: 'NanumSquare', sans-serif !important;
   }
-  
+  // input password는 나눔스퀘어
+  input[type=password] {
+    font-family: sans-serif;
+  }
   .font16 {
     font-size: 16px !important;
   }
@@ -139,7 +142,16 @@
     background: #fff;
     color: #191919;
   }
-  
+  .blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
   .allBtnArea {
     padding: 30px 15px;
   
@@ -640,8 +652,8 @@
     background:none;
 
     h1 > a {
-      // background:url("/src/assets/images/logo.png") no-repeat center/100% auto;
-      background:none
+       background:url("/src/assets/images/logo.png") no-repeat center/100% auto;
+      //background:none
     }
 
     .btnMenu::before,
@@ -656,7 +668,7 @@
     width: calc(100% - 360px);
     border-color: #fff;
     color: #fff;
-    background:#191919;
+    background: none;
   
     p > a {
       background-image: url("../images/logo-footer-w.png");
@@ -1009,6 +1021,9 @@
     }
   
     tbody tr {
+      border-bottom: 1px solid #a4a4a4;
+    }
+    tbody tr:last-child {
       border-bottom: 1px solid #191919;
     }
   
@@ -1029,11 +1044,14 @@
         &.subject {
           padding-left: 80px;
   
-          a {
+          a, button:not(.btn) {
             display: -webkit-inline-box;
+            font-size: inherit;
+            font-weight: inherit;
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-height: inherit;
             text-overflow: ellipsis;
             color: #191919;
   
@@ -1096,13 +1114,13 @@
         padding-top: 20px;
       }
   
-      button {
+      button:not(.likeAnchor) {
         background: none;
         font-weight: 400;
         font-size: 14px;
         color: #191919;
   
-        + button {
+        + button:not(.likeAnchor) {
           margin-left: 10px;
         }
       }
@@ -1120,7 +1138,8 @@
       background: none;
       border: none;
       border-bottom: 1px solid #191919;
-  
+      color: inherit;
+
       &::placeholder {
         font-weight: 300;
         font-size: 14px;
@@ -1138,6 +1157,7 @@
     display: flex;
     gap: 10px;
     max-width: 290px;
+    margin-left: auto;
   }
   
   /* qna 등록 */
@@ -1161,7 +1181,7 @@
   
   .imgUpload {
     display: flex;
-    gap: 10px;
+
   
     .preview ul {
       display: flex;
@@ -1200,6 +1220,9 @@
   }
   
   @media (max-width: 768px) {
+    .inputBtn {
+      margin-left: 0;
+    }
     div[class*='Table'].inputTable.qna {
       tr {
         th, td {
@@ -1346,9 +1369,12 @@
           height: 60px;
           font-size: 16px;
   
-          &.subject a.lock {
-            padding-left: 20px;
-            background-size: 13px;
+          &.subject {
+            a.lock, button.lock {
+              padding-left: 20px;
+              background-size: 13px;
+            }
+
           }
         }
       }
@@ -1394,7 +1420,7 @@
             padding-left: 10px;
             font-weight: 700;
   
-            a {
+            a, button {
               &.lock {
                 padding-left: 22px;
                 padding-right: 60px;
@@ -1445,7 +1471,6 @@
           text-align: left;
   
           > tr {
-            display: block;
             width: 100%;
             height: auto;
             text-align: left;
@@ -1460,7 +1485,6 @@
   
               td {
                 display: block;
-                width: 100%;
                 height: auto;
                 text-align: left;
                 position: relative;
@@ -1564,7 +1588,7 @@
           }
   
           select {
-            padding: 5px !important;
+            //padding: 5px !important;
             height: 35px;
             padding: 5px 20px !important;
             background: url("../images/ico-select-arrow.png") no-repeat center right 10px / 11px auto;
@@ -2173,7 +2197,7 @@
       .terms {
         padding-top: 40px;
   
-        h3 {
+        & h3 {
           font-weight: 600;
           font-size: 16px;
         }
@@ -2630,9 +2654,14 @@
       }
     }
   }
-  
+
   /* cart */
-  
+  .emptyCart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+  }
   .cartList {
     margin-top: 50px;
     border-top: 3px solid #191919;
@@ -3042,7 +3071,7 @@
   
     .galleryList {
       .inner > div + div {
-        margin: 0;
+        //margin: 0;
         margin: 24px;
       }
   
@@ -3092,7 +3121,7 @@
   
         p {
           background: #F8F8F8;
-          aspect-ratio: 1/1;
+          max-height: 100%;
         }
       }
   
@@ -3132,6 +3161,7 @@
           color: rgba(25, 25, 25, 0.5);
         }
       }
+
     }
   }
   
@@ -3187,13 +3217,212 @@
   
   .floatMenu {
     position: fixed;
-    top: 210px;
+    top: 170px;
     right: 60px;
     width: 315px;
     bottom: 0;
+    .floatScroll {
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      padding: 0 10px 200px;
+      top:0;
+      bottom: 0;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      background: #fff;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      overscroll-behavior: contain;
+      scroll-behavior: smooth;
+      strong.tit {
+        font-size: 22px;
+        font-weight: 600;
+      }
+      .subTit {
+        margin-top: 8px;
+        font-size: 16px;
+        font-weight: 300;
+      }
+      .price {
+        display: flex;
+        gap: 20px;
+        margin-top: 22px;
+        font-size: 20px;
+        font-weight: 500;
+        del {
+          font-size: 16px;
+          font-weight: 300;
+          color: #939393;
+        }
+      }
+
+      .optionArea {
+        margin-top: 46px;
+        .optionSelects {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          & label {
+            font-size: 16px;
+          }
+          & select {
+            max-width: 230px;
+            background: url("../images/ico-select-arrow.png") no-repeat center right 20px / 17px auto;
+            padding: 12px 10px;
+            height: 40px;
+            font-size: 14px;
+            line-height: 1.1;
+          }
+          + .optionSelects  {
+             margin-top: 20px;
+         }
+        }
+
+      }
+      .totalArea {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .shippingInfo {
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 20px;
+          & span {
+            font-weight: 700;
+          }
+        }
+        .count {
+          display: flex;
+          align-items: center;
+          & div {
+            display: flex;
+            button {
+              width: 26px;
+              height: 26px;
+              background: no-repeat center / auto;
+
+              &.minusBtn {
+                background-image: url("../images/ico-count-minus.png");
+              }
+
+              &.plusBtn {
+                background-image: url("../images/ico-count-plus.png");
+              }
+            }
+
+            & span {
+              display: inline-block;
+              margin: 0 -1px;
+              width: 40px;
+              height: 26px;
+              text-align: center;
+            }
+
+            > * {
+              border: 1px solid #A4A4A4;
+            }
+          }
+
+
+
+          > div + button {
+            margin-left: 10px;
+            padding: 0 2px;
+            width: 14px;
+            height: 14px;
+            border: none;
+          }
+          & .cancelItem {
+            background:url(../images/btn-cart-del.png) center center / auto auto no-repeat;
+
+          }
+        }
+      }
+      .wideLine {
+        display: block;
+        height: 1px;
+        background-color: #a4a4a4;
+        margin-top: 72px;
+      }
+      .totalPrice {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        text-align: left;
+        margin-top: 60px;
+        padding-right: 0;
+        span {
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 22px;
+        }
+        em {
+          font-size: 24px;
+          font-weight: 500;
+          line-height: 28px;
+        }
+      }
+      .btnArea {
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        height: 60px;
+        gap: 10px;
+        margin-top: 25px;
+
+        .btn {
+          height: 100%;
+          border: 1px solid #191919;
+        }
+        .sL {
+          flex: 1 1 auto;
+          width: 0;
+          font-weight: 800;
+          line-height: 1;
+        }
+        .bgWhite {}
+        .cartBtn {
+          flex: 60px 0;
+          & i {
+            display: block;
+            height: 100%;
+            background: url("../images/ico-basket.png") no-repeat center center / 24px auto;
+
+          }
+        }
+      }
+    }
   }
-  
+  .floatScroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
   .productDetail {
+    .wideLine2 {
+      display: block;
+      height: 1px;
+      margin-bottom: 60px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid #191919;
+    }
+    .detail {
+      & >div.inner {
+        background:#F8F8F8;
+        min-height:600px;
+        padding: 20px;
+      }
+    }
+    .productInfo {
+      h4 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 22px;
+      }
+      > div {
+        min-height: 60px;
+      }
+    }
     .imgList {
       display: grid;
       grid-template-columns: 11% 1fr;
@@ -3201,19 +3430,47 @@
       margin-bottom: 60px;
       padding-bottom: 80px;
       border-bottom: 1px solid #191919;
-  
-      .preList a {
-        display: flex;
-        align-items: center;
-        max-width: 130px;
-        width: 100%;
-        height: auto;
-        background: #F8F8F8;
-        aspect-ratio: 1/1;
+      min-height: 0;
+      .preList {
+        position: relative;
+        >div {
+          position: absolute;
+          inset: 40px 0 0;
+          overflow-y: auto;
+          padding-top: 120px;
+          & div {
+            position: relative;
+            display: flex;
+            align-items: center;
+            max-width: 130px;
+            width: 100%;
+            height: auto;
+            background: #F8F8F8;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            & em.opacityCover {
+              position: absolute;
+              inset: 0;
+              background-color: rgba(255, 255, 255, 0.4);
+            }
+
+            + div {
+              margin-top: 10px;
+            }
+          }
+        }
+        .back {
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 5;
+        }
+      }
+      .preArea {
+        aspect-ratio: 16/9;
         overflow: hidden;
-  
-        + a {
-          margin-top: 10px;
+        img {
+          cursor: none;
         }
       }
     }
@@ -3227,7 +3484,6 @@
   
   .preArea {
     background: #f8f8f8;
-    max-width: 960px;
     width: 100%;
     max-height: 850px;
   

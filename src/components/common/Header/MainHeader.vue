@@ -27,13 +27,11 @@
           </ul>
         </div>
         <div class="util">
-<!--          notGnb: true, utils: true-->
-<!--          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>-->
-          <template v-if="!isAuthenticated">
+          <template v-if="!isAuth">
             <router-link :to="loginItem?.path" :class="loginItem?.meta?.class ? loginItem.meta.class : ''">{{ loginItem?.name }}</router-link>
           </template>
           <template
-              v-if="isAuthenticated && cartItem && myPageItem"
+              v-if="isAuth && cartItem && myPageItem"
           >
             <router-link :to="cartItem.path" :class="cartItem?.meta?.class ? cartItem.meta.class : ''">{{ cartItem?.name }}</router-link>
             <LogOut />
@@ -63,12 +61,15 @@ import SnsList from "@/components/common/snsList.vue";
 const { isAuthenticated } = storeToRefs(useUserStore());
 const { getActiveSection } = storeToRefs(useMainStore());
 
+const isAuth = computed(() => {
+  return isAuthenticated.value;
+});
 
 
 const windowWidth = ref<number>(0);
+const windowHeight = ref<number>(0);
 const headerRef = ref<HTMLElement | null>(null);
 const isMenuOpen = ref(false);
-// const windowWidth = ref<number>(window.innerWidth);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -76,6 +77,7 @@ const toggleMenu = () => {
 };
 const handleResize = () => {
   windowWidth.value = window.innerWidth;
+  windowHeight.value = window.innerHeight;
 };
 onBeforeMount(()=>{
   window.addEventListener('resize', handleResize);
@@ -84,6 +86,10 @@ onMounted(() => {
   window.addEventListener('resize', handleResize);
   if (window.innerWidth > 1160) {
     console.log('onPc');
+  }
+  const userStore = useUserStore();
+  if (userStore.isAuthenticated) {
+    userStore.checkTokenValidity();  // 페이지 로드 시 토큰 유효성 확인
   }
 });
 onBeforeUnmount(() => {
@@ -95,9 +101,9 @@ watch(getActiveSection,(e)=> {
   immediate: true
 })
 watchEffect(() => {
-  console.log('isAuthenticated',isAuthenticated);
   console.log('windowWidth',windowWidth.value)
   windowWidth.value = window.innerWidth;
+  windowHeight.value = window.innerHeight;
 });
 // 2단계 깊이의 라우트만 필터링
 const filteredRoutes = route.matched[0].children
@@ -123,7 +129,6 @@ const toggleBtnIdx = (index: number) => {
   }
   closed.value[index] = !closed.value[index];
 };
-
 
 </script>
 

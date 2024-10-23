@@ -2,7 +2,7 @@
   <div id="container">
     <div class="inner">
       <div class="aboutVisual" :style="{height: heightGetter+'px' ? heightGetter+'px' : ''}">
-        <img src="@/assets/images/img-about-visual.png" alt="루멘_배경이미지">
+<!--        <img src="@/assets/images/img-about-visual.png" alt="루멘_배경이미지">-->
         <div>
           <p class="aniOne"><img class="logoImg" src="@/assets/images/logo.png" alt=""></p>
           <strong class="ko aniTwo">당신의 공간엔 당신의 가치를.</strong>

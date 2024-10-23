@@ -3,6 +3,11 @@ import { createRouter, createWebHashHistory, RouteRecordRaw, } from 'vue-router'
 import DefaultLayout from '@/layouts/default.vue'
 import FullPageLayout from '@/layouts/fullMain.vue'
 import ErrorLayout from '@/layouts/error.vue'
+
+// 로그인 상태, 토큰 상태
+import { useUserStore } from '@/stores/loginStores'
+import {storeToRefs} from "pinia";
+
 // Ts, Vue-router - 240322 한준희
 const routes: Array<RouteRecordRaw> = [
   {
@@ -147,6 +152,14 @@ const routes: Array<RouteRecordRaw> = [
         name: 'MY PAGE',
         component: () => import('@/views/my_page/index.vue'),
         meta: {layout: DefaultLayout,notGnb: true, utils: true, class: 'mypage'},
+        children: [
+          {
+            path: '/mypage/:category',
+            name: 'ChangePassword',
+            component: () => import('@/views/my_page/[category].vue'),
+            meta: {layout: DefaultLayout,notGnb: true, utils: true, class: 'mypage'},
+          },
+        ]
       },
       {
         path: '/signup',
@@ -169,19 +182,37 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
+  // history: createWebHistory (import.meta.env.BASE_URL),
   history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, positions) {
 
     console.log(to, from, positions)
-    // return {
-    //   top: 0,
-    // }
+    return {top: 0, left: 0}
     },
   linkActiveClass: 'nav-active',
 })
 router.beforeEach((to, from, next) => {
   console.log(to,from)
+
+  const userStore = useUserStore();
+  const { isAuthenticated } = storeToRefs(userStore);
+
+  const requiresAuth = ['/cart', '/community/Q&A/write', '/community/Q&A/:id', '/mypage', '/mypage/:category', '/mypage/shipAddress', '/mypage/addShipAddress', '/mypage/orders', '/mypage/memberInfo', '/mypage/changePassword'];
+  const guestRoutes = ['/login', '/login/findId', '/login/findPW', '/signup'];
+
+  if (requiresAuth.includes(to.path) && !isAuthenticated.value) {
+    alert('로그인이 필요한 기능입니다.');
+    userStore.redirectPath = to.path;
+
+    next({ path: '/login'}); // 원래 경로를 쿼리 파라미터로 전달
+  } else if (guestRoutes.includes(to.path) && isAuthenticated.value) {
+    alert('잘못된 접근입니다.');
+    next('/');
+  } else {
+    next();
+  }
+
   next();
 })
 

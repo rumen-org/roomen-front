@@ -6,10 +6,8 @@
         <sorting :sort-by="sortBy" @update:sortBy="handleSorting" />
         <h2>NOTICE</h2>
         <!-- 이 부분 컴포넌트 분할 필요 -->
-        <div class="srchArea">
-          <input type="text" title="검색" v-model="searchValue">
-          <button type="button" class="srchBtn" @click="searchItem"><span class="hide">검색하기</span></button>
-        </div>
+        <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
+
         <!-- //이 부분 컴포넌트 분할 필요 -->
       </div>
       <!--// conTopArea -->
@@ -66,6 +64,7 @@
 import { computed, onMounted, ref } from 'vue';
 // import { RouteLocationNormalized } from 'vue-router';
 import { getSearchVals } from '@/utils/search';
+import searchComponent from '@/components/search/search.vue';
 import paging from '@/components/board/pagination.vue';
 import sorting from '@/components/board/sort.vue';
 import { getNoticeList } from '@/api/notice';
@@ -147,12 +146,14 @@ const sortedLists = computed(() => {
 
 const searchItem = () => {
   const searchValues = getSearchVals({
-    searchValue: { val: searchValue.value }
+    searchValue: searchValue // inputs 객체에서 Ref를 넘겨줌
   });
-
+  const searchVal = searchValues.searchValue as string;
+  console.log('searchVal', searchVal)
   searchResults.value = allLists.value.filter((item: NoticeItem) =>
-      item.title.toLowerCase().includes(searchValues.searchValue.val.toLowerCase())
+      item.title.toLowerCase().includes(searchVal.toLowerCase())  // string 타입 단언 후 사용
   );
+
   currentPage.value = 1;
 };
 

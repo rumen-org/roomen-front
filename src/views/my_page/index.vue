@@ -1,6 +1,6 @@
 <template>
-  <MyPageComponent></MyPageComponent>
+  <MyPage />
 </template>
 <script setup lang="ts">
-import MyPageComponent from '@components/pages/my_page/index.vue';
+import MyPage from '@/components/pages/my_page/index.vue'
 </script>

@@ -92,13 +92,12 @@ import { Navigation, Pagination, EffectFade } from 'swiper/modules';
 import type { Swiper as SwiperInstance } from 'swiper';
 import 'swiper/swiper-bundle.css';
 import { useModal } from '@/composables/modalLayer';
-import {onMounted, ref, watch} from "vue";
+import {onMounted, ref} from "vue";
 const { isShowModal, closeModal, callModal } = useModal();
 
 import { getGalleryList, getGalleryItem } from '@/api/gallery'
 
 const modalSwiper = ref<SwiperInstance | null>(null);
-watch(isShowModal,()=>{console.log('isShowModalOnWatch',isShowModal.value)})
 
 interface GalleryItem {
   id: number;

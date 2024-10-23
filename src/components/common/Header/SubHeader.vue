@@ -29,11 +29,11 @@
         <div class="util">
 <!--          notGnb: true, utils: true-->
 <!--          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>-->
-          <template v-if="!isAuthenticated">
+          <template v-if="!isAuth">
             <router-link :to="loginItem.path" :class="loginItem?.meta?.class ? loginItem.meta.class : ''">{{ loginItem?.name }}</router-link>
           </template>
           <template
-              v-if="isAuthenticated"
+              v-if="isAuth"
           >
             <router-link :to="cartItem.path" :class="cartItem?.meta?.class ? cartItem.meta.class : ''">{{ cartItem?.name }}</router-link>
             <LogOut />
@@ -53,16 +53,15 @@ import Languages from '@/components/common/lang.vue';
 import SnsList from '@/components/common/snsList.vue'
 import { useRoute } from "vue-router";
 const route = useRoute();
-import { useMainStore } from "@/stores/mainPage";
 import { useUserStore } from '@/stores/loginStores';
-// const userStore = useUserStore();
 import { storeToRefs } from "pinia";
-import {watchEffect, ref, onMounted, onBeforeUnmount, computed, onBeforeMount} from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, onBeforeMount} from "vue";
 import LogOut from '@/components/common/logoutBtn.vue'
 
 const { isAuthenticated } = storeToRefs(useUserStore());
-const { getActiveSection } = storeToRefs(useMainStore());
-
+const isAuth = computed(() => {
+  return isAuthenticated.value;
+})
 const routePath = computed(()=>{
   return route.path
 })
@@ -91,10 +90,7 @@ onBeforeMount(()=>{
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 })
-watchEffect(() => {
-  console.log('activeSectionRef:', getActiveSection.value);
 
-});
 // 2단계 깊이의 라우트만 필터링
 const filteredRoutes = route.matched[0].children
     .filter(child => !child.meta?.notGnb);
@@ -120,7 +116,12 @@ const toggleBtnIdx = (index: number) => {
   // Toggle the clicked button
   closed.value[index] = !closed.value[index];
 };
-
+onMounted(() => {
+  const userStore = useUserStore();
+  if (userStore.isAuthenticated) {
+    userStore.checkTokenValidity();  // 페이지 로드 시 토큰 유효성 확인
+  }
+});
 </script>
 
 

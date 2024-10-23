@@ -135,3 +135,10 @@ input:-moz-read-only {opacity:0.5; background-color:#efefef}
     clip: rect(0, 0, 0, 0);
     margin: -1px;
 }
+
+.hideScroll {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}::-webkit-scrollbar {
+     display: none; /* Chrome, Safari, Opera*/
+ }

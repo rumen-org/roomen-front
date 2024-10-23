@@ -1,6 +1,5 @@
 
 <template >
-
     <!-- container -->
     <div id="container">
       <div class="contents">
@@ -22,19 +21,22 @@
         <!--// conTopArea -->
         <!-- productList -->
         <div class="productList">
-          <template v-for="(item, index) in itemBox" :key="index">
-            <router-link :to="`midiDesk/${item.id}`" class="product">
-              <p><img :src="`src${item.ThumbImg}`" :alt="item.ThumbAlt"></p>
+            <router-link
+                :to="`midiDesk/${item.id}`"
+                class="product"
+                v-for="(item, index) in products" :key="index"
+
+            >
+              <p><img :src="`http://localhost:8080/files/${item.imgPath}`" alt="상품 섬네일"></p>
               <div>
-                <strong class="tit">{{ item.title }}</strong>
-                <p class="subTit">{{ item.subTit }}</p>
+                <strong class="tit">{{ item.name }}</strong>
+                <p class="subTit">{{ item.subTitle }}</p>
                 <p class="price">
-                  <span>{{ item.discount }}</span>
-                  <del>{{ item.price }}</del>
+                  <span>₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span>
+                  <del>₩ {{ formatPrice(item.price) }}원</del>
                 </p>
               </div>
             </router-link>
-          </template>
         </div>
         <!--// productList -->
         <!-- bottomArea -->
@@ -55,14 +57,42 @@
       </div>
     </div>
     <!-- container -->
-  </template>
+</template>
   
-  <script setup lang="ts">
-  const itemBox = [
-      {id: "id1",title: "루멘 미디데스크1" ,subTit: "Roomen MIDI DESK1", price: "1,550,001", discount: "1,350,001" , contents: "text...",ThumbImg: "/assets/images/img-product-4.png", ThumbAlt: "상품_섬네일1"},
-      {id: "id2",title: "루멘 미디데스크2" ,subTit: "Roomen MIDI DESK2", price: "1,550,002", discount: "1,350,002" , contents: "text...",ThumbImg: "/assets/images/img-product-2.png", ThumbAlt: "상품_섬네일2"},
-      {id: "id3",title: "루멘 미디데스크3" ,subTit: "Roomen MIDI DESK3", price: "1,550,003", discount: "1,350,003" , contents: "text...",ThumbImg: "/assets/images/img-product-4.png", ThumbAlt: "상품_섬네일3"},
+<script setup lang="ts">
+import {onMounted, ref} from "vue";
+import { getCategoryProductList } from '@/api/products'
+import {getOriginPrice, formatPrice} from '@/composables/calculate'
+  interface ProductsType {
+    id: number;
+    name: string;
+    imgPath: string;
+    price: number;
+    discountPer: number;
+    subTitle: string;
+    category: string;
+    label: string | null;
+    otherInfo: string | null;
+    shippingCost: number | null;
+    content: string;
+    inStock: boolean;
+    images: string[];
+  }
 
-  ]
-  </script>
+  const products = ref<ProductsType[]>([]);
+  const fetchCategoryList = async() => {
+    try {
+      const response = await getCategoryProductList('mididesk');
+      console.log(response.data, 'fdf');
+      products.value = response.data;
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
+
+onMounted(() => {
+    fetchCategoryList();
+})
+</script>
   
