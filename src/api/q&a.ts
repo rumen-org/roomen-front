@@ -5,23 +5,16 @@ import { useUserStore } from '@/stores/loginStores'
 export function getQNAList() {
     return axios.get(`${BaseURL}/qna/list`)
 }
-export function getQNADetailPrivate(id: number, password: string) {
+
+export function getQNADetail(id: number, password?: string) {
     const userStore = useUserStore();
-
-    return axios.get(`${BaseURL}/qna/${id}?password=${password}`, {
-        headers: {
-            Authorization: `Bearer ${userStore.token}`, // 로그인 시 토큰을 헤더에 포함
-        },
-    });
-}
-
-export function getQNADetail(id: number) {
-    const userStore = useUserStore();
-
+    console.log('test',id, password)
+    const params = { password: password ?? "" };
     return axios.get(`${BaseURL}/qna/${id}`, {
         headers: {
-            Authorization: `Bearer ${userStore.token}`, // 로그인 시 토큰을 헤더에 포함
+            Authorization: `Bearer ${userStore.token}`,
         },
+        params,
     });
 }
 
