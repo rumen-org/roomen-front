@@ -1,3 +1,1 @@
-<template>
-가임완료
-</template>
+<template>가임완료</template>

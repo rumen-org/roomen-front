@@ -4,7 +4,7 @@
       <!-- conTopArea -->
       <div class="conTopArea v2">
         <div class="btnArea">
-          <backButton/>
+          <backButton />
         </div>
         <h2 class="ko">문의하기</h2>
       </div>
@@ -13,125 +13,94 @@
         <!-- inputTable -->
         <div class="inputTable qna">
           <table>
-            <caption>문의유형, 제목, 문의내용, 사진, 비밀글 비밀번호 항목으로 구성된 문의하기 입력 표</caption>
+            <caption>
+              문의유형, 제목, 문의내용, 사진, 비밀글 비밀번호 항목으로 구성된 문의하기 입력 표
+            </caption>
             <colgroup>
-              <col style="width:14%">
-              <col style="width:36%">
-              <col style="width:14%">
-              <col style="width:36%">
+              <col style="width: 14%" />
+              <col style="width: 36%" />
+              <col style="width: 14%" />
+              <col style="width: 36%" />
             </colgroup>
             <tbody>
-            <tr>
-              <th scope="row" class="mNone">문의유형</th>
-              <td colspan="3">
-                <!-- checkboxWrap -->
-                <div class="checkboxWrap selectCate">
-                  <span
-                    class="checkbox"
-                    v-for="(item, idx) in computeTypes"
-                    :key="idx"
-                  >
-                    <input
-                      type="radio"
-                      :id="`${item.name}+${idx}`"
-                      :name="item.name"
-                      :checked="idx === 0"
-                      :value="item.value"
-                      v-model="datas.qnaType"
-                    />
-                    <label
-                      :for="`${item.name}+${idx}`"
-                    >{{ item.label }}</label>
-                  </span>
-                </div>
-                <!--// checkboxWrap -->
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">제목</th>
-              <td colspan="3">
-                <input
+              <tr>
+                <th scope="row" class="mNone">문의유형</th>
+                <td colspan="3">
+                  <!-- checkboxWrap -->
+                  <div class="checkboxWrap selectCate">
+                    <span v-for="(item, idx) in computeTypes" :key="idx" class="checkbox">
+                      <input
+                        :id="`${item.name}+${idx}`"
+                        v-model="datas.qnaType"
+                        type="radio"
+                        :name="item.name"
+                        :checked="idx === 0"
+                        :value="item.value"
+                      />
+                      <label :for="`${item.name}+${idx}`">{{ item.label }}</label>
+                    </span>
+                  </div>
+                  <!--// checkboxWrap -->
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">제목</th>
+                <td colspan="3">
+                  <input
+                    v-model="datas.title"
                     type="text"
                     title="제목"
                     placeholder="제목을 입력하세요."
-                    v-model="datas.title"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">문의내용</th>
-              <td colspan="3">
-                <textarea
-                  title="문의내용"
-                  placeholder="내용을 입력하세요."
-                  v-model="datas.content"
-                >
-                </textarea>
-              </td>
-            </tr>
-            <tr class="flexArea">
-              <th scope="row">사진</th>
-              <td>
-                <!-- imgUpload -->
-                <div
-                  class="imgUpload"
-                  :class="{ 'gap10' : computeFiles.length > 0}"
-                >
-                  <div
-                    class="preview"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">문의내용</th>
+                <td colspan="3">
+                  <textarea
+                    v-model="datas.content"
+                    title="문의내용"
+                    placeholder="내용을 입력하세요."
                   >
-                    <ul v-if="computeFiles.length > 0">
-                      <li
-                        class="pos-rel"
-                        v-for="(item, idx) in computeFiles"
-                        :key="idx"
-                      >
-                        <img
-                          :src="item.url"
-                          :alt="`${item.name}파일`"
-                        />
-                        <button
-                          class="delete"
-                          @click="removeItem(idx)"
-                        >
-                          <em class="blind">닫기버튼</em>
-                        </button>
-                      </li>
-                    </ul>
+                  </textarea>
+                </td>
+              </tr>
+              <tr class="flexArea">
+                <th scope="row">사진</th>
+                <td>
+                  <!-- imgUpload -->
+                  <div class="imgUpload" :class="{ gap10: computeFiles.length > 0 }">
+                    <div class="preview">
+                      <ul v-if="computeFiles.length > 0">
+                        <li v-for="(item, idx) in computeFiles" :key="idx" class="pos-rel">
+                          <img :src="item.url" :alt="`${item.name}파일`" />
+                          <button class="delete" @click="removeItem(idx)">
+                            <em class="blind">닫기버튼</em>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                    <input type="file" class="upload" accept="image/*" multiple @change="addFile" />
                   </div>
-                  <input
-                    type="file"
-                    class="upload"
-                    @change="addFile"
-                    accept="image/*"
-                    multiple
-                  />
-                </div>
-                <!--// imgUpload -->
-              </td>
-              <th scope="row">비밀글</th>
-              <td>
-                <div class="inputBtn">
-                  <input
-                    type="password"
-                    placeholder="비밀번호를 입력하세요."
-                    :disabled="!datas.secret"
-                    :required="datas.secret"
-                    v-model="datas.password"
-                  />
-                  <span class="checkbox noTxt">
+                  <!--// imgUpload -->
+                </td>
+                <th scope="row">비밀글</th>
+                <td>
+                  <div class="inputBtn">
                     <input
-                      type="checkbox"
-                      id="chk0201"
-                      v-model="datas.secret"
+                      v-model="datas.password"
+                      type="password"
+                      placeholder="비밀번호를 입력하세요."
+                      :disabled="!datas.secret"
+                      :required="datas.secret"
                     />
-                    <label
-                      for="chk0201"
-                    >사용</label>
-                  </span>
-                </div>
-              </td>
-            </tr>
+                    <span class="checkbox noTxt">
+                      <input id="chk0201" v-model="datas.secret" type="checkbox" />
+                      <label for="chk0201">사용</label>
+                    </span>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -139,11 +108,7 @@
 
         <!-- bottomBtn -->
         <div class="bottomBtn txtC">
-          <button
-            type="button"
-            class="btn sL w230"
-            @click="submitQna"
-          >작성하기</button>
+          <button type="button" class="btn sL w230" @click="submitQna">작성하기</button>
         </div>
         <!--// bottomBtn -->
       </div>
@@ -151,31 +116,31 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, reactive } from "vue";
+import { computed, reactive } from 'vue'
 // Router
 
-import {useRouter} from "vue-router";
-const router = useRouter();
+import { useRouter } from 'vue-router'
+const router = useRouter()
 // Config
-import { qnaTypes } from '@/configs/radioOptions';
+import { qnaTypes } from '@/configs/radioOptions'
 // 추후 Api 또는 반응성 필요를 고려
 const computeTypes = computed(() => {
-  return qnaTypes;
+  return qnaTypes
 })
 
 // Components
 import backButton from '@/components/button/backButton.vue'
 
 // Api
-import {writeQNA} from "@/api/q&a";
+import { writeQNA } from '@/api/q&a'
 
 interface dataType {
-  title: string;
-  content: string;
-  secret: boolean;
-  password: string;
-  qnaType: number;
-  files: File[];
+  title: string
+  content: string
+  secret: boolean
+  password: string
+  qnaType: number
+  files: File[]
 }
 
 const datas = reactive<dataType>({
@@ -185,60 +150,61 @@ const datas = reactive<dataType>({
   password: '',
   qnaType: 1,
   files: []
-});
+})
 
 // 현재 추가 된 파일들 상태관리
-const computeFiles = computed(()=> {
-  return datas.files.map(file => ({
+const computeFiles = computed(() => {
+  return datas.files.map((file) => ({
     name: file.name,
     size: file.size,
     url: URL.createObjectURL(file)
   }))
-});
+})
 
 // FormData 상태관리
 const formData = computed((): FormData => {
-  const formDatas = new FormData();
+  const formDatas = new FormData()
 
-  formDatas.append("qnaType", String(datas.qnaType));
-  formDatas.append("title", datas.title);
-  formDatas.append("content", datas.content);
-  formDatas.append("secret", datas.secret ? "true" : "false");
-  formDatas.append("password", datas.password || "");
+  formDatas.append('qnaType', String(datas.qnaType))
+  formDatas.append('title', datas.title)
+  formDatas.append('content', datas.content)
+  formDatas.append('secret', datas.secret ? 'true' : 'false')
+  formDatas.append('password', datas.password || '')
   datas.files.forEach((file) => {
-    formDatas.append("images", file);
+    formDatas.append('images', file)
   })
-  return formDatas;
-});
+  return formDatas
+})
 
 const addFile = (event: Event) => {
-  const target = event.target as HTMLInputElement;
+  const target = event.target as HTMLInputElement
   // 파일 추가 시
   if (target.files) {
-    const newFiles = Array.from(target.files);
+    const newFiles = Array.from(target.files)
     // 파일 중복 업로드 체크
     const uniqeFiles = newFiles.filter(
-        newFile => !datas.files.some(file => file.name === newFile.name && file.size === newFile.size)
+      (newFile) =>
+        !datas.files.some((file) => file.name === newFile.name && file.size === newFile.size)
     )
     // 기존의 file들과 중복되지 않은 새로운 파일을 모두 추가하여 새롭게 정의
-    datas.files = [...datas.files, ...uniqeFiles];
+    datas.files = [...datas.files, ...uniqeFiles]
 
-    console.log('event.target',event.target);
-    console.log('datas.files.value', datas.files);
+    console.log('event.target', event.target)
+    console.log('datas.files.value', datas.files)
   }
 }
 
 const removeItem = (i: number) => {
-  datas.files.splice(i, 1);
+  datas.files.splice(i, 1)
 }
 
 const submitQna = async () => {
   try {
-    console.log('formData',formData.value)
-    await writeQNA(formData.value);
-    router.go(-1);
-  } catch(error) {
-    console.error(error);
+    console.log('formData', formData.value)
+    await writeQNA(formData.value)
+    router.go(-1)
+  } catch (error) {
+    console.error(error)
   }
 }
 </script>

@@ -144,10 +144,9 @@ const qnaList = ref<QnAList[]>([])
 // 게시판 데이터 함수
 const fetchList = async () => {
   try {
-    let response
     const pageNumber = currentPage.value ?? 0
     const searchString = searchValue.value ?? null
-    response = await getQNAList(pageNumber, currentSort.value, searchString)
+    const response = await getQNAList(pageNumber, currentSort.value, searchString)
     qnaList.value = response.data.content
     getTotalPages.value = response.data.totalPages
     currentPage.value = pageNumber
@@ -190,10 +189,10 @@ interface QnAList {
   content: string
   memberId: number
 }
-interface searchItem {
-  title: string
-  content: string
-}
+// interface searchItem {
+//   title: string
+//   content: string
+// }
 
 // Pagination
 

@@ -7,20 +7,12 @@
         </p>
       </li>
     </ul>
-    {{content}}
+    {{ content }}
     <p>{{ content?.content }}</p>
     <div class="img">
       <div v-if="isOwner && content">
-        <button
-          type="button"
-          class="btn"
-          @click="goModify(content?.id)"
-        >수정</button>
-        <button
-          type="button"
-          class="btn"
-          @click="checkConfirm"
-        >삭제</button>
+        <button type="button" class="btn" @click="goModify(content?.id)">수정</button>
+        <button type="button" class="btn" @click="checkConfirm">삭제</button>
       </div>
     </div>
     <Confirm />
@@ -29,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, defineProps} from 'vue';
+import { computed, defineProps } from 'vue'
 
 // Api
 import { deleteQNA } from '@/api/q&a'
@@ -39,47 +31,47 @@ import Confirm from '@/components/notifications/confirm.vue'
 import Alert from '@/components/notifications/alert.vue'
 
 // Composable
-import { useConfirm } from '@/composables/useConfirm';
-import { useAlert } from '@/composables/useAlert';
-const { showConfirm } = useConfirm();
-const { showAlert } = useAlert();
+import { useConfirm } from '@/composables/useConfirm'
+import { useAlert } from '@/composables/useAlert'
+const { showConfirm } = useConfirm()
+const { showAlert } = useAlert()
 
 // Router
-import { useRouter } from "vue-router";
-const router = useRouter();
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const getId = computed(() => {
-  return props?.content?.id || null;
+  return props?.content?.id || null
 })
 // Stores
 import { useModifyQnaStore } from '@/stores/modifyQna'
 
 // import { storeToRefs } from 'pinia';
-const qnaStore = useModifyQnaStore();
+const qnaStore = useModifyQnaStore()
 
 // const { qnaContent } = storeToRefs(qnaStore);
 interface QnaContent {
-  id: number;
-  title: string;
-  content: string;
-  images: string[];
-  creDate: string; // ISO 8601 날짜 형식
-  author: string;
-  hasReply: boolean;
-  qnaType: number;
-  secret: boolean;
+  id: number
+  title: string
+  content: string
+  images: string[]
+  creDate: string // ISO 8601 날짜 형식
+  author: string
+  hasReply: boolean
+  qnaType: number
+  secret: boolean
 }
 // Props
 const props = defineProps<{
-  content: QnaContent | null;
-  isOwner: boolean;
-}>();
+  content: QnaContent | null
+  isOwner: boolean
+}>()
 
 // Emit
-const emit = defineEmits(['change:delete']);
+const emit = defineEmits(['change:delete'])
 
 const modifyData = computed<QnaContent>(() => {
   if (!props.content) {
-    throw new Error("Content is null");
+    throw new Error('Content is null')
   }
 
   return {
@@ -91,47 +83,55 @@ const modifyData = computed<QnaContent>(() => {
     author: props.content.author, // 추가된 필드
     hasReply: props.content.hasReply, // 추가된 필드
     qnaType: props.content.qnaType,
-    secret: props.content.secret,
-  };
-});
+    secret: props.content.secret
+  }
+})
 
 // 수정
 const goModify = (p: number) => {
   if (props.content) {
-    qnaStore.setQnaContent(modifyData.value);
-    router.push(`/modify/${p}`);
+    qnaStore.setQnaContent(modifyData.value)
+    router.push(`/modify/${p}`)
   }
-};
+}
 // 삭제
-const checkConfirm = async() => {
+const checkConfirm = async () => {
   showConfirm(
-      `게시글을 삭제합니다.\n동의하십니까?`,
-      async () => {
-        if (getId.value !== null) {
-          await deleteItem(getId?.value);
-        } else {
-          showAlert('로그인 상태를 확인해 주십시오.');
-        }
-
-      },
-      () => {}
-  );
+    `게시글을 삭제합니다.\n동의하십니까?`,
+    async () => {
+      if (getId.value !== null) {
+        await deleteItem(getId?.value)
+      } else {
+        showAlert('로그인 상태를 확인해 주십시오.')
+      }
+    },
+    () => {}
+  )
 }
 const deleteItem = async (id: number) => {
   try {
-    await deleteQNA(id);
-    showAlert('정상적으로 삭제 되었습니다.');
-    emit("change:delete");
-    await router.push('/community/Q&A');
-  } catch(error) {
-    console.error(error);
+    await deleteQNA(id)
+    showAlert('정상적으로 삭제 되었습니다.')
+    emit('change:delete')
+    await router.push('/community/Q&A')
+  } catch (error) {
+    console.error(error)
   }
 }
 </script>
 
 <style scoped>
-.conDetail {display: block; overflow: hidden; width: 100%; max-width: 600px; padding: 3rem 0; font-weight: 300;}
-.conDetail img {display: block;}
+.conDetail {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  padding: 3rem 0;
+  font-weight: 300;
+}
+.conDetail img {
+  display: block;
+}
 .contents-images {
   max-width: 100%;
   overflow: hidden;

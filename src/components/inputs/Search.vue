@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { defineProps, defineEmits, ref } from 'vue'
 
-// const props = defineProps<{ searchValue: string }>()
+const props = defineProps<{ searchValue: string }>()
 const emits = defineEmits(['update:searchValue', 'search'])
 
 const searchValue = ref<string>('')
