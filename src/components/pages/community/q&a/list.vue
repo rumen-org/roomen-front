@@ -1,82 +1,91 @@
+<!-- components/pages/community/q&a/list.vue -->
+
 <template>
   <div id="container">
     <div class="contents">
       <!-- conTopArea -->
       <div class="conTopArea">
-        <div class="sorting">
-          <ul>
-            <li class="curr"><button type="button">최신 순</button></li>
-            <li><button type="button">오래된 순</button></li>
-          </ul>
-        </div>
+        <Sort :items="sortItems" @update:value="changeSorting" />
         <h2>Q&#38;A</h2>
-        <div class="srchArea">
-          <input type="text" title="검색">
-          <button type="button" class="srchBtn"><span class="hide">검색하기</span></button>
-        </div>
+        <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
       <!--// conTopArea -->
       <!-- qnaTable -->
       <div class="qnaTable">
         <table>
-          <caption>번호, 문의유형, 제목, 작성자, 작성일 항목으로 구성된 q&a 목록표</caption>
+          <caption>
+            번호, 문의유형, 제목, 작성자, 작성일 항목으로 구성된 q&a 목록표
+          </caption>
           <colgroup>
-            <col style="width:160px" class="mw100 mNone">
-            <col style="width:160px" class="mw100">
-            <col style="width:auto">
-            <col style="width:160px" class="mw100">
-            <col style="width:230px" class="mw150">
+            <col style="width: 160px" class="mw100 mNone" />
+            <col style="width: 160px" class="mw100" />
+            <col style="width: auto" />
+            <col style="width: 160px" class="mw100" />
+            <col style="width: 230px" class="mw150" />
           </colgroup>
           <thead>
-          <tr>
-            <th scope="col" class="mNone">번호</th>
-            <th scope="col">문의유형</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">작성일</th>
-          </tr>
+            <tr>
+              <th scope="col" class="mNone">번호</th>
+              <th scope="col">문의유형</th>
+              <th scope="col">제목</th>
+              <th scope="col">작성자</th>
+              <th scope="col">작성일</th>
+            </tr>
           </thead>
           <tbody>
-            <tr
-              :class="{'bgGray': selectedItemId === item.id}"
-              v-for="(item, index) in qnaList"
-              :key="index"
+            <EmptyResult
+              :search-value="searchValue"
+              :search-result-length="searchResultLength"
+              :col-spans="5"
             >
-              <td class="mNone">{{ item.id }}</td>
-              <td>{{ qnaTypeText(item.qnaType) }}</td>
-              <td class="txtL subject">
-                <button
-                    @click.prevent="toggleDetail(item)"
-                    :class="{ 'lock': item.secret, 'com': item.hasReply }"
-                    class="likeAnchor"
-                >
-                  {{ item.title }}
-                  <span v-if="item.hasReply" class="tag">답변완료</span>
-                </button>
-                <!-- 비밀번호 입력 필드 -->
-                <passwordComponents
-                    v-if="requiresPasswordInput(item)"
-                    :onSubmit="(pw) => fetchContent(item.id, pw)"
-                />
-                <!-- 게시물 컨텐츠 -->
-                <ContentDisplay
-                    v-if="selectedItemId === item.id"
-                    :content="displayedContent"
-                    :isOwner="isOwner(item)"
-                />
-                <!-- 답변 컴포넌트 -->
-                <AnswerComponent
-                  v-if="item.hasReply && selectedItemId === item.id"
-                  :answer="displayedContent?.replies[0]"
-                />
+              <template #notEmpty>
+                <template v-for="(item, index) in qnaList" :key="index">
+                  <tr :class="{ bgGray: selectedItemId === item.id }">
+                    <td class="mNone">{{ item.id }}</td>
+                    <td>{{ qnaTypeText(item.qnaType) }}</td>
+                    <td class="txtL subject">
+                      <button
+                        :class="{ lock: item.secret, com: item.hasReply }"
+                        class="likeAnchor"
+                        @click.prevent="toggleDetail(item)"
+                      >
+                        {{ item.title }}
+                        <span v-if="item.hasReply" class="tag">답변완료</span>
+                      </button>
+                      <!-- 비밀번호 입력 필드 -->
+                      <transition-group tag="div" class="sliding-content">
+                        <passwordComponents
+                          v-if="requiresPasswordInput(item) && !isPrivateVisible"
+                          :on-submit="(pw) => fetchContent(item.id, pw)"
+                        />
+                        <!-- 게시물 컨텐츠 -->
+                        <ContentDisplay
+                          v-if="selectedItemId === item.id"
+                          :content="displayedContent"
+                          :is-owner="isOwner(item)"
+                          @change:delete="fetchList"
+                        />
+                      </transition-group>
+                    </td>
+                    <td>{{ maskName(item.author) }}</td>
+                    <td>{{ formatDate(item.creDate) }}</td>
+                  </tr>
+                  <!-- 답변 컴포넌트 -->
+                  <transition tag="div" class="sliding-content">
+                    <AnswerComponent
+                      v-if="
+                        item.hasReply &&
+                        selectedItemId === item.id &&
+                        displayedContent?.replies.length > 0
+                      "
+                      :answer="displayedContent?.replies[0]"
+                    />
+                  </transition>
+                </template>
+              </template>
+            </EmptyResult>
 
-              </td>
-              <td>{{ item.author }}</td>
-              <td>{{ formatDate(item.creDate) }}</td>
-            </tr>
             <!-- 답변 컴포넌트 -->
-
-
           </tbody>
         </table>
       </div>
@@ -84,15 +93,11 @@
       <!-- bottomArea -->
       <div class="conBottomArea">
         <!-- paging -->
-        <div class="paging">
-          <a href="" class="btnPrev disabled">이전 페이지</a>
-          <strong>1</strong>
-          <a href="">2</a>
-          <a href="">3</a>
-          <a href="">4</a>
-          <a href="">5</a>
-          <a href="" class="btnNext">다음 페이지</a>
-        </div>
+        <Pagination
+          :current-page="currentPage"
+          :total-pages="totalPages"
+          @change-page="changePage"
+        />
         <!--// paging -->
         <!-- btnArea -->
         <div class="btnArea">
@@ -106,146 +111,200 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-import { onMounted, ref} from "vue";
+import { computed, onMounted, ref } from 'vue'
 // Api
-import { getQNAList, getQNADetail } from '@/api/q&a'
-
-// Stores
+import { getQNADetail, getQNADetailPrivate, getQNAList } from '@/api/q&a'
 // Components
 import Confirm from '@/components/notifications/confirm.vue'
+import searchComponent from '@/components/search/search.vue'
 import AnswerComponent from '@/components/pages/community/q&a/[id].vue'
 import passwordComponents from '@/components/pages/community/q&a/detailPasswordComponents.vue'
 import ContentDisplay from '@/components/pages/community/q&a/detailContentComponent.vue'
-import {storeToRefs} from "pinia";
-import {useUserStore} from "@/stores/loginStores";
-const { isAuthenticated, role, userId } = storeToRefs(useUserStore());
-
+// public Components
+import Sort from '@/components/board/sort.vue'
+import Pagination from '@/components/board/pagination.vue'
+import EmptyResult from '@/components/search/emptyResult.vue'
+// config
+import { sortTypes_default } from '@/configs/sortTypes'
 // Composables
+import { useSort } from '@/composables/useSort'
+import { useSearch } from '@/composables/useSearch'
+import { usePagination } from '@/composables/usePagination'
+import { useUtils } from '@/composables/useUtils'
 import { useConfirm } from '@/composables/useConfirm'
-import axios from "axios";
-const { showConfirm } = useConfirm();
-const router = useRouter();
+import { useFormatDate } from '@/composables/dateType'
+// Stores
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/stores/loginStores'
+// Router
+import { useRouter } from 'vue-router'
+// 게시판 리스트 데이터
+const qnaList = ref<QnAList[]>([])
 
-interface QnAList {
-  id: number;
-  qnaType: number;
-  title: string;
-  creDate: string;
-  secret: boolean;
-  hasReply: boolean;
-  password: string;
-  author: string;
-  content: string;
-  memberId: number;
-}
-const qnaList = ref<QnAList[]> ([]);
-
-const fetchList = async () =>{
+// 게시판 데이터 함수
+const fetchList = async () => {
   try {
-    const response = await getQNAList();
-    qnaList.value = response.data;
-  }
-  catch(error) {
-    console.error(error);
+    let response
+    const pageNumber = currentPage.value ?? 0
+    const searchString = searchValue.value ?? null
+    response = await getQNAList(pageNumber, currentSort.value, searchString)
+    qnaList.value = response.data.content
+    getTotalPages.value = response.data.totalPages
+    currentPage.value = pageNumber
+  } catch (error: any) {
+    console.error(error)
   }
 }
+const { formatDate } = useFormatDate()
+const { currentPage, totalPages, getTotalPages, changePage, currentSort } = usePagination(fetchList)
+const { searchValue, searchResultLength, searchItem } = useSearch<QnAList>(
+  fetchList,
+  qnaList,
+  currentPage
+)
+const { changeSorting } = useSort(currentSort, fetchList)
+const { maskName } = useUtils()
+const { showConfirm } = useConfirm()
 
+// sortType
+const sortItems = computed(() => {
+  return sortTypes_default.items
+})
+const sortDefault = computed(() => {
+  return sortTypes_default.default
+})
+
+const { isAuthenticated, role, userId } = storeToRefs(useUserStore())
+
+const router = useRouter()
+// TS
+interface QnAList {
+  id: number
+  qnaType: number
+  title: string
+  creDate: string
+  secret: boolean
+  hasReply: boolean
+  password: string
+  author: string
+  content: string
+  memberId: number
+}
+interface searchItem {
+  title: string
+  content: string
+}
+
+// Pagination
+
+// 문의사항 유형
 const qnaTypeText = (qnaType: number) => {
   switch (qnaType) {
     case 1:
-      return '배송';
+      return '배송'
     case 2:
-      return '상품';
+      return '상품'
     case 3:
-      return '취소/교환/환불';
+      return '취소/교환/환불'
     case 4:
-      return '기타';  // 여기에 나머지 유형을 설정
+      return '기타'
     default:
-      return '기타';
+      return '기타'
   }
-};
+}
 
-
-onMounted(() => {
-  fetchList();
-})
-
-const isPrivateVisible = ref<boolean>(false);
+const isPrivateVisible = ref<boolean>(false)
+// 게시글 작성
 const pushWrite = async () => {
-  await router.push({path:'Q&A/write'})
+  await router.push({ path: 'Q&A/write' })
 }
-const formatDate = (value: string) => {
-  const date = new Date(value);
-  return `${date.getFullYear().toString().slice(2,4)}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
-}
-const selectedItemId = ref<number | null>(null);
+// 현재 클릭한 게시글
+const selectedItemId = ref<number | null>(null)
 //게시물 토글
 const toggleDetail = (item: any) => {
   if (selectedItemId.value === item.id) {
-    resetSelection();
-    console.log('state_________1');
-  } else if (isAuthenticated.value) {
-    console.log('state_________2');
-    if (role.value === 'Admin' || !item.secret) {
-      fetchContent(item.id, null);
-      console.log('state_________3');
-    } else {
-      selectedItemId.value = item.id;
-      console.log('state_________4');
-    }
-  } else {
-    promptLogin();
+    resetSelection()
+    return
   }
-};
+  if (!isAuthenticated.value) {
+    promptLogin()
+  } else {
+    selectedItemId.value = item.id
+    // isOwner(item);
+    // requiresPasswordInput(item);
+    if (role.value === 'Admin' || !item.secret) {
+      fetchContent(item.id, null)
+    }
+  }
+}
 // 로그인 필요시 안내창
 const promptLogin = () => {
   showConfirm(
-      `로그인이 필요한 기능입니다.\n로그인하시겠습니까?`,
-      async () => {
-        await router.push('/login');
-      },
-      () => {}
-  );
+    `로그인이 필요한 기능입니다.\n로그인하시겠습니까?`,
+    async () => {
+      await router.push('/login')
+    },
+    () => {}
+  )
 }
 // 게시글 데이터
 const fetchContent = async (id: number, password: string | null = null) => {
   try {
     console.log('onFetchContent', id)
-    const response = await getQNADetail(id, password ?? undefined);
-    displayedContent.value = response.data;
-    isPrivateVisible.value = !!password;
-  } catch (error:any) {
-    if (axios.isAxiosError(error)) {
-      if (error.response?.status === 401) {
-        console.error("Unauthorized access. Please login.");
-      } else if (error.response?.status === 403) {
-        console.error("Forbidden. Incorrect password or no access.");
-      } else {
-        console.error("An unexpected error occurred:", error.message);
-      }
-    } else {
-      console.error("An unknown error occurred:", error);
-    }
+    const response =
+      password !== null ? await getQNADetailPrivate(id, password) : await getQNADetail(id)
+    displayedContent.value = response.data
+    isPrivateVisible.value = !!password
+  } catch (error: any) {
+    console.error(error)
   }
-};
-
-const isOwner = (item: any) => item.memberId === Number(userId.value);
+}
+// 게시물 작성자 여부
+const isOwner = (item: any) => item.memberId === Number(userId.value)
+// toggle 시 password 창 노출 여부( Admin만 안뜨게)
 const requiresPasswordInput = (item: any) =>
-    item.secret && selectedItemId.value === item.id && role.value !== 'Admin';
+  item.secret && selectedItemId.value === item.id && role.value !== 'Admin'
+// Toggle 시 보여질 컨텐츠 데이터
+const displayedContent = ref<any>(null)
 
-const displayedContent = ref<any>(null);
-
-// 유틸 함수
+// 데이터 초기화
 const resetSelection = () => {
-  selectedItemId.value = null;
-  displayedContent.value = null;
-  inputPw.value = '';
-};
+  selectedItemId.value = null
+  displayedContent.value = null
+  inputPw.value = ''
+}
 
-const inputPw = ref<string>('');
+// 페이지 로드 직후 실행함수
+onMounted(() => {
+  currentSort.value = sortDefault.value
+  fetchList()
+})
+const inputPw = ref<string>('')
 </script>
 <style scoped>
-.conDetail {display: block; overflow: hidden; width: 100%; padding: 3rem 0; font-weight: 300;}
-.conDetail img {display: block;}
+.paging-number {
+  display: block;
+}
+.sliding-content {
+  overflow: hidden; /* 넘치는 콘텐츠 숨기기 */
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition:
+    max-height 0.5s ease,
+    opacity 0.5s ease; /* 슬라이드 효과 */
+}
+
+.slide-enter,
+.slide-leave-to {
+  max-height: 0; /* 슬라이드 시작 상태 */
+  opacity: 0; /* 초기 상태 */
+}
+
+.slide-enter-to,
+.slide-leave {
+  max-height: 800px; /* 콘텐츠의 최대 높이 */
+  opacity: 1; /* 최종 상태 */
+}
 </style>

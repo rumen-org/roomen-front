@@ -5,10 +5,12 @@ import router from './router/index'
 import { createI18n } from 'vue-i18n'
 import msg from '@/locales/index'
 import '@/assets/style/style.scss'
-import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar';
-import 'vue3-perfect-scrollbar/style.css';
+import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar'
+import 'vue3-perfect-scrollbar/style.css'
 type MessageSchema = typeof msg.ko
-import VueDOMPurifyHTML from 'vue-dompurify-html';
+// 가상 DOM 생성시 보안문제를 위한 라이브러리
+import VueDOMPurifyHTML from 'vue-dompurify-html'
+import gsap from 'gsap'
 
 const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({
   legacy: false,
@@ -19,21 +21,21 @@ const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({
   //   'en': enUs,
   // },
   messages: {
-    'ko': msg.ko,
-    'en': msg.en
+    ko: msg.ko,
+    en: msg.en
   },
   silentTranslationWarn: true,
   datetimeFormats: {
-    'ko': {
+    ko: {
       short: {
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
         timeZoneName: 'short',
-        timeZone: 'Asia/Seoul',
+        timeZone: 'Asia/Seoul'
       }
     },
-    'en': {
+    en: {
       short: {
         hour: 'numeric',
         minute: 'numeric',
@@ -42,7 +44,7 @@ const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({
         timeZone: 'America/New_York'
       }
     }
-  },
+  }
 })
 // if (process.env.NODE_ENV === 'development'){
 //   worker.start()
@@ -54,4 +56,5 @@ app.use(createPinia())
 app.use(router)
 app.use(PerfectScrollbarPlugin)
 app.use(VueDOMPurifyHTML)
+app.use(gsap)
 app.mount('#app')

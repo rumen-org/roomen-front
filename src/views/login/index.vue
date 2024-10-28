@@ -2,5 +2,5 @@
   <LoginComponent></LoginComponent>
 </template>
 <script setup lang="ts">
-import LoginComponent from '@components/pages/login/index.vue';
+import LoginComponent from '@components/pages/login/index.vue'
 </script>

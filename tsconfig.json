@@ -4,7 +4,7 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     // Ts 프로젝트에서 JS CommonJS 모듈 임포트 가능하게 수정
     "allowSyntheticDefaultImports": true,
   

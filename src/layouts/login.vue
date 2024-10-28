@@ -1,3 +1,1 @@
-<template>
-  login Layout
-</template>
+<template>login Layout</template>

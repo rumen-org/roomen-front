@@ -7,60 +7,51 @@
     <div class="count">
       <div>
         <button
-            type="button"
-            class="minusBtn"
-            :disabled="state === 1 || state === 0"
-            @click="changeValue('-')"
+          type="button"
+          class="minusBtn"
+          :disabled="state === 1 || state === 0"
+          @click="changeValue('-')"
         >
           <span class="hide">빼기</span>
         </button>
-        <span>{{state}}</span>
-        <button
-            type="button"
-            class="plusBtn"
-            :disabled="state >= 10"
-            @click="changeValue('+')"
-        >
+        <span>{{ state }}</span>
+        <button type="button" class="plusBtn" :disabled="state >= 10" @click="changeValue('+')">
           <span class="hide">더하기</span>
         </button>
       </div>
-      <button
-          class="cancelItem"
-          @click="removeItem"
-      >
+      <button class="cancelItem" @click="removeItem">
         <span class="blind">삭제</span>
       </button>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import {ref, defineEmits, toRefs} from "vue";
+import { ref, defineEmits, toRefs } from 'vue'
 interface ItemsType {
-  color1: string;
-  color2: string;
-  select1: string;
-  select2: string;
+  color1: string
+  color2: string
+  select1: string
+  select2: string
 }
 const props = defineProps<{
-  title: String | undefined,
-  items: ItemsType,
-  index: Number
+  title: string | undefined
+  items: ItemsType
+  index: number
 }>()
-const { title, items } = toRefs(props);
+const { title, items } = toRefs(props)
 
-const emit = defineEmits(['update', 'deleteItem']);
-const state = ref<number>(1);
+const emit = defineEmits(['update', 'deleteItem'])
+const state = ref<number>(1)
 
 const changeValue = (e: string) => {
   if (e === '-') {
-    state.value--;
+    state.value--
   } else if (e === '+') {
-    state.value++;
+    state.value++
   }
-  return emit('update', {i: props.index, q: state.value});
+  return emit('update', { i: props.index, q: state.value })
 }
 const removeItem = () => {
   emit('deleteItem', props.index)
 }
-
 </script>

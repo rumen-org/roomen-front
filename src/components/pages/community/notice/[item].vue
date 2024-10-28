@@ -4,7 +4,7 @@
       <!-- conTopArea -->
       <div class="conTopArea">
         <div class="btnArea">
-          <backButton/>
+          <backButton />
         </div>
         <h2>NOTICE</h2>
       </div>
@@ -14,9 +14,7 @@
         <!-- top -->
         <div class="top txtC">
           <h3>{{ sameItem?.title }}</h3>
-          <p>{{ formatDate(sameItem?.creDate) }}
-
-          </p>
+          <p>{{ formatDate(sameItem?.creDate) }}</p>
         </div>
         <!--// top -->
         <!-- con -->
@@ -30,34 +28,31 @@
   </div>
 </template>
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue';
-import {type RouteParamValue, useRoute} from 'vue-router';
+import { computed, onMounted, ref } from 'vue'
+import { type RouteParamValue, useRoute } from 'vue-router'
 // import BreakText from '@/components/text/Break.vue';
 
-import backButton from '@/components/button/backButton.vue';
+import backButton from '@/components/button/backButton.vue'
 import { getNoticeDetail } from '@/api/notice'
-const noticeDetail = ref<any>(null);
+const noticeDetail = ref<any>(null)
 
-const params = useRoute().params?.item;
-const sameItem = computed(() => noticeDetail.value);
+const params = useRoute().params?.item
+const sameItem = computed(() => noticeDetail.value)
 
+import { useFormatDate } from '@/composables/dateType'
 
-import { useFormatDate } from '@/composables/dateType';
-
-const { formatDate } = useFormatDate();
+const { formatDate } = useFormatDate()
 
 onMounted(() => {
-  fetchDetail(params); // 바로 params.value 사용
-
+  fetchDetail(params) // 바로 params.value 사용
 })
 
 const fetchDetail = async (p: string | RouteParamValue[] | undefined) => {
   try {
-    const responseDetail = await getNoticeDetail(p);
+    const responseDetail = await getNoticeDetail(p)
     noticeDetail.value = responseDetail.data
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
-
 </script>

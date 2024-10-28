@@ -5,9 +5,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import {ref} from "vue";
+import { ref } from 'vue'
 
-const languageType = ref('ko');
+const languageType = ref('ko')
 const setLang = (v: string) => {
   languageType.value = v
 }

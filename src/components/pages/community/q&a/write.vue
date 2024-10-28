@@ -36,6 +36,8 @@
                       :id="`${item.name}+${idx}`"
                       :name="item.name"
                       :checked="idx === 0"
+                      :value="item.value"
+                      v-model="datas.qnaType"
                     />
                     <label
                       :for="`${item.name}+${idx}`"
@@ -114,6 +116,8 @@
                     type="password"
                     placeholder="비밀번호를 입력하세요."
                     :disabled="!datas.secret"
+                    :required="datas.secret"
+                    v-model="datas.password"
                   />
                   <span class="checkbox noTxt">
                     <input
@@ -148,7 +152,10 @@
 </template>
 <script setup lang="ts">
 import { computed, reactive } from "vue";
+// Router
 
+import {useRouter} from "vue-router";
+const router = useRouter();
 // Config
 import { qnaTypes } from '@/configs/radioOptions';
 // 추후 Api 또는 반응성 필요를 고려
@@ -227,8 +234,9 @@ const removeItem = (i: number) => {
 
 const submitQna = async () => {
   try {
-    console.log('formData',formData)
+    console.log('formData',formData.value)
     await writeQNA(formData.value);
+    router.go(-1);
   } catch(error) {
     console.error(error);
   }

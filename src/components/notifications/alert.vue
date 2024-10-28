@@ -1,17 +1,13 @@
 <template>
-  <div
-      v-if="alertState.message"
-      @click="hideAlert"
-      :class="['alert', alertState.type]"
-  >
+  <div v-if="alertState.message" :class="['alert', alertState.type]" @click="hideAlert">
     {{ alertState.message }}
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useAlert } from '@/composables/useAlert';
+import { useAlert } from '@/composables/useAlert'
 
-const { alertState, hideAlert } = useAlert();
+const { alertState, hideAlert } = useAlert()
 </script>
 
 <style scoped>

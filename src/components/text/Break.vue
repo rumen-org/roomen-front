@@ -6,30 +6,29 @@
 </template>
 
 <script setup>
-import {computed} from 'vue'
+import { computed } from 'vue'
+
 const props = defineProps({
-    breakText: {
-        type: [String, Number, Boolean, Array, Date],
-        default: '',
-    },
-    keepLast: {
-        type: Boolean,
-        default: false,
-    },
-});
+  breakText: {
+    type: [String, Number, Boolean, Array, Date],
+    default: ''
+  },
+  keepLast: {
+    type: Boolean,
+    default: false
+  }
+})
 const getBreakTag = computed(() => {
-  const string = String(props.breakText);
-    if (string === 'undefined' || string === 'null') {
-        return [];
-    }
+  const string = String(props.breakText)
+  if (string === 'undefined' || string === 'null') {
+    return []
+  }
   // const splits = string.split(/<br\s?\/?>/);
-  const splits = string.split(/<br\s?\/?>|\n/);
-    const result =
-        splits[splits.length - 1] === '' && !props.keepLast
-            ? splits.filter((split, index, array) => index < array.length - 1)
-            : splits;
-    return result;
-});
+  const splits = string.split(/<br\s?\/?>|\n/)
+  return splits[splits.length - 1] === '' && !props.keepLast
+    ? splits.filter((split, index, array) => index < array.length - 1)
+    : splits
+})
 </script>
 
 <style></style>

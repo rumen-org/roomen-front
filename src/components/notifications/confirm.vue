@@ -3,23 +3,17 @@
     <div class="confirm-box">
       <p class="confirm-text">{{ confirmState.message }}</p>
       <div class="btnArea btnArea2">
-        <button
-          @click="confirmState.onConfirm"
-          class="btn"
-        >확인</button>
-        <button
-          @click="confirmState.onCancel"
-          class="btn bgWhite"
-        >취소</button>
+        <button class="btn" @click="confirmState.onConfirm">확인</button>
+        <button class="btn bgWhite" @click="confirmState.onCancel">취소</button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useConfirm } from '@/composables/useConfirm';
+import { useConfirm } from '@/composables/useConfirm'
 
-const { confirmState } = useConfirm();
+const { confirmState } = useConfirm()
 </script>
 
 <style scoped>
@@ -59,5 +53,4 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
-
 </style>

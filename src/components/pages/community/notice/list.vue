@@ -1,44 +1,50 @@
+<!-- components/pages/community/notice/list.vue -->
 <template>
   <div id="container">
     <div class="contents">
       <!-- conTopArea -->
       <div class="conTopArea">
-        <sorting :sort-by="sortBy" @update:sortBy="handleSorting" />
+        <Sort :items="sortItems" @update:value="changeSorting" />
         <h2>NOTICE</h2>
         <!-- 이 부분 컴포넌트 분할 필요 -->
         <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
-
         <!-- //이 부분 컴포넌트 분할 필요 -->
       </div>
       <!--// conTopArea -->
       <!-- listTable -->
       <div class="listTable">
         <table>
-          <caption>번호, 제목, 작성일 항목으로 구성된 공지사항 목록표</caption>
+          <caption>
+            번호, 제목, 작성일 항목으로 구성된 공지사항 목록표
+          </caption>
           <colgroup>
-            <col style="width:230px" class="mw100 mNone">
-            <col style="width:auto">
-            <col style="width:230px" class="mw100">
+            <col style="width: 230px" class="mw100 mNone" />
+            <col style="width: auto" />
+            <col style="width: 230px" class="mw100" />
           </colgroup>
           <thead>
-          <tr>
-            <th scope="col" class="mNone">번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성일</th>
-          </tr>
+            <tr>
+              <th scope="col" class="mNone">번호</th>
+              <th scope="col">제목</th>
+              <th scope="col">작성일</th>
+            </tr>
           </thead>
           <tbody>
-
-          <tr v-if="searchValue.length > 0 && searchResults.length == 0">
-            <td colspan="3" class="text-center">검색 결과가 없습니다.</td>
-          </tr>
-          <template v-else>
-            <tr v-for="(item, idx) in lists" :key="idx">
-              <td class="mNone">{{ item.id }}</td>
-              <td class="txtL subject"><router-link :to="`notice/${item.id}`">{{ item.title }}</router-link></td>
-              <td>{{ formatDate(item.creDate) }}</td>
-            </tr>
-          </template>
+            <EmptyResult
+              :search-value="searchValue"
+              :search-result-length="searchResultLength"
+              :col-spans="5"
+            >
+              <template #notEmpty>
+                <tr v-for="(item, idx) in noticeList" :key="idx">
+                  <td class="mNone">{{ item.id }}</td>
+                  <td class="txtL subject">
+                    <router-link :to="`notice/${item.id}`">{{ item.title }}</router-link>
+                  </td>
+                  <td>{{ formatDate(item.creDate) }}</td>
+                </tr>
+              </template>
+            </EmptyResult>
           </tbody>
         </table>
       </div>
@@ -46,12 +52,11 @@
       <!-- bottomArea -->
       <div class="conBottomArea">
         <!-- paging -->
-        <template
-            v-if="lists.length > 0"
-        >
-          <paging v-model:propsCurrent="currentPage" :total-page="totalPage" @update:current="updateCurrent" />
-
-        </template>
+        <Pagination
+          :current-page="currentPage"
+          :total-pages="totalPages"
+          @change-page="changePage"
+        />
 
         <!--// paging -->
       </div>
@@ -61,103 +66,67 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue'
 // import { RouteLocationNormalized } from 'vue-router';
-import { getSearchVals } from '@/utils/search';
-import searchComponent from '@/components/search/search.vue';
-import paging from '@/components/board/pagination.vue';
-import sorting from '@/components/board/sort.vue';
-import { getNoticeList } from '@/api/notice';
+// Components
+import searchComponent from '@/components/search/search.vue'
+import Pagination from '@/components/board/pagination.vue'
+import Sort from '@/components/board/sort.vue'
+import EmptyResult from '@/components/search/emptyResult.vue'
 
-// Define TypeScript types
-interface NoticeItem {
-  id: number;
-  title: string;
-  creDate: string;
-}
-
-const noticeList = ref<NoticeItem[]>([]);
-const searchValue = ref<string>('');
-const searchResults = ref<NoticeItem[]>([]);
-const currentPage = ref<number>(1);
-const perPage = ref<number>(5);
-const sortBy = ref<string>('latest');
+// Composable  전달하기 위한 반응형 변수여서 미리선언 선언
+const noticeList = ref<NoticeItem[]>([])
 
 const fetchList = async () => {
   try {
-    const response = await getNoticeList();
-    noticeList.value = response.data;
+    const pageNumber = currentPage.value ?? 0
+    const searchString = searchValue.value ?? null
+    const response = await getNoticeList(pageNumber, currentSort.value, searchString)
+    noticeList.value = response.data?.content
+
+    getTotalPages.value = response.data.totalPages
+    currentPage.value = pageNumber
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-};
+}
 
-const allLists = computed(() => noticeList.value);
-const lists = computed(() => {
-  const filtered = searchResults.value.length > 0 ? searchResults.value : sortedLists.value;
-  const first = (currentPage.value - 1) * perPage.value;
-  const last = first + perPage.value;
-  return filtered.slice(first, last);
-});
+// Composable
+import { useFormatDate } from '@/composables/dateType'
+import { useSearch } from '@/composables/useSearch'
+import { useSort } from '@/composables/useSort'
+import { usePagination } from '@/composables/usePagination'
 
-const totalPage = computed(() => {
-  const count = searchResults.value.length > 0 ? searchResults.value.length : allLists.value.length;
-  return Math.ceil(count / perPage.value);
-});
+const { formatDate } = useFormatDate()
+const { currentPage, totalPages, getTotalPages, changePage, currentSort } = usePagination(fetchList)
+const { searchValue, searchResultLength, searchItem } = useSearch<NoticeItem>(
+  fetchList,
+  noticeList,
+  currentPage
+)
+const { changeSorting } = useSort(currentSort, fetchList)
+// config
+import { sortTypes_default } from '@/configs/sortTypes'
+// Api
+import { getNoticeList } from '@/api/notice'
 
-const formatDate = (value: string): string => {
-  const date = new Date(value);
-  return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
-};
+// Define TypeScript types
+interface NoticeItem {
+  id: number
+  title: string
+  creDate: string
+}
 
-const updateCurrent = (page: number) => {
-  currentPage.value = page;
-};
-
-const handleSorting = (sortOrder: string) => {
-  sortBy.value = sortOrder;
-  if (sortBy.value === 'latest') {
-    sortByLatest();
-  } else if (sortBy.value === 'oldest') {
-    sortByOldest();
-  }
-};
-
-const sortByLatest = () => {
-  if (searchResults.value.length > 0) {
-    searchResults.value.sort((a, b) => new Date(b.creDate).getTime() - new Date(a.creDate).getTime());
-  }
-};
-
-const sortByOldest = () => {
-  if (searchResults.value.length > 0) {
-    searchResults.value.sort((a, b) => new Date(a.creDate).getTime() - new Date(b.creDate).getTime());
-  }
-};
-
-const sortedLists = computed(() => {
-  const sorted = [...allLists.value];
-  if (sortBy.value === 'latest') {
-    return sorted.sort((a, b) => new Date(b.creDate).getTime() - new Date(a.creDate).getTime());
-  } else {
-    return sorted.sort((a, b) => new Date(a.creDate).getTime() - new Date(b.creDate).getTime());
-  }
-});
-
-const searchItem = () => {
-  const searchValues = getSearchVals({
-    searchValue: searchValue // inputs 객체에서 Ref를 넘겨줌
-  });
-  const searchVal = searchValues.searchValue as string;
-  console.log('searchVal', searchVal)
-  searchResults.value = allLists.value.filter((item: NoticeItem) =>
-      item.title.toLowerCase().includes(searchVal.toLowerCase())  // string 타입 단언 후 사용
-  );
-
-  currentPage.value = 1;
-};
+// sortType
+const sortItems = computed(() => {
+  return sortTypes_default.items
+})
+const sortDefault = computed(() => {
+  return sortTypes_default.default
+})
 
 onMounted(() => {
-  fetchList();
-});
+  currentSort.value = sortDefault.value
+  fetchList()
+})
 </script>

@@ -742,11 +742,11 @@
   }
   
   .aniFour {
-    animation-delay: 5s;
+    animation-delay: 3s;
   }
   
   .aniFive {
-    animation-delay: 6s;
+    animation-delay: 4s;
   }
   
   @keyframes aniOne {
@@ -1094,10 +1094,16 @@
   /* qna */
   
   .qnaTable {
-    > table > tbody > tr > {
+    > table > tbody > tr {
       th, td {
         padding: 33px 0;
         height: auto;
+        vertical-align: top;
+      }
+      &.answer {
+        th, td {
+          padding: 40px 0 60px;
+        }
       }
     }
   
@@ -1121,7 +1127,7 @@
         color: #191919;
   
         + button:not(.likeAnchor) {
-          margin-left: 10px;
+          margin-left: 16px;
         }
       }
     }
@@ -1182,12 +1188,16 @@
   .imgUpload {
     display: flex;
 
-  
+    .preview {
+      display: flex;
+    }
     .preview ul {
       display: flex;
       gap: 10px;
     }
-  
+    .preview ul + ul {
+      margin-left: 10px;
+    }
     input[type="file"] {
       width: 80px;
       height: 80px !important;
@@ -1297,7 +1307,7 @@
         }
   
         textarea {
-          padding: 18px 25px;
+          padding: 16px 25px;
           height: 300px;
           border: 1px solid #191919;
           font-size: 16px;
@@ -1310,10 +1320,9 @@
   .phone {
     display: flex;
     align-items: center;
-  
+    gap: 10px;
     span {
       display: inline-block;
-      min-width: 40px;
     }
   }
   
@@ -1503,10 +1512,22 @@
                 }
               }
             }
-  
+
             display: flex;
             position: relative;
             padding: 40px 10px 10px;
+
+            &.answer {
+              padding: 40px 10px 10px;
+
+              td {}
+              td:nth-child(4),
+              td:nth-child(5) {
+                //position: static;  // 위치 초기화
+                //inset: auto;
+
+              }
+            }
           }
         }
       }
@@ -1613,7 +1634,6 @@
     }
   
     .phone span {
-      min-width: 15px;
     }
   
     .inputTable > table > tbody > tr {
@@ -1796,7 +1816,10 @@
       font-weight: 600;
       color: #191919;
     }
-  
+    .active {
+      font-weight: 600;
+      color: #191919;
+    }
     .btnPrev, .btnNext {
       margin: 0 70px;
       width: 8px;
@@ -3493,4 +3516,11 @@
       object-fit: contain;
     }
   }
-  
+  .with-button {
+    display: flex;
+    gap: 10px;
+    button {
+      flex: 0 0 calc(27%); /* 27%의 너비를 고정 */
+      max-width: calc(27%); /* 최대 너비를 27%로 제한 */
+    }
+  }

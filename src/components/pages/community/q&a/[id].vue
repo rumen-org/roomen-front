@@ -1,22 +1,22 @@
 <template>
-  <tr v-if="props.content && props.adminName" class="bgGray answer">
+  <tr v-if="answer" class="bgGray answer">
     <td></td>
-    <td></td>
-    <td class="conDetail">{{ props.content }}</td>
-    <td>{{ props.adminName }}</td>
-    <td>{{ formatDate(props.answerDtm) }}</td>
+    <td  class="mNone"></td>
+    <td class="conDetail">{{ answer.content }}</td>
+    <td>{{ answer.author }}</td>
+    <td>{{ formatDate(answer.createdDate) }}</td>
   </tr>
 </template>
 
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
-interface AnswerComponentProps {
-  adminName: string; // 추가한 속성
-  answerDtm: string; // 추가한 속성
+interface propsType {
+  author: string;
+  createdDate: string;
   content: string;
 }
-const props = defineProps<AnswerComponentProps>();
+const props = defineProps<{ answer: propsType }>();
 const formatDate = (value: string) => {
   if (!value) {
     return '';

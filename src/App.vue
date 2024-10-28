@@ -1,12 +1,7 @@
-<script setup lang="ts">
-</script>
-
 <template>
   <component :is="$route.meta.layout || 'div'">
     <RouterView />
   </component>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,5 +1,9 @@
 <template>
-  <div id="header" ref="headerRef" :class="{ top:  getActiveSection === 0 && windowWidth >= 1161,on: isMenuOpen }">
+  <div
+    id="header"
+    ref="headerRef"
+    :class="{ top: getActiveSection === 0 && windowWidth >= 1161, on: isMenuOpen }"
+  >
     <!-- inner -->
     <div class="inner">
       <h1><router-link to="/">ROOMEN</router-link></h1>
@@ -9,10 +13,20 @@
             <template v-for="(route, index) in filteredRoutes" :key="index">
               <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
                 <template v-if="!route.children">
-                  <router-link :to="route.path ? route.path : ''" :class="route.children ? 'hasChild' : ''">{{ route.name }}</router-link>
+                  <router-link
+                    :to="route.path ? route.path : ''"
+                    :class="route.children ? 'hasChild' : ''"
+                    >{{ route.name }}</router-link
+                  >
                 </template>
                 <template v-else>
-                  <button type="button" @click.prevent="toggleBtnIdx(index)" :class="{'curr' : !closed[index]}">{{ route.name }}</button>
+                  <button
+                    type="button"
+                    :class="{ curr: !closed[index] }"
+                    @click.prevent="toggleBtnIdx(index)"
+                  >
+                    {{ route.name }}
+                  </button>
                 </template>
                 <!-- 2단계 메뉴 렌더링 -->
                 <ul v-if="route.children">
@@ -28,110 +42,121 @@
         </div>
         <div class="util">
           <template v-if="!isAuth">
-            <router-link :to="loginItem?.path" :class="loginItem?.meta?.class ? loginItem.meta.class : ''">{{ loginItem?.name }}</router-link>
+            <router-link
+              :to="loginItem?.path"
+              :class="loginItem?.meta?.class ? loginItem.meta.class : ''"
+              >{{ loginItem?.name }}</router-link
+            >
           </template>
-          <template
-              v-if="isAuth && cartItem && myPageItem"
-          >
-            <router-link :to="cartItem.path" :class="cartItem?.meta?.class ? cartItem.meta.class : ''">{{ cartItem?.name }}</router-link>
+          <template v-if="isAuth && cartItem && myPageItem">
+            <router-link
+              :to="cartItem.path"
+              :class="cartItem?.meta?.class ? cartItem.meta.class : ''"
+              >{{ cartItem?.name }}</router-link
+            >
             <LogOut />
-            <router-link :to="myPageItem.path" :class="myPageItem?.meta?.class ? myPageItem.meta.class : ''">{{ myPageItem?.name }}</router-link>
+            <router-link
+              :to="myPageItem.path"
+              :class="myPageItem?.meta?.class ? myPageItem.meta.class : ''"
+              >{{ myPageItem?.name }}</router-link
+            >
           </template>
         </div>
-            <Languages/>
-            <SnsList/>
+        <Languages />
+        <SnsList />
       </div>
-      <button type="button" class="btnMenu" @click="toggleMenu"><em><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em></button>
+      <button type="button" class="btnMenu" @click="toggleMenu">
+        <em
+          ><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em
+        >
+      </button>
     </div>
     <!--// inner -->
   </div>
 </template>
 <script setup lang="ts">
 import Languages from '@/components/common/lang.vue'
-import { useRoute } from "vue-router";
-const route = useRoute();
-import { useMainStore } from "@/stores/mainPage";
-import { useUserStore } from '@/stores/loginStores';
+import { useRoute } from 'vue-router'
+const route = useRoute()
+import { useMainStore } from '@/stores/mainPage'
+import { useUserStore } from '@/stores/loginStores'
 // const userStore = useUserStore();
-import { storeToRefs } from "pinia";
-import {watchEffect, ref, onMounted, watch, onBeforeUnmount, onBeforeMount, computed} from "vue";
+import { storeToRefs } from 'pinia'
+import { watchEffect, ref, onMounted, watch, onBeforeUnmount, onBeforeMount, computed } from 'vue'
 import LogOut from '@/components/common/logoutBtn.vue'
-import SnsList from "@/components/common/snsList.vue";
+import SnsList from '@/components/common/snsList.vue'
 
-const { isAuthenticated } = storeToRefs(useUserStore());
-const { getActiveSection } = storeToRefs(useMainStore());
+const { isAuthenticated } = storeToRefs(useUserStore())
+const { getActiveSection } = storeToRefs(useMainStore())
 
 const isAuth = computed(() => {
-  return isAuthenticated.value;
-});
+  return isAuthenticated.value
+})
 
-
-const windowWidth = ref<number>(0);
-const windowHeight = ref<number>(0);
-const headerRef = ref<HTMLElement | null>(null);
-const isMenuOpen = ref(false);
+const windowWidth = ref<number>(0)
+const windowHeight = ref<number>(0)
+const headerRef = ref<HTMLElement | null>(null)
+const isMenuOpen = ref(false)
 
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-  console.log('isMenuOpen',isMenuOpen.value)
-};
+  isMenuOpen.value = !isMenuOpen.value
+  console.log('isMenuOpen', isMenuOpen.value)
+}
 const handleResize = () => {
-  windowWidth.value = window.innerWidth;
-  windowHeight.value = window.innerHeight;
-};
-onBeforeMount(()=>{
-  window.addEventListener('resize', handleResize);
+  windowWidth.value = window.innerWidth
+  windowHeight.value = window.innerHeight
+}
+onBeforeMount(() => {
+  window.addEventListener('resize', handleResize)
 })
 onMounted(() => {
-  window.addEventListener('resize', handleResize);
+  window.addEventListener('resize', handleResize)
   if (window.innerWidth > 1160) {
-    console.log('onPc');
+    console.log('onPc')
   }
-  const userStore = useUserStore();
+  const userStore = useUserStore()
   if (userStore.isAuthenticated) {
-    userStore.checkTokenValidity();  // 페이지 로드 시 토큰 유효성 확인
+    userStore.checkTokenValidity() // 페이지 로드 시 토큰 유효성 확인
   }
-});
+})
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize);
+  window.removeEventListener('resize', handleResize)
 })
-watch(getActiveSection,(e)=> {
-  console.log('getActiveSection',e)
-},{
-  immediate: true
-})
+watch(
+  getActiveSection,
+  (e) => {
+    console.log('getActiveSection', e)
+  },
+  {
+    immediate: true
+  }
+)
 watchEffect(() => {
-  console.log('windowWidth',windowWidth.value)
-  windowWidth.value = window.innerWidth;
-  windowHeight.value = window.innerHeight;
-});
+  console.log('windowWidth', windowWidth.value)
+  windowWidth.value = window.innerWidth
+  windowHeight.value = window.innerHeight
+})
 // 2단계 깊이의 라우트만 필터링
-const filteredRoutes = route.matched[0].children
-    .filter(child => !child.meta?.notGnb);
-const utils = route.matched[0].children
-    .filter(child => child.meta?.utils)
-const loginItem = computed(()=>{
-  return utils.find(item=> item.path === '/login')
-
+const filteredRoutes = route.matched[0].children.filter((child) => !child.meta?.notGnb)
+const utils = route.matched[0].children.filter((child) => child.meta?.utils)
+const loginItem = computed(() => {
+  return utils.find((item) => item.path === '/login')
 })
-const cartItem = computed(()=>{
-  return utils.find(item=> item.path === '/cart')
+const cartItem = computed(() => {
+  return utils.find((item) => item.path === '/cart')
 })
-const myPageItem = computed(()=>{
-  return utils.find(item=> item.path === '/mypage')
+const myPageItem = computed(() => {
+  return utils.find((item) => item.path === '/mypage')
 })
-const closed = ref(Array(filteredRoutes.length).fill(true));
+const closed = ref(Array(filteredRoutes.length).fill(true))
 const toggleBtnIdx = (index: number) => {
   for (let i = 0; i < closed.value.length; i++) {
     if (i !== index) {
-      closed.value[i] = true;
+      closed.value[i] = true
     }
   }
-  closed.value[index] = !closed.value[index];
-};
-
+  closed.value[index] = !closed.value[index]
+}
 </script>
 
-
-<style scoped>
-</style>
+<style scoped></style>

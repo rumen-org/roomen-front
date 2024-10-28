@@ -7,12 +7,9 @@
   </div>
 </template>
 <script setup lang="ts">
-
 // const props = defineProps();
-const emits = defineEmits(['close']);
+const emits = defineEmits(['close'])
 const closePop = () => {
-  emits('close');
+  emits('close')
 }
-
-
 </script>

@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import NoticeDetailComponent from "@components/pages/community/notice/[item].vue";
+import NoticeDetailComponent from '@components/pages/community/notice/[item].vue'
 </script>

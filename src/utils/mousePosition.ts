@@ -15,6 +15,6 @@ export function useMouse() {
   return { x, y }
 }
 
-// 외부 사용시 - Utils(composable)의 기능을 컴포넌트에서 사용할 시 
+// 외부 사용시 - Utils(composable)의 기능을 컴포넌트에서 사용할 시
 // import { useMouse } from './mouse.js'
 // const { x, y } = useMouse()

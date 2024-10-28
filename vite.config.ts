@@ -6,10 +6,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    VueDevTools(),
-  ],
+  plugins: [vue(), VueDevTools()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -19,7 +16,7 @@ export default defineConfig({
       '@router': fileURLToPath(new URL('./src/router', import.meta.url)),
       '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
       '@locales': fileURLToPath(new URL('./src/locales', import.meta.url)),
-      '@views': fileURLToPath(new URL('./src/views', import.meta.url)),
+      '@views': fileURLToPath(new URL('./src/views', import.meta.url))
     }
   },
   server: {

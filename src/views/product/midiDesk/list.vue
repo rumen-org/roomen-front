@@ -1,7 +1,5 @@
-
 <template>
   <MidiDeskList />
-
 </template>
 
 <script setup lang="ts">

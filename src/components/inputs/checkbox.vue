@@ -2,13 +2,13 @@
   <div :class="props.inputStyle">
     <div v-for="(checkbox, index) in props.checkboxes" :key="index">
       <input
-          type="checkbox"
-          :id="checkbox.value"
-          :name="props.checkboxName"
-          :value="checkbox.value"
-          :checked="isChecked(checkbox.value)"
-          :required="props.required"
-          @change="handleChange(checkbox.value, $event.target.checked)"
+        :id="checkbox.value"
+        type="checkbox"
+        :name="props.checkboxName"
+        :value="checkbox.value"
+        :checked="isChecked(checkbox.value)"
+        :required="props.required"
+        @change="handleChange(checkbox.value, $event.target.checked)"
       />
       <label :for="checkbox.value" :class="props.labelStyle">{{ checkbox.label }}</label>
     </div>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { InputCheckboxModel } from '@/type/input'
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const props = withDefaults(defineProps<InputCheckboxModel>(), {
   value: () => ref([]),
@@ -25,19 +25,19 @@ const props = withDefaults(defineProps<InputCheckboxModel>(), {
   required: false,
   inputStyle: '',
   checkboxName: '',
-  checkboxes: () => ref([]),
-});
+  checkboxes: () => ref([])
+})
 
-const emit = defineEmits(['update:value']);
+const emit = defineEmits(['update:value'])
 
 const isChecked = (value: string) => {
-  return props.value?.value.includes(value);
-};
+  return props.value?.value.includes(value)
+}
 
 const handleChange = (value: string, checked: boolean) => {
   const newValue = checked
-      ? [...props.value.value, value]
-      : props.value.value.filter((item: string) => item !== value);
-  emit('update:value', newValue);
-};
+    ? [...props.value.value, value]
+    : props.value.value.filter((item: string) => item !== value)
+  emit('update:value', newValue)
+}
 </script>
