@@ -49,7 +49,8 @@ export const useUserStore = defineStore('user', {
         console.log('로그인 성공:', response)
       } catch (error) {
         console.error('로그인 실패:', error)
-        throw new Error(error?.stack?.response?.data?.error)
+        // throw new Error(error?.stack?.response?.data?.error)
+        throw new Error(error as string)
       }
     },
     logout() {

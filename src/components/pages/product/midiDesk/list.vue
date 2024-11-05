@@ -4,52 +4,46 @@
     <div class="contents">
       <!-- conTopArea -->
       <div class="conTopArea">
-        <div class="sorting">
-          <ul>
-            <li class="curr"><button type="button">신상품 순</button></li>
-            <li><button type="button">낮은가격 순</button></li>
-            <li><button type="button">높은가격 순</button></li>
-          </ul>
-        </div>
+        <Sort :items="sortItems" @update:value="changeSorting" />
         <h2>MIDI DESK</h2>
-        <div class="srchArea">
-          <input type="text" title="검색" />
-          <button type="button" class="srchBtn"><span class="hide">검색하기</span></button>
-        </div>
+        <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
       <!--// conTopArea -->
       <!-- productList -->
       <div class="productList">
-        <router-link
-          v-for="(item, index) in products"
-          :key="index"
-          :to="`midiDesk/${item.id}`"
-          class="product"
-        >
-          <p><img :src="`http://localhost:8080/files/${item.imgPath}`" alt="상품 섬네일" /></p>
-          <div>
-            <strong class="tit">{{ item.name }}</strong>
-            <p class="subTit">{{ item.subTitle }}</p>
-            <p class="price">
-              <span>₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span>
-              <del>₩ {{ formatPrice(item.price) }}원</del>
-            </p>
-          </div>
-        </router-link>
+        <EmptyResult :search-value="searchValue" :search-result-length="searchResultLength">
+          <template #notEmpty2>
+            <router-link
+              v-for="(item, index) in productList"
+              :key="index"
+              :to="`midiDesk/${item.id}`"
+              class="product"
+            >
+              <p><img :src="`http://localhost:8080/files/${item.imgPath}`" alt="상품 섬네일" /></p>
+              <div>
+                <strong
+                  v-dompurify-html="highlightText(item.name, searchValue)"
+                  class="tit"
+                ></strong>
+                <p class="subTit">{{ item.subTitle }}</p>
+                <p class="price">
+                  <span>₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span>
+                  <del>₩ {{ formatPrice(item.price) }}원</del>
+                </p>
+              </div>
+            </router-link>
+          </template>
+        </EmptyResult>
       </div>
       <!--// productList -->
       <!-- bottomArea -->
       <div class="conBottomArea">
         <!-- paging -->
-        <div class="paging">
-          <a href="" class="btnPrev disabled">이전 페이지</a>
-          <strong>1</strong>
-          <a href="">2</a>
-          <a href="">3</a>
-          <a href="">4</a>
-          <a href="">5</a>
-          <a href="" class="btnNext">다음 페이지</a>
-        </div>
+        <Pagination
+          :current-page="currentPage"
+          :total-pages="totalPages"
+          @change-page="changePage"
+        />
         <!--// paging -->
       </div>
       <!--// conBottomArea -->
@@ -59,9 +53,43 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { getCategoryProductList } from '@/api/products'
+
+const productList = ref<ProductsType[]>([])
+const fetchList = async () => {
+  try {
+    const page = currentPage.value ?? 0
+    const searchText = searchValue.value ?? null
+    const response = await getCategoryProductList('', page, currentSort.value, searchText)
+    console.log(response.data, 'fdf')
+    productList.value = response.data.content
+    getTotalPages.value = response.data.totalPages
+    currentPage.value = page
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// Composable
 import { getOriginPrice, formatPrice } from '@/composables/calculate'
+import { useSearch } from '@/composables/useSearch'
+import { useSort } from '@/composables/useSort'
+import { usePagination } from '@/composables/usePagination'
+const { currentPage, totalPages, getTotalPages, changePage, currentSort } = usePagination(fetchList)
+const { searchValue, searchResultLength, searchItem, highlightText } = useSearch<ProductsType>(
+  fetchList,
+  productList,
+  currentPage
+)
+const { changeSorting } = useSort(currentSort, fetchList)
+// config
+import { sortType_product, sortTypes_default } from '@/configs/sortTypes'
+// Components
+import searchComponent from '@/components/search/search.vue'
+import Pagination from '@/components/board/pagination.vue'
+import Sort from '@/components/board/sort.vue'
+import EmptyResult from '@/components/search/emptyResultType2.vue'
 interface ProductsType {
   id: number
   name: string
@@ -76,20 +104,16 @@ interface ProductsType {
   content: string
   inStock: boolean
   images: string[]
+  releaseDate: Date
 }
-
-const products = ref<ProductsType[]>([])
-const fetchCategoryList = async () => {
-  try {
-    const response = await getCategoryProductList('mididesk')
-    console.log(response.data, 'fdf')
-    products.value = response.data
-  } catch (error) {
-    console.error(error)
-  }
-}
-
+const sortItems = computed(() => {
+  return sortType_product.items
+})
+const sortDefault = computed(() => {
+  return sortTypes_default.default
+})
 onMounted(() => {
-  fetchCategoryList()
+  currentSort.value = sortDefault.value
+  fetchList()
 })
 </script>

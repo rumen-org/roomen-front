@@ -7,10 +7,10 @@ export const sortTypes_default = {
 }
 export const sortType_product = {
   items: [
-    { sortValue: 'new', sortLabel: '신상품 순' },
-    { sortValue: 'highPrice', sortLabel: '신상품 순' },
-    { sortValue: 'lowPrice', sortLabel: '신상품 순' }
+    { sortValue: 'releaseDate', sortLabel: '신상품 순' },
+    { sortValue: 'priceAsc', sortLabel: '낮은가격 순' },
+    { sortValue: 'priceDesc', sortLabel: '높은가격 순' }
   ],
-  default: 'new'
+  default: 'releaseDate'
 }
 // 신상품순 : newArrivals, 구상품순?: oldestFirst

@@ -3,6 +3,14 @@ import { useUserStore } from '@/stores/loginStores'
 const BaseURL = 'http://localhost:8080/api'
 const userStore = useUserStore()
 
+// Types
+import {
+  FindId,
+  FindPw,
+  type duplicateParams,
+  type RegisterAll
+} from '@/models/interfaces/Accounts'
+
 // 내 계정 정보조회
 export function getMyInformation() {
   return axios.get(`${BaseURL}/account/info`, {
@@ -12,6 +20,15 @@ export function getMyInformation() {
     }
   })
 }
+// 회원가입
+export function onRegistor(params: RegisterAll) {
+  return axios.post(`${BaseURL}/account/register`, params, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
 // 계정 정보 수정
 export function updateInformation(userData: any) {
   return axios.put(`${BaseURL}/account/update`, userData, {
@@ -42,17 +59,32 @@ export function updateAccountPassword(passwords: any) {
 // 회원가입
 
 // 아이디, 이메일 중복체크
-export function duplicateCheck(memberId: string | null, email: string | null) {
+export function duplicateCheck(p: duplicateParams) {
   let params
-  if (memberId === null || email === undefined) {
-    params = null
-    return
-  } else {
-    params = `?memberId=${memberId ?? ''}&email=${email ?? ''}`
+  if (p.memberId !== null && p.email !== null) {
+    params = `?memberId=${p.memberId}&email=${p.email}`
+  } else if (p.memberId !== null || p.email !== null) {
+    params = `?memberId=${p.memberId ?? ''}&email=${p.email ?? ''}`
   }
   return axios.get(`${BaseURL}/account/duplicate-check${params}`, {
     headers: {
-      Authorization: `Bearer ${userStore.token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+// 아이디 찾기
+export function findMemberId(params: FindId) {
+  return axios.post(`${BaseURL}/account/findId`, params, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+// 비밀번호 찾기
+export function findMemberPw(params: FindPw) {
+  return axios.post(`${BaseURL}/account/findPw`, params, {
+    headers: {
       'Content-Type': 'application/json'
     }
   })

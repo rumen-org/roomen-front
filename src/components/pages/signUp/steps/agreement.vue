@@ -11,7 +11,6 @@
         >
       </span>
     </div>
-    {{ checkedList }}
     <div v-for="(item, idx) in termsList" :key="idx" class="terms">
       <h3>{{ item.head }}</h3>
       <PerfectScrollbar class="scrollArea">
@@ -20,22 +19,27 @@
         </div>
       </PerfectScrollbar>
       <div :class="item.checkBox.length === 2 ? 'flex right mBlock' : ''" class="txtR">
-        <template v-for="item2 in item.checkBox" v-if="item.checkBox.length === 1">
-          <span>
-            {{ item2.subtitle }}
-          </span>
-          <span class="checkbox">
-            <input :id="item2.id" v-model="checkedList" type="checkbox" :value="item2.id" />
-            <label for="chk0102">{{ item2.label }}</label>
-          </span>
+        <template v-if="item.checkBox.length === 1">
+          <template v-for="item2 in item.checkBox" :key="item2">
+            <span>
+              {{ item2.subtitle }}
+            </span>
+            <span class="checkbox">
+              <input :id="item2.id" v-model="checkedList" type="checkbox" :value="item2.id" />
+              <label for="chk0102">{{ item2.label }}</label>
+            </span>
+          </template>
         </template>
-        <div v-for="(item3, idx3) in item.checkBox" v-if="item.checkBox.length === 2" :key="idx3">
-          <span>{{ item3.subtitle }}</span>
-          <span class="checkbox">
-            <input :id="item3.id" v-model="checkedList" type="checkbox" :value="item3.id" />
-            <label for="chk0105">{{ item3.label }}</label>
-          </span>
-        </div>
+
+        <template v-if="item.checkBox.length === 2">
+          <div v-for="(item3, idx3) in item.checkBox" :key="idx3">
+            <span>{{ item3.subtitle }}</span>
+            <span class="checkbox">
+              <input :id="item3.id" v-model="checkedList" type="checkbox" :value="item3.id" />
+              <label for="chk0105">{{ item3.label }}</label>
+            </span>
+          </div>
+        </template>
       </div>
     </div>
     <!-- checkboxWrap -->
@@ -60,7 +64,7 @@ const { showConfirm } = useConfirm()
 // Stores
 import { storeToRefs } from 'pinia'
 import { useSignUpStore } from '@/stores/signUp'
-const { isSmsAgree, isThirdPartyAgree, isEmailAgree } = storeToRefs(useSignUpStore())
+const { step1 } = storeToRefs(useSignUpStore())
 // Config
 import { terms } from '@/configs/member'
 
@@ -88,24 +92,28 @@ const requireAgree = computed<boolean>(() => {
 })
 // 다음
 const sendPage = () => {
+  step1.value.isThirdPartyAgree = checkedList.value.includes('isThirdPartyAgree')
+  step1.value.isSmsAgree = checkedList.value.includes('sms')
+  step1.value.isEmailAgree = checkedList.value.includes('email')
+  step1.value.isEmailVerified = true
   // agreement, privacy, sms, thirdParty, email
-  checkedList.value.forEach((item) => {
-    if (item === 'isThirdPartyAgree') isThirdPartyAgree.value = Boolean(item)
-    if (item === 'sms') isSmsAgree.value = Boolean(item)
-    if (item === 'email') isEmailAgree.value = Boolean(item)
-  })
+  // checkedList.value.forEach(item => {
+  //   if (item === 'isThirdPartyAgree') isThirdPartyAgree.value = Boolean(item)
+  //   if (item === 'sms') isSmsAgree.value = Boolean(item)
+  //   if (item === 'email') isEmailAgree.value = Boolean(item)
+  // })
   emits('update')
 }
 // 전체선택
 const allCheck = computed<boolean>({
   get: () => {
     // 모든 체크박스가 선택되어 있는지 확인
-    return checkedList.value.length === termsList.value.flatMap((item) => item.checkBox).length
+    return checkedList.value.length === termsList.value.flatMap(item => item.checkBox).length
   },
-  set: (value) => {
+  set: value => {
     if (value) {
       // 전체 선택
-      checkedList.value = termsList.value.flatMap((item) => item.checkBox.map((cb) => cb.id))
+      checkedList.value = termsList.value.flatMap(item => item.checkBox.map(cb => cb.id))
     } else {
       // 전체 선택 해제
       checkedList.value = []

@@ -49,7 +49,7 @@ const changeValue = (e: string) => {
   } else if (e === '+') {
     state.value++
   }
-  return emit('update', { i: props.index, q: state.value })
+  return emit('update', { i: props.index as number, q: state.value as number })
 }
 const removeItem = () => {
   emit('deleteItem', props.index)

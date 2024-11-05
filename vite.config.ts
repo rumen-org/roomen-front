@@ -7,6 +7,13 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), VueDevTools()],
+  build: {
+    rollupOptions: {
+      output: {
+        // 필요 없는 파일을 제거하거나 조정 가능
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

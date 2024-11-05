@@ -11,18 +11,21 @@ interface BucketItems {
   productId: string
   imgUrl: string
 }
+
 export const useBucketStore = defineStore({
   id: 'bucket',
   state: () => ({
-    items: [] as BucketItems[]
+    items: JSON.parse(localStorage.getItem('buckets') || '[]') as BucketItems[]
   }),
   getters: {
     getItems(state): BucketItems[] {
       return state.items
     },
     getPrice(state): number {
-      // return state.items ? state.items.totalPrice : 0;
-      return state.items.reduce((total: number, item: BucketItems) => total + item.totalPrice, 0)
+      return state.items.reduce(
+        (total: number, item: BucketItems) => total + item.totalPrice * item.quantity,
+        0
+      )
     },
     totalItems(state): number {
       return state.items.length
@@ -31,20 +34,28 @@ export const useBucketStore = defineStore({
   actions: {
     setItems(newItem: BucketItems) {
       this.items.push(newItem)
-      // this.activeValue = section;
+      this.equalToStorage()
     },
     removeItems(id: number) {
-      this.items = this.items.filter((item) => item.id !== id)
+      this.items = this.items.filter(item => item.id !== id)
+      this.equalToStorage()
     },
     setItemQuantity(id: number, quantity: number) {
-      const item = this.items.find((item) => item.id === id)
+      const item = this.items.find(item => item.id === id)
       if (item) {
         item.quantity = quantity
-        // item.totalPrice = item.totalPrice * quantity;
+        this.equalToStorage()
       }
     },
     clearAllItems() {
       this.items = []
+      localStorage.removeItem('buckets')
+    },
+    equalToStorage() {
+      localStorage.setItem('buckets', JSON.stringify(this.items))
+    },
+    loadItemsFromStorage() {
+      this.items = JSON.parse(localStorage.getItem('buckets') || '[]')
     }
   }
 })

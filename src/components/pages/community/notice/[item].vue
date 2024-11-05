@@ -14,7 +14,7 @@
         <!-- top -->
         <div class="top txtC">
           <h3>{{ sameItem?.title }}</h3>
-          <p>{{ formatDate(sameItem?.creDate) }}</p>
+          <p v-if="sameItem?.creDate !== undefined">{{ formatDate(sameItem?.creDate) }}</p>
         </div>
         <!--// top -->
         <!-- con -->
@@ -29,12 +29,17 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { type RouteParamValue, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 // import BreakText from '@/components/text/Break.vue';
+interface NoticeDetails {
+  title: string
+  creDate: string
+  content: string
+}
 
 import backButton from '@/components/button/backButton.vue'
 import { getNoticeDetail } from '@/api/notice'
-const noticeDetail = ref<any>(null)
+const noticeDetail = ref<NoticeDetails | null>(null)
 
 const params = useRoute().params?.item
 const sameItem = computed(() => noticeDetail.value)
@@ -44,10 +49,13 @@ import { useFormatDate } from '@/composables/dateType'
 const { formatDate } = useFormatDate()
 
 onMounted(() => {
-  fetchDetail(params) // 바로 params.value 사용
+  if (params) {
+    const toNum = Number(params)
+    fetchDetail(toNum)
+  }
 })
 
-const fetchDetail = async (p: string | RouteParamValue[] | undefined) => {
+const fetchDetail = async (p: number) => {
   try {
     const responseDetail = await getNoticeDetail(p)
     noticeDetail.value = responseDetail.data

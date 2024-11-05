@@ -4,15 +4,15 @@ import { reactive } from 'vue'
 type ConfirmState = {
   message: string
   isVisible: boolean
-  onConfirm: (() => void) | null
-  onCancel: (() => void) | null
+  onConfirm: () => void
+  onCancel: () => void
 }
 
 const confirmState = reactive<ConfirmState>({
   message: '',
   isVisible: false,
-  onConfirm: null,
-  onCancel: null
+  onConfirm: () => {},
+  onCancel: () => {}
 })
 
 export function useConfirm() {
@@ -32,8 +32,8 @@ export function useConfirm() {
   function closeConfirm() {
     confirmState.isVisible = false
     confirmState.message = ''
-    confirmState.onConfirm = null
-    confirmState.onCancel = null
+    confirmState.onConfirm = () => {}
+    confirmState.onCancel = () => {}
   }
 
   return { confirmState, showConfirm, closeConfirm }

@@ -3,7 +3,7 @@
     <div class="contents">
       <!-- conTopArea -->
       <div class="conTopArea">
-        <h2>SIGNUP</h2>
+        <h2 v-if="currentStep !== 2">SIGNUP</h2>
       </div>
       <h3 v-if="currentStep === 0" class="step1_tit">&#91;약관동의&#93;</h3>
 

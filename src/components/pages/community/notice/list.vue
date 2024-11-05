@@ -39,7 +39,9 @@
                 <tr v-for="(item, idx) in noticeList" :key="idx">
                   <td class="mNone">{{ item.id }}</td>
                   <td class="txtL subject">
-                    <router-link :to="`notice/${item.id}`">{{ item.title }}</router-link>
+                    <router-link :to="`notice/${item.id}`">
+                      <span v-dompurify-html="highlightText(item.title, searchValue)"></span>
+                    </router-link>
                   </td>
                   <td>{{ formatDate(item.creDate) }}</td>
                 </tr>
@@ -99,7 +101,7 @@ import { usePagination } from '@/composables/usePagination'
 
 const { formatDate } = useFormatDate()
 const { currentPage, totalPages, getTotalPages, changePage, currentSort } = usePagination(fetchList)
-const { searchValue, searchResultLength, searchItem } = useSearch<NoticeItem>(
+const { searchValue, searchResultLength, searchItem, highlightText } = useSearch<NoticeItem>(
   fetchList,
   noticeList,
   currentPage

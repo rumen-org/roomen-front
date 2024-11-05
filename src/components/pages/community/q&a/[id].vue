@@ -1,5 +1,5 @@
 <template>
-  <tr v-if="answer" class="bgGray answer">
+  <tr v-if="props.answer" class="bgGray answer">
     <td></td>
     <td class="mNone"></td>
     <td class="conDetail">{{ answer.content }}</td>

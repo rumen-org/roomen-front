@@ -5,10 +5,7 @@
       <div class="conTopArea">
         <div></div>
         <h2>GALLERY</h2>
-        <div class="srchArea">
-          <input type="text" title="검색" />
-          <button type="button" class="srchBtn"><span class="hide">검색하기</span></button>
-        </div>
+        <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
       <!--// conTopArea -->
       <!-- galleryList -->
@@ -26,7 +23,7 @@
                   alt="갤러리 게시판 - 섬네일 이미지"
                 />
               </p>
-              <span>{{ item.title }}</span>
+              <span v-dompurify-html="highlightText(item.title, searchValue)"></span>
               <template v-if="isShowModal">
                 <layerPop @close="initItem">
                   <template #body>
@@ -82,15 +79,37 @@
   </div>
 </template>
 <script setup lang="ts">
+// Components
 import layerPop from '@/components/teleport/LayerPopup.vue'
+import searchComponent from '@/components/search/search.vue'
+
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, EffectFade } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'
 import 'swiper/swiper-bundle.css'
+
+const lists = ref<GalleryItem[]>([])
+const items = ref<GalleryItem | null>(null)
+const fetchList = async () => {
+  try {
+    const data = await getGalleryList(searchValue.value)
+    lists.value = data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+// Composables
 import { useModal } from '@/composables/modalLayer'
 import { onMounted, ref } from 'vue'
 const { isShowModal, closeModal, callModal } = useModal()
-
+import { useSearch } from '@/composables/useSearch'
+import { usePagination } from '@/composables/usePagination'
+const { currentPage } = usePagination(fetchList)
+const { highlightText, searchValue, searchItem } = useSearch<GalleryItem>(
+  fetchList,
+  lists,
+  currentPage
+)
 import { getGalleryList, getGalleryItem } from '@/api/gallery'
 
 const modalSwiper = ref<SwiperInstance | null>(null)
@@ -102,17 +121,6 @@ interface GalleryItem {
   imageUrls: string[]
   thumbImg: string
   displayDate: string
-}
-
-const lists = ref<GalleryItem[]>([])
-const items = ref<GalleryItem | null>(null)
-const getFetchList = async () => {
-  try {
-    const data = await getGalleryList()
-    lists.value = data.data
-  } catch (error) {
-    console.error(error)
-  }
 }
 const getItem = async (id: number) => {
   try {
@@ -131,6 +139,6 @@ const initItem = () => {
   closeModal()
 }
 onMounted(() => {
-  getFetchList()
+  fetchList()
 })
 </script>

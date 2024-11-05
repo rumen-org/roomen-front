@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "esnext",
     "useDefineForClassFields": true,
-    "module": "ESNext",
+    "module": "esnext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     // Ts 프로젝트에서 JS CommonJS 모듈 임포트 가능하게 수정
     "allowSyntheticDefaultImports": true,
-  
-  // 모듈 번들러 - 20240322 한준희
-//  "moduleResolution": "Bundler",
     "moduleResolution": "Node",
 //  "allowImportingTsExtensions": true,
   "resolveJsonModule": true,
   "isolatedModules": true,
-//  "noEmit": true,
+  "noEmit": true,
   "jsx": "preserve",
 
   // 린트 - 20240322 한준희
@@ -29,6 +26,10 @@
     "@/*": ["src/*"],
     "@assets/*": ["src/assets/*"],
     "@components/*": ["src/components/*"],
+    "@composable/*": ["src/composables/*"],
+    "@configs/*": ["src/configs/*"],
+    "@layouts/*": ["src/layouts/*"],
+    "@api/*": ["src/api/*"],
     "@stores/*": ["src/stores/*"],
     "@utils/*": ["src/utils/*"],
     "@router/*": ["src/router/*"],

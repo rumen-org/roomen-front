@@ -1,9 +1,90 @@
-export const useValidate = () => {
-  // 숫자만 입력되는지 확인하는 함수
-  const validateNumericInput = (value: string) => {
-    return value.replace(/[^0-9]/g, '') // 숫자 외의 모든 문자를 제거
+import { ref } from 'vue'
+
+export function useValidate() {
+  const errors = ref<Record<string, string>>({})
+  const validateEmpty = (event: FocusEvent, fieldName: string): boolean => {
+    const target = event.target as HTMLInputElement
+    const isEmpty = target.value.trim() === ''
+    setError(fieldName, !isEmpty, `${fieldName} 값을 입력해주세요.`)
+    return !isEmpty
   }
+
+  const validateKoreanName = (event: FocusEvent): boolean => {
+    const target = event.target as HTMLInputElement
+    const nameRegex = /^[가-힣]{2,6}$/
+    const isValid = nameRegex.test(target.value)
+    setError('name', isValid, '이름은 2~6자의 한글로 입력해주세요.')
+    return isValid
+  }
+
+  const validateEmail = (event: FocusEvent): boolean => {
+    const target = event.target as HTMLInputElement
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    const isValid =
+      emailRegex.test(target.value) && target.value.length >= 5 && target.value.length <= 254
+    setError('email', isValid, '유효한 이메일 주소를 입력해주세요.')
+    return isValid
+  }
+
+  const validatePassword = (event: FocusEvent): boolean => {
+    const target = event.target as HTMLInputElement
+    const value = target.value
+    const hasUpperCase = /[A-Z]/.test(value) ? 1 : 0
+    const hasLowerCase = /[a-z]/.test(value) ? 1 : 0
+    const hasNumbers = /[0-9]/.test(value) ? 1 : 0
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value) ? 1 : 0
+    const isLengthValid = value.length >= 8 && value.length <= 16
+
+    const isValid = isLengthValid && hasUpperCase + hasLowerCase + hasNumbers + hasSpecialChar >= 2
+    setError(
+      'password',
+      isValid,
+      '비밀번호는 8~16자 이내로 영문, 숫자, 특수문자 조합이 포함되어야 합니다.'
+    )
+    return isValid
+  }
+
+  // 숫자만
+  const validateNumericInput = (event: KeyboardEvent): void => {
+    const key = event.key
+    const targets = event?.target as HTMLInputElement
+    const isNumber = /^[0-9]$/.test(key)
+    const allowedKeys = [
+      'Backspace',
+      'Tab',
+      'Delete',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowUp',
+      'ArrowDown',
+      'Enter'
+    ]
+    console.log('numbericLength', targets?.value.length)
+    if (!isNumber && !allowedKeys.includes(key)) {
+      event.preventDefault() // 숫자가 아닌 키 입력 방지
+    }
+  }
+  // 아이디
+  const validateId = (event: FocusEvent): boolean => {
+    const target = event.target as HTMLInputElement
+    const idRegex = /^[a-z0-9]{6,12}$/
+    const isValid = idRegex.test(target.value)
+    setError('id', isValid, '아이디는 영문 소문자와 숫자 6~12자여야 합니다.')
+    return isValid
+  }
+
+  const setError = (field: string, isValid: boolean, message: string) => {
+    errors.value[field] = isValid ? '' : message
+  }
+
   return {
-    validateNumericInput
+    errors,
+    validateKoreanName,
+    validateEmail,
+    validatePassword,
+    validateNumericInput,
+    validateId,
+    setError,
+    validateEmpty
   }
 }

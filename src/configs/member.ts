@@ -74,3 +74,18 @@ export const terms = [
     ]
   }
 ]
+export const findById = {
+  title: '아이디 찾기',
+  desc: `고객님의 아이디 찾기가 완료 되었습니다.\n
+  가입된 아이디가 총 {text1} 개 있습니다.`,
+  content: [{ top: '아이디' }, { bottom: '가입일' }],
+  buttons: [
+    { name: '로그인', value: '/login' },
+    { name: '비밀번호 찾기', value: '/login/findPW' }
+  ]
+}
+export const findByPw = {
+  title: '비밀번호 찾기',
+  content: `{text1} 회원님, 임시 비밀번호를 휴대전화. {text2} {text3}으로 보내드렸습니다.`,
+  buttons: [{ name: '로그인', value: '/login' }]
+}

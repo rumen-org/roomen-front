@@ -1,63 +1,48 @@
 import { defineStore } from 'pinia'
-
-interface SignUpState {
-  // Step 1 데이터
-  isThirdPartyAgree: boolean
-  isEmailAgree: boolean
-  isSmsAgree: boolean
-  isEmailVerified: boolean
-
-  // Step 2 데이터
-  memberId: string
-  name: string
-  phone: string
-  address: string
-  email: string
-  password: string
-  role: string
-}
-
+import { RegisterStep1, RegisterStep2, type SignUpParams } from '@/models/interfaces/Accounts'
 export const useSignUpStore = defineStore('signUp', {
   // State 정의
-  state: (): SignUpState => ({
-    isThirdPartyAgree: false,
-    isEmailAgree: false,
-    isSmsAgree: false,
-    isEmailVerified: false,
-    memberId: '',
-    name: '',
-    phone: '',
-    address: '',
-    email: '',
-    password: '',
-    role: ''
+  state: () => ({
+    step1: {
+      isThirdPartyAgree: false,
+      isEmailAgree: false,
+      isSmsAgree: false,
+      isEmailVerified: false
+    } as RegisterStep1,
+    step2: {
+      memberId: '',
+      name: '',
+      phone: '',
+      email: '',
+      password: '',
+      role: ''
+    } as RegisterStep2
   }),
 
   // Getters (옵션)
   getters: {
-    // 전체 스텝 데이터 반환
-    getSignUpData: (state): SignUpState => state
+    getAllData(state) {
+      return state
+    }
   },
-
   // Actions 정의
   actions: {
-    // Step 1 데이터 설정
-    setStep1(step1Data: Partial<SignUpState>) {
-      Object.assign(this, step1Data)
-    },
-
-    // Step 2 데이터 설정
-    setStep2(step2Data: Partial<SignUpState>) {
-      Object.assign(this, step2Data)
+    // Step 데이터 설정
+    setSteps(params: SignUpParams) {
+      // step1과 step2의 데이터를 각각 업데이트
+      this.step1 = { ...this.step1, ...params.step1 }
+      this.step2 = { ...this.step2, ...params.step2 }
     },
 
     // 모든 스텝 초기화
     clearStepAll() {
-      Object.assign(this, {
+      this.step1 = {
         isThirdPartyAgree: false,
         isEmailAgree: false,
         isSmsAgree: false,
-        isEmailVerified: false,
+        isEmailVerified: false
+      } as RegisterStep1
+      this.step2 = {
         memberId: '',
         name: '',
         phone: '',
@@ -65,7 +50,7 @@ export const useSignUpStore = defineStore('signUp', {
         email: '',
         password: '',
         role: ''
-      })
+      } as RegisterStep2
     }
   }
 })

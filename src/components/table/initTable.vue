@@ -1,76 +1,138 @@
 <template>
-  <div>
-    <table>
+  <div v-if="props?.tblData">
+    <table :class="tblData.class">
       <caption>
         {{
-          tblData.tit
+          tblData.title
         }}
       </caption>
       <colgroup>
         <col
-          v-for="(item, index) in tblData.colGroups.col"
+          v-for="(item, index) in defaultColGroup"
           :key="index"
-          :style="{ width: item.width + 'px' }"
+          :span="item.span"
+          :style="item.style ? { width: item.style } : {}"
           :class="item.className"
         />
       </colgroup>
+
       <thead>
-        <tr v-for="(trItem, idx) in tblData.tHead" :key="idx">
-          <slot v-if="trItem.th">
-            <th>{{ trItem.th.con.text }}</th>
-          </slot>
-          <slot v-if="trItem.td">
-            <td>{{ trItem.td.con.text }}</td>
-          </slot>
+        <tr>
+          <template v-for="(head, headIdx) in defaultTHead">
+            <th v-if="head.type === 'th'" :key="headIdx" :class="head.class" :scope="head.scope">
+              {{ head.text }}
+            </th>
+            <td v-if="head.type === 'td'" :key="headIdx" :class="head.class">
+              {{ head.text }}
+            </td>
+          </template>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="(trItem, idx) in tblData.tBody" :key="idx">
-          <slot v-if="trItem.th">
-            <th>{{ trItem.th.con.text }}</th>
-          </slot>
-          <slot v-if="trItem.td">
-            <td>{{ trItem.td.con.text }}</td>
-          </slot>
-        </tr>
+
+      <tbody v-if="defaultTBody">
+        <template v-if="props.tblData.tBody?.tr && defaultTBody.length">
+          <tr v-for="(trItem, idx) in defaultTBody" :key="idx">
+            <th
+              v-if="trItem && trItem.type === 'th'"
+              :key="idx"
+              :colspan="trItem.cSpan"
+              :rowspan="trItem.rSpan"
+              :class="trItem.class"
+            >
+              {{ trItem.text }}
+            </th>
+            <td
+              v-if="trItem.type === 'td'"
+              :key="idx"
+              :colspan="trItem.cSpan"
+              :rowspan="trItem.rSpan"
+              :class="trItem.class"
+            >
+              {{ trItem.text }}
+            </td>
+          </tr>
+        </template>
+        <slot v-else name="tableBody"></slot>
       </tbody>
     </table>
   </div>
 </template>
+
 <script setup lang="ts">
-const tblData = {
-  tit: '테이블1',
+interface ColGroup {
+  style?: string
+  span?: number
+  className?: string
+}
+
+interface THeadItem {
+  type?: 'th' | 'td'
+  text: string
+  cSpan?: number
+  rSpan?: number
+  class?: string
+  scope?: 'col' | 'row'
+}
+
+interface TBodyItem {
+  type: 'th' | 'td'
+  text: string
+  cSpan?: number
+  rSpan?: number
+  class?: string
+}
+
+interface TableData {
+  title: string
+  class: string
   colGroups: {
-    col: [{ width: '', className: '' }]
-  },
-  tHead: {
-    tr: {
-      th: {
-        con: [{ text: '', img: '', btn: '', btn_fn: '' }],
-        options: { cSpan: '1', rSpan: '', pd: '' },
-        style: { style: '' }
-      },
-      td: {
-        con: [{ text: '', img: '', btn: '', btn_fn: '' }],
-        options: { cSpan: '1', rSpan: '', pd: '' },
-        style: { style: '' }
-      }
-    }
-  },
-  tBody: {
-    tr: {
-      th: {
-        con: [{ text: '', img: '', btn: '', btn_fn: '' }],
-        options: { cSpan: '1', rSpan: '', pd: '' },
-        style: { style: '' }
-      },
-      td: {
-        con: [{ text: '', img: '', btn: '', btn_fn: '' }],
-        // btn_fn은 URL 또는 사용에 필요한 기능으로 구현 변경 가능하게 동적 값 적용예정
-        options: { cSpan: '1', rSpan: '', pd: '' },
-        style: { style: '' }
-      }
-    }
+    col: ColGroup[]
+  }
+  tHead: THeadItem[]
+  tBody?: {
+    tr?: TBodyItem[]
   }
 }
+
+// Props 정의 및 기본값 설정
+const props = defineProps<{
+  tblData: TableData
+}>()
+
+// 기본값 적용 로직
+const defaultColGroup = props.tblData.colGroups.col.map(col => ({
+  ...col,
+  span: col.span ?? 1
+}))
+
+const defaultTHead = props.tblData.tHead.map(head => ({
+  ...head,
+  cSpan: head.cSpan ?? 1,
+  rSpan: head.rSpan ?? 1,
+  scope: head.scope ?? 'col'
+}))
+
+const defaultTBody: TBodyItem[] =
+  props.tblData.tBody?.tr?.map(body => ({
+    ...body,
+    cSpan: body.cSpan ?? 1,
+    rSpan: body.rSpan ?? 1
+  })) ?? []
+// const tblData = {
+//   title: '테이블1',
+//   class: '',
+//   colGroups: {
+//     col: [{ style: '100px', span: 1, className: 'col-class-1' }]
+//   },
+//   tHead: [
+//     { type: 'th', text: '헤더1', cSpan: 1, rSpan: '', class: '' },
+//     { type: 'th', text: '헤더1', cSpan: 1, rSpan: '', class: '' }
+//   ],
+//   tBody: {
+//     tr: [
+//       { type: 'td', text: '헤더1', cSpan: 1, rSpan: '', class: '' },
+//       { type: 'td', text: '헤더1', cSpan: 1, rSpan: '', class: '' }
+//     ]
+//   }
+// }
 </script>

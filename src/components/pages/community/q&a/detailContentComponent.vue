@@ -7,7 +7,6 @@
         </p>
       </li>
     </ul>
-    {{ content }}
     <p>{{ content?.content }}</p>
     <div class="img">
       <div v-if="isOwner && content">

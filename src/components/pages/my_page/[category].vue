@@ -6,7 +6,7 @@
       <div v-if="category !== 'addShipAddress'" class="conTopArea">
         <tab />
         <searchComponent
-          v-if="category === 'orders'"
+          v-if="category === 'PurchaseHistory'"
           v-model:searchValue="searchValue"
           @search="searchItem"
         />
@@ -29,7 +29,7 @@ import Tab from '@/components/unUsual/mypage/tab.vue'
 import searchComponent from '@/components/search/search.vue'
 
 // 동적 컴포넌트
-import Orders from '@/components/pages/my_page/subDirectory/orders.vue'
+import PurchaseHistory from '@/components/pages/my_page/subDirectory/purchaseHistory.vue'
 import ShipAddress from '@/components/pages/my_page/subDirectory/address/shipAdress.vue'
 import MemberInfo from '@/components/pages/my_page/subDirectory/memberInfo.vue'
 import ChangePassword from '@/components/pages/my_page/subDirectory/changePassword.vue'
@@ -42,11 +42,11 @@ const category = route.params.category as string
 
 // 현재 페이지
 const current = computed(() => {
-  return componentsMap[category] ?? Orders
+  return componentsMap[category] ?? PurchaseHistory
 })
 
 const componentsMap: Record<string, unknown> = {
-  orders: Orders,
+  purchaseHistory: PurchaseHistory,
   shipAddress: ShipAddress,
   addShipAddress: WriteAddress,
   memberInfo: MemberInfo,
@@ -61,14 +61,14 @@ const searchItem = () => {
 }
 
 const currentProps = computed(() => {
-  if (current.value === Orders) {
+  if (current.value === PurchaseHistory) {
     return { searchValue: searchValue.value } // searchValue를 자식에 전달
   }
   return {}
 })
 
 const currentEmits = computed(() => {
-  if (current.value === Orders) {
+  if (current.value === PurchaseHistory) {
     return {
       'update:searchValue': (val: string) => {
         searchValue.value = val

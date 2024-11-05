@@ -202,7 +202,7 @@ const modifyQna = async () => {
 
 // 현재 추가 된 파일들 상태관리
 const computeFiles = computed(() => {
-  return datas.files.map((file) => ({
+  return datas.files.map(file => ({
     name: file.name,
     size: file.size,
     url: URL.createObjectURL(file)
@@ -218,10 +218,10 @@ const formData = computed((): FormData => {
   formDatas.append('content', datas.content)
   formDatas.append('secret', datas.secret ? 'true' : 'false')
   formDatas.append('password', datas.password || '')
-  datas.imagesToDelete.forEach((img) => {
+  datas.imagesToDelete.forEach(img => {
     formDatas.append('imagesToDelete', img)
   })
-  datas.files.forEach((file) => {
+  datas.files.forEach(file => {
     formDatas.append('images', file)
   })
   return formDatas
@@ -235,8 +235,7 @@ const addFile = (event: Event) => {
     const newFiles = Array.from(target.files)
     // 파일 중복 업로드 체크
     const uniqeFiles = newFiles.filter(
-      (newFile) =>
-        !datas.files.some((file) => file.name === newFile.name && file.size === newFile.size)
+      newFile => !datas.files.some(file => file.name === newFile.name && file.size === newFile.size)
     )
     // 기존의 file들과 중복되지 않은 새로운 파일을 모두 추가하여 새롭게 정의
     datas.files = [...datas.files, ...uniqeFiles]
@@ -282,7 +281,7 @@ li.pos-rel {
   inset: 0 0 auto auto;
   width: 24px;
   height: 24px;
-  background-image: url('src/assets/images/delete-file.png');
+  background-image: url('/src/assets/images/delete-file.png');
   background-repeat: no-repeat;
   background-size: cover;
 }

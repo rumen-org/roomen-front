@@ -19,11 +19,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/main/index.vue'),
         meta: { layout: FullPageLayout, notGnb: true }
       },
-      // {
-      //   path: '/:item',
-      //   name: 'Main-Item',
-      //   component: () => import('@/views/main/[item].vue')
-      // },
       {
         path: '/about',
         name: 'ABOUT ROOMEN',
@@ -118,15 +113,27 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Q&A_modify',
                 path: '/modify/:id',
                 component: () => import('@/views/community/q&a/modify/[id].vue')
-              },
-              {
-                path: ':id',
-                name: 'Q&AItem',
-                component: () => import('@/views/community/q&a/[id].vue')
               }
+              // {
+              //   path: ':id',
+              //   name: 'Q&AItem',
+              //   component: () => import('@/views/community/q&a/[id].vue')
+              // }
             ]
           }
         ]
+      },
+      {
+        name: 'Order',
+        path: '/order',
+        component: () => import('@/views/order/index.vue'),
+        meta: { layout: DefaultLayout, notGnb: true }
+      },
+      {
+        path: '/order/complete',
+        name: 'OrderComplete',
+        component: () => import('@/views/order/complete.vue'),
+        meta: { layout: DefaultLayout, notGnb: true, utils: false, class: 'OrderComplete' }
       },
       {
         path: '/login',
@@ -148,6 +155,11 @@ const routes: Array<RouteRecordRaw> = [
             path: '/login/findPW',
             name: 'findPW',
             component: () => import('@/views/login/findPw/index.vue')
+          },
+          {
+            path: '/login/result',
+            name: 'findResult',
+            component: () => import('@/views/login/result/index.vue')
           }
         ]
       },
@@ -210,11 +222,13 @@ router.beforeEach((to, from, next) => {
     '/mypage/:category',
     '/mypage/shipAddress',
     '/mypage/addShipAddress',
-    '/mypage/orders',
+    '/mypage/purchaseHistory',
     '/mypage/memberInfo',
-    '/mypage/changePassword'
+    '/mypage/changePassword',
+    '/order',
+    '/order/complete'
   ]
-  const guestRoutes = ['/login', '/login/findId', '/login/findPW', '/signup']
+  const guestRoutes = ['/login', '/login/findID', '/login/findPW', '/signup']
 
   if (requiresAuth.includes(to.path) && !isAuthenticated.value) {
     alert('로그인이 필요한 기능입니다.')
@@ -227,8 +241,6 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
-
-  next()
 })
 
 export default router

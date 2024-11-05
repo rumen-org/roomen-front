@@ -24,7 +24,7 @@ const goTo = (path: string) => {
 }
 
 const tabData = [
-  { value: 'orders', label: '주문내역' },
+  { value: 'purchaseHistory', label: '주문내역' },
   { value: 'shipAddress', label: '배송지 관리' },
   { value: 'memberInfo', label: '회원정보 수정' },
   { value: 'changePassword', label: '비밀번호 변경' }

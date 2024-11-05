@@ -49,14 +49,14 @@
                         class="likeAnchor"
                         @click.prevent="toggleDetail(item)"
                       >
-                        {{ item.title }}
+                        <span v-dompurify-html="highlightText(item.title, searchValue)"></span>
                         <span v-if="item.hasReply" class="tag">답변완료</span>
                       </button>
                       <!-- 비밀번호 입력 필드 -->
                       <transition-group tag="div" class="sliding-content">
                         <passwordComponents
                           v-if="requiresPasswordInput(item) && !isPrivateVisible"
-                          :on-submit="(pw) => fetchContent(item.id, pw)"
+                          @submit="pw => fetchContent(item.id, pw)"
                         />
                         <!-- 게시물 컨텐츠 -->
                         <ContentDisplay
@@ -150,13 +150,13 @@ const fetchList = async () => {
     qnaList.value = response.data.content
     getTotalPages.value = response.data.totalPages
     currentPage.value = pageNumber
-  } catch (error: any) {
+  } catch (error) {
     console.error(error)
   }
 }
 const { formatDate } = useFormatDate()
 const { currentPage, totalPages, getTotalPages, changePage, currentSort } = usePagination(fetchList)
-const { searchValue, searchResultLength, searchItem } = useSearch<QnAList>(
+const { searchValue, searchResultLength, searchItem, highlightText } = useSearch<QnAList>(
   fetchList,
   qnaList,
   currentPage

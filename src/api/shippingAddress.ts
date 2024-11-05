@@ -19,6 +19,14 @@ export function getAllShippingAddressesByMemberId(memberId: number) {
     }
   })
 }
+// 기본 배송지 조회
+export function getMyDefaultAddress() {
+  return axios.get(`${BaseURL}/shipAddresses/default`, {
+    headers: {
+      Authorization: `Bearer ${userStore.token}`
+    }
+  })
+}
 
 export function getShipAddressById(id: number) {
   return axios.get(`${BaseURL}/shipAddresses/${id}`, {

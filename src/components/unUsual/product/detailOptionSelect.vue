@@ -37,7 +37,7 @@ const onInit = () => {
 
 const fetchInit = () => {
   if (props.selector.options.length > 0) {
-    const temp = props.selector.options.find((option) => option.value === '')
+    const temp = props.selector.options.find(option => option.value === '')
     if (temp) {
       selectedValue.value = props.selector.options[0].value
       // isInit.value = false;

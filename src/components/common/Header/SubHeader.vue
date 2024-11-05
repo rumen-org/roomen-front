@@ -2,7 +2,7 @@
   <div
     id="header"
     ref="headerRef"
-    :class="{ top: !isMobile && routePath == '/about', on: isMenuOpen }"
+    :class="{ top: windowWidth < 1161 || routePath === '/about', on: isMenuOpen }"
   >
     <!-- inner -->
     <div class="inner">
@@ -10,29 +10,40 @@
       <div class="gnb" :style="{ right: isMenuOpen ? '0' : '-100%' }">
         <div class="menu">
           <ul>
-            <template v-for="(route, index) in filteredRoutes" :key="index">
-              <li v-if="!route.meta?.notGnb" :class="route.meta?.class ? route.meta.class : ''">
-                <template v-if="!route.children">
+            <template v-for="(filteredRoute, index) in filteredRoutes" :key="index">
+              <li
+                v-if="!filteredRoute.meta?.notGnb"
+                :class="filteredRoute.meta?.class ? filteredRoute.meta?.class : ''"
+              >
+                <template v-if="!filteredRoute.children">
                   <router-link
-                    :to="route.path ? route.path : ''"
-                    :class="route.children ? 'hasChild' : ''"
-                    >{{ route.name }}</router-link
+                    :to="filteredRoute.path ? filteredRoute.path : ''"
+                    :class="filteredRoute.children ? 'hasChild' : ''"
+                    @click="mobileToggleMenu('single')"
+                    >{{ filteredRoute.name }}</router-link
                   >
                 </template>
                 <template v-else>
                   <button
                     type="button"
-                    :class="{ curr: !closed[index] }"
+                    :class="{
+                      curr: !closed[index]
+                    }"
                     @click.prevent="toggleBtnIdx(index)"
                   >
-                    {{ route.name }}
+                    {{ filteredRoute.name }}
                   </button>
                 </template>
                 <!-- 2단계 메뉴 렌더링 -->
-                <ul v-if="route.children">
-                  <template v-for="(childRoute, childIndex) in route.children" :key="childIndex">
-                    <li v-if="!childRoute.meta?.notGnb">
-                      <router-link :to="childRoute.path">{{ childRoute.name }}</router-link>
+                <ul v-if="filteredRoute.children">
+                  <template
+                    v-for="(childRoute, childIndex) in filteredRoute.children"
+                    :key="childIndex"
+                  >
+                    <li v-if="!childRoute.meta?.notGnb" :key="childIndex">
+                      <router-link :to="childRoute.path" @click="mobileToggleMenu">{{
+                        childRoute.name
+                      }}</router-link>
                     </li>
                   </template>
                 </ul>
@@ -41,25 +52,29 @@
           </ul>
         </div>
         <div class="util">
-          <!--          notGnb: true, utils: true-->
-          <!--          <template v-for="(util, idx) in utils" :key="idx"><router-link :to="util.path" :class="util?.meta?.class ? util.meta.class : ''">{{util.name}}</router-link></template>-->
-          <template v-if="!isAuth">
+          <template v-if="!isAuth && loginItem?.name">
             <router-link
-              :to="loginItem.path"
-              :class="loginItem?.meta?.class ? loginItem.meta.class : ''"
+              :to="loginItem?.path || '/'"
+              :class="[
+                route.path.includes(loginItem.name as string) ? 'nav-active' : '',
+                loginItem?.meta?.class ? loginItem.meta.class : ''
+              ]"
+              @click="mobileToggleMenu('single')"
               >{{ loginItem?.name }}</router-link
             >
           </template>
           <template v-if="isAuth">
             <router-link
-              :to="cartItem.path"
+              :to="cartItem?.path || '/'"
               :class="cartItem?.meta?.class ? cartItem.meta.class : ''"
+              @click="mobileToggleMenu('single')"
               >{{ cartItem?.name }}</router-link
             >
             <LogOut />
             <router-link
-              :to="myPageItem.path"
+              :to="myPageItem?.path || '/'"
               :class="myPageItem?.meta?.class ? myPageItem.meta.class : ''"
+              @click="mobileToggleMenu('single')"
               >{{ myPageItem?.name }}</router-link
             >
           </template>
@@ -77,59 +92,65 @@
   </div>
 </template>
 <script setup lang="ts">
+// Components
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import LogOut from '@/components/common/logoutBtn.vue'
 import Languages from '@/components/common/lang.vue'
 import SnsList from '@/components/common/snsList.vue'
+// Route
 import { useRoute } from 'vue-router'
 const route = useRoute()
+const routePath = computed(() => {
+  return route.path
+})
+// Composable
 import { useUserStore } from '@/stores/loginStores'
 import { storeToRefs } from 'pinia'
-import { ref, onMounted, onBeforeUnmount, computed, onBeforeMount } from 'vue'
-import LogOut from '@/components/common/logoutBtn.vue'
 
+// Auth
 const { isAuthenticated } = storeToRefs(useUserStore())
 const isAuth = computed(() => {
   return isAuthenticated.value
 })
-const routePath = computed(() => {
-  return route.path
-})
-const isMobile = ref<boolean>(window.innerWidth < 1161)
+
+const windowWidth = ref<number>(0)
+const isMobile = ref<boolean>(false)
+
+const handleResize = () => {
+  windowWidth.value = window.innerWidth
+  if (windowWidth.value < 1161) {
+    isMobile.value = true
+  } else if (windowWidth.value > 1160) {
+    isMobile.value = false
+  }
+}
 const headerRef = ref<HTMLElement | null>(null)
 const isMenuOpen = ref(false)
 // const windowWidth = ref<number>(window.innerWidth);
-
+const mobileToggleMenu = (p?: string | null) => {
+  if (p === 'single') {
+    closed.value = Array(filteredRoutes.length).fill(true)
+  }
+  if (windowWidth.value < 1161) {
+    toggleMenu()
+  }
+}
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
   console.log('isMenuOpen', isMenuOpen.value)
 }
-const handleResize = () => {
-  isMobile.value = window.innerWidth < 1161
-}
-
-onMounted(() => {
-  window.addEventListener('resize', handleResize)
-  if (window.innerWidth > 1160) {
-    console.log('onPc')
-  }
-})
-onBeforeMount(() => {
-  window.addEventListener('resize', handleResize)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize)
-})
 
 // 2단계 깊이의 라우트만 필터링
-const filteredRoutes = route.matched[0].children.filter((child) => !child.meta?.notGnb)
-const utils = route.matched[0].children.filter((child) => child.meta?.utils)
+const filteredRoutes = route.matched[0].children.filter(child => !child.meta?.notGnb)
+const utils = route.matched[0].children.filter(child => child.meta?.utils)
 const loginItem = computed(() => {
-  return utils.find((item) => item.path === '/login')
+  return utils.find(item => item.path === '/login')
 })
 const cartItem = computed(() => {
-  return utils.find((item) => item.path === '/cart')
+  return utils.find(item => item.path === '/cart')
 })
 const myPageItem = computed(() => {
-  return utils.find((item) => item.path === '/mypage')
+  return utils.find(item => item.path === '/mypage')
 })
 const closed = ref(Array(filteredRoutes.length).fill(true))
 const toggleBtnIdx = (index: number) => {
@@ -146,6 +167,11 @@ onMounted(() => {
   if (userStore.isAuthenticated) {
     userStore.checkTokenValidity() // 페이지 로드 시 토큰 유효성 확인
   }
+  handleResize()
+  window.addEventListener('resize', handleResize)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 

@@ -8,7 +8,17 @@ interface PostcodeData {
   autoRoadAddress?: string // 자동 완성된 도로명 주소 (선택적)
   autoJibunAddress?: string // 자동 완성된 지번 주소 (선택적)
 }
-
+interface DaumPostcode {
+  open: () => void
+}
+interface Daum {
+  Postcode: new (options: { oncomplete: (data: PostcodeData) => void }) => DaumPostcode
+}
+declare global {
+  interface Window {
+    daum?: Daum
+  }
+}
 export function useAddress() {
   const postcode = ref<string>('')
   const roadAddress = ref<string>('')
@@ -17,6 +27,7 @@ export function useAddress() {
   const extraAddress = ref<string>('')
   const guideText = ref<string>('')
   const isScriptLoaded = ref<boolean>(false)
+  const stateChanged = ref<boolean>(false)
 
   // Daum Postcode 스크립트 로드
   const loadDaumPostcodeScript = () => {
@@ -30,14 +41,15 @@ export function useAddress() {
 
   // 주소 찾기 실행
   const execDaumPostcode = () => {
-    if ((window as any).daum?.Postcode) {
-      new (window as any).daum.Postcode({
+    if (window.daum?.Postcode) {
+      new window.daum.Postcode({
         oncomplete: (data: PostcodeData) => {
           postcode.value = data.zonecode
           roadAddress.value = data.roadAddress
           jibunAddress.value = data.jibunAddress
           extraAddress.value = data.buildingName ? ` (${data.buildingName})` : ''
           guideText.value = data.autoRoadAddress ? `지번 주소: ${data.autoJibunAddress}` : ''
+          stateChanged.value = true
         }
       }).open()
     } else {
@@ -55,6 +67,7 @@ export function useAddress() {
     extraAddress,
     guideText,
     isScriptLoaded,
+    stateChanged,
     execDaumPostcode
   }
 }
