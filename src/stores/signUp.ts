@@ -15,7 +15,8 @@ export const useSignUpStore = defineStore('signUp', {
       phone: '',
       email: '',
       password: '',
-      role: ''
+      role: '',
+      verificationCode: 0
     } as RegisterStep2
   }),
 
@@ -49,7 +50,8 @@ export const useSignUpStore = defineStore('signUp', {
         address: '',
         email: '',
         password: '',
-        role: ''
+        role: '',
+        verificationCode: 0
       } as RegisterStep2
     }
   }

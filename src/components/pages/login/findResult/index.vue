@@ -10,16 +10,17 @@
         <div v-if="isState === 'resultById'" class="txtC">
           <p>
             고객님의 찾기가 완료되었습니다.<br />
-            가입된 아이디가 총 <em>1</em>개 있습니다.
+            가입된 아이디가 총 <em>{{ resultFindId.count }}</em
+            >개 있습니다.
           </p>
-          <div>
+          <div v-for="(account, index) in resultFindId.account" :key="index" class="resultIdState">
             <dl>
               <dt>아이디</dt>
-              <dd>{{ getResultId.MaskedId }}</dd>
+              <dd>{{ account.MaskedIds }}</dd>
             </dl>
             <dl>
               <dt>가입일</dt>
-              <dd>{{ formatDate(getResultId.createdAt) }}</dd>
+              <dd>{{ formatDate(account.CreatedAt) }}</dd>
             </dl>
           </div>
         </div>
@@ -63,7 +64,7 @@ import { storeToRefs } from 'pinia'
 import { computed, onUnmounted } from 'vue'
 import { findById, findByPw } from '@/configs/member'
 const { clearIdItem } = useFindAccountStore()
-const { getResultId, getResultPw, isState } = storeToRefs(useFindAccountStore())
+const { resultFindId, getResultPw, isState } = storeToRefs(useFindAccountStore())
 import { useRouter } from 'vue-router'
 const router = useRouter()
 // Composable
@@ -83,3 +84,8 @@ const transWord = (p: string) => {
 
 onUnmounted(clearIdItem)
 </script>
+<style scoped>
+.resultIdState + .resultIdState {
+  border-top: none;
+}
+</style>

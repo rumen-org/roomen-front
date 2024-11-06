@@ -14,16 +14,17 @@
           <th scope="row">
             아이디 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red  inputChck2': errors.password }">
+          <td :class="{ 'red inputChck2': errors.id || stateDuplicateId }">
             <input
               v-model="step2Data.memberId"
               type="text"
               title="아이디"
-              @blur="[validateEmpty($event, 'email'), validateId($event)]"
+              autocomplete="one-time-code"
+              @blur="[validateEmpty($event, 'id'), validateId($event)]"
               @input="checkDuplicated"
             />
-            <span>{{ stateDuplicateId }}</span>
-            <span v-if="errors.id" class="error">{{ errors.id }}</span>
+            <span v-if="stateDuplicateId" class="error">이미 존재하는 아이디 입니다.</span>
+            <span v-if="errors.id && !stateDuplicateId" class="error">{{ errors.id }}</span>
             <!--            <span v-if="stateDuplicateId">존재하는 아이디 입니다.</span>-->
           </td>
         </tr>
@@ -36,8 +37,10 @@
               v-model="step2Data.password"
               type="password"
               title="비밀번호"
-              placeholder="(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8-16자)"
-              @blur="[validateEmpty($event, 'email'), validatePassword($event)]"
+              :placeholder="
+                !errors.password ? `(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8-16자)` : ''
+              "
+              @blur="[validateEmpty($event, 'password'), validatePassword($event)]"
             />
             <span v-if="errors.password" class="error">{{ errors.password }}</span>
           </td>
@@ -46,13 +49,12 @@
           <th scope="row">
             비밀번호 확인 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.password }">
+          <td :class="{ 'red inputChck2': !observeChecked && confirmPassword !== '' }">
             <input v-model="confirmPassword" type="password" title="비밀번호 확인" />
+            <span v-if="!observeChecked && confirmPassword !== ''" class="error"
+              >비밀번호가 일치하지 않습니다!</span
+            >
           </td>
-        </tr>
-        <tr>
-          <th></th>
-          <td>{{ observeChecked }}</td>
         </tr>
         <tr>
           <th scope="row">
@@ -63,7 +65,9 @@
               v-model="step2Data.name"
               type="text"
               title="이름"
-              @blur="[validateEmpty($event, 'email'), validateKoreanName($event)]"
+              maxlength="6"
+              :placeholder="!errors.name ? `(한글, 2-6자)` : ''"
+              @blur="[validateEmpty($event, 'name'), validateKoreanName($event)]"
             />
             <span v-if="errors.name" class="error">{{ errors.name }}</span>
           </td>
@@ -104,19 +108,28 @@
                 />
               </div>
               <button :disabled="!correctPhone" class="btn blockBtn" @click="submitAuthNumber">
-                인증요청
+                {{ !reAuthPhone ? '인증요청' : '재요청' }}
               </button>
             </div>
           </td>
         </tr>
         <tr v-if="isAuthRequired">
           <th scope="row">
-            휴대전화 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            인증번호 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
           </th>
           <td>
             <div class="with-button pos-rel">
-              <input type="text" title="인증번호" placeholder="인증번호를 입력해주세요." />
-              <button class="btn blockBtn">확인</button>
+              <input
+                v-model="step2Data.verificationCode"
+                type="text"
+                title="인증번호"
+                placeholder="인증번호를 입력해주세요."
+                minlength="6"
+                maxlength="6"
+              />
+              <button class="btn blockBtn" :disabled="isChecked" @click="checkAuthCode">
+                확인
+              </button>
               <em class="timer">{{ transToMinutes(seconds) }}</em>
             </div>
           </td>
@@ -125,7 +138,7 @@
           <th scope="row">
             이메일 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.email }">
+          <td :class="{ 'red inputChck2': errors.email || stateDuplicateEmail }">
             <input
               v-model="step2Data.email"
               type="text"
@@ -133,7 +146,9 @@
               @blur="[validateEmpty($event, 'email'), validateEmail($event)]"
               @input="checkDuplicated"
             />
-            <span v-if="errors.email" class="error">{{ errors.email }}</span>
+            <span v-if="errors.email && !stateDuplicateEmail" class="error">{{
+              errors.email
+            }}</span>
             <span v-if="stateDuplicateEmail" class="error red">존재하는 이메일 입니다.</span>
           </td>
         </tr>
@@ -149,11 +164,12 @@
 <script lang="ts" setup>
 import { type duplicateParams, type RegisterStep2 } from '@/models/interfaces/Accounts'
 
-import { computed, reactive, type Ref, ref } from 'vue'
+import { computed, onUnmounted, reactive, type Ref, ref } from 'vue'
 
 // Stores
 import { storeToRefs } from 'pinia'
 import { useSignUpStore } from '@/stores/signUp'
+const { clearStepAll } = useSignUpStore()
 const { step1, step2 } = storeToRefs(useSignUpStore())
 // Config
 import { mobileFrontNumber } from '@/configs/selectOptions'
@@ -168,7 +184,7 @@ const emits = defineEmits(['update'])
 
 // Composable
 import { useValidate } from '@/composables/useValidate'
-import { duplicateCheck, onRegistor } from '@/api/account'
+import { authPhoneNumber, duplicateCheck, onRegistor } from '@/api/account'
 const {
   errors,
   validateEmail,
@@ -184,7 +200,8 @@ const step2Data = reactive<RegisterStep2>({
   phone: '',
   email: '',
   password: '',
-  role: 'Customer'
+  role: 'Customer',
+  verificationCode: null
 })
 
 const confirmPassword = ref<string>('')
@@ -243,23 +260,39 @@ const handleBackspace = (index: number) => {
     inputRefs[index - 1].value?.focus()
   }
 }
+// 인증 카운트
 const seconds = ref<number>(179)
+// setInterval Id
+let intervalId: ReturnType<typeof setInterval> | null = null
+
 const countTimer = () => {
-  setInterval(() => {
+  intervalId = setInterval(() => {
     if (seconds.value > 0) {
       seconds.value--
+    } else {
+      stopTimer()
     }
   }, 1000) // 1초마다
+}
+const stopTimer = () => {
+  if (intervalId !== null) {
+    clearInterval(intervalId)
+    intervalId = null
+  }
 }
 
 const transToMinutes = (total: number) => {
   const minutes = Math.floor(total / 60)
   const seconds = total % 60
-  return `${minutes}:${seconds}`
+  const displaySec: string = seconds < 10 ? `0${seconds}` : `${seconds}`
+
+  return `${minutes}:${displaySec}`
 }
 const submitAuthNumber = () => {
   isAuthRequired.value = true
+  seconds.value = 179
   countTimer()
+  authPhone()
 }
 const bindValue = () => {
   step2.value.memberId = step2Data.memberId
@@ -268,6 +301,7 @@ const bindValue = () => {
   step2.value.password = step2Data.password
   step2.value.role = 'Customer'
   step2.value.email = step2Data.email
+  step2.value.verificationCode = Number(step2Data.verificationCode)
 }
 const AllData = {
   isThirdPartyAgree: step1.value.isThirdPartyAgree,
@@ -292,6 +326,38 @@ const handleRegistor = async () => {
     console.error(error)
   }
 }
+const authPhone = async () => {
+  bindValue()
+  const numbers = step2.value.phone
+  try {
+    const response = await authPhoneNumber(numbers)
+    reAuthPhone.value = true
+    console.log('response', response)
+  } catch (error) {
+    console.error(error)
+  }
+}
+const reAuthPhone = ref<boolean>(false)
+const isChecked = ref<boolean>(false)
+const checkAuthCode = async () => {
+  bindValue()
+  const numbers = step2.value.phone
+  const code = String(step2Data.verificationCode)
+  try {
+    const response = await authPhoneNumber(numbers, code)
+    console.log('response', response.data)
+    const isMatched = response.data.matched
+    console.log('isMatched', isMatched)
+    if (isMatched === true) {
+      isChecked.value = true
+      console.log('isChecked.value', isChecked.value, isMatched)
+      stopTimer()
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+onUnmounted(clearStepAll)
 </script>
 <style scoped>
 .pos-rel {

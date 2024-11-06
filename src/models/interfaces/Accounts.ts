@@ -13,9 +13,14 @@ export interface FindPw {
   value: string
 }
 // 계정 정보찾기 요청
+export interface MaskedAccount {
+  MaskedIds: string
+  CreatedAt: string // Date 객체로 변환할 수 있습니다.
+}
+
 export interface CallFIndId {
-  MaskedId: string
-  createdAt: string
+  count: number
+  account: MaskedAccount[]
 }
 export interface CallFIndPw {
   memberId: string
@@ -41,6 +46,7 @@ export interface RegisterStep2 {
   email: string
   password: string
   role: string
+  verificationCode: number | null
 }
 export interface RegisterAll {
   isThirdPartyAgree: boolean
@@ -53,6 +59,7 @@ export interface RegisterAll {
   email: string
   password: string
   role: string
+  // verificationCode: number
 }
 export interface DuplicateCheckType {
   memberIdExists: boolean

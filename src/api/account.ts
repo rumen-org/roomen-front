@@ -20,6 +20,18 @@ export function getMyInformation() {
     }
   })
 }
+// 휴대전화번호 인증 - phone, verificationCode
+export function authPhoneNumber(phone: string, code?: string | null) {
+  let data
+  if (code === undefined || code === null) data = { phone } // phone을 JSON 객체로 만듬
+  if (code !== undefined && code !== null) data = { phone, verificationCode: code }
+  return axios.post(`${BaseURL}/account/verify-phone`, data, {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+}
+
 // 회원가입
 export function onRegistor(params: RegisterAll) {
   return axios.post(`${BaseURL}/account/register`, params, {

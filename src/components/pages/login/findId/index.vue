@@ -142,8 +142,8 @@ const fetchData = async () => {
     getValue()
     console.log(params, ' params')
     const response = await findMemberId(params)
-    console.log(response, 'response')
-    setFindIdResult(response.data)
+    const { count, account } = response.data
+    setFindIdResult({ count, account })
     await router.push('/login/result') // 결과 페이지로 이동
   } catch (error) {
     console.error(error)

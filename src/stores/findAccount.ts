@@ -1,12 +1,12 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { CallFIndId, CallFIndPw } from '@/models/interfaces/Accounts'
+import { CallFIndId, CallFIndPw, MaskedAccount } from '@/models/interfaces/Accounts'
 export const useFindAccountStore = defineStore({
   id: 'findAccount',
   state: () => ({
     isState: '',
     resultFindId: {
-      MaskedId: '',
-      createdAt: ''
+      count: 0,
+      account: [] as MaskedAccount[]
     },
     resultFindPw: {
       memberId: '',
@@ -16,17 +16,18 @@ export const useFindAccountStore = defineStore({
     }
   }),
   getters: {
-    getResultId(state) {
+    getResultId(state): CallFIndId {
       return state.resultFindId
     },
-    getResultPw(state) {
+    getResultPw(state): CallFIndPw {
       return state.resultFindPw
     }
   },
   actions: {
     setFindIdResult(item: CallFIndId) {
       this.isState = 'resultById'
-      this.resultFindId = item
+      this.resultFindId.count = item.count
+      this.resultFindId.account = item.account
     },
     setFindPwResult(item: CallFIndPw) {
       this.isState = 'resultByPw'
@@ -34,7 +35,7 @@ export const useFindAccountStore = defineStore({
     },
     clearIdItem() {
       this.isState = ''
-      this.resultFindId = { MaskedId: '', createdAt: '' }
+      this.resultFindId = { count: 0, account: [] } // 초기화
       this.resultFindPw = { memberId: '', contact: '', type: '', value: '' }
     }
   }
