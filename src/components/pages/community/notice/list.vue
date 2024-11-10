@@ -75,7 +75,8 @@ import searchComponent from '@/components/search/search.vue'
 import Pagination from '@/components/board/pagination.vue'
 import Sort from '@/components/board/sort.vue'
 import EmptyResult from '@/components/search/emptyResult.vue'
-
+// Models
+import { NoticeItem } from '@/models/interfaces/Notice'
 // Composable  전달하기 위한 반응형 변수여서 미리선언 선언
 const noticeList = ref<NoticeItem[]>([])
 
@@ -94,7 +95,7 @@ const fetchList = async () => {
 }
 
 // Composable
-import { useFormatDate } from '@/composables/dateType'
+import { useFormatDate } from '@/composables/useDateType'
 import { useSearch } from '@/composables/useSearch'
 import { useSort } from '@/composables/useSort'
 import { usePagination } from '@/composables/usePagination'
@@ -111,13 +112,6 @@ const { changeSorting } = useSort(currentSort, fetchList)
 import { sortTypes_default } from '@/configs/sortTypes'
 // Api
 import { getNoticeList } from '@/api/notice'
-
-// Define TypeScript types
-interface NoticeItem {
-  id: number
-  title: string
-  creDate: string
-}
 
 // sortType
 const sortItems = computed(() => {

@@ -76,7 +76,8 @@
                       v-if="
                         item.hasReply &&
                         selectedItemId === item.id &&
-                        displayedContent?.replies.length > 0
+                        displayedContent?.replies &&
+                        displayedContent?.replies?.length > 0
                       "
                       :answer="displayedContent?.replies[0]"
                     />
@@ -132,12 +133,15 @@ import { useSearch } from '@/composables/useSearch'
 import { usePagination } from '@/composables/usePagination'
 import { useUtils } from '@/composables/useUtils'
 import { useConfirm } from '@/composables/useConfirm'
-import { useFormatDate } from '@/composables/dateType'
+import { useFormatDate } from '@/composables/useDateType'
 // Stores
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores/loginStores'
 // Router
 import { useRouter } from 'vue-router'
+// Models
+import { QnAList, Item, type QnaContent } from '@/models/interfaces/Qna'
+
 // 게시판 리스트 데이터
 const qnaList = ref<QnAList[]>([])
 
@@ -176,25 +180,6 @@ const sortDefault = computed(() => {
 const { isAuthenticated, role, userId } = storeToRefs(useUserStore())
 
 const router = useRouter()
-// TS
-interface QnAList {
-  id: number
-  qnaType: number
-  title: string
-  creDate: string
-  secret: boolean
-  hasReply: boolean
-  password: string
-  author: string
-  content: string
-  memberId: number
-}
-// interface searchItem {
-//   title: string
-//   content: string
-// }
-
-// Pagination
 
 // 문의사항 유형
 const qnaTypeText = (qnaType: number) => {
@@ -220,7 +205,7 @@ const pushWrite = async () => {
 // 현재 클릭한 게시글
 const selectedItemId = ref<number | null>(null)
 //게시물 토글
-const toggleDetail = (item: any) => {
+const toggleDetail = (item: Item) => {
   if (selectedItemId.value === item.id) {
     resetSelection()
     return
@@ -254,17 +239,17 @@ const fetchContent = async (id: number, password: string | null = null) => {
       password !== null ? await getQNADetailPrivate(id, password) : await getQNADetail(id)
     displayedContent.value = response.data
     isPrivateVisible.value = !!password
-  } catch (error: any) {
+  } catch (error) {
     console.error(error)
   }
 }
 // 게시물 작성자 여부
-const isOwner = (item: any) => item.memberId === Number(userId.value)
+const isOwner = (item: Pick<QnAList, 'memberId'>) => item.memberId === Number(userId.value)
 // toggle 시 password 창 노출 여부( Admin만 안뜨게)
-const requiresPasswordInput = (item: any) =>
+const requiresPasswordInput = (item: Item) =>
   item.secret && selectedItemId.value === item.id && role.value !== 'Admin'
 // Toggle 시 보여질 컨텐츠 데이터
-const displayedContent = ref<any>(null)
+const displayedContent = ref<QnaContent | null>(null)
 
 // 데이터 초기화
 const resetSelection = () => {

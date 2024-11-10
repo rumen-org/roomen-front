@@ -1,14 +1,25 @@
 <template>
   <div class="lang">
-    <button type="button" :class="{ curr: languageType == 'ko' }" @click="setLang('ko')">KR</button>
-    <button type="button" :class="{ curr: languageType == 'en' }" @click="setLang('en')">EN</button>
+    <button type="button" :class="{ curr: currentLanguage == 'ko' }" @click="setLang('ko')">
+      KR
+    </button>
+    <button type="button" :class="{ curr: currentLanguage == 'en' }" @click="setLang('en')">
+      EN
+    </button>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+// I18n
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+// Store
+import { useLanguageStore } from '@/stores/language'
+import { storeToRefs } from 'pinia'
+const languageStore = useLanguageStore()
+const { currentLanguage } = storeToRefs(languageStore)
 
-const languageType = ref('ko')
-const setLang = (v: string) => {
-  languageType.value = v
+const setLang = (p: string) => {
+  languageStore.setCurrentLanguage(p)
+  locale.value = p
 }
 </script>

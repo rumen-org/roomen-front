@@ -1,9 +1,12 @@
 // 다국어 기능
 
-import ko from './ko/main.json'
-import en from './en/main.json'
+import { korCategories } from './ko/categories'
+import { engCategories } from './en/categories'
 
+const ko = korCategories
+const en = engCategories
 export default {
   ko: ko,
   en: en
 }
+export type LocaleMessages = typeof ko

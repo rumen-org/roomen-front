@@ -57,7 +57,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { useBucketStore } from '@/stores/bucket'
-import { formatPrice } from '@/composables/calculate'
+import { formatPrice } from '@/composables/useCalculate'
 const bucketStore = useBucketStore()
 
 const data = computed(() => {

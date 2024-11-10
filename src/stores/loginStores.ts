@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import axiosInstance from '@/api/axiosInstance' // Axios 인스턴스를 import
+import axiosInstance from '@/api/unUse/axiosInstance' // Axios 인스턴스를 import
 import Cookies from 'js-cookie' // js-cookie 라이브러리 사용
 
 interface LoginRequest {

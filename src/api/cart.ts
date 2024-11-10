@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useUserStore } from '@/stores/loginStores'
-const BaseURL = 'http://localhost:8080/api'
+import { path } from '@/api/urls'
 const userStore = useUserStore()
 
 export function getCartItems() {
-  return axios.get(`${BaseURL}/cart/items`, {
+  return axios.get(`${path.cart}/items`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`, // 로그인 시 토큰을 헤더에 포함
       'Content-Type': 'application/json'
@@ -13,7 +13,7 @@ export function getCartItems() {
 }
 
 export function getCartItemList() {
-  return axios.get(`${BaseURL}/cart/items/list`, {
+  return axios.get(`${path.cart}/items/list`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`, // 로그인 시 토큰을 헤더에 포함
       'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export function getCartItemList() {
 }
 
 export function postCartItems(cartItems: Array<object> | object) {
-  return axios.post(`${BaseURL}/cart/items`, JSON.stringify(cartItems), {
+  return axios.post(`${path.cart}/items`, JSON.stringify(cartItems), {
     headers: {
       Authorization: `Bearer ${userStore.token}`,
       'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export function postCartItems(cartItems: Array<object> | object) {
 
 export function putCartItem(id: number, cartItems: Array<object> | object) {
   console.log('onPut', id, cartItems)
-  return axios.put(`${BaseURL}/cart/items/${id}`, JSON.stringify(cartItems), {
+  return axios.put(`${path.cart}/items/${id}`, JSON.stringify(cartItems), {
     headers: {
       Authorization: `Bearer ${userStore.token}`,
       'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export function putCartItem(id: number, cartItems: Array<object> | object) {
 }
 // 단일 요소 삭제시
 export function deleteCartItem(id: number) {
-  return axios.delete(`${BaseURL}/cart/items/${id}`, {
+  return axios.delete(`${path.cart}/items/${id}`, {
     headers: {
       Authorization: `Bearer ${userStore.token}` // 로그인 시 토큰을 헤더에 포함
     }
@@ -49,7 +49,7 @@ export function deleteCartItem(id: number) {
 }
 // 복수 요소 삭제시
 export function deleteMultipleCartItems(ids: number[]) {
-  return axios.delete(`${BaseURL}/cart/items/multiple`, {
+  return axios.delete(`${path.cart}/items/multiple`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`
     },

@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useUserStore } from '@/stores/loginStores'
 const BaseURL = 'http://localhost:8080/api'
 const userStore = useUserStore()
-
 // Types
 import {
   FindId,
@@ -68,8 +67,6 @@ export function updateAccountPassword(passwords: any) {
     }
   })
 }
-// 회원가입
-
 // 아이디, 이메일 중복체크
 export function duplicateCheck(p: duplicateParams) {
   let params

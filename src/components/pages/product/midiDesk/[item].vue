@@ -106,9 +106,9 @@
 import { nextTick, onBeforeMount, onMounted, onUnmounted, reactive, ref } from 'vue'
 // Components
 import BackButton from '@/components/button/backButton.vue'
-import RadioPalette from '@/components/unUsual/product/detailColor.vue'
-import SelectOptions from '@/components/unUsual/product/detailOptionSelect.vue'
-import countComponent from '@/components/unUsual/product/detailCount.vue'
+import RadioPalette from '@/components/page_items/product/detailColor.vue'
+import SelectOptions from '@/components/page_items/product/detailOptionSelect.vue'
+import countComponent from '@/components/page_items/product/detailCount.vue'
 import Confirm from '@/components/notifications/confirm.vue'
 
 // Composable
@@ -116,7 +116,7 @@ import { useConfirm } from '@/composables/useConfirm'
 const { showConfirm } = useConfirm()
 
 // api
-import { getProductItem } from '@/api/products'
+import { getProductItem } from '@/api/product'
 import { postCartItems } from '@/api/cart'
 // stores
 import { useBucketStore } from '@/stores/bucket'
@@ -210,13 +210,14 @@ const removeItem = (id: number) => {
 }
 
 // 계산 utils
-import { getOriginPrice, formatPrice } from '@/composables/calculate'
+import { getOriginPrice, formatPrice } from '@/composables/useCalculate'
 import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
 // configs
 import { commonRadios, shippingOption, shippingOption2 } from '@/configs/product'
 import { storeToRefs } from 'pinia'
+import { throttle } from 'lodash'
 
 interface ProductType {
   id: number // 상품 ID
@@ -265,12 +266,12 @@ const fetchDetail = async (id: number) => {
     })
   }
 }
-const scrolling = (e: Event) => {
+const scrolling = throttle((e: Event) => {
   if (e && flottingMenu.value) {
     outterHeight.value = window.outerHeight - flottingMenu.value?.offsetTop
     // console.log('scrolling', e)
   }
-}
+}, 500)
 const createPalleteData = (type: number) => ({
   title: ['색상1 : 상판, 하부다리, 후면가림판', '색상2 : 건반트레이, 다리, 상단선반, 칸막이'],
   radios: commonRadios,

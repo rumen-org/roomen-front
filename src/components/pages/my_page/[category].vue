@@ -24,7 +24,7 @@ import { useRoute } from 'vue-router'
 import { computed, ref } from 'vue'
 
 // 탭 컴포넌트
-import Tab from '@/components/unUsual/mypage/tab.vue'
+import Tab from '@/components/page_items/mypage/tab.vue'
 // 검색 컴포넌트
 import searchComponent from '@/components/search/search.vue'
 

@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useUserStore } from '@/stores/loginStores'
-const BaseURL = 'http://localhost:8080/api'
+import { path } from '@/api/urls'
 const userStore = useUserStore()
 
 export function postShipAddress(address: object) {
-  return axios.post(`${BaseURL}/shipAddresses/write`, address, {
+  return axios.post(`${path.shipAddr}/write`, address, {
     headers: {
       Authorization: `Bearer ${userStore.token}`,
       'Content-Type': 'application/json'
@@ -13,7 +13,7 @@ export function postShipAddress(address: object) {
 }
 
 export function getAllShippingAddressesByMemberId(memberId: number) {
-  return axios.get(`${BaseURL}/shipAddresses/member/${memberId}`, {
+  return axios.get(`${path.shipAddr}/member/${memberId}`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`
     }
@@ -21,7 +21,7 @@ export function getAllShippingAddressesByMemberId(memberId: number) {
 }
 // 기본 배송지 조회
 export function getMyDefaultAddress() {
-  return axios.get(`${BaseURL}/shipAddresses/default`, {
+  return axios.get(`${path.shipAddr}/default`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`
     }
@@ -29,7 +29,7 @@ export function getMyDefaultAddress() {
 }
 
 export function getShipAddressById(id: number) {
-  return axios.get(`${BaseURL}/shipAddresses/${id}`, {
+  return axios.get(`${path.shipAddr}/${id}`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`
     }
@@ -38,7 +38,7 @@ export function getShipAddressById(id: number) {
 
 export function setDefaultShippingAddress(id: number) {
   return axios.put(
-    `${BaseURL}/shipAddresses/${id}/default`,
+    `${path.shipAddr}/${id}/default`,
     {},
     {
       headers: {
@@ -50,7 +50,7 @@ export function setDefaultShippingAddress(id: number) {
 
 // 배송지 삭제
 export function deleteShippingAddress(id: number) {
-  return axios.delete(`${BaseURL}/shipAddresses/${id}`, {
+  return axios.delete(`${path.shipAddr}/${id}`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`
     }
@@ -59,7 +59,7 @@ export function deleteShippingAddress(id: number) {
 
 // 배송지 복수 삭제
 export function deleteMultipleShippingAddress(ids: number[]) {
-  return axios.delete(`${BaseURL}/shipAddresses/addresses/multiple`, {
+  return axios.delete(`${path.shipAddr}/addresses/multiple`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`
     },

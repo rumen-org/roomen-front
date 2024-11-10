@@ -11,7 +11,7 @@
     </button>
 
     <span
-      v-for="(item, idx) in totalPages"
+      v-for="(item, idx) in visiblePages"
       :key="idx"
       class="paging-number"
       :class="{ active: currentPage === idx }"
@@ -39,7 +39,21 @@ const props = defineProps<{
   currentPage: number
   totalPages: number[]
 }>()
-
+const visiblePages = computed(() => {
+  const total = props.totalPages.length
+  const maxPages = 5
+  // 전체 페이지가 5 이하일 때는 전체 페이지 반환
+  if (total <= maxPages) return props.totalPages
+  const half = Math.floor(maxPages / 2)
+  let start = Math.max(0, props.currentPage - half)
+  let end = start + maxPages
+  // 마지막 부분 처리
+  if (end > total) {
+    end = total
+    start = end - maxPages
+  }
+  return props.totalPages.slice(start, end)
+})
 const isPrevDisabled = computed(() => props?.currentPage <= 0)
 const isNextDisabled = computed(() => props?.currentPage >= props?.totalPages.length - 1)
 </script>

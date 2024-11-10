@@ -10,19 +10,31 @@
       >
       <div>
         <div>
-          <span>대표 : <em>김준영</em></span>
+          <span
+            >{{ t('common.footer.job') }} : <em>{{ t('common.footer.name') }}</em></span
+          >
           <span>010-3583-9144</span>
           <span>jyk719@gmail.com</span>
         </div>
         <div>
-          <address>서울시 양천구 목동로29길 16 로데오휘버스</address>
-          <span>사업자등록번호 <em>111-11-11111</em></span>
-          <span>통신판매신고번호 <em>제2024-00-0000호</em></span>
+          <address>{{ t('common.footer.addr') }}</address>
+          <span
+            >{{ t('common.footer.business').split(0, ': ')[0] }}
+            <em>{{ t('common.footer.business').split(': ')[1] }}</em>
+          </span>
+          <span
+            >{{ t('common.footer.commerceNum').split(0, ': ')[0] }}
+            <em>{{ t('common.footer.commerceNum').split(': ')[1] }}</em></span
+          >
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+// I18n
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+// Components
 import scrollTop from '@/components/button/scrollTop.vue'
 </script>

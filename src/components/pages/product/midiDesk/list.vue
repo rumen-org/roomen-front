@@ -54,7 +54,9 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { getCategoryProductList } from '@/api/products'
+import { getCategoryProductList } from '@/api/product'
+// Models
+import { ProductsType } from '@/models/interfaces/Product'
 
 const productList = ref<ProductsType[]>([])
 const fetchList = async () => {
@@ -72,7 +74,7 @@ const fetchList = async () => {
 }
 
 // Composable
-import { getOriginPrice, formatPrice } from '@/composables/calculate'
+import { getOriginPrice, formatPrice } from '@/composables/useCalculate'
 import { useSearch } from '@/composables/useSearch'
 import { useSort } from '@/composables/useSort'
 import { usePagination } from '@/composables/usePagination'
@@ -90,22 +92,6 @@ import searchComponent from '@/components/search/search.vue'
 import Pagination from '@/components/board/pagination.vue'
 import Sort from '@/components/board/sort.vue'
 import EmptyResult from '@/components/search/emptyResultType2.vue'
-interface ProductsType {
-  id: number
-  name: string
-  imgPath: string
-  price: number
-  discountPer: number
-  subTitle: string
-  category: string
-  label: string | null
-  otherInfo: string | null
-  shippingCost: number | null
-  content: string
-  inStock: boolean
-  images: string[]
-  releaseDate: Date
-}
 const sortItems = computed(() => {
   return sortType_product.items
 })

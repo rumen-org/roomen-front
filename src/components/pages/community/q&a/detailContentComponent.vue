@@ -46,19 +46,8 @@ import { useModifyQnaStore } from '@/stores/modifyQna'
 
 // import { storeToRefs } from 'pinia';
 const qnaStore = useModifyQnaStore()
-
-// const { qnaContent } = storeToRefs(qnaStore);
-interface QnaContent {
-  id: number
-  title: string
-  content: string
-  images: string[]
-  creDate: string // ISO 8601 날짜 형식
-  author: string
-  hasReply: boolean
-  qnaType: number
-  secret: boolean
-}
+// Models
+import { QnaContent } from '@/models/interfaces/Qna'
 // Props
 const props = defineProps<{
   content: QnaContent | null

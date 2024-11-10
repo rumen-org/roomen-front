@@ -31,12 +31,8 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 // import BreakText from '@/components/text/Break.vue';
-interface NoticeDetails {
-  title: string
-  creDate: string
-  content: string
-}
-
+// Models
+import { NoticeDetails } from '@/models/interfaces/Notice'
 import backButton from '@/components/button/backButton.vue'
 import { getNoticeDetail } from '@/api/notice'
 const noticeDetail = ref<NoticeDetails | null>(null)
@@ -44,7 +40,7 @@ const noticeDetail = ref<NoticeDetails | null>(null)
 const params = useRoute().params?.item
 const sameItem = computed(() => noticeDetail.value)
 
-import { useFormatDate } from '@/composables/dateType'
+import { useFormatDate } from '@/composables/useDateType'
 
 const { formatDate } = useFormatDate()
 

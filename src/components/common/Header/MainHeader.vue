@@ -84,11 +84,14 @@
   </div>
 </template>
 <script setup lang="ts">
+import { debounce } from 'lodash'
+
 import Languages from '@/components/common/lang.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 import { useMainStore } from '@/stores/mainPage'
 import { useUserStore } from '@/stores/loginStores'
+import { useWindowResponsive } from '@/stores/windowResponsive'
 // const userStore = useUserStore();
 import { storeToRefs } from 'pinia'
 import { ref, onMounted, onBeforeUnmount, onBeforeMount, computed } from 'vue'
@@ -97,7 +100,7 @@ import SnsList from '@/components/common/snsList.vue'
 
 const { isAuthenticated } = storeToRefs(useUserStore())
 const { getActiveSection } = storeToRefs(useMainStore())
-
+const winWidthStore = useWindowResponsive()
 const isAuth = computed(() => {
   return isAuthenticated.value
 })
@@ -113,21 +116,24 @@ const mobileToggleMenu = () => {
 }
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
-  console.log('isMenuOpen', isMenuOpen.value)
 }
-const handleResize = () => {
+const handleResize = debounce(() => {
   windowWidth.value = window.innerWidth
   windowHeight.value = window.innerHeight
-}
+  winWidthStore.setWidthValue(windowWidth.value)
+  if (windowWidth.value < 1161) {
+    winWidthStore.setWindowState('mobile')
+  } else if (windowWidth.value > 1161) {
+    winWidthStore.setWindowState('desktop')
+  }
+}, 200)
+
 onBeforeMount(() => {
   handleResize()
   window.addEventListener('resize', handleResize)
 })
 onMounted(() => {
   window.addEventListener('resize', handleResize)
-  if (window.innerWidth > 1160) {
-    console.log('onPc')
-  }
   const userStore = useUserStore()
   if (userStore.isAuthenticated) {
     userStore.checkTokenValidity() // 페이지 로드 시 토큰 유효성 확인

@@ -92,8 +92,9 @@
   </div>
 </template>
 <script setup lang="ts">
-// Components
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { debounce } from 'lodash'
+// Components
 import LogOut from '@/components/common/logoutBtn.vue'
 import Languages from '@/components/common/lang.vue'
 import SnsList from '@/components/common/snsList.vue'
@@ -105,7 +106,9 @@ const routePath = computed(() => {
 })
 // Composable
 import { useUserStore } from '@/stores/loginStores'
+import { useWindowResponsive } from '@/stores/windowResponsive'
 import { storeToRefs } from 'pinia'
+const winWidthStore = useWindowResponsive()
 
 // Auth
 const { isAuthenticated } = storeToRefs(useUserStore())
@@ -116,14 +119,17 @@ const isAuth = computed(() => {
 const windowWidth = ref<number>(0)
 const isMobile = ref<boolean>(false)
 
-const handleResize = () => {
+const handleResize = debounce(() => {
   windowWidth.value = window.innerWidth
+  winWidthStore.setWidthValue(windowWidth.value)
   if (windowWidth.value < 1161) {
+    winWidthStore.setWindowState('mobile')
     isMobile.value = true
-  } else if (windowWidth.value > 1160) {
+  } else if (windowWidth.value > 1161) {
+    winWidthStore.setWindowState('desktop')
     isMobile.value = false
   }
-}
+}, 200)
 const headerRef = ref<HTMLElement | null>(null)
 const isMenuOpen = ref(false)
 // const windowWidth = ref<number>(window.innerWidth);
@@ -137,7 +143,6 @@ const mobileToggleMenu = (p?: string | null) => {
 }
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
-  console.log('isMenuOpen', isMenuOpen.value)
 }
 
 // 2단계 깊이의 라우트만 필터링

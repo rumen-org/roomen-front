@@ -1,21 +1,21 @@
 import axios from 'axios'
-const BaseURL = 'http://localhost:8080/api'
+import { path } from '@/api/urls'
 import { useUserStore } from '@/stores/loginStores'
 
 export function getQNAList(page: number | null, sort?: string | null, searchValue?: string | null) {
-  let url = `${BaseURL}/qna/list`
+  let url = `${path.qna}/list`
   const required = page !== null && sort !== null
   if (required && searchValue === null) {
-    url = `${BaseURL}/qna/list?page=${page}&sort=${sort}`
+    url = `${path.qna}/list?page=${page}&sort=${sort}`
   } else if (required && searchValue !== null && searchValue !== undefined) {
-    url = `${BaseURL}/qna/list?page=${page}&sort=${sort}&title=${searchValue}`
+    url = `${path.qna}/list?page=${page}&sort=${sort}&title=${searchValue}`
   }
   return axios.get(`${url}`, {})
 }
 export function getQNADetailPrivate(id: number, password: string) {
   const userStore = useUserStore()
 
-  return axios.get(`${BaseURL}/qna/${id}?password=${password}`, {
+  return axios.get(`${path.qna}/${id}?password=${password}`, {
     headers: {
       Authorization: `Bearer ${userStore.token}` // 로그인 시 토큰을 헤더에 포함
     }
@@ -25,7 +25,7 @@ export function getQNADetailPrivate(id: number, password: string) {
 export function getQNADetail(id: number) {
   const userStore = useUserStore()
 
-  return axios.get(`${BaseURL}/qna/${id}`, {
+  return axios.get(`${path.qna}/${id}`, {
     headers: {
       Authorization: `Bearer ${userStore.token}` // 로그인 시 토큰을 헤더에 포함
     }
@@ -35,7 +35,7 @@ export function getQNADetail(id: number) {
 export function writeQNA(data: any) {
   const userStore = useUserStore()
 
-  return axios.post(`${BaseURL}/qna/write`, data, {
+  return axios.post(`${path.qna}/write`, data, {
     headers: {
       Authorization: `Bearer ${userStore.token}`,
       'content-type': 'multipart/form-data'
@@ -46,7 +46,7 @@ export function writeQNA(data: any) {
 export function updateQNA(data: FormData) {
   const userStore = useUserStore()
 
-  return axios.put(`${BaseURL}/qna/update`, data, {
+  return axios.put(`${path.qna}/update`, data, {
     headers: {
       Authorization: `Bearer ${userStore.token}`,
       'content-type': 'multipart/form-data'
@@ -57,7 +57,7 @@ export function updateQNA(data: FormData) {
 export function deleteQNA(id: number) {
   const userStore = useUserStore()
 
-  return axios.delete(`${BaseURL}/qna/delete/${id}`, {
+  return axios.delete(`${path.qna}/delete/${id}`, {
     headers: {
       Authorization: `Bearer ${userStore.token}`
     }

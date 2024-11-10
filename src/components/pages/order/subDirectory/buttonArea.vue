@@ -33,7 +33,7 @@ import { useBucketStore } from '@/stores/bucket'
 const bucketStore = useBucketStore()
 const { getPrice } = storeToRefs(bucketStore)
 // Composable
-import { formatPrice } from '@/composables/calculate'
+import { formatPrice } from '@/composables/useCalculate'
 
 const submitPayment = async () => {
   await router.push('/order/complete')

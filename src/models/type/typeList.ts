@@ -5,3 +5,4 @@ export type PhoneNumberType = {
   second: string
   third: string
 }
+export type ResponsiveType = 'mobile' | 'desktop'

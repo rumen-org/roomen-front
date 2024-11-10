@@ -11,7 +11,7 @@
       <!-- galleryList -->
       <div class="galleryList">
         <ul>
-          <li v-for="(item, i) in lists" :key="i">
+          <li v-for="(item, i) in lists.slice(0, itemQuantity)" :key="i">
             <div>
               <p @click.stop="getItem(item.id)">
                 <img
@@ -24,6 +24,7 @@
                 />
               </p>
               <span v-dompurify-html="highlightText(item.title, searchValue)"></span>
+              <!-- // LayerPopup -->
               <template v-if="isShowModal">
                 <layerPop @close="initItem">
                   <template #body>
@@ -70,11 +71,16 @@
                   </template>
                 </layerPop>
               </template>
+              <!-- // LayerPopup -->
             </div>
           </li>
         </ul>
       </div>
       <!--// galleryLists -->
+    </div>
+    <div class="btnArea txtC mt-50">
+      <p v-if="notMore">더 보여질 게시물이 없습니다.</p>
+      <button class="btn bgWhite sM w90 mt-30" :disabled="notMore" @click="moreBtn">더 보기</button>
     </div>
   </div>
 </template>
@@ -98,9 +104,11 @@ const fetchList = async () => {
     console.error(error)
   }
 }
+// Models
+import { GalleryItem } from '@/models/interfaces/Gallery'
 // Composables
-import { useModal } from '@/composables/modalLayer'
-import { onMounted, ref } from 'vue'
+import { useModal } from '@/composables/useLayerPopup'
+import { computed, onMounted, ref } from 'vue'
 const { isShowModal, closeModal, callModal } = useModal()
 import { useSearch } from '@/composables/useSearch'
 import { usePagination } from '@/composables/usePagination'
@@ -111,17 +119,8 @@ const { highlightText, searchValue, searchItem } = useSearch<GalleryItem>(
   currentPage
 )
 import { getGalleryList, getGalleryItem } from '@/api/gallery'
-
+// Layer Swiper
 const modalSwiper = ref<SwiperInstance | null>(null)
-
-interface GalleryItem {
-  id: number
-  title: string
-  tags: string | string[]
-  imageUrls: string[]
-  thumbImg: string
-  displayDate: string
-}
 const getItem = async (id: number) => {
   try {
     const modalData = await getGalleryItem(id)
@@ -137,6 +136,13 @@ const getItem = async (id: number) => {
 const initItem = () => {
   items.value = null
   closeModal()
+}
+const notMore = computed<boolean>(() => {
+  return lists.value.length <= itemQuantity.value
+})
+const itemQuantity = ref<number>(6)
+const moreBtn = () => {
+  itemQuantity.value = itemQuantity.value + 6
 }
 onMounted(() => {
   fetchList()

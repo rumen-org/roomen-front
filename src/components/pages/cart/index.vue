@@ -82,11 +82,11 @@
 </template>
 <script setup lang="ts">
 // 컴포넌트
-import countComponent from '@/components/unUsual/cart/count.vue'
+import countComponent from '@/components/page_items/cart/count.vue'
 import Alert from '@/components/notifications/alert.vue'
 // 컴포저블
 import { getCartItems, putCartItem, deleteCartItem, deleteMultipleCartItems } from '@/api/cart'
-import { formatPrice } from '@/composables/calculate'
+import { formatPrice } from '@/composables/useCalculate'
 import { useAlert } from '@/composables/useAlert'
 
 const { showAlert } = useAlert()
@@ -121,7 +121,7 @@ const fetchCartItems = async () => {
 const fixCartItem = async (params: any) => {
   try {
     console.log('on_fix', params)
-    const item = cartItems.value.find((cartItem) => cartItem.id === params.id)
+    const item = cartItems.value.find(cartItem => cartItem.id === params.id)
     if (item) {
       const payload = {
         quantity: params.value,
@@ -146,7 +146,7 @@ const toggleAllSelect = () => {
   if (allSelectState.value) {
     selectedItems.value = [] // 전체 해제
   } else {
-    selectedItems.value = cartItems.value.map((item) => item.id) // 전체 선택
+    selectedItems.value = cartItems.value.map(item => item.id) // 전체 선택
   }
 }
 
@@ -155,7 +155,7 @@ const removeCartItem = async (id: number) => {
   try {
     const response = await deleteCartItem(id)
     await fetchCartItems()
-    selectedItems.value = selectedItems.value.filter((item) => item !== id)
+    selectedItems.value = selectedItems.value.filter(item => item !== id)
     console.log('response', response)
   } catch (error) {
     console.error(error)

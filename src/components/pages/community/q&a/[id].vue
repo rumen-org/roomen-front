@@ -1,8 +1,12 @@
 <template>
-  <tr v-if="props.answer" class="bgGray answer">
+  <tr v-if="props.answer" class="bgGray">
     <td></td>
     <td class="mNone"></td>
-    <td class="conDetail">{{ answer.content }}</td>
+    <td class="txtL subject">
+      <div class="conDetail">
+        <p>{{ answer.content }}</p>
+      </div>
+    </td>
     <td>{{ answer.author }}</td>
     <td>{{ formatDate(answer.createdDate) }}</td>
   </tr>
@@ -10,19 +14,11 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-interface propsType {
-  author: string
-  createdDate: string
-  content: string
-}
+import { propsType } from '@/models/interfaces/Qna'
 const props = defineProps<{ answer: propsType }>()
-const formatDate = (value: string) => {
-  if (!value) {
-    return ''
-  }
-  const date = new Date(value)
-  return `${date.getFullYear().toString().slice(2, 4)}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`
-}
+// Composable
+import { useFormatDate } from '@/composables/useDateType'
+const { formatDate } = useFormatDate()
 </script>
 
 <style scoped>
@@ -30,8 +26,11 @@ const formatDate = (value: string) => {
   display: block;
   overflow: hidden;
   width: 100%;
-  padding: 3rem 0;
   font-weight: 300;
+  text-align: left;
+  padding: 10px 5px;
+  height: 60px;
+  font-size: 16px;
 }
 .conDetail img {
   display: block;

@@ -4,7 +4,8 @@
       <div class="contents">
         <!-- conTopArea -->
         <div class="conTopArea">
-          <h2>LOGIN</h2>
+          <h2>{{ t('cate.login.title') }}</h2>
+          <!-- <em>{{ t('messages.text1') }}</em>-->
         </div>
         <!--// conTopArea -->
         <!-- loginArea -->
@@ -14,7 +15,7 @@
               v-model="memberId"
               type="text"
               title="ID 입력"
-              placeholder="ID"
+              :placeholder="t('cate.login.pHolder.id')"
               autocomplete="on"
               minlength="6"
               maxlength="12"
@@ -24,18 +25,20 @@
               v-model="memberPw"
               type="password"
               title="PASSWORD 입력"
-              placeholder="PASSWORD"
+              :placeholder="t('cate.login.pHolder.pw')"
               minlength="8"
               maxLength="16"
               @keydown.enter="login"
             />
-            <button type="button" class="btn blockBtn sL" @click="testInputs">로그인</button>
+            <button type="button" class="btn blockBtn sL" @click="testInputs">
+              {{ t('cate.login.btn.login') }}
+            </button>
           </div>
           <div class="util">
-            <router-link to="/signup">회원가입</router-link>
+            <router-link to="/signup">{{ t('cate.login.other.1') }}</router-link>
             <div>
-              <router-link to="/login/findID">아이디 찾기</router-link>
-              <router-link to="/login/findPW">비밀번호 찾기</router-link>
+              <router-link to="/login/findID">{{ t('cate.login.other.2') }}</router-link>
+              <router-link to="/login/findPW">{{ t('cate.login.other.3') }}</router-link>
             </div>
           </div>
         </div>
@@ -48,7 +51,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
+// I18n
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+// Components
 import Alert from '@/components/notifications/alert.vue'
 
 // Stores

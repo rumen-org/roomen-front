@@ -68,7 +68,7 @@ const { resultFindId, getResultPw, isState } = storeToRefs(useFindAccountStore()
 import { useRouter } from 'vue-router'
 const router = useRouter()
 // Composable
-import { useFormatDate } from '@/composables/dateType'
+import { useFormatDate } from '@/composables/useDateType'
 
 const { formatDate } = useFormatDate()
 const getConfig = computed(() => {

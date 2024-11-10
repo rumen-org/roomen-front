@@ -1141,7 +1141,9 @@
       }
       &.answer {
         th, td {
-          padding: 40px 0 60px;
+          padding: 33px 0;
+          height: auto;
+          vertical-align: top;
         }
       }
     }
@@ -1486,7 +1488,7 @@
             }
   
             &.answer {
-              padding-left: 0;
+              //padding-left: 0;
             }
   
             .conDetail {
@@ -3619,3 +3621,6 @@
   }
 }
 
+.width-auto {
+  width: auto;
+}
