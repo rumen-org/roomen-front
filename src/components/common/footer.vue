@@ -19,11 +19,11 @@
         <div>
           <address>{{ t('common.footer.addr') }}</address>
           <span
-            >{{ t('common.footer.business').split(0, ': ')[0] }}
+            >{{ t('common.footer.business').split(': ')[0] }}
             <em>{{ t('common.footer.business').split(': ')[1] }}</em>
           </span>
           <span
-            >{{ t('common.footer.commerceNum').split(0, ': ')[0] }}
+            >{{ t('common.footer.commerceNum').split(': ')[0] }}
             <em>{{ t('common.footer.commerceNum').split(': ')[1] }}</em></span
           >
         </div>

@@ -1,5 +1,7 @@
 
 {
+  "inpId": "id",
+  "inpName": "name",
   "title": "LOGIN",
   "pHolder": {
     "id": "Please enter your ID.",
