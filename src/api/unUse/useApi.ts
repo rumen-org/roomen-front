@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import axios, { AxiosRequestConfig } from 'axios'
 
 // API URL
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'http://18.206.213.208:8080/api'
 
 // API 상태 정의
 enum ApiStatus {

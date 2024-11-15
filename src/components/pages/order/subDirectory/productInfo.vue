@@ -23,7 +23,9 @@
         <tr v-for="(item, idx) in data" :key="idx">
           <td>
             <div class="goodsInfo">
-              <p class="img"><img :src="`http://localhost:8080/files/${item?.imgUrl}`" alt="" /></p>
+              <p class="img">
+                <img :src="`http://18.206.213.208:8080/files/${item?.imgUrl}`" alt="" />
+              </p>
               <div>
                 <strong>{{ item.name }}</strong>
                 <p>{{ item.subName }}</p>

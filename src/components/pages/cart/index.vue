@@ -22,7 +22,7 @@
             </span>
             <p class="img w180">
               <img
-                :src="item?.imgUrl ? `http://localhost:8080/files/${item.imgUrl}` : ''"
+                :src="item?.imgUrl ? `http://18.206.213.208:8080/files/${item.imgUrl}` : ''"
                 alt="상품 이미지"
               />
             </p>

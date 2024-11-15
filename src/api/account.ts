@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useUserStore } from '@/stores/loginStores'
-const BaseURL = 'http://localhost:8080/api'
+const BaseURL = 'http://18.206.213.208:8080/api'
 const userStore = useUserStore()
 // Types
 import {

@@ -19,7 +19,9 @@
               :to="`midiDesk/${item.id}`"
               class="product"
             >
-              <p><img :src="`http://localhost:8080/files/${item.imgPath}`" alt="상품 섬네일" /></p>
+              <p>
+                <img :src="`http://18.206.213.208:8080/files/${item.imgPath}`" alt="상품 섬네일" />
+              </p>
               <div>
                 <strong
                   v-dompurify-html="highlightText(item.name, searchValue)"
