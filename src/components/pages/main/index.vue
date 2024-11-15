@@ -16,7 +16,7 @@
           :class="{ on: activeSection === index }"
           @click="scrollToSection(index)"
         >
-          <span class="dp-block blind-text">Section {{ index + 1 }}</span>
+          <span class="dp-block blind-text">{{ section }} {{ index + 1 }}</span>
         </li>
       </ul>
     </div>
@@ -186,12 +186,12 @@ const rightColors = computed(() => {
 const leftCurr = ref<number>(1)
 const rightCurr = ref<number>(1)
 
-// setActiveSection
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, EffectFade } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'
 import 'swiper/swiper-bundle.css'
+// Composable
 import { useFullPage } from '@/composables/useFullPageEvent'
 const main2WrapSwiper = ref<SwiperInstance | null>(null)
 // FullPage
@@ -202,7 +202,6 @@ const sections: Ref<HTMLElement | null>[] = [
   ref<HTMLElement | null>(null),
   ref<HTMLElement | null>(null)
 ]
-// Composable
 const {
   scrollToSection,
   activeSection,
@@ -210,9 +209,10 @@ const {
   quickNavClass,
   handleMouseWheel,
   touchStart,
+  handleSwiperState,
   touchMove,
   touchEnd
-} = useFullPage(onFullPage, sections)
+} = useFullPage(sections)
 onMounted(() => {})
 onUnmounted(() => {})
 const previewColor = ref<string>('000000')

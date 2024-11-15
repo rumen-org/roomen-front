@@ -5,7 +5,7 @@
       <!-- conTopArea -->
       <div class="conTopArea">
         <Sort :items="sortItems" @update:value="changeSorting" />
-        <h2>MIDI DESK</h2>
+        <Breadcrumb />
         <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
       <!--// conTopArea -->
@@ -88,6 +88,7 @@ const { changeSorting } = useSort(currentSort, fetchList)
 // config
 import { sortType_product, sortTypes_default } from '@/configs/sortTypes'
 // Components
+import Breadcrumb from '@/components/breadcrumb.vue'
 import searchComponent from '@/components/search/search.vue'
 import Pagination from '@/components/board/pagination.vue'
 import Sort from '@/components/board/sort.vue'

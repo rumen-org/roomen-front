@@ -185,11 +185,8 @@ const addFile = (event: Event) => {
     const uniqeFiles = newFiles.filter(
       newFile => !datas.files.some(file => file.name === newFile.name && file.size === newFile.size)
     )
-    // 기존의 file들과 중복되지 않은 새로운 파일을 모두 추가하여 새롭게 정의
+    // 추가된 파일들과 중복되지 않은 새로운 파일을 추가하여 새로 주입
     datas.files = [...datas.files, ...uniqeFiles]
-
-    console.log('event.target', event.target)
-    console.log('datas.files.value', datas.files)
   }
 }
 

@@ -4,7 +4,7 @@ import { useMainStore } from '@/stores/mainPage'
 const useMainStores = useMainStore()
 // setActiveSection
 export function useFullPage(
-  onFullPage: Ref<HTMLElement | null>,
+  // onFullPage: Ref<HTMLElement | null>,
   sections: Ref<HTMLElement | null>[]
 ) {
   const touchStartY = ref<number>(0)

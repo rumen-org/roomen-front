@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/index'
-import { i18n } from './plugins/i18n'
+import { setupI18n } from './plugins/i18n'
 import '@/assets/style/style.scss'
 import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar'
 import 'vue3-perfect-scrollbar/style.css'
@@ -15,7 +15,7 @@ import gsap from 'gsap'
 // }
 
 const app = createApp(App)
-app.use(i18n)
+setupI18n(app)
 app.use(createPinia())
 app.use(router)
 app.use(PerfectScrollbarPlugin)

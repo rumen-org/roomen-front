@@ -36,4 +36,10 @@ const i18n = createI18n<[MessageSchema], 'ko' | 'en'>({
   }
 })
 
-export { i18n } // i18n 객체를 export 추가
+// 전역에서 $t 사용을 위한 설정 함수
+export function setupI18n(app: App) {
+  app.use(i18n)
+  app.config.globalProperties.$t = i18n.global.t // 여기서 전역 $t 설정
+}
+
+export { i18n }

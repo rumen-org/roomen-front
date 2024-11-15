@@ -4,7 +4,7 @@
       <!-- conTopArea -->
       <div class="conTopArea">
         <div></div>
-        <h2>GALLERY</h2>
+        <Breadcrumb />
         <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
       <!--// conTopArea -->
@@ -88,7 +88,7 @@
 // Components
 import layerPop from '@/components/teleport/LayerPopup.vue'
 import searchComponent from '@/components/search/search.vue'
-
+import Breadcrumb from '@/components/breadcrumb.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, EffectFade } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'

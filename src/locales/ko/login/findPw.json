@@ -1,0 +1,18 @@
+
+{
+  "inpId": "아이디",
+  "inpName": "이름",
+  "title": "LOGIN",
+  "pHolder": {
+    "id": "Please enter your ID.",
+    "pw": "Please enter your password."
+  },
+  "btn": {
+    "login": "LOGIN"
+  },
+  "other": {
+    "1": "Join membership",
+    "2": "Find ID",
+    "3": "Find PASSWORD"
+  }
+}

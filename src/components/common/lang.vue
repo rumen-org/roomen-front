@@ -1,9 +1,9 @@
 <template>
   <div class="lang">
-    <button type="button" :class="{ curr: currentLanguage == 'ko' }" @click="setLang('ko')">
+    <button type="button" :class="{ curr: currentLanguage === 'ko' }" @click="setLang('ko')">
       KR
     </button>
-    <button type="button" :class="{ curr: currentLanguage == 'en' }" @click="setLang('en')">
+    <button type="button" :class="{ curr: currentLanguage === 'en' }" @click="setLang('en')">
       EN
     </button>
   </div>
