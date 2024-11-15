@@ -20,7 +20,7 @@
               class="product"
             >
               <p>
-                <img :src="`http://18.206.213.208:8080/files/${item.imgPath}`" alt="상품 섬네일" />
+                <img :src="`https://18.206.213.208:8443/files/${item.imgPath}`" alt="상품 섬네일" />
               </p>
               <div>
                 <strong

@@ -12,7 +12,10 @@
               <BackButton />
               <div>
                 <div v-for="(item, i) in product?.images" :key="i" @click="changeThumb(item)">
-                  <img :src="`http://18.206.213.208:8080/files/${item}`" alt="상품 이미지 리스트" />
+                  <img
+                    :src="`https://18.206.213.208:8443/files/${item}`"
+                    alt="상품 이미지 리스트"
+                  />
                   <em :class="thumbImg !== item ? 'opacityCover' : 'blind'"></em>
                 </div>
               </div>
@@ -22,8 +25,8 @@
                 <img
                   :src="
                     thumbImg !== null
-                      ? `http://18.206.213.208:8080/files/${thumbImg}`
-                      : `http://18.206.213.208:8080/files/${product?.images[0]}`
+                      ? `https://18.206.213.208:8443/files/${thumbImg}`
+                      : `https://18.206.213.208:8443/files/${product?.images[0]}`
                   "
                   alt="대표상품 이미지"
                 />
