@@ -2,36 +2,36 @@
   <div class="orderTable">
     <InitTable :tbl-data="tables">
       <template #tableBody>
-        <tr v-for="(item, idx) in filteredResults" :key="idx">
-          <td>
-            <a href="" class="goodsInfo">
-              <p class="img"><img src="@/assets/images/img-product-3.jpg" alt="" /></p>
-              <div>
-                <strong>{{ item.title }}</strong>
-                <p>{{ item.subTitle }}</p>
-                <div>
-                  [ 옵션 :
-                  <span v-for="(option, index) in item.options.split(' / ')" :key="index">
-                    {{ option.trim() }}
-                    <br v-if="index < item.options.split(' / ').length - 1" />
-                  </span>
-                  ]
-                </div>
-              </div>
-            </a>
-          </td>
-          <td data-label="주문일자">2024.03.19</td>
-          <td data-label="주문번호">2024031900001</td>
-          <td data-label="주문금액(수량)"><em>₩ 1,400,000</em> <br /><em>(1개)</em></td>
-          <td data-label="주문상태">
-            <div class="shippStates">
-              배송중<button type="button" class="btn w90 bgWhite sM">배송조회</button>
-            </div>
-          </td>
-        </tr>
+        <!--        <tr v-for="(item, idx) in filteredResults" :key="idx">-->
+        <!--          <td>-->
+        <!--            <a href="" class="goodsInfo">-->
+        <!--              <p class="img"><img src="@/assets/images/img-product-3.jpg" alt="" /></p>-->
+        <!--              <div>-->
+        <!--                <strong>{{ item.title }}</strong>-->
+        <!--                <p>{{ item.subTitle }}</p>-->
+        <!--                <div>-->
+        <!--                  [ 옵션 :-->
+        <!--                  <span v-for="(option, index) in item.options.split(' / ')" :key="index">-->
+        <!--                    {{ option.trim() }}-->
+        <!--                    <br v-if="index < item.options.split(' / ').length - 1" />-->
+        <!--                  </span>-->
+        <!--                  ]-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </a>-->
+        <!--          </td>-->
+        <!--          <td data-label="주문일자">2024.03.19</td>-->
+        <!--          <td data-label="주문번호">2024031900001</td>-->
+        <!--          <td data-label="주문금액(수량)"><em>₩ 1,400,000</em> <br /><em>(1개)</em></td>-->
+        <!--          <td data-label="주문상태">-->
+        <!--            <div class="shippStates">-->
+        <!--              배송중<button type="button" class="btn w90 bgWhite sM">배송조회</button>-->
+        <!--            </div>-->
+        <!--          </td>-->
+        <!--        </tr>-->
 
-        <tr v-if="searchValue.length > 0 && filteredResults.length == 0">
-          <td colspan="3" class="text-center">검색 결과가 없습니다.</td>
+        <tr v-if="filteredResults.length > 0">
+          <td colspan="5" class="text-center">검색 결과가 없습니다.</td>
         </tr>
       </template>
     </InitTable>
@@ -43,11 +43,7 @@
     <div class="paging">
       <a href="" class="btnPrev disabled">이전 페이지</a>
       <strong>1</strong>
-      <a href="">2</a>
-      <a href="">3</a>
-      <a href="">4</a>
-      <a href="">5</a>
-      <a href="" class="btnNext">다음 페이지</a>
+      <a href="" class="btnNext disabled">다음 페이지</a>
     </div>
     <!--// paging -->
   </div>
@@ -105,7 +101,6 @@ const orderDummy = {
 //     console.error(error);
 //   }
 // };
-
 const allLists = computed(() => orderDummy.data)
 const emit = defineEmits(['update'])
 const emitsData = () => {

@@ -17,7 +17,7 @@
                 <img
                   :src="
                     item.thumbImg.startsWith('http')
-                      ? item.thumbImg
+                      ? `https://roomen.p-e.kr/${item.thumbImg}`
                       : `https://placehold.co/600x400/000000/333333.png`
                   "
                   alt="갤러리 게시판 - 섬네일 이미지"

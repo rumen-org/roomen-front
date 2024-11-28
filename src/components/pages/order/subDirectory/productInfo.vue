@@ -24,7 +24,7 @@
           <td>
             <div class="goodsInfo">
               <p class="img">
-                <img :src="`https://18.206.213.208:8443/files/${item?.imgUrl}`" alt="" />
+                <img :src="`https://roomen.p-e.kr/${item?.imgUrl}`" alt="" />
               </p>
               <div>
                 <strong>{{ item.name }}</strong>

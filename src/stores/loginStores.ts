@@ -30,10 +30,16 @@ export const useUserStore = defineStore('user', {
   actions: {
     async login(memberId: string, password: string) {
       try {
-        const response = await axiosInstance.post<LoginResponse>('/api/account/login', {
-          memberId,
-          password
-        } as LoginRequest)
+        const response = await axiosInstance.post<LoginResponse>(
+          '/account/login',
+          {
+            memberId,
+            password
+          } as LoginRequest,
+          {
+            withCredentials: true
+          }
+        )
         const { token, user } = response.data
         this.token = token
         this.memberId = user.memberId
@@ -66,7 +72,7 @@ export const useUserStore = defineStore('user', {
     },
     async checkAuthentication() {
       try {
-        const response = await axiosInstance.get<number>('/api/account/check', {
+        const response = await axiosInstance.get<number>('/account/check', {
           withCredentials: true // 쿠키를 포함하여 요청
         })
         if (response.data) {
@@ -84,16 +90,20 @@ export const useUserStore = defineStore('user', {
     async refreshToken() {
       try {
         const response = await axiosInstance.post<string>(
-          '/api/account/refresh-token',
+          '/account/refresh-token',
           {},
           {
             withCredentials: true // 쿠키를 포함하여 요청
           }
         )
-        const newToken = response.data
+        const newToken = response.data.replace('Bearer ', '')
+
+        // 새로운 토큰을 상태에 저장하고 쿠키에도 저장
         this.token = newToken
         Cookies.set('token', newToken)
-        console.log('토큰 갱신 성공:', newToken)
+
+        // 새로운 토큰을 Authorization 헤더에 설정
+        axiosInstance.defaults.headers['Authorization'] = `Bearer ${newToken}`
       } catch (error) {
         console.error('토큰 갱신 실패:', error)
         this.logout() // 토큰 갱신 실패 시 로그아웃 처리

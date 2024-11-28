@@ -76,10 +76,7 @@
                     <div class="preview">
                       <ul v-if="datas?.beforeImg.length > 0">
                         <li v-for="(item, idx) in datas.beforeImg" :key="idx" class="pos-rel">
-                          <img
-                            :src="`https://18.206.213.208:8443/files/${item}`"
-                            alt="이전에 등록된 이미지"
-                          />
+                          <img :src="`https://roomen.p-e.kr/${item}`" alt="이전에 등록된 이미지" />
                           <button class="delete" @click="removeItem(idx, 'old')">
                             <em class="blind">닫기버튼</em>
                           </button>

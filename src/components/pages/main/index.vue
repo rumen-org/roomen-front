@@ -80,7 +80,7 @@
                     <swiper-slide v-for="(item, idx) in pallete.items" :key="idx">
                       <picture>
                         <img
-                          :src="`src/assets/images/${item.path}`"
+                          :src="`${getImageUrl(item.path)}`"
                           :alt="`${item.name}+ 이미지 입니다.`"
                           :style="getColor"
                           class="width-auto"
@@ -176,6 +176,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, type Ref } from 'vue'
 // Configs
+function getImageUrl(name: string) {
+  return new URL(`/src/assets/images/${name}`, import.meta.url).href
+}
 import { mainPallete, mainPalleteImage } from '@/configs/sidePallete'
 const leftColors = computed(() => {
   return mainPallete.left

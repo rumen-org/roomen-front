@@ -267,6 +267,7 @@
     max-width: 600px;
     width: 100%;
   }
+
   
   .w670 {
     margin: 0 auto;
@@ -2175,7 +2176,7 @@
   
   @media (max-width: 768px) {
     .loginArea {
-      margin-top: 0;
+      margin-top: 40px;
   
       input {
         height: 45px;
@@ -3242,8 +3243,10 @@
       margin-top: 0;
       padding-top: 30px;
       border-top: none;
-  
+      grid-template-columns: 1fr; /* 767px 이하에서 한 줄에 하나씩 */
+      grid-template-rows: auto;
       .product {
+        display: block;
         > div {
           padding-top: 15px;
         }

@@ -22,7 +22,7 @@
             </span>
             <p class="img w180">
               <img
-                :src="item?.imgUrl ? `https://18.206.213.208:8443/files/${item.imgUrl}` : ''"
+                :src="item?.imgUrl ? `https://roomen.p-e.kr/${item.imgUrl}` : ''"
                 alt="상품 이미지"
               />
             </p>
