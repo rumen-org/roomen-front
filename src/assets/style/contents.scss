@@ -3288,6 +3288,57 @@
   .productDetail {
     position: relative;
     padding-right: 380px;
+    .imgList {
+      display:grid; 
+      grid-template-columns:12% 1fr; 
+      gap:30px;
+      .preList {
+        display:flex;
+        align-items:flex-end;
+        > div > div {
+          display:flex; 
+          align-items:center; 
+          max-width:130px; 
+          min-width:90px; 
+          width:100%; 
+          height:auto; 
+          background:#F8F8F8; 
+          aspect-ratio:1/1; 
+          overflow:hidden;
+          & + div {
+            position:relative;
+            margin-top:10px;
+          }
+          & em.opacityCover {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.4);
+          }
+        }
+      }
+      img {
+        width:100%; 
+        height:auto; 
+        object-fit:cover;
+      }
+      .preArea {
+        //margin-top:-155px; 
+        background:#f8f8f8; 
+        max-width:960px; 
+        width:100%; 
+        max-height:850px;
+        img {
+          width:100%; 
+          height:100%; 
+          object-fit:contain;
+        }
+      }
+    }
+    .detail {
+      margin-top:60px; 
+      padding-top:80px; 
+      border-top:1px solid #191919;
+    }
   }
   
   .floatMenu {
@@ -3296,176 +3347,167 @@
     right: 60px;
     width: 315px;
     bottom: 0;
-    .floatScroll {
+    &.sticky {
       position: absolute;
-      left: -10px;
-      right: -10px;
-      padding: 0 10px 200px;
-      top:0;
-      bottom: 0;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      background: #fff;
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-      overscroll-behavior: contain;
-      scroll-behavior: smooth;
-      strong.tit {
-        font-size: 22px;
-        font-weight: 600;
-      }
-      .subTit {
-        margin-top: 8px;
+      top: auto;
+      right: 0;
+      bottom: -144px;
+    }
+    strong.tit {
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .subTit {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 300;
+    }
+    .price {
+      display: flex;
+      gap: 20px;
+      margin-top: 22px;
+      font-size: 20px;
+      font-weight: 500;
+      del {
         font-size: 16px;
         font-weight: 300;
+        color: #939393;
       }
-      .price {
-        display: flex;
-        gap: 20px;
-        margin-top: 22px;
-        font-size: 20px;
-        font-weight: 500;
-        del {
-          font-size: 16px;
-          font-weight: 300;
-          color: #939393;
-        }
-      }
+    }
 
-      .optionArea {
-        margin-top: 46px;
-        .optionSelects {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          & label {
-            font-size: 16px;
-          }
-          & select {
-            max-width: 230px;
-            background: url("../images/ico-select-arrow.png") no-repeat center right 20px / 17px auto;
-            padding: 12px 10px;
-            height: 40px;
-            font-size: 14px;
-            line-height: 1.1;
-          }
-          + .optionSelects  {
-             margin-top: 20px;
-         }
-        }
-
-      }
-      .totalArea {
-        margin-top: 30px;
+    .optionArea {
+      margin-top: 46px;
+      .optionSelects {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .shippingInfo {
-          font-size: 12px;
-          font-weight: 300;
-          line-height: 20px;
-          & span {
-            font-weight: 700;
-          }
-        }
-        .count {
-          display: flex;
-          align-items: center;
-          & div {
-            display: flex;
-            button {
-              width: 26px;
-              height: 26px;
-              background: no-repeat center / auto;
-
-              &.minusBtn {
-                background-image: url("../images/ico-count-minus.png");
-              }
-
-              &.plusBtn {
-                background-image: url("../images/ico-count-plus.png");
-              }
-            }
-
-            & span {
-              display: inline-block;
-              margin: 0 -1px;
-              width: 40px;
-              height: 26px;
-              text-align: center;
-            }
-
-            > * {
-              border: 1px solid #A4A4A4;
-            }
-          }
-
-
-
-          > div + button {
-            margin-left: 10px;
-            padding: 0 2px;
-            width: 14px;
-            height: 14px;
-            border: none;
-          }
-          & .cancelItem {
-            background:url(../images/btn-cart-del.png) center center / auto auto no-repeat;
-
-          }
-        }
-      }
-      .wideLine {
-        display: block;
-        height: 1px;
-        background-color: #a4a4a4;
-        margin-top: 72px;
-      }
-      .totalPrice {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        text-align: left;
-        margin-top: 60px;
-        padding-right: 0;
-        span {
+        & label {
           font-size: 16px;
-          font-weight: 700;
-          line-height: 22px;
         }
-        em {
-          font-size: 24px;
-          font-weight: 500;
-          line-height: 28px;
+        & select {
+          max-width: 230px;
+          background: url("../images/ico-select-arrow.png") no-repeat center right 20px / 17px auto;
+          padding: 12px 10px;
+          height: 40px;
+          font-size: 14px;
+          line-height: 1.1;
+        }
+        + .optionSelects  {
+           margin-top: 20px;
+       }
+      }
+
+    }
+    .totalArea {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .shippingInfo {
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 20px;
+        & span {
+          font-weight: 700;
         }
       }
-      .btnArea {
+      .count {
         display: flex;
-        justify-content: stretch;
-        align-items: stretch;
-        height: 60px;
-        gap: 10px;
-        margin-top: 25px;
+        align-items: center;
+        & div {
+          display: flex;
+          button {
+            width: 26px;
+            height: 26px;
+            background: no-repeat center / auto;
 
-        .btn {
-          height: 100%;
-          border: 1px solid #191919;
-        }
-        .sL {
-          flex: 1 1 auto;
-          width: 0;
-          font-weight: 800;
-          line-height: 1;
-        }
-        .bgWhite {}
-        .cartBtn {
-          flex: 60px 0;
-          & i {
-            display: block;
-            height: 100%;
-            background: url("../images/ico-basket.png") no-repeat center center / 24px auto;
+            &.minusBtn {
+              background-image: url("../images/ico-count-minus.png");
+            }
 
+            &.plusBtn {
+              background-image: url("../images/ico-count-plus.png");
+            }
           }
+
+          & span {
+            display: inline-block;
+            margin: 0 -1px;
+            width: 40px;
+            height: 26px;
+            text-align: center;
+          }
+
+          > * {
+            border: 1px solid #A4A4A4;
+          }
+        }
+
+
+
+        > div + button {
+          margin-left: 10px;
+          padding: 0 2px;
+          width: 14px;
+          height: 14px;
+          border: none;
+        }
+        & .cancelItem {
+          background:url(../images/btn-cart-del.png) center center / auto auto no-repeat;
+
+        }
+      }
+    }
+    .wideLine {
+      display: block;
+      height: 1px;
+      background-color: #a4a4a4;
+      margin-top: 72px;
+    }
+    .totalPrice {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      text-align: left;
+      margin-top: 60px;
+      padding-right: 0;
+      span {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 22px;
+      }
+      em {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28px;
+      }
+    }
+    .btnArea {
+      display: flex;
+      justify-content: stretch;
+      align-items: stretch;
+      height: 60px;
+      gap: 10px;
+      margin-top: 25px;
+
+      .btn {
+        height: 100%;
+        border: 1px solid #191919;
+      }
+      .sL {
+        flex: 1 1 auto;
+        width: 0;
+        font-weight: 800;
+        line-height: 1;
+      }
+      .bgWhite {}
+      .cartBtn {
+        flex: 60px 0;
+        & i {
+          display: block;
+          height: 100%;
+          background: url("../images/ico-basket.png") no-repeat center center / 24px auto;
+
         }
       }
     }
@@ -3498,57 +3540,57 @@
         min-height: 60px;
       }
     }
-    .imgList {
-      display: grid;
-      grid-template-columns: 11% 1fr;
-      gap: 30px;
-      margin-bottom: 60px;
-      padding-bottom: 80px;
-      border-bottom: 1px solid #191919;
-      min-height: 0;
-      .preList {
-        position: relative;
-        >div {
-          position: absolute;
-          inset: 40px 0 0;
-          overflow-y: auto;
-          padding-top: 120px;
-          & div {
-            position: relative;
-            display: flex;
-            align-items: center;
-            max-width: 130px;
-            width: 100%;
-            height: auto;
-            background: #F8F8F8;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            & em.opacityCover {
-              position: absolute;
-              inset: 0;
-              background-color: rgba(255, 255, 255, 0.4);
-            }
+    // .imgList {
+    //   display: grid;
+    //   grid-template-columns: 11% 1fr;
+    //   gap: 30px;
+    //   margin-bottom: 60px;
+    //   padding-bottom: 80px;
+    //   border-bottom: 1px solid #191919;
+    //   min-height: 0;
+    //   .preList {
+    //     position: relative;
+    //     >div {
+    //       position: absolute;
+    //       inset: 40px 0 0;
+    //       overflow-y: auto;
+    //       padding-top: 120px;
+    //       & div {
+    //         position: relative;
+    //         display: flex;
+    //         align-items: center;
+    //         max-width: 130px;
+    //         width: 100%;
+    //         height: auto;
+    //         background: #F8F8F8;
+    //         aspect-ratio: 1/1;
+    //         overflow: hidden;
+    //         & em.opacityCover {
+    //           position: absolute;
+    //           inset: 0;
+    //           background-color: rgba(255, 255, 255, 0.4);
+    //         }
 
-            + div {
-              margin-top: 10px;
-            }
-          }
-        }
-        .back {
-          position: absolute;
-          left: 0;
-          top: 0;
-          z-index: 5;
-        }
-      }
-      .preArea {
-        aspect-ratio: 16/9;
-        overflow: hidden;
-        img {
-          cursor: none;
-        }
-      }
-    }
+    //         + div {
+    //           margin-top: 10px;
+    //         }
+    //       }
+    //     }
+    //     .back {
+    //       position: absolute;
+    //       left: 0;
+    //       top: 0;
+    //       z-index: 5;
+    //     }
+    //   }
+    //   .preArea {
+    //     aspect-ratio: 16/9;
+    //     overflow: hidden;
+    //     img {
+    //       cursor: none;
+    //     }
+    //   }
+    //}
   
     img {
       width: 100%;
@@ -3573,7 +3615,7 @@
     gap: 10px;
     button {
       flex: 0 0 calc(27%); /* 27%의 너비를 고정 */
-      max-width: calc(27%); /* 최대 너비를 27%로 제한 */
+      max-width: calc(15%); /* 최대 너비를 27%로 제한 */
     }
   }
 

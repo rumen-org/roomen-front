@@ -33,13 +33,18 @@ const { confirmState } = useConfirm()
 .confirm-box {
   background-color: white;
   padding: 20px;
-  border-radius: 0px;
+  border-radius: 20px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .btnArea2 {
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   gap: 10px;
   justify-content: center;

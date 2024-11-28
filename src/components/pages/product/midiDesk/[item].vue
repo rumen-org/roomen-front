@@ -2,6 +2,7 @@
   <div id="container" class="products" @scroll="scrolling">
     <!--        <div v-if="loading" class="spinner">Loading...</div>-->
     <div :class="{ loading: loading }" class="contents">
+      <BackButton />
       <!-- productDetail -->
       <div class="productDetail">
         <!-- fixArea -->
@@ -9,7 +10,7 @@
           <!-- imgList -->
           <div class="imgList">
             <div class="preList">
-              <BackButton />
+              
               <div>
                 <div v-for="(item, i) in product?.images" :key="i" @click="changeThumb(item)">
                   <img :src="`https://roomen.p-e.kr/${item}`" alt="상품 이미지 리스트" />
@@ -33,7 +34,7 @@
           <!--// imgList -->
 
           <!-- floatMenu -->
-          <aside ref="flottingMenu" class="floatMenu">
+          <aside ref="flottingMenu" class="floatMenu" :class="{ 'sticky': isSticky }">
             <div class="floatScroll">
               <strong class="tit">{{ product?.name }}</strong>
               <p class="subTit fontG">{{ product?.subTitle }}</p>
@@ -399,45 +400,40 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrolling)
   if (!afterOrder.value) return bucketStore.clearAllItems()
 })
+
+//20241128 floatmenu
+const isSticky = ref(false)
+const handleScroll = () => {
+  if (window.innerWidth >= 768 && flottingMenu.value) {
+    const footer = document.getElementById('footer')
+    
+    if (!footer) return
+
+    const footerRect = footer.getBoundingClientRect()
+    
+    // 푸터의 상단이 뷰포트 내로 들어왔을 때 sticky 클래스 적용
+    isSticky.value = footerRect.top <= window.innerHeight
+  }
+}
+onMounted(() => {
+  // 기존 onMounted 로직 유지
+  
+  // 스크롤 이벤트 리스너 추가
+  if (window.innerWidth >= 768) {
+    window.addEventListener('scroll', handleScroll)
+  }
+})
+
+// onUnmounted에 이벤트 리스너 제거 로직 추가
+onUnmounted(() => {
+  // 기존 onUnmounted 로직 유지
+  
+  // 스크롤 이벤트 리스너 제거
+  window.removeEventListener('scroll', handleScroll)
+})
+
 </script>
 <style lang="scss">
-.floatScroll {
-  position: absolute;
-  left: -10px;
-  right: -10px;
-  padding: 0 10px;
-  top: 0;
-  bottom: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background: #fff;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  strong.tit {
-    font-size: 22px;
-    font-weight: 600;
-  }
-  .subTit {
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: 300;
-  }
-  .price {
-    display: flex;
-    gap: 20px;
-    margin-top: 22px;
-    font-size: 20px;
-    font-weight: 500;
-    del {
-      font-size: 16px;
-      font-weight: 300;
-      color: #939393;
-    }
-  }
-}
-.floatScroll::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
-}
 .loading {
   opacity: 0;
   transition: all 0.6s ease-in-out;
