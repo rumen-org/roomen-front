@@ -11,11 +11,9 @@
           <div class="imgList">
             <div class="preList">
               
-              <div>
-                <div v-for="(item, i) in product?.images" :key="i" @click="changeThumb(item)">
-                  <img :src="`https://roomen.p-e.kr/${item}`" alt="상품 이미지 리스트" />
-                  <em :class="thumbImg !== item ? 'opacityCover' : 'blind'"></em>
-                </div>
+              <div v-for="(item, i) in product?.images" :key="i" @click="changeThumb(item)">
+                <img :src="`https://roomen.p-e.kr/${item}`" alt="상품 이미지 리스트" />
+                <em :class="thumbImg !== item ? 'opacityCover' : 'blind'"></em>
               </div>
             </div>
             <transition name="fade">

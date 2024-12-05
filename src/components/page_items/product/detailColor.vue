@@ -1,5 +1,5 @@
 <template>
-  <div class="option optionTop">
+  <div class="option">
     <p>{{ props.pallete.title[props.pallete.type - 1] }}</p>
     <!-- checkboxWrap -->
     <div class="checkboxWrap">
@@ -94,17 +94,19 @@ onMounted(() => {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-.option.optionTop {
-  margin-top: 40px;
+.option {
   p {
     font-size: 16px;
     color: #191919;
+  }
+  & + .option {
+    margin-top:20px;
   }
 }
 .checkboxWrap {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content:space-between;
   margin: 12px -20px 0;
   padding: 0 20px;
   .checkbox {
@@ -145,4 +147,12 @@ onMounted(() => {
     }
   }
 }
+@media (max-width: 768px) {
+  .option {
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
 </style>
