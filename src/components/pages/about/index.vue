@@ -21,11 +21,27 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+/*import { computed } from 'vue'
 
 const heightGetter = computed<number>(() => {
   return window.outerHeight
-})
+})*/
+
+import { ref, onMounted, onUnmounted } from 'vue';
+
+const heightGetter = ref<number>(window.innerHeight); // 초기 높이값 설정
+
+onMounted(() => {
+  const updateHeight = () => {
+    heightGetter.value = window.innerHeight; // 높이값 업데이트
+  };
+
+  window.addEventListener('resize', updateHeight); // 리사이즈 이벤트 등록
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', updateHeight); // 이벤트 제거
+  });
+});
 </script>
 <style lang="scss" scoped>
 .aboutVisual > img {

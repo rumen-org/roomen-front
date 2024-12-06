@@ -126,3 +126,36 @@ onMounted(() => {
   fetchList()
 })
 </script>
+<style scoped lang="scss">
+  @media (max-width:768px) {
+    .listTable {
+      > table {
+        display:block; 
+        width:100%; 
+        > thead {
+          display:none;
+        }
+        > tbody {
+          display:block; 
+          width:100%; 
+          >tr {
+            display:block; 
+            padding:10px 20px 10px 0; 
+            width:100%; 
+            background:url("/src/assets/images/btn-next.png") no-repeat center right 10px / 7px auto;
+            th,
+            td {
+              display:block; 
+              padding:0; 
+              width:100%; 
+              height:auto; 
+              text-align:left}  
+            td {
+              padding-left:10px;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

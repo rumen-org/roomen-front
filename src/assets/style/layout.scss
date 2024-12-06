@@ -376,19 +376,27 @@ body.bgGray #container {
 }
 
 @media (max-width: 1160px) {
-  #wrap #container, body.bgGray #container {
+  #wrap #container, 
+  body.bgGray #container {
       padding: 80px 60px 60px;
   }
 }
 
 @media (max-width: 940px) {
-  #wrap #container, body.bgGray #container {
+  #wrap #container, 
+  body.bgGray #container {
         padding: 80px 24px 60px;
   }
 }
 
 @media (max-width: 768px) {
-  #wrap #container, body.bgGray #container {
+  #wrap {
+    #container {
+      margin-bottom: 60px;
+    }
+  }
+  #wrap #container, 
+  body.bgGray #container {
         padding: 80px 24px 20px;
     }
 }
