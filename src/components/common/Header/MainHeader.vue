@@ -121,6 +121,7 @@ const handleResize = debounce(() => {
   windowWidth.value = window.innerWidth
   windowHeight.value = window.innerHeight
   winWidthStore.setWidthValue(windowWidth.value)
+  winWidthStore.setHeightValue(windowHeight.value)
   if (windowWidth.value < 1161) {
     winWidthStore.setWindowState('mobile')
   } else if (windowWidth.value > 1161) {

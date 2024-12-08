@@ -1,6 +1,6 @@
 // 휴대전화 앞 번호
 export const mobileFrontNumber = [
-  { value: '', label: '선택해주세요.' },
+  { value: '', label: '선택' },
   { value: '010', label: '010' },
   { value: '011', label: '011' },
   { value: '016', label: '016' },
@@ -11,7 +11,7 @@ export const mobileFrontNumber = [
 
 // 유선전화 지역번호
 export const telephoneFrontNumber = [
-  { value: '', label: '선택해주세요.' },
+  { value: '', label: '선택' },
   { value: '02', label: '서울' },
   { value: '031', label: '경기도' },
   { value: '032', label: '인천' },

@@ -1,5 +1,5 @@
 <template>
-  <div id="container" class="products" @scroll="scrolling">
+  <div id="container" ref="containerRef" class="products">
     <!--        <div v-if="loading" class="spinner">Loading...</div>-->
     <div :class="{ loading: loading }" class="contents">
       <!-- productDetail -->
@@ -33,8 +33,8 @@
           <!--// imgList -->
 
           <!-- floatMenu -->
-          <aside ref="flottingMenu" class="floatMenu">
-            <div class="floatScroll">
+          <aside class="floatMenu">
+            <div ref="floatingMenu" class="floatScroll">
               <strong class="tit">{{ product?.name }}</strong>
               <p class="subTit fontG">{{ product?.subTitle }}</p>
               <p v-if="product" class="price">
@@ -100,6 +100,7 @@
       <!--// productDetail -->
     </div>
     <Confirm />
+    <Alert />
   </div>
 </template>
 <script setup lang="ts">
@@ -110,10 +111,14 @@ import RadioPalette from '@/components/page_items/product/detailColor.vue'
 import SelectOptions from '@/components/page_items/product/detailOptionSelect.vue'
 import countComponent from '@/components/page_items/product/detailCount.vue'
 import Confirm from '@/components/notifications/confirm.vue'
+import Alert from '@/components/notifications/alert.vue'
 
 // Composable
 import { useConfirm } from '@/composables/useConfirm'
+import { useAlert } from '@/composables/useAlert'
+
 const { showConfirm } = useConfirm()
+const { showAlert } = useAlert()
 
 // api
 import { getProductItem } from '@/api/product'
@@ -121,8 +126,11 @@ import { postCartItems } from '@/api/cart'
 // stores
 import { useBucketStore } from '@/stores/bucket'
 const bucketStore = useBucketStore()
+import { useWindowResponsive } from '@/stores/windowResponsive'
+import { useDomValues } from '@/stores/domValues'
 const { getItems, getPrice } = storeToRefs(bucketStore)
-
+const { windowState } = storeToRefs(useWindowResponsive())
+const { footerOffsetTop } = storeToRefs(useDomValues())
 interface BucketItems {
   id: number
   name: string
@@ -161,11 +169,7 @@ const resetBucketItems = () => {
 }
 
 const getQuantity = (a: never) => {
-  console.log('abc', a)
   const { i, q } = a
-
-  console.log('abc', i, q)
-
   bucketStore.setItemQuantity(i, q)
   console.log('getItems', getItems.value)
 
@@ -176,7 +180,6 @@ const bucketsId = ref<number>(0)
 const addBuckets = () => {
   const info = product.value
   const options = getOptionList.rows[getOptionList.rows.length - 1]
-  console.log('optionsoptionsoptionsoptionsoptions', options)
   const transString = Object.values(options).join(' / ')
   let shippingPrice = 0
   Object.values(options).forEach(value => {
@@ -206,7 +209,6 @@ const addBuckets = () => {
 const removeItem = (id: number) => {
   getOptionList.rows.splice(id, 1)
   bucketStore.removeItems(id)
-  console.log('getItems', getItems.value)
 }
 
 // 계산 utils
@@ -238,7 +240,8 @@ interface ProductType {
 const route = useRoute()
 const paramsItem = Number(route.params.item)
 // Dom 객체
-const flottingMenu = ref<HTMLElement | null>(null)
+const containerRef = ref<HTMLElement | null>(null)
+const floatingMenu = ref<HTMLElement | null>(null)
 const outterHeight = ref<number>(window.outerHeight)
 
 // s
@@ -267,11 +270,23 @@ const fetchDetail = async (id: number) => {
   }
 }
 const scrolling = throttle((e: Event) => {
-  if (e && flottingMenu.value) {
-    outterHeight.value = window.outerHeight - flottingMenu.value?.offsetTop
-    // console.log('scrolling', e)
+  if (e && window?.scrollY && windowState.value === 'desktop') {
+    if (window.scrollY + window.innerHeight > footerOffsetTop.value) {
+      floatingMenu.value?.scrollTo({
+        top: floatingMenu.value.scrollHeight,
+        behavior: 'smooth'
+      })
+    } else if (e && window?.scrollY < 20) {
+      floatingMenu.value?.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
   }
-}, 500)
+  if (e && floatingMenu.value) {
+    outterHeight.value = window.outerHeight - floatingMenu.value?.offsetTop
+  }
+}, 100)
 const createPalleteData = (type: number) => ({
   title: ['색상1 : 상판, 하부다리, 후면가림판', '색상2 : 건반트레이, 다리, 상단선반, 칸막이'],
   radios: commonRadios,
@@ -307,11 +322,6 @@ const handleChange = (newValue: string, id: string) => {
 // const isInit = ref<boolean>(false);
 const handleInit = () => {
   SelectKey.value += 1
-  // isInit.value = true;
-  // setTimeout(() => {
-  //   isInit.value = false;
-  //   console.log('isIntValue',isInit.value)
-  // }, 1000);
 }
 const listWatcher = () => {
   if (Object.values(selectOptions).some(value => value === '')) {
@@ -324,9 +334,8 @@ const listWatcher = () => {
     })
     handleInit()
     addBuckets()
-    console.log('result', getOptionList)
   } else {
-    alert('다섯개 까지만 선택 가능합니다.')
+    showAlert('다섯개 까지만 선택 가능합니다.')
   }
 }
 interface GetItem {
@@ -367,8 +376,6 @@ const handleConfirm = () => {
     `장바구니에 상품이 담겼습니다.\n 장바구니로 이동하겠습니까?`,
     async () => {
       await putCart()
-      // const response2 = await getCartItemList();
-      // console.log('response2', response2)
 
       await router.push(`/cart`)
     },
@@ -379,7 +386,6 @@ const handleConfirm = () => {
 const putCart = async () => {
   try {
     const mappedItems = mapToCart(getItems.value)
-    console.log('mappedItems', mappedItems)
     const response = await postCartItems(mappedItems)
     console.log('response', response)
   } catch (error) {
@@ -388,11 +394,11 @@ const putCart = async () => {
 }
 
 onBeforeMount(() => {
-  window.addEventListener('scroll', scrolling)
-  console.log('paramsItem', paramsItem)
   fetchDetail(paramsItem)
 })
-onMounted(() => {})
+onMounted(() => {
+  window.addEventListener('scroll', scrolling)
+})
 bucketStore.clearAllItems()
 // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
 onUnmounted(() => {

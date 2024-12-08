@@ -105,6 +105,7 @@ const routePath = computed(() => {
   return route.path
 })
 // Composable
+// Stores
 import { useUserStore } from '@/stores/loginStores'
 import { useWindowResponsive } from '@/stores/windowResponsive'
 import { storeToRefs } from 'pinia'
@@ -117,11 +118,15 @@ const isAuth = computed(() => {
 })
 
 const windowWidth = ref<number>(0)
+const windowHeight = ref<number>(0)
+
 const isMobile = ref<boolean>(false)
 
 const handleResize = debounce(() => {
   windowWidth.value = window.innerWidth
+  windowHeight.value = window.innerHeight
   winWidthStore.setWidthValue(windowWidth.value)
+  winWidthStore.setHeightValue(windowHeight.value)
   if (windowWidth.value < 1161) {
     winWidthStore.setWindowState('mobile')
     isMobile.value = true

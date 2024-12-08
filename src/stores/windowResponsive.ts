@@ -4,15 +4,20 @@ import { ResponsiveType } from '@/models/type/typeList'
 export const useWindowResponsive = defineStore('windowResponsive', {
   state: () => ({
     widthValue: ref<number>(0),
-    windowState: ref<ResponsiveType>('desktop')
+    windowState: ref<ResponsiveType>('desktop'),
+    heightValue: ref<number>(0)
   }),
   getters: {
     getWidthValue: state => state.widthValue,
-    getWindowState: state => state.windowState
+    getWindowState: state => state.windowState,
+    getHeightValue: state => state.heightValue
   },
   actions: {
     setWidthValue(p: number) {
       this.widthValue = p
+    },
+    setHeightValue(p: number) {
+      this.heightValue = p
     },
     setWindowState(state: ResponsiveType) {
       this.windowState = state
