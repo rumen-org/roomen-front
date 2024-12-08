@@ -884,7 +884,7 @@
   @media (max-width: 768px) {
     .conTopArea {
       display: block;
-      height: auto;
+      //height: auto;
   
       .sorting {
         display: none;
@@ -1443,6 +1443,13 @@
           padding: 5px 10px !important;
           height: 30px;
         }
+        select {
+          padding:5px 20px 5px 5px !important;
+          height:30px;
+          background-size:12px auto;
+          background-position:center right 5px;
+          font-size: 16px;
+        }
       }
     }
   }
@@ -1525,7 +1532,15 @@
             width: 100%;
             height: auto;
             text-align: left;
-  
+            &:before {
+              position:absolute;
+              content:"";
+              top:50%;
+              right:5px;
+              width:13px;
+              height:7px;
+              background:url("../images/ico-select-arrow.png") no-repeat center / 100% auto;
+            }
             > {
               th {
                 display: block;
@@ -1649,12 +1664,8 @@
             padding: 5px !important;
             height: 35px;
           }
-  
+
           select {
-            //padding: 5px !important;
-            height: 35px;
-            padding: 5px 20px !important;
-            background: url("../images/ico-select-arrow.png") no-repeat center right 10px / 11px auto;
             font-size: 14px;
           }
   
@@ -3080,7 +3091,14 @@
       }
     }
   }
-  
+  @media (max-width: 1280px) {
+    .galleryList {
+      > ul {
+        gap: 40px;
+      }
+    }
+  }
+
   @media (max-width: 1160px) {
     .galDetailSlider, .galleryList .inner > div + div {
       margin: 30px 20% 0;
@@ -3574,6 +3592,7 @@
     button {
       flex: 0 0 calc(27%); /* 27%의 너비를 고정 */
       max-width: calc(27%); /* 최대 너비를 27%로 제한 */
+      min-width:60px;
     }
   }
 
