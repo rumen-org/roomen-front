@@ -34,7 +34,7 @@
               {{ t('cate.login.btn.login') }}
             </button>
           </div>
-          <div class="util">
+          <div class="login-util">
             <router-link to="/signup">{{ t('cate.login.other.1') }}</router-link>
             <div>
               <router-link to="/login/findID">{{ t('cate.login.other.2') }}</router-link>

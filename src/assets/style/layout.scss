@@ -85,7 +85,7 @@
         }
       }
     }
-  
+
     .util {
       position: fixed;
       top: 50%;
@@ -249,8 +249,10 @@
           }
         }
       }
-  
+
       .util {
+        position: absolute;
+        z-index: 5;
         top: 45%;
         margin-top: 0;
       }
