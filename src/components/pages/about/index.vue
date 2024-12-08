@@ -1,7 +1,10 @@
 <template>
   <div id="container">
     <div class="inner">
-      <div class="aboutVisual" :style="{ height: heightGetter + 'px' ? heightGetter + 'px' : '' }">
+      <div
+        class="aboutVisual"
+        :style="{ height: responseHeight === 0 ? '100vh' : responseHeight + 'px' }"
+      >
         <!--        <img src="@/assets/images/img-about-visual.png" alt="루멘_배경이미지">-->
         <div>
           <p class="aniOne"><img class="logoImg" src="@/assets/images/logo.png" alt="" /></p>
@@ -21,10 +24,25 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const heightGetter = computed<number>(() => {
-  return window.outerHeight
+import { debounce } from 'lodash'
+import { onMounted, onUnmounted, ref } from 'vue'
+const responseHeight = ref<number>(0)
+const heightGetter = debounce(() => {
+  responseHeight.value = window.innerHeight
+}, 500)
+// const heightGetter = computed<number>(() => {
+//   return window.innerHeight
+// })
+onMounted(() => {
+  heightGetter()
+  window.addEventListener('resize', () => {
+    heightGetter()
+  })
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', () => {
+    heightGetter()
+  })
 })
 </script>
 <style lang="scss" scoped>
