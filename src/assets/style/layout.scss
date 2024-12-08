@@ -285,10 +285,20 @@
       button {
         color: #fff;
       }
-  
-      &.on h1 > a {
-        background-image: url("../images/logo.png");
+      h1 {
+        &.mobile-logo {
+          > a {
+            background-image: url("../images/logo-b.png");
+          }
+        }
       }
+      &.on h1 {
+        > a {
+          background-image: url("../images/logo.png");
+        }
+      }
+
+
   
       .menu > ul > li {
         > a,

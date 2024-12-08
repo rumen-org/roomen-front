@@ -6,7 +6,9 @@
   >
     <!-- inner -->
     <div class="inner">
-      <h1><router-link to="/">ROOMEN</router-link></h1>
+      <h1 :class="{ 'mobile-logo': windowState === 'mobile' }">
+        <router-link to="/">ROOMEN</router-link>
+      </h1>
       <div class="gnb" :style="{ right: isMenuOpen ? '0' : '-100%' }">
         <div class="menu">
           <ul>
@@ -110,7 +112,7 @@ import { useUserStore } from '@/stores/loginStores'
 import { useWindowResponsive } from '@/stores/windowResponsive'
 import { storeToRefs } from 'pinia'
 const winWidthStore = useWindowResponsive()
-
+const { windowState } = storeToRefs(winWidthStore)
 // Auth
 const { isAuthenticated } = storeToRefs(useUserStore())
 const isAuth = computed(() => {

@@ -101,6 +101,7 @@ import SnsList from '@/components/common/snsList.vue'
 const { isAuthenticated } = storeToRefs(useUserStore())
 const { getActiveSection } = storeToRefs(useMainStore())
 const winWidthStore = useWindowResponsive()
+const { windowState } = storeToRefs(winWidthStore)
 const isAuth = computed(() => {
   return isAuthenticated.value
 })
