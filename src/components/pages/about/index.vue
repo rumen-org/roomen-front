@@ -3,7 +3,7 @@
     <div class="inner">
       <div
         class="aboutVisual"
-        :style="{ height: responseHeight === 0 ? '100vh' : responseHeight + 'px' }"
+        :style="{ height: responseHeight === 0 ? '100%' : responseHeight + 'px' }"
       >
         <!--        <img src="@/assets/images/img-about-visual.png" alt="루멘_배경이미지">-->
         <div>
