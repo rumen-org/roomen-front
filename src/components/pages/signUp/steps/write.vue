@@ -303,7 +303,7 @@ const bindValue = () => {
   step2.value.email = step2Data.email
   step2.value.verificationCode = Number(step2Data.verificationCode)
 }
-const AllData = {
+const AllData = reactive({
   isThirdPartyAgree: step1.value.isThirdPartyAgree,
   isEmailAgree: step1.value.isEmailAgree,
   isSmsAgree: step1.value.isSmsAgree,
@@ -314,8 +314,9 @@ const AllData = {
   email: step2.value.email,
   password: step2.value.password,
   role: 'Customer'
-}
+})
 const handleRegistor = async () => {
+  console.log('step2Data', step2Data)
   bindValue()
   console.log('AllData', AllData)
   try {

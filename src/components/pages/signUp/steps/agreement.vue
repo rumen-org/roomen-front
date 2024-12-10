@@ -92,16 +92,10 @@ const requireAgree = computed<boolean>(() => {
 })
 // 다음
 const sendPage = () => {
-  step1.value.isThirdPartyAgree = checkedList.value.includes('isThirdPartyAgree')
+  step1.value.isThirdPartyAgree = checkedList.value.includes('thirdParty')
   step1.value.isSmsAgree = checkedList.value.includes('sms')
   step1.value.isEmailAgree = checkedList.value.includes('email')
   step1.value.isEmailVerified = true
-  // agreement, privacy, sms, thirdParty, email
-  // checkedList.value.forEach(item => {
-  //   if (item === 'isThirdPartyAgree') isThirdPartyAgree.value = Boolean(item)
-  //   if (item === 'sms') isSmsAgree.value = Boolean(item)
-  //   if (item === 'email') isEmailAgree.value = Boolean(item)
-  // })
   emits('update')
 }
 // 전체선택
