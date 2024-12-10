@@ -25,10 +25,11 @@ export default defineConfig({
         }
     },
     server: {
+        host: true,
         port: 3000,
         proxy: {
             '^/api': {
-                target: 'http://localhost:8000',
+                target: 'https://roomen.p-e.kr/api',
                 changeOrigin: true
             }
         }

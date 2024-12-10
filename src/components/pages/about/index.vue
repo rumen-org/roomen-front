@@ -1,7 +1,10 @@
 <template>
   <div id="container">
     <div class="inner">
-      <div class="aboutVisual" :style="{ height: heightGetter + 'px' ? heightGetter + 'px' : '' }">
+      <div
+        class="aboutVisual"
+        :style="{ height: responseHeight === 0 ? '100%' : responseHeight + 'px' }"
+      >
         <!--        <img src="@/assets/images/img-about-visual.png" alt="루멘_배경이미지">-->
         <div>
           <p class="aniOne"><img class="logoImg" src="@/assets/images/logo.png" alt="" /></p>
@@ -21,27 +24,26 @@
   </div>
 </template>
 <script setup lang="ts">
-/*import { computed } from 'vue'
-
-const heightGetter = computed<number>(() => {
-  return window.outerHeight
-})*/
-
-import { ref, onMounted, onUnmounted } from 'vue';
-
-const heightGetter = ref<number>(window.innerHeight); // 초기 높이값 설정
-
+import { debounce } from 'lodash'
+import { onMounted, onUnmounted, ref } from 'vue'
+const responseHeight = ref<number>(0)
+const heightGetter = debounce(() => {
+  responseHeight.value = window.innerHeight
+}, 500)
+// const heightGetter = computed<number>(() => {
+//   return window.innerHeight
+// })
 onMounted(() => {
-  const updateHeight = () => {
-    heightGetter.value = window.innerHeight; // 높이값 업데이트
-  };
-
-  window.addEventListener('resize', updateHeight); // 리사이즈 이벤트 등록
-
-  onUnmounted(() => {
-    window.removeEventListener('resize', updateHeight); // 이벤트 제거
-  });
-});
+  heightGetter()
+  window.addEventListener('resize', () => {
+    heightGetter()
+  })
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', () => {
+    heightGetter()
+  })
+})
 </script>
 <style lang="scss" scoped>
 .aboutVisual > img {

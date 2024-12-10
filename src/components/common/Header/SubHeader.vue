@@ -6,7 +6,9 @@
   >
     <!-- inner -->
     <div class="inner">
-      <h1><router-link to="/">ROOMEN</router-link></h1>
+      <h1 :class="{ 'mobile-logo': windowState === 'mobile' }">
+        <router-link to="/">ROOMEN</router-link>
+      </h1>
       <div class="gnb" :style="{ right: isMenuOpen ? '0' : '-100%' }">
         <div class="menu">
           <ul>
@@ -105,11 +107,12 @@ const routePath = computed(() => {
   return route.path
 })
 // Composable
+// Stores
 import { useUserStore } from '@/stores/loginStores'
 import { useWindowResponsive } from '@/stores/windowResponsive'
 import { storeToRefs } from 'pinia'
 const winWidthStore = useWindowResponsive()
-
+const { windowState } = storeToRefs(winWidthStore)
 // Auth
 const { isAuthenticated } = storeToRefs(useUserStore())
 const isAuth = computed(() => {
@@ -117,11 +120,15 @@ const isAuth = computed(() => {
 })
 
 const windowWidth = ref<number>(0)
+const windowHeight = ref<number>(0)
+
 const isMobile = ref<boolean>(false)
 
 const handleResize = debounce(() => {
   windowWidth.value = window.innerWidth
+  windowHeight.value = window.innerHeight
   winWidthStore.setWidthValue(windowWidth.value)
+  winWidthStore.setHeightValue(windowHeight.value)
   if (windowWidth.value < 1161) {
     winWidthStore.setWindowState('mobile')
     isMobile.value = true
