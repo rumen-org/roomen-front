@@ -304,24 +304,38 @@ const bindValue = () => {
   step2.value.email = step2Data.email
   step2.value.verificationCode = Number(step2Data.verificationCode)
 }
-const AllData = reactive({
+// const AllData = reactive({
+//   isThirdPartyAgree: step1.value.isThirdPartyAgree,
+//   isEmailAgree: step1.value.isEmailAgree,
+//   isSmsAgree: step1.value.isSmsAgree,
+//   isEmailVerified: true,
+//   memberId: step2.value.memberId,
+//   name: step2.value.name,
+//   phone: step2.value.phone,
+//   email: step2.value.email,
+//   password: step2.value.password,
+//   role: 'Customer'
+// })
+const getAllData = () => ({
   isThirdPartyAgree: step1.value.isThirdPartyAgree,
   isEmailAgree: step1.value.isEmailAgree,
   isSmsAgree: step1.value.isSmsAgree,
   isEmailVerified: true,
   memberId: step2.value.memberId,
   name: step2.value.name,
-  phone: step2.value.phone,
+  phone: `${phone.value[0]}-${phone.value[1]}-${phone.value[2]}`,
   email: step2.value.email,
   password: step2.value.password,
   role: 'Customer'
 })
+
 const handleRegistor = async () => {
   console.log('step2Data', step2Data)
   bindValue()
-  console.log('AllData', AllData)
+  console.log('AllData', getAllData)
+  const allData = getAllData()
   try {
-    const response = await onRegistor(AllData)
+    const response = await onRegistor(allData)
     console.log('response', response.data)
     emits('update')
   } catch (error) {
