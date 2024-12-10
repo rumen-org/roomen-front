@@ -194,10 +194,12 @@ const {
   validateNumericInput,
   validatePassword
 } = useValidate()
+
+const phone = ref(['', '', '']) // input 값 관리
 const step2Data = reactive<RegisterStep2>({
   memberId: '',
   name: '',
-  phone: '',
+  phone: `${phone.value[0]}-${phone.value[1]}-${phone.value[2]}`,
   email: '',
   password: '',
   role: 'Customer',
@@ -219,7 +221,6 @@ const correctPhone = computed<boolean>(() => {
   return phone.value[0] !== '' && phone.value[1].length === 4 && phone.value[2].length === 4
 })
 
-const phone = ref(['', '', '']) // input 값 관리
 const inputRefs: Ref<HTMLInputElement | null>[] = [
   ref<HTMLInputElement | null>(null),
   ref<HTMLInputElement | null>(null),
