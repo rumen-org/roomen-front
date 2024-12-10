@@ -1,6 +1,6 @@
 <template>
   <router-view :key="$route.fullPath"></router-view>
-<!--  <router-view :key="fullPath"></router-view>-->
+  <!--  <router-view :key="fullPath"></router-view>-->
 </template>
 
 <script setup lang="ts">
@@ -10,5 +10,4 @@
 // const fullPath = computed(()=>{
 //   return route.fullPath
 // })
-
 </script>

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@portone/browser-sdk": "^0.0.10",
+    "@unhead/vue": "^1.11.14",
     "axios": "^1.6.8",
     "cors": "^2.8.5",
     "eslint-define-config": "^2.1.0",
