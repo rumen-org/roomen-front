@@ -2,11 +2,14 @@ import { type Ref, ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { throttle } from 'lodash'
 import { useMainStore } from '@/stores/mainPage'
 
-export function useFullPage(sections: Ref<HTMLElement | null>[]) {
+export function useFullPage(
+  sections: Ref<HTMLElement | null>[],
+  xScrollRef: Ref<HTMLElement | null>
+) {
   const touchStartY = ref<number>(0)
   const touchStartX = ref<number>(0) // X축 터치 추가
   const inMove = ref(false)
-  const inMoveDelay = 500 // 모바일에서는 더 빠른 반응성을 위해 딜레이 감소
+  const inMoveDelay = 200 // 모바일에서는 더 빠른 반응성을 위해 딜레이 감소
   const activeSection = ref(0)
   const isSwiperActive = ref(false)
   const isScrolling = ref(false) // 스크롤 중인지 확인하는 상태 추가
@@ -14,7 +17,7 @@ export function useFullPage(sections: Ref<HTMLElement | null>[]) {
 
   // 터치 민감도 설정
   const TOUCH_SENSITIVITY = 30
-  const SCROLL_TIMEOUT = 1000
+  const SCROLL_TIMEOUT = 500
 
   const quickNavClass = computed(() => {
     return activeSection.value !== 0 ? '' : 'top'
@@ -77,6 +80,13 @@ export function useFullPage(sections: Ref<HTMLElement | null>[]) {
 
   const handleSwiperState = (active: boolean) => {
     isSwiperActive.value = active
+    // if (active) {
+    //   // 슬라이더 활성화 상태에서 fullpage 스크롤을 차단
+    //   setBodyOverflow(true)
+    // } else {
+    //   // 슬라이더 비활성화 상태에서는 페이지 스크롤을 가능하게 함
+    //   setBodyOverflow(false)
+    // }
   }
 
   // 스로틀링된 이동 함수들
@@ -118,46 +128,47 @@ export function useFullPage(sections: Ref<HTMLElement | null>[]) {
   const touchStart = (evt: Event) => {
     const e = evt as TouchEvent
     if (isSwiperActive.value) return
-
+    console.log('xScrollRef.value', xScrollRef.value, e.target)
+    if (xScrollRef.value) {
+      console.log('xScrollRef is target', xScrollRef.value.contains(e.target as Node))
+    }
     touchStartY.value = e.touches[0].clientY
     touchStartX.value = e.touches[0].clientX // X축 터치 위치 저장
 
-    if (e.cancelable) {
+    if (e.cancelable && !xScrollRef.value) {
       e.preventDefault()
     }
   }
 
   const touchMove = throttle((evt: Event) => {
     const e = evt as TouchEvent
-    if (inMove.value || isSwiperActive.value || isScrolling.value) return false
+    if (inMove.value || isScrolling.value) return false
 
     const currentY = e.touches[0].clientY
     const currentX = e.touches[0].clientX
     const touchDeltaY = currentY - touchStartY.value
-    const touchDeltaX = Math.abs(currentX - touchStartX.value)
-
-    // X축 이동이 Y축보다 크면 수평 스크롤로 간주하고 무시
-    if (touchDeltaX > Math.abs(touchDeltaY)) {
+    const touchDeltaX = currentX - touchStartX.value
+    if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
       return
     }
-
-    // Y축 이동이 민감도보다 클 때만 섹션 이동
-    if (Math.abs(touchDeltaY) > TOUCH_SENSITIVITY) {
-      if (touchDeltaY > 0) {
-        moveDown()
-      } else {
-        moveUp()
+    if (Math.abs(touchDeltaX) <= Math.abs(touchDeltaY)) {
+      if (Math.abs(touchDeltaY) > TOUCH_SENSITIVITY) {
+        if (touchDeltaY > 0) {
+          moveDown()
+        } else {
+          moveUp()
+        }
+        touchStartY.value = currentY
       }
-      touchStartY.value = currentY
     }
 
-    if (e.cancelable) {
+    if (e.cancelable && !xScrollRef.value) {
       e.preventDefault()
     }
-  }, inMoveDelay / 2) // 터치에서는 더 빠른 반응성을 위해 스로틀 시간 감소
+  }, inMoveDelay / 2)
 
   const touchEnd = () => {
-    touchStartY.value = 0
+    // touchStartY.value = 0
     touchStartX.value = 0
   }
 

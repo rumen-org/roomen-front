@@ -666,6 +666,10 @@
   }
 
   .gallSlider {
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
     height: calc(100% - 50px);
 
     > .swiper-wrapper {

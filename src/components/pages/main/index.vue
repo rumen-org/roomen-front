@@ -127,8 +127,8 @@
       <div class="inner">
         <h2>GALLERY</h2>
         <!-- gallSlider -->
-        <div class="gallSlider">
-          <div class="swiper-wrapper">
+        <div ref="xScrollRef" class="gallSlider">
+          <div class="swiper-wrapper gallWrapper">
             <div class="swiper-slide">
               <!-- inGallSlider -->
               <swiper
@@ -205,6 +205,9 @@ const sections: Ref<HTMLElement | null>[] = [
   ref<HTMLElement | null>(null),
   ref<HTMLElement | null>(null)
 ]
+// xScrollDom
+const xScrollRef = ref<HTMLElement | null>(null)
+
 const {
   scrollToSection,
   activeSection,
@@ -215,7 +218,7 @@ const {
   handleSwiperState,
   touchMove,
   touchEnd
-} = useFullPage(sections)
+} = useFullPage(sections, xScrollRef)
 onMounted(() => {})
 onUnmounted(() => {})
 const previewColor = ref<string>('000000')
