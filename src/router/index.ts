@@ -170,6 +170,10 @@ const routes: Array<RouteRecordRaw> = [
         meta: { layout: DefaultLayout, notGnb: true, utils: true, class: 'mypage' },
         children: [
           {
+            path: '',
+            redirect: '/mypage/purchaseHistory'
+          },
+          {
             path: '/mypage/:category',
             name: 'ChangePassword',
             component: () => import('@/views/my_page/[category].vue'),

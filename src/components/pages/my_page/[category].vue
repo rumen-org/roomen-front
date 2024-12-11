@@ -38,11 +38,12 @@ import WriteAddress from '@/components/pages/my_page/subDirectory/address/addShi
 
 // 라우트
 const route = useRoute()
-const category = route.params.category as string
-
+const category = computed(() => {
+  return route.params.category as string
+})
 // 현재 페이지
 const current = computed(() => {
-  return componentsMap[category] ?? PurchaseHistory
+  return componentsMap[category.value] ?? PurchaseHistory
 })
 
 const componentsMap: Record<string, unknown> = {

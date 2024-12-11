@@ -20,7 +20,7 @@ const route = useRoute()
 const router = useRouter()
 
 const goTo = (path: string) => {
-  router.push(`/mypage/${path}`)
+  router.push(`${path}`)
 }
 
 const tabData = [
