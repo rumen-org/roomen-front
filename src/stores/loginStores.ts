@@ -47,12 +47,32 @@ export const useUserStore = defineStore('user', {
         this.userId = String(user.id) // 새로운 사용자 ID 상태 추가
         this.role = user.role
 
-        Cookies.set('token', token, { expires: 1 }) // 1일 동안 유효
-        Cookies.set('memberId', user.memberId, { expires: 1 })
-        Cookies.set('userId', String(user.id), { expires: 1 }) // userId 쿠키에 저장
-        Cookies.set('role', user.role, { expires: 1 }) // role 쿠키에 저장
-
+        Cookies.set('token', token, {
+          expires: 1,
+          sameSite: 'None',
+          secure: true,
+          path: '/'
+        })
+        Cookies.set('memberId', user.memberId, {
+          expires: 1,
+          sameSite: 'None',
+          secure: true,
+          path: '/'
+        })
+        Cookies.set('userId', String(user.id), {
+          expires: 1,
+          sameSite: 'None',
+          secure: true,
+          path: '/'
+        })
+        Cookies.set('role', user.role, {
+          expires: 1,
+          sameSite: 'None',
+          secure: true,
+          path: '/'
+        })
         console.log('로그인 성공:', response)
+        console.log('process.env.NODE_ENV', process.env.NODE_ENV)
       } catch (error) {
         console.error('로그인 실패:', error)
         // throw new Error(error?.stack?.response?.data?.error)
@@ -100,8 +120,12 @@ export const useUserStore = defineStore('user', {
 
         // 새로운 토큰을 상태에 저장하고 쿠키에도 저장
         this.token = newToken
-        Cookies.set('token', newToken)
-
+        Cookies.set('refreshToken', newToken, {
+          expires: 10,
+          sameSite: 'None',
+          secure: true,
+          path: '/'
+        })
         // 새로운 토큰을 Authorization 헤더에 설정
         axiosInstance.defaults.headers['Authorization'] = `Bearer ${newToken}`
       } catch (error) {
