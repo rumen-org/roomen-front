@@ -93,7 +93,7 @@ export const useUserStore = defineStore('user', {
     async checkAuthentication() {
       try {
         const response = await axiosInstance.get<number>('/account/check', {
-          withCredentials: true // 쿠키를 포함하여 요청
+          withCredentials: true
         })
         if (response.data) {
           this.isAuthenticated = true
