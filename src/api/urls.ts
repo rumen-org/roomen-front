@@ -1,4 +1,4 @@
-const BaseUrl: string = 'https://back.roomen.r-e.kr/api'
+const BaseUrl: string = 'https://back.rooemn.kro.kr/api'
 export const path = {
   account: `${BaseUrl}+/account`,
   cart: `${BaseUrl}/cart`,

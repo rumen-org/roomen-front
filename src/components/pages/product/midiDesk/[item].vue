@@ -12,7 +12,7 @@
               <BackButton />
               <div>
                 <div v-for="(item, i) in product?.images" :key="i" @click="changeThumb(item)">
-                  <img :src="`https://back.roomen.r-e.kr/${item}`" alt="상품 이미지 리스트" />
+                  <img :src="`https://back.rooemn.kro.kr/${item}`" alt="상품 이미지 리스트" />
                   <em :class="thumbImg !== item ? 'opacityCover' : 'blind'"></em>
                 </div>
               </div>
@@ -22,8 +22,8 @@
                 <img
                   :src="
                     thumbImg !== null
-                      ? `https://back.roomen.r-e.kr/${thumbImg}`
-                      : `https://back.roomen.r-e.kr/${product?.images[0]}`
+                      ? `https://back.rooemn.kro.kr/${thumbImg}`
+                      : `https://back.rooemn.kro.kr/${product?.images[0]}`
                   "
                   alt="대표상품 이미지"
                 />
