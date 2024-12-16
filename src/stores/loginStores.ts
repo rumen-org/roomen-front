@@ -87,7 +87,7 @@ export const useUserStore = defineStore('user', {
     async logout() {
       try {
         const response = await axios.post(
-          'https://back.rooemn.kro.kr/api/account/logout',
+          'https://back.roomen.kro.kr/api/account/logout',
           {},
           {
             headers: {
@@ -113,7 +113,7 @@ export const useUserStore = defineStore('user', {
     },
     async checkAuthentication() {
       try {
-        const response = await axios.get('https://back.rooemn.kro.kr/api/account/check', {
+        const response = await axios.get('https://back.roomen.kro.kr/api/account/check', {
           headers: {
             'Access-Control-Allow-Origin': '*',
             ContentType: 'application/json',

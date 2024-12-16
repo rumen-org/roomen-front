@@ -77,7 +77,7 @@
                       <ul v-if="datas?.beforeImg.length > 0">
                         <li v-for="(item, idx) in datas.beforeImg" :key="idx" class="pos-rel">
                           <img
-                            :src="`https://back.rooemn.kro.kr/${item}`"
+                            :src="`https://back.roomen.kro.kr/${item}`"
                             alt="이전에 등록된 이미지"
                           />
                           <button class="delete" @click="removeItem(idx, 'old')">

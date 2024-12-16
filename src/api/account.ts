@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useUserStore } from '@/stores/loginStores'
-const BaseURL = 'https://back.rooemn.kro.kr/api'
+const BaseURL = 'https://back.roomen.kro.kr/api'
 const userStore = useUserStore()
 // Types
 import {

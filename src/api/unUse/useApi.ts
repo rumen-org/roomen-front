@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import axios, { AxiosRequestConfig } from 'axios'
 
 // API URL
-const BASE_URL = 'https://back.rooemn.kro.kr/api'
+const BASE_URL = 'https://back.roomen.kro.kr/api'
 
 // API 상태 정의
 enum ApiStatus {

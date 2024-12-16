@@ -3,7 +3,7 @@
     <ul class="contents-images">
       <li v-for="(item, i) in content?.images" :key="i">
         <p class="images image-box">
-          <img :src="`https://back.rooemn.kro.kr/${item}`" alt="질문글 이미지" />
+          <img :src="`https://back.roomen.kro.kr/${item}`" alt="질문글 이미지" />
         </p>
       </li>
     </ul>
