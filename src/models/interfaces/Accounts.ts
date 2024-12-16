@@ -65,7 +65,19 @@ export interface DuplicateCheckType {
   memberIdExists: boolean
   emailExists: boolean
 }
-export interface duplicateParams {
+export interface DuplicateParams {
   memberId: string | null
   email: string | null
+}
+export interface LoginParams {
+  memberId: string
+  password: string
+}
+export interface LoginResponse {
+  token: string
+  user: {
+    id: number
+    memberId: string
+    role: string // role 추가
+  }
 }

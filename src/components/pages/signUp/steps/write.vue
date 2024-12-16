@@ -162,7 +162,7 @@
 </template>
 
 <script lang="ts" setup>
-import { type duplicateParams, type RegisterStep2 } from '@/models/interfaces/Accounts'
+import { type DuplicateParams, type RegisterStep2 } from '@/models/interfaces/Accounts'
 
 import { computed, onUnmounted, reactive, type Ref, ref } from 'vue'
 
@@ -244,7 +244,7 @@ const checkDuplicated = async () => {
   const params = {
     memberId: step2Data.memberId,
     email: step2Data.email
-  } as duplicateParams
+  } as DuplicateParams
   try {
     console.log('callFunction')
     const response = await duplicateCheck(params)

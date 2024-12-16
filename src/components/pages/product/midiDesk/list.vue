@@ -20,7 +20,7 @@
               class="product"
             >
               <p>
-                <img :src="`https://roomen.p-e.kr/${item.imgPath}`" alt="상품 섬네일" />
+                <img :src="`https://back.roomen.r-e.kr/${item.imgPath}`" alt="상품 섬네일" />
               </p>
               <div>
                 <strong

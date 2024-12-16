@@ -31,7 +31,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '^/api': {
-        target: 'https://roomen.p-e.kr/api',
+        target: 'https://back.roomen.r-e.kr/api',
         changeOrigin: true
       }
     }

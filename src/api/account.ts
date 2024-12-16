@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { useUserStore } from '@/stores/loginStores'
-const BaseURL = 'https://roomen.p-e.kr/api'
+const BaseURL = 'https://back.roomen.r-e.kr/api'
 const userStore = useUserStore()
 // Types
 import {
   FindId,
   FindPw,
-  type duplicateParams,
+  type DuplicateParams,
   type RegisterAll
 } from '@/models/interfaces/Accounts'
 
@@ -68,7 +68,7 @@ export function updateAccountPassword(passwords: any) {
   })
 }
 // 아이디, 이메일 중복체크
-export function duplicateCheck(p: duplicateParams) {
+export function duplicateCheck(p: DuplicateParams) {
   let params
   if (p.memberId !== null && p.email !== null) {
     params = `?memberId=${p.memberId}&email=${p.email}`
@@ -93,6 +93,25 @@ export function findMemberId(params: FindId) {
 // 비밀번호 찾기
 export function findMemberPw(params: FindPw) {
   return axios.post(`${BaseURL}/account/findPw`, params, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+// 로그인
+export function loginHandler(userId: string, userPw: string) {
+  const params = { userId, userPw }
+
+  return axios.post(`${BaseURL}/account/login`, params, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+// 로그인
+export function logoutHandler(params: string) {
+  return axios.post(`${BaseURL}/account/logout`, params, {
     headers: {
       'Content-Type': 'application/json'
     }

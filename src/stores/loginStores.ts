@@ -1,6 +1,8 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import axiosInstance from '@/api/unUse/axiosInstance' // Axios 인스턴스를 import
-import Cookies from 'js-cookie' // js-cookie 라이브러리 사용
+import Cookies from 'js-cookie'
+import axios from 'axios'
+// import { logoutHandler } from '@/api/account'
 
 interface LoginRequest {
   memberId: string
@@ -37,6 +39,9 @@ export const useUserStore = defineStore('user', {
             password
           } as LoginRequest,
           {
+            headers: {
+              ContentType: 'application/json'
+            },
             withCredentials: true
           }
         )
@@ -48,26 +53,26 @@ export const useUserStore = defineStore('user', {
         this.role = user.role
 
         Cookies.set('token', token, {
-          expires: 1,
-          sameSite: 'None',
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          sameSite: 'none',
           secure: true,
           path: '/'
         })
         Cookies.set('memberId', user.memberId, {
-          expires: 1,
-          sameSite: 'None',
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          sameSite: 'none',
           secure: true,
           path: '/'
         })
         Cookies.set('userId', String(user.id), {
-          expires: 1,
-          sameSite: 'None',
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          sameSite: 'none',
           secure: true,
           path: '/'
         })
         Cookies.set('role', user.role, {
-          expires: 1,
-          sameSite: 'None',
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          sameSite: 'none',
           secure: true,
           path: '/'
         })
@@ -79,22 +84,44 @@ export const useUserStore = defineStore('user', {
         throw new Error(error as string)
       }
     },
-    logout() {
-      this.token = null
-      this.memberId = null
-      this.isAuthenticated = false
-      this.userId = null // 로그아웃 시 사용자 ID도 초기화
-
-      Cookies.remove('token')
-      Cookies.remove('memberId')
-      Cookies.remove('userId') // userId
-      Cookies.remove('role') // role 쿠키에 저장
+    async logout() {
+      try {
+        const response = await axios.post(
+          'https://back.roomen.r-e.kr/api/account/logout',
+          {},
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: this.token
+            },
+            withCredentials: true
+          }
+        )
+        console.log('logout', response)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.token = null
+        this.memberId = null
+        this.isAuthenticated = false
+        this.userId = null // 로그아웃 시 사용자 ID도 초기화
+        Cookies.remove('token')
+        Cookies.remove('memberId')
+        Cookies.remove('userId') // userId
+        Cookies.remove('role') // role 쿠키에 저장
+      }
     },
     async checkAuthentication() {
       try {
-        const response = await axiosInstance.get<number>('/account/check', {
+        const response = await axios.get('https://back.roomen.r-e.kr/api/account/check', {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            ContentType: 'application/json',
+            Cookie: `${this.token}`
+          },
           withCredentials: true
         })
+        console.log('token', this.token)
         if (response.data) {
           this.isAuthenticated = true
           console.log('인증 상태 확인 성공:', response.data)
@@ -102,6 +129,8 @@ export const useUserStore = defineStore('user', {
           this.isAuthenticated = false
         }
       } catch (error) {
+        console.log('token', this.token)
+
         console.error('인증 상태 확인 실패:', error)
         this.isAuthenticated = false
       }
@@ -121,8 +150,8 @@ export const useUserStore = defineStore('user', {
         // 새로운 토큰을 상태에 저장하고 쿠키에도 저장
         this.token = newToken
         Cookies.set('refreshToken', newToken, {
-          expires: 10,
-          sameSite: 'None',
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          sameSite: 'none',
           secure: true,
           path: '/'
         })
@@ -130,7 +159,7 @@ export const useUserStore = defineStore('user', {
         axiosInstance.defaults.headers['Authorization'] = `Bearer ${newToken}`
       } catch (error) {
         console.error('토큰 갱신 실패:', error)
-        this.logout() // 토큰 갱신 실패 시 로그아웃 처리
+        await this.logout() // 토큰 갱신 실패 시 로그아웃 처리
       }
     },
     async checkTokenValidity() {
@@ -145,7 +174,7 @@ export const useUserStore = defineStore('user', {
         }
       } catch (error) {
         console.error('토큰 유효성 확인 실패:', error)
-        this.logout() // 유효성 검사 실패 시 로그아웃 처리
+        await this.logout() // 유효성 검사 실패 시 로그아웃 처리
       }
     }
   }
