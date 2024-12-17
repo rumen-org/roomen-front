@@ -1039,7 +1039,7 @@ div[class*='Table'] {
       &.subject {
         padding-left: 80px;
 
-        a, button:not(.btn) {
+        > button:not(.btn) {
           display: -webkit-inline-box;
           font-size: inherit;
           font-weight: inherit;
@@ -1049,6 +1049,11 @@ div[class*='Table'] {
           line-height: inherit;
           text-overflow: ellipsis;
           color: #191919;
+          text-align:left;
+
+          span {
+            display:block;
+          }
 
           &.lock {
             padding-left: 32px;
@@ -1366,7 +1371,7 @@ div[class*='Table'].inputTable.qna {
         font-size: 16px;
 
         &.subject {
-          a.lock, button.lock {
+          button.lock {
             padding-left: 20px;
             background-size: 13px;
           }
@@ -2801,7 +2806,7 @@ div[class*='Table'].inputTable.qna {
     margin-top: 30px;
 
     .goods {
-      padding: 30px 30px 40px 165px;
+      padding: 30px 50px 40px 165px;
 
       .img.w180 {
         width: 100px;

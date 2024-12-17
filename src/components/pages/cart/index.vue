@@ -189,5 +189,14 @@ button.btn-del {
   width: 30px;
   height: 30px;
   background: url('@/assets/images/btn-cart-del.png') no-repeat (center / 30px) auto;
+
+  @media (max-width: 940px) {
+    width: 20px;
+    height: 20px;
+  }
+  @media (max-width: 768px) {
+    top: 30px;
+    right: 10px;
+  }
 }
 </style>
