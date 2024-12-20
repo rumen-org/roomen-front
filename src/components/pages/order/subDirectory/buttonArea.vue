@@ -7,17 +7,28 @@
     <button type="button" class="btn sL w290" @click="() => handlePayment('card')">
       ₩ <em>{{ formatPrice(getPrice) }}</em> 결제하기
     </button>
+
+    {{ paymentData }}
   </div>
 </template>
 <script lang="ts" setup>
 import { usePayments } from '@/composables/usePayment'
-
+import { Items } from '@/models/interfaces/Order'
 const { requestPay } = usePayments()
 
+import { computed, onMounted } from 'vue'
+const props = defineProps<{
+  itemInfo: Items | null
+}>()
+const paymentData = computed(() => {
+  return props?.itemInfo
+})
 const handlePayment = async (method: 'card' | 'trans' | 'vbank' | 'phone') => {
   try {
-    const response = await requestPay(1004, '당근 10kg', method)
-    console.log('Payment successful:', response)
+    if (paymentData.value?.name != null) {
+      const response = await requestPay(getPrice.value, paymentData.value?.name, method)
+      console.log('Payment successful:', response)
+    }
     await submitPayment()
   } catch (error) {
     console.error('Payment failed:', error)
@@ -26,7 +37,6 @@ const handlePayment = async (method: 'card' | 'trans' | 'vbank' | 'phone') => {
 // Router
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
 const router = useRouter()
 // Stores
 import { useBucketStore } from '@/stores/bucket'

@@ -1,4 +1,4 @@
-// composables/usePayments.ts
+// composable/usePayments.ts
 import { onMounted, ref } from 'vue'
 
 interface PaymentResponse {
