@@ -7,3 +7,5 @@ export type PhoneNumberType = {
 }
 export type ResponsiveType = 'mobile' | 'desktop'
 export type PaymentType = 'card' | 'trans' | 'vbank' | 'phone'
+
+export type PayState = 'waiting' | 'paying'
