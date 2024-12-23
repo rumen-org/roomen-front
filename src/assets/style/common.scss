@@ -93,6 +93,11 @@ legend, hr, caption {position:absolute; top:-9999px; left:-9999px; width:1px; he
 *:before,
 *:after {box-sizing:border-box}
 
+a {
+    &:hover, &:active, &:visited, &:focus, &:link {
+        color: inherit;
+    }
+}
 /* input type */
 input[type=number],
 input[type=tel],
