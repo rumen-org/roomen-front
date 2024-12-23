@@ -131,17 +131,10 @@ import { useDomValues } from '@/stores/domValues'
 const { getItems, getPrice } = storeToRefs(bucketStore)
 const { windowState } = storeToRefs(useWindowResponsive())
 const { footerOffsetTop } = storeToRefs(useDomValues())
-interface BucketItems {
-  id: number
-  name: string
-  subName: string
-  quantity: number
-  basicPrice: number
-  options: string
-  totalPrice: number
-  productId: string
-  imgUrl: string
-}
+
+// Models
+import { BucketItems, ProductType, SelectedOption, GetItem } from '@/models/interfaces/Product'
+
 const bucketItems = reactive<BucketItems>({
   id: 0,
   name: '',
@@ -172,8 +165,6 @@ const getQuantity = (a: never) => {
   const { i, q } = a
   bucketStore.setItemQuantity(i, q)
   console.log('getItems', getItems.value)
-
-  // addBuckets(a, q)
 }
 
 const bucketsId = ref<number>(0)
@@ -221,21 +212,6 @@ import { commonRadios, shippingOption, shippingOption2 } from '@/configs/product
 import { storeToRefs } from 'pinia'
 import { throttle } from 'lodash'
 
-interface ProductType {
-  id: number // 상품 ID
-  name: string // 상품명
-  imgPath: string // 메인 이미지 경로
-  price: number // 가격
-  discountPer: number // 할인율
-  subTitle: string // 부제목
-  category: string // 카테고리
-  label: string | null // 라벨 (null 허용)
-  otherInfo: string | null // 기타 정보 (null 허용)
-  shippingCost: number | null // 배송비 (null 허용)
-  content: string // 상세 설명
-  inStock: boolean // 재고 여부
-  images: string[] // 추가 이미지 배열
-}
 // 라우트
 const route = useRoute()
 const paramsItem = Number(route.params.item)
@@ -297,13 +273,6 @@ const createPalleteData = (type: number) => ({
 const palleteData = createPalleteData(1)
 const palleteData2 = createPalleteData(2)
 
-interface SelectedOption {
-  color1: string
-  color2: string
-  select1: string
-  select2: string
-}
-
 const getOptionList = reactive<{ rows: SelectedOption[] }>({
   rows: []
 })
@@ -338,16 +307,7 @@ const listWatcher = () => {
     showAlert('다섯개 까지만 선택 가능합니다.')
   }
 }
-interface GetItem {
-  id: number
-  name: string
-  subName: string
-  quantity: number
-  basicPrice: number
-  options: string
-  totalPrice: number
-  imgUrl: string
-}
+
 const SelectKey = ref<number>(0)
 const mapToCart = (getItems: GetItem[]) => {
   return getItems.map(item => ({

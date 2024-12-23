@@ -7,8 +7,6 @@
     <button type="button" class="btn sL w290" @click="checkCustomer">
       ₩ <em>{{ formatPrice(getPrice) }}</em> 결제하기
     </button>
-
-    {{ paymentData }}
     <Alert />
   </div>
 </template>
@@ -28,11 +26,11 @@ import { usePaymentStore } from '@/stores/payments'
 const bucketStore = useBucketStore()
 const paymentStore = usePaymentStore()
 const { getPrice } = storeToRefs(bucketStore)
-const { getCustomer } = paymentStore
+const { getCustomer, paymentType } = storeToRefs(paymentStore)
 // Models
 import { Items } from '@/models/interfaces/Order'
-
-import { computed, onMounted, ref } from 'vue'
+import type { PaymentType } from '@/models/type/typeList'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 const props = defineProps<{
   itemInfo: Items | null
 }>()
@@ -49,15 +47,17 @@ const checkCustomer = () => {
     return
   }
   setBuyerInfo(
-    getCustomer.email,
-    getCustomer.name,
-    getCustomer.tel,
-    getCustomer.addr,
-    getCustomer.postcode
+    getCustomer.value.email,
+    getCustomer.value.name,
+    getCustomer.value.tel,
+    getCustomer.value.addr,
+    getCustomer.value.postcode
   )
-  handlePayment('card')
+  const method = paymentType.value
+  console.log('method', method)
+  handlePayment(method as PaymentType)
 }
-const handlePayment = async (method: 'card' | 'trans' | 'vbank' | 'phone') => {
+const handlePayment = async (method: PaymentType) => {
   try {
     if (paymentData.value?.name != null) {
       // 실제 배포시에는 amount에 getPrice.value를 넣어야한다.
@@ -69,6 +69,7 @@ const handlePayment = async (method: 'card' | 'trans' | 'vbank' | 'phone') => {
   } catch (error) {
     emits('update', 'waiting')
     console.error('Payment failed:', error)
+    showAlert('결제가 취소 되었습니다.')
   }
 }
 // Router
@@ -82,5 +83,8 @@ const submitPayment = async () => {
 
 onMounted(() => {
   bucketStore.loadItemsFromStorage()
+})
+onBeforeUnmount(() => {
+  paymentStore.initPaymentType()
 })
 </script>

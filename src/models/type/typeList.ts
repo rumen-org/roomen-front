@@ -6,6 +6,6 @@ export type PhoneNumberType = {
   third: string
 }
 export type ResponsiveType = 'mobile' | 'desktop'
-export type PaymentType = 'card' | 'trans' | 'vbank' | 'phone'
+export type PaymentType = 'card' | 'trans' | 'vbank'
 
 export type PayState = 'waiting' | 'paying'

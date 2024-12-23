@@ -1,3 +1,4 @@
+import type { PaymentType } from '@/models/type/typeList'
 export interface Customer {
   email: string
   name: string
@@ -22,4 +23,9 @@ export interface toggleAddressType {
   getPostCode: string
   getRoadAddress: string
   getDetailAdress: string
+}
+export interface Tab {
+  name: string
+  path: string
+  type: PaymentType
 }

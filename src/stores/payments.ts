@@ -1,5 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { Customer } from '@/models/interfaces/Payment'
+import type { PaymentType } from '@/models/type/typeList'
 export const usePaymentStore = defineStore('payment', {
   state: () => ({
     customer: {
@@ -9,11 +10,15 @@ export const usePaymentStore = defineStore('payment', {
       addr: '',
       postcode: ''
     } as Customer,
-    backTo: ''
+    backTo: '',
+    paymentType: ''
   }),
   getters: {
     getCustomer(state) {
       return state.customer
+    },
+    getPaymentType(state) {
+      return state.paymentType
     }
   },
   actions: {
@@ -28,6 +33,12 @@ export const usePaymentStore = defineStore('payment', {
         addr: '',
         postcode: ''
       }
+    },
+    setPaymentType(p: PaymentType) {
+      this.paymentType = p
+    },
+    initPaymentType() {
+      this.paymentType = 'vbank'
     }
   }
 })
