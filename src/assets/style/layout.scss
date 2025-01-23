@@ -378,31 +378,33 @@
   #container {
     margin-bottom: 120px;
     padding: 172px 60px 60px 300px;
+    @media (max-width: 1160px) {
+      padding: 172px 40px 60px;
+    }
     &.products {
       padding: 100px 60px 60px 300px;
+      @media (max-width: 1160px) {
+        padding: 80px 40px 60px;
+      }
+      @media (max-width: 768px) {
+        padding: 80px 20px 60px;
+      }
     }
   }
-
 }
 
 body.bgGray #container {
     padding: 172px 60px 60px;
 }
-
-@media (max-width: 1160px) {
-  #wrap #container, body.bgGray #container {
-      padding: 80px 60px 60px;
-  }
-}
-
 @media (max-width: 940px) {
-  #wrap #container, body.bgGray #container {
+  #wrap #container, 
+  body.bgGray #container {
         padding: 80px 24px 60px;
   }
 }
-
 @media (max-width: 768px) {
-  #wrap #container, body.bgGray #container {
+  #wrap #container, 
+  body.bgGray #container {
         padding: 80px 24px 20px;
     }
 }

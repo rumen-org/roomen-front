@@ -96,10 +96,19 @@ onMounted(() => {
 }
 .option.optionTop {
   margin-top: 40px;
+  @media (max-width: 1160px) {
+    margin-top:20px;
+  }
   p {
     font-size: 16px;
     color: #191919;
+    @media (max-width: 1160px) {
+      text-indent: -40px;
+      padding-left: 40px;
+      font-size: 14px;
+    }
   }
+
 }
 .checkboxWrap {
   display: flex;
@@ -107,6 +116,10 @@ onMounted(() => {
   gap: 14px;
   margin: 12px -20px 0;
   padding: 0 20px;
+  @media (max-width: 1160px) {
+    flex-wrap:wrap;
+    gap: 12px;
+  }
   .checkbox {
     margin: 0;
     display: block;
@@ -114,6 +127,10 @@ onMounted(() => {
     height: 18px;
     border-radius: 50%;
     box-sizing: border-box;
+    @media (max-width: 1160px) {
+      width: 16px;
+      height: 16px; 
+    }
     input[type='radio'].blind {
       position: absolute;
       width: 1px;
@@ -137,11 +154,20 @@ onMounted(() => {
       width: 25px;
       height: 25px;
       box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+      @media (max-width: 1160px) {
+        width: 20px;
+        height: 20px;
+      }
     }
     &.curr2 {
       width: 25px;
       height: 25px;
-      box-shadow: 0 0 5px 1px #00000026;
+      // box-shadow: 0 0 5px 1px #00000026;
+      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+      @media (max-width: 1160px) {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }
