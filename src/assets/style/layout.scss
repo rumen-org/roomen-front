@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import "response";
 /*** HEADER ***/
 #header {
     position: fixed;
@@ -195,31 +196,30 @@
       z-index: 1001;
     }
   }
-  
-  @media (max-width: 1160px) {
+  @include response("$1160") {
     #header {
       top: 0;
       left: 0;
       width:100%;
       height:60px;
       background:#fff;
-  
+
       &:before {
         height: 60px;
       }
-  
+
       h1 {
         position: fixed;
-        top:20px; 
+        top:20px;
         left:24px;
         z-index: 10;
-  
+
         a {
           width: 110px;
           height: 20px;
         }
       }
-  
+
       .gnb {
         position: fixed;
         top: 0;
@@ -230,20 +230,20 @@
         background: #191919;
         transition-duration: 0.2s;
       }
-  
+
       &.open .gnb {
         right: -300px;
       }
-  
+
       .menu > ul > li {
         &:hover > a {
           color: rgba(255, 255, 255, 1);
         }
-  
+
         > ul {
           padding-top: 5px;
           padding-left: 20px;
-  
+
           > li > a {
             font-size: 14px;
           }
@@ -256,31 +256,31 @@
         top: 45%;
         margin-top: 0;
       }
-  
+
       .lang {
         position: absolute;
         top: initial;
         right: 25px;
         bottom: 93px;
-  
+
         button {
           font-size: 14px;
           color: rgba(255, 255, 255, 0.5);
-  
+
           &.curr {
             border-color: #fff;
             color: #fff;
           }
         }
       }
-  
+
       .insta {
         position: absolute;
         left: 25px;
         bottom: 93px;
         background-image: url("../images/ico-insta.png");
       }
-  
+
       a,
       button {
         color: #fff;
@@ -299,14 +299,14 @@
       }
 
 
-  
+
       .menu > ul > li {
         > a,
         > button {
-            background-image: url("../images/ico-arrow-down.png");
+          background-image: url("../images/ico-arrow-down.png");
         }
       }
-  
+
       .btnMenu {
         display: inline-block;
         position: fixed;
@@ -319,8 +319,8 @@
         margin-left: 15px;
         padding: 2px;
         box-sizing: content-box;
-  
-        &::before, 
+
+        &::before,
         &::after {
           content: "";
           position: absolute;
@@ -333,15 +333,15 @@
           transform-origin: center;
           transition-duration: 0.2s;
         }
-  
+
         &::before {
           margin-top: -6px;
         }
-  
+
         &::after {
           margin-top: 7px;
         }
-  
+
         em::before {
           content: "";
           position: absolute;
@@ -369,7 +369,7 @@
         em::before {
           display: none;
         }
-      } 
+      }
     }
   }
 
@@ -382,29 +382,25 @@
       padding: 100px 60px 60px 300px;
     }
   }
-
 }
 
 body.bgGray #container {
     padding: 172px 60px 60px;
 }
-
-@media (max-width: 1160px) {
+@include response("$1160") {
   #wrap #container, body.bgGray #container {
-      padding: 80px 60px 60px;
+    padding: 80px 60px 60px;
   }
 }
-
-@media (max-width: 940px) {
+@include response("$940") {
   #wrap #container, body.bgGray #container {
-        padding: 80px 24px 60px;
+    padding: 80px 24px 60px;
   }
 }
-
-@media (max-width: 768px) {
+@include response("$768") {
   #wrap #container, body.bgGray #container {
-        padding: 80px 24px 20px;
-    }
+    padding: 80px 24px 20px;
+  }
 }
 
 /*** FOOTER ***/
@@ -415,15 +411,15 @@ body.bgGray #container {
   position: relative;
   background: #ffffff;
 .inner {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 p > a {
-    display: inline-block;
-    width: 178px;
-    height: 26px;
-    background: url("../images/logo-footer.png") no-repeat (center / 100%) auto;
+  display: inline-block;
+  width: 178px;
+  height: 26px;
+  background: url("../images/logo-footer.png") no-repeat (center / 100%) auto;
 }
 
     > div {
@@ -460,73 +456,69 @@ p > a {
         display: inline-block;
     }
 }
-
-@media (max-width: 1160px) {
-    #footer {
-        margin: 0 60px;
-    }
+@include response("$1160") {
+  #footer {
+    margin: 0 60px;
+  }
 }
+@include response("$940") {
+  #footer {
+    margin: 0 24px;
 
-@media (max-width: 940px) {
-    #footer {
-        margin: 0 24px;
+    > div > div > div {
+      > span + span,
+      + div > span {
+        margin-left: 15px;
+      }
+    }
+  }
+}
+@include response("$768") {
+  #footer {
+    position:relative;
+    padding: 30px 0;
 
-        > div > div > div {
-            > span + span, 
-            + div > span {
-                margin-left: 15px;
-            }
+    .inner {
+      display: block;
+      text-align: left;
+
+      * {
+        font-size: 12px;
+      }
+
+      > div > div {
+        padding-bottom:10px;
+
+        > span + span,
+        + div > span {
+          margin-left: 0;
         }
-    }
-}
+      }
 
-@media (max-width: 768px) {
-    #footer {
-        position:relative;
-        padding: 30px 0;
-
-        .inner {
-            display: block;
-            text-align: left;
-
-          * {
-            font-size: 12px;  
-          }
-
-          > div > div {
-            padding-bottom:10px;
-
-            > span + span, 
-            + div > span {
-                margin-left: 0;
-            }
-          }
-
-          > p {
-            padding-bottom:10px;
-            > a {
-              width:126px;
-            }
-          }
-
-          span {
-            display:block;
-            line-height:18px;
-          }
-
-          .insta {
-            position: absolute;
-            top: 30px;
-            right: 0;
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background: url("../images/ico-insta-b.png") no-repeat (center / 30px) auto;
-          }
+      > p {
+        padding-bottom:10px;
+        > a {
+          width:126px;
         }
-    }
-}
+      }
 
+      span {
+        display:block;
+        line-height:18px;
+      }
+
+      .insta {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: url("../images/ico-insta-b.png") no-repeat (center / 30px) auto;
+      }
+    }
+  }
+}
 .scrollTop {
   display:none; 
   position:fixed; 
@@ -537,7 +529,7 @@ p > a {
   height:40px; 
   background:url("../images/btn-scrollTop.png") no-repeat center / 100% auto;
 }
-@media (max-width: 940px) {
+@include response("$940") {
   .scrollTop {
     display:block;
   }
