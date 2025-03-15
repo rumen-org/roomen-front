@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { RegisterStep1, RegisterStep2, type SignUpParams } from '@/models/interfaces/Accounts'
 export const useSignUpStore = defineStore('signUp', {
   // State 정의
@@ -56,3 +56,7 @@ export const useSignUpStore = defineStore('signUp', {
     }
   }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useSignUpStore, import.meta.hot))
+}

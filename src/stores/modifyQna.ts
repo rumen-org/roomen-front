@@ -1,5 +1,4 @@
-import { defineStore } from 'pinia'
-
+import { acceptHMRUpdate, defineStore } from 'pinia'
 interface QnaContent {
   id: number
   secret: boolean
@@ -25,3 +24,6 @@ export const useModifyQnaStore = defineStore('qnaStore', {
     }
   }
 })
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useModifyQnaStore, import.meta.hot))
+}

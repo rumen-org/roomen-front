@@ -1,4 +1,4 @@
-// composables/usePayments.ts
+// composable/usePayments.ts
 import { onMounted, ref } from 'vue'
 
 interface PaymentResponse {
@@ -7,9 +7,17 @@ interface PaymentResponse {
   imp_uid?: string
   merchant_uid?: string
 }
+interface BuyerInfo {
+  email: string
+  name: string
+  tel: string
+  addr: string
+  postcode: string
+}
 
 export function usePayments() {
   const IMP = ref<typeof window.IMP | null>(null)
+  const buyerInfo = ref<BuyerInfo | null>(null)
 
   const loadScript = (src: string): Promise<void> => {
     return new Promise((resolve, reject) => {
@@ -38,11 +46,21 @@ export function usePayments() {
     const now = new Date()
     return `IMP${now.getHours()}${now.getMinutes()}${now.getSeconds()}${now.getMilliseconds()}`
   }
+  const setBuyerInfo = (
+    email: string,
+    name: string,
+    tel: string,
+    addr: string,
+    postcode: string
+  ) => {
+    buyerInfo.value = { email, name, tel, addr, postcode }
+  }
 
   const requestPay = (
     amount: number,
     name: string,
-    payMethod: 'card' | 'trans' | 'vbank' | 'phone' // 결제 수단 타입 추가
+    payMethod: 'card' | 'trans' | 'vbank' | 'phone',
+    customerUid: string
   ): Promise<PaymentResponse> => {
     return new Promise((resolve, reject) => {
       if (!IMP.value) {
@@ -56,11 +74,12 @@ export function usePayments() {
           merchant_uid: generateMerchantUid(),
           name,
           amount,
-          buyer_email: 'Iamport@chai.finance',
-          buyer_name: '아임포트 기술지원팀',
-          buyer_tel: '010-1234-5678',
-          buyer_addr: '서울특별시 강남구 삼성동',
-          buyer_postcode: '123-456'
+          buyer_email: buyerInfo.value?.email,
+          buyer_name: buyerInfo.value?.name,
+          buyer_tel: buyerInfo.value?.tel,
+          buyer_addr: buyerInfo.value?.addr,
+          buyer_postcode: buyerInfo.value?.postcode,
+          customer_uid: customerUid
         },
         (rsp: PaymentResponse) => {
           if (rsp.success) {
@@ -78,6 +97,7 @@ export function usePayments() {
   })
 
   return {
+    setBuyerInfo,
     requestPay
   }
 }

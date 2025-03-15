@@ -62,14 +62,27 @@ import { useBucketStore } from '@/stores/bucket'
 import { formatPrice } from '@/composables/useCalculate'
 const bucketStore = useBucketStore()
 
+const emit = defineEmits(['update'])
 const data = computed(() => {
   return items.value
 })
-import { computed, onMounted, onUnmounted } from 'vue'
+const emitData = ref({
+  name: '',
+  price: 0
+})
+const autoEmit = () => {
+  emitData.value = {
+    name: data.value.map(item => item.name).join(','),
+    price: getPrice.value
+  }
+  emit('update', emitData.value)
+}
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 const { items, getPrice } = storeToRefs(bucketStore)
 
 onMounted(() => {
   bucketStore.loadItemsFromStorage()
+  autoEmit()
 })
 onUnmounted(() => {})
 </script>

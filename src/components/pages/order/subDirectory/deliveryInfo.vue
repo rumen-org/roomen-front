@@ -166,6 +166,18 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
+// Models
+import type { PayState } from '@/models/type/typeList'
+import {
+  Customer,
+  type memberInfoItem,
+  type toggleAddressType,
+  type toggleItem
+} from '@/models/interfaces/Payment'
+
+const props = defineProps<{
+  callInfo: PayState
+}>()
 // Api
 import { getMyInformation } from '@/api/account'
 
@@ -178,31 +190,22 @@ const { postcode, roadAddress, isScriptLoaded, stateChanged, execDaumPostcode } 
 import { useValidate } from '@/composables/useValidate'
 const { errors, validateKoreanName, validateEmail, validateEmpty, validateNumericInput } =
   useValidate()
+// import { usePayments } from '@/composables/usePayment'
+// const { setBuyerInfo } = usePayments()
 
 // Config
 import { mobileFrontNumber } from '@/configs/selectOptions'
+
+// Api
 import { getMyDefaultAddress } from '@/api/shippingAddress'
+
+// Stores
+import { usePaymentStore } from '@/stores/payments'
+const paymentStore = usePaymentStore()
+
 const frontNumber = computed(() => {
   return mobileFrontNumber
 })
-interface memberInfoItem {
-  address: string
-  phone: string
-  name: string
-  email: string
-}
-interface toggleItem {
-  name: string
-  phoneFrontNumber: string
-  phoneMiddleNumber: string
-  phoneEndNumber: string
-  email: string
-}
-interface toggleAddressType {
-  getPostCode: string
-  getRoadAddress: string
-  getDetailAdress: string
-}
 const sameInfo = ref<boolean>(false)
 const toggleInfo = async () => {
   console.log('onToggleInfo')
@@ -292,8 +295,21 @@ const handleContents = (p: EmitsAddress) => {
     }
   }
 }
+const customerInfo = ref<Customer>({
+  email: toggleValue.value.email,
+  name: toggleValue.value.name,
+  tel: `${toggleValue.value.phoneFrontNumber}-${toggleValue.value.phoneMiddleNumber}-${toggleValue.value.phoneEndNumber}`,
+  addr: `${toggleAddress.value.getRoadAddress}, ${toggleAddress.value.getDetailAdress}`,
+  postcode: toggleAddress.value.getPostCode
+})
+const updateCustomer = () => {
+  paymentStore.setCustomer(customerInfo.value)
+}
 onMounted(() => {
   fetchAddress()
+  if (props.callInfo === 'paying') {
+    updateCustomer()
+  }
 })
 </script>
 
