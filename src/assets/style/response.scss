@@ -1,0 +1,23 @@
+
+$breakPoints:(
+"$1500": 1500px,
+"$1280": 1280px,
+"$1160": 1160px,
+"$940": 940px,
+"$768": 768px,
+"$640": 640px,
+"$600": 600px,
+"$500": 500px,
+"$480": 480px
+);
+
+@mixin response($point) {
+  @if map-has-key($breakPoints, $point) {
+    $size: map-get($breakPoints, $point);
+    @media (max-width: $size) {
+      @content
+    }
+  } @else {
+    @warn "#{$point}는 존재하지 않는 브레이크포인트입니다."
+  }
+}
