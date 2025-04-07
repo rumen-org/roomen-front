@@ -1,5 +1,5 @@
 <template>
-  <div class="qnaPw">
+  <div class="qna-pw">
     <input
       v-model="password"
       type="password"

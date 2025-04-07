@@ -2,14 +2,14 @@
   <div>
     <div id="container">
       <div class="contents">
-        <!-- conTopArea -->
-        <div class="conTopArea">
+        <!-- contents-top-area -->
+        <div class="contents-top-area">
           <h2>{{ t('cate.login.title') }}</h2>
           <!-- <em>{{ t('messages.text1') }}</em>-->
         </div>
-        <!--// conTopArea -->
-        <!-- loginArea -->
-        <div class="loginArea w600">
+        <!--// contents-top-area -->
+        <!-- login-area -->
+        <div class="login-area w600">
           <div>
             <input
               v-model="memberId"
@@ -30,7 +30,7 @@
               maxLength="16"
               @keydown.enter="login"
             />
-            <button type="button" class="btn blockBtn sL" @click="testInputs">
+            <button type="button" class="btn block-btn s-large" @click="testInputs">
               {{ t('cate.login.btn.login') }}
             </button>
           </div>
@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-        <!--// loginArea -->
+        <!--// login-area -->
       </div>
     </div>
     <Alert />

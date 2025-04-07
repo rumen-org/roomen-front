@@ -1,6 +1,6 @@
 <template>
   <scrollTop />
-  <div id="footer" ref="footerRef">
+  <footer id="footer" ref="footerRef">
     <div class="inner">
       <p>
         <a href=""><span class="hide">ROOMEN</span></a>
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 <script setup lang="ts">
 // I18n

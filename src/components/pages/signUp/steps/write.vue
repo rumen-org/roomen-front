@@ -1,6 +1,6 @@
 <template>
-  <!-- inputTable -->
-  <div class="inputTable">
+  <!-- input-table -->
+  <div class="input-table">
     <table>
       <caption>
         아이디, 비밀번호, 비밀번호 확인, 이름, 휴대전화, 이메일 항목으로 구성된 회원가입 정보입력 표
@@ -12,9 +12,9 @@
       <tbody>
         <tr>
           <th scope="row">
-            아이디 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            아이디 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.id || stateDuplicateId }">
+          <td :class="{ 'red input-check2': errors.id || stateDuplicateId }">
             <input
               v-model="step2Data.memberId"
               type="text"
@@ -30,9 +30,9 @@
         </tr>
         <tr>
           <th scope="row">
-            비밀번호 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            비밀번호 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.password }">
+          <td :class="{ 'red input-check2': errors.password }">
             <input
               v-model="step2Data.password"
               type="password"
@@ -47,9 +47,9 @@
         </tr>
         <tr>
           <th scope="row">
-            비밀번호 확인 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            비밀번호 확인 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': !observeChecked && confirmPassword !== '' }">
+          <td :class="{ 'red input-check2': !observeChecked && confirmPassword !== '' }">
             <input v-model="confirmPassword" type="password" title="비밀번호 확인" />
             <span v-if="!observeChecked && confirmPassword !== ''" class="error"
               >비밀번호가 일치하지 않습니다!</span
@@ -58,9 +58,9 @@
         </tr>
         <tr>
           <th scope="row">
-            이름 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            이름 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.name }">
+          <td :class="{ 'red input-check2': errors.name }">
             <input
               v-model="step2Data.name"
               type="text"
@@ -74,7 +74,7 @@
         </tr>
         <tr>
           <th scope="row">
-            휴대전화 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            휴대전화 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
           <td>
             <div class="with-button">
@@ -107,7 +107,7 @@
                   @keydown="validateNumericInput"
                 />
               </div>
-              <button :disabled="!correctPhone" class="btn blockBtn" @click="submitAuthNumber">
+              <button :disabled="!correctPhone" class="btn block-btn" @click="submitAuthNumber">
                 {{ !reAuthPhone ? '인증요청' : '재요청' }}
               </button>
             </div>
@@ -115,7 +115,7 @@
         </tr>
         <tr v-if="isAuthRequired">
           <th scope="row">
-            인증번호 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            인증번호 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
           <td>
             <div class="with-button pos-rel">
@@ -127,7 +127,7 @@
                 minlength="6"
                 maxlength="6"
               />
-              <button class="btn blockBtn" :disabled="isChecked" @click="checkAuthCode">
+              <button class="btn block-btn" :disabled="isChecked" @click="checkAuthCode">
                 확인
               </button>
               <em class="timer">{{ transToMinutes(seconds) }}</em>
@@ -136,9 +136,9 @@
         </tr>
         <tr>
           <th scope="row">
-            이메일 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            이메일 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.email || stateDuplicateEmail }">
+          <td :class="{ 'red input-check2': errors.email || stateDuplicateEmail }">
             <input
               v-model="step2Data.email"
               type="text"
@@ -155,10 +155,10 @@
       </tbody>
     </table>
   </div>
-  <div class="bottomBtn txtC">
-    <button type="button" class="btn blockBtn sL" @click="handleRegistor">회원가입</button>
+  <div class="bottom-btn txt-c">
+    <button type="button" class="btn block-btn s-large" @click="handleRegistor">회원가입</button>
   </div>
-  <!--// inputTable -->
+  <!--// input-table -->
 </template>
 
 <script lang="ts" setup>

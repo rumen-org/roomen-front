@@ -2,19 +2,19 @@
   <div id="container">
     <div class="inner">
       <div
-        class="aboutVisual"
+        class="about-visual"
         :style="{ height: responseHeight === 0 ? '100%' : responseHeight + 'px' }"
       >
         <!--        <img src="@/assets/images/img-about-visual.png" alt="루멘_배경이미지">-->
         <div>
-          <p class="aniOne"><img class="logoImg" src="@/assets/images/logo.png" alt="" /></p>
-          <strong class="ko aniTwo">당신의 공간엔 당신의 가치를.</strong>
-          <p class="ko aniThree">
+          <p class="ani-one"><img class="logo-img" src="@/assets/images/logo.png" alt="" /></p>
+          <strong class="ko ani-two">당신의 공간엔 당신의 가치를.</strong>
+          <p class="ko ani-three">
             루멘은 가구의 가치를 뛰어넘는 미디데스크 전문 브랜드입니다.<br />고객님의 개성과 가치가
             공간에도 고스란히 담길 수 있기를 바랍니다.
           </p>
-          <strong class="eng aniFour">Your value in your space.</strong>
-          <p class="eng aniFive">
+          <strong class="eng ani-four">Your value in your space.</strong>
+          <p class="eng ani-five">
             Roomen is a midi table brand that goes beyond the value of furniture.<br />
             We hope that your personality and values ​​can be fully reflected in your space.
           </p>
@@ -45,8 +45,3 @@ onUnmounted(() => {
   })
 })
 </script>
-<style lang="scss" scoped>
-.aboutVisual > img {
-  height: 100%;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="inputTable w670">
+  <div class="input-table w670">
     <table>
       <caption>
         아이디, 비밀번호, 비밀번호 확인, 이름, 주소, 휴대전화, 이메일 항목으로 구성된 회원가입
@@ -16,9 +16,9 @@
         </tr>
         <tr>
           <th scope="row">
-            비밀번호 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            비밀번호 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.password }">
+          <td :class="{ 'red input-check2': errors.password }">
             <input
               v-model="passwordValue"
               type="password"
@@ -33,7 +33,7 @@
 
         <tr>
           <th scope="row">
-            이름 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            이름 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
           <td>
             <input type="text" class="input-name" title="이름" :value="fetchItem.name" readonly />
@@ -43,11 +43,11 @@
           <th scope="row">주소</th>
           <td>
             <div class="address">
-              <div class="zipCode">
+              <div class="zip-code">
                 <input v-model="addressCodeParts" type="text" title="우편번호 검색" />
                 <button
                   type="button"
-                  class="btn blockBtn"
+                  class="btn block-btn"
                   :disabled="!isScriptLoaded"
                   @click="execDaumPostcode"
                 >
@@ -61,7 +61,7 @@
         </tr>
         <tr>
           <th scope="row">
-            휴대전화 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            휴대전화 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
           <td>
             <div class="phone">
@@ -93,9 +93,9 @@
         </tr>
         <tr>
           <th scope="row">
-            이메일 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+            이메일 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
           </th>
-          <td :class="{ 'red inputChck2': errors.email }">
+          <td :class="{ 'red input-check2': errors.email }">
             <input
               v-model="emailValue"
               type="text"
@@ -107,14 +107,14 @@
         </tr>
       </tbody>
     </table>
-    <div class="tableBtn txtR">
-      <button type="button" class="txtBtn" @click="checkRemove">회원탈퇴</button>
+    <div class="table-btn txt-r">
+      <button type="button" class="txt-btn" @click="checkRemove">회원탈퇴</button>
     </div>
   </div>
   <Alert />
   <Confirm />
-  <div class="bottomBtn txtC">
-    <button type="button" class="btn sL w230" @click="submitUpdate">회원정보 수정</button>
+  <div class="bottom-btn txt-c">
+    <button type="button" class="btn s-large w230" @click="submitUpdate">회원정보 수정</button>
   </div>
 </template>
 <script lang="ts" setup>

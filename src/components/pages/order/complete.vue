@@ -1,8 +1,8 @@
 <template>
   <div id="container">
     <div class="contents">
-      <div class="conTopArea">
-        <h2 class="ko mCenter">주문 완료</h2>
+      <div class="contents-top-area">
+        <h2 class="ko m-center">주문 완료</h2>
       </div>
       <ResultComponent />
     </div>

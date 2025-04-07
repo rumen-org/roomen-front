@@ -31,7 +31,6 @@ export function postCartItems(cartItems: Array<object> | object) {
 }
 
 export function putCartItem(id: number, cartItems: Array<object> | object) {
-  console.log('onPut', id, cartItems)
   return axios.put(`${path.cart}/items/${id}`, JSON.stringify(cartItems), {
     headers: {
       Authorization: `Bearer ${userStore.token}`,

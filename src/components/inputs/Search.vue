@@ -1,6 +1,6 @@
 <template>
-  <div class="srchArea">
-    <input v-model="searchValue" type="text" title="검색" @keyup.enter="onSearch" />
+  <div class="search-area">
+    <input v-model="localSearchValue" type="text" title="검색" @keyup.enter="onSearch" />
     <button type="button" class="srchBtn" @keydown.enter="onSearch" @click="onSearch">
       <span class="hide">검색하기</span>
     </button>
@@ -13,10 +13,10 @@ import { defineProps, defineEmits, ref } from 'vue'
 const props = defineProps<{ searchValue: string }>()
 const emits = defineEmits(['update:searchValue', 'search'])
 
-const searchValue = ref<string>('')
+const localSearchValue = ref<string>('')
 
 const onSearch = () => {
-  emits('update:searchValue', searchValue.value)
+  emits('update:searchValue', localSearchValue.value)
 }
-searchValue.value = props.searchValue
+localSearchValue.value = props.searchValue
 </script>

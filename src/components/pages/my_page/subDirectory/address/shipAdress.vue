@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="adressTable">
+    <div class="address-table">
       <table>
         <caption>
           선택, 배송지명, 수령인, 주소, 휴대전화 항목으로 구성된 배송지관리 목록표
@@ -24,7 +24,7 @@
           <template v-if="shipAddressList">
             <tr v-for="(item, idx) in shipAddressList" :key="idx">
               <td>
-                <span class="checkbox noTxt">
+                <span class="checkbox no-txt">
                   <input
                     :id="`chk0101+${idx}`"
                     v-model="selectedItems"
@@ -45,7 +45,7 @@
               <td class="pos-relative">
                 {{ item.phone }}
                 <div :class="{ w25per: btnState }" class="w0 toggle-btn">
-                  <button type="button" class="btn sL d-block" @click="fetchDefault(item.id)">
+                  <button type="button" class="btn s-large d-block" @click="fetchDefault(item.id)">
                     <span> 선택 </span>
                   </button>
                 </div>
@@ -62,9 +62,9 @@
         </tbody>
       </table>
     </div>
-    <!--// adressTable -->
-    <!-- allBtnArea -->
-    <div class="allBtnArea">
+    <!--// address-table -->
+    <!-- all-btn-area -->
+    <div class="all-btn-area">
       <button
         type="button"
         class="btn chckBtn"
@@ -82,21 +82,23 @@
         선택삭제
       </button>
     </div>
-    <!--// allBtnArea -->
+    <!--// all-btn-area -->
     <!-- bottomArea -->
-    <div class="conBottomArea">
+    <div class="contents-bottom-area">
       <!-- paging -->
 
       <!--// paging -->
-      <!-- btnArea -->
-      <div class="btnArea col-type">
-        <button type="button" class="btn blockBtn sL w230 bgWhite" @click="setDefault">
+      <!-- btn-area -->
+      <div class="btn-area col-type">
+        <button type="button" class="btn block-btn s-large w230 bg-white" @click="setDefault">
           기본배송지 설정
         </button>
-        <button type="button" class="btn blockBtn sL w230" @click="goWrite">배송지 등록</button>
+        <button type="button" class="btn block-btn s-large w230" @click="goWrite">
+          배송지 등록
+        </button>
       </div>
       <Alert />
-      <!--// btnArea -->
+      <!--// btn-area -->
     </div>
   </div>
 </template>

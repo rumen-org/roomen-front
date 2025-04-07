@@ -1,7 +1,7 @@
 <template>
   <div class="w670">
-    <!-- inputTable -->
-    <div class="inputTable">
+    <!-- input-table -->
+    <div class="input-table">
       <table>
         <caption>
           아이디, 현재 비밀번호, 새 비밀번호, 새 비밀번호 확인 항목으로 구성된 비밀번호 변경
@@ -47,13 +47,13 @@
         </tbody>
       </table>
     </div>
-    <!--// inputTable -->
+    <!--// input-table -->
 
-    <!-- bottomBtn -->
-    <div class="bottomBtn txtC">
+    <!-- bottom-btn -->
+    <div class="bottom-btn txt-c">
       <button
         type="button"
-        class="btn blockBtn sL w230"
+        class="btn block-btn s w230"
         :disabled="!equalNewPasswords || !allFieldsFilled"
         @click="submitPasswordData"
       >
@@ -61,7 +61,7 @@
       </button>
     </div>
     <Alert />
-    <!--// bottomBtn -->
+    <!--// bottom-btn -->
   </div>
 </template>
 <script lang="ts" setup>

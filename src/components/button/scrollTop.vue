@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="scrollTop" @click="scrollToTop">
+  <button type="button" class="scroll-top" @click="scrollToTop">
     <span class="hide">위로 이동</span>
   </button>
 </template>

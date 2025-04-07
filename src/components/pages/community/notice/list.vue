@@ -2,29 +2,29 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area">
         <Sort :items="sortItems" @update:value="changeSorting" />
         <h2>NOTICE</h2>
         <!-- 이 부분 컴포넌트 분할 필요 -->
         <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
         <!-- //이 부분 컴포넌트 분할 필요 -->
       </div>
-      <!--// conTopArea -->
-      <!-- listTable -->
-      <div class="listTable">
+      <!--// contents-top-area -->
+      <!-- list-table -->
+      <div class="list-table">
         <table>
           <caption>
             번호, 제목, 작성일 항목으로 구성된 공지사항 목록표
           </caption>
           <colgroup>
-            <col style="width: 230px" class="mw100 mNone" />
+            <col style="width: 230px" class="mw100 m-none" />
             <col style="width: auto" />
             <col style="width: 230px" class="mw100" />
           </colgroup>
           <thead>
             <tr>
-              <th scope="col" class="mNone">번호</th>
+              <th scope="col" class="m-none">번호</th>
               <th scope="col">제목</th>
               <th scope="col">작성일</th>
             </tr>
@@ -37,8 +37,8 @@
             >
               <template #notEmpty>
                 <tr v-for="(item, idx) in noticeList" :key="idx">
-                  <td class="mNone">{{ item.id }}</td>
-                  <td class="txtL subject">
+                  <td class="m-none">{{ item.id }}</td>
+                  <td class="txt-l subject">
                     <router-link :to="`notice/${item.id}`">
                       <span v-dompurify-html="highlightText(item.title, searchValue)"></span>
                     </router-link>
@@ -50,9 +50,9 @@
           </tbody>
         </table>
       </div>
-      <!--// listTable -->
+      <!--// list-table -->
       <!-- bottomArea -->
-      <div class="conBottomArea">
+      <div class="contents-bottom-area">
         <!-- paging -->
         <Pagination
           :current-page="currentPage"
@@ -62,7 +62,7 @@
 
         <!--// paging -->
       </div>
-      <!--// conBottomArea -->
+      <!--// contents-bottom-area -->
     </div>
   </div>
 </template>

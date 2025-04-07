@@ -1,0 +1,16 @@
+@use '../mixin' as *;
+
+.scroll-top {
+  display:none;
+  position:fixed;
+  bottom:26px;
+  right:24px;
+  z-index:100;
+  width:40px;
+  height:40px;
+  background:url("@/assets/images/btn-scrollTop.png") no-repeat center / 100% auto;
+
+  @include response-to("940") {
+    display:block;
+  }
+}

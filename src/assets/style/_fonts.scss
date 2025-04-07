@@ -1,0 +1,76 @@
+
+@font-face {
+  font-family: NanumSquare;
+  src: url('@assets/fonts/NanumSquareEB.woff2') format('woff2'),
+  url('@assets/fonts/NanumSquareEB.woff') format('woff'),
+  url("@assets/fonts/NanumSquareEB.otf") format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NanumSquare;
+  src: url('@assets/fonts/NanumSquareB.woff2') format('woff2'),
+  url('@assets/fonts/NanumSquareB.woff') format('woff'),
+  url("@assets/fonts/NanumSquareB.otf") format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NanumSquare;
+  src: url('@assets/fonts/NanumSquareL.woff2') format('woff2'),
+  url('@assets/fonts/NanumSquareL.woff') format('woff'),
+  url("@assets/fonts/NanumSquareL.otf") format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NanumSquare;
+  src: url('@assets/fonts/NanumSquareR.woff2') format('woff2'),
+  url('@assets/fonts/NanumSquareR.woff') format('woff'),
+  url("@assets/fonts/NanumSquareR.otf") format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: NanumSquare;
+  src: url('@assets/fonts/NanumSquare_acL.woff2') format('woff2'),
+  url('@assets/fonts/NanumSquare_acL.woff') format('woff'),
+  url("@assets/fonts/NanumSquare_acL.otf") format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: GmarketSans;
+  src: url('@assets/fonts/GmarketSansBold.woff2') format('woff2'),
+  url('@assets/fonts/GmarketSansBold.woff') format('woff'),
+  url("@assets/fonts/GmarketSansBold.otf") format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: GmarketSans;
+  src: url('@assets/fonts/GmarketSansMedium.woff2') format('woff2'),
+  url('@assets/fonts/GmarketSansMedium.woff') format('woff'),
+  url("@assets/fonts/GmarketSansMedium.otf") format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: GmarketSans;
+  src: url('@assets/fonts/GmarketSansLight.woff2') format('woff2'),
+  url('@assets/fonts/GmarketSansLight.woff') format('woff'),
+  url("@assets/fonts/GmarketSansLight.otf") format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

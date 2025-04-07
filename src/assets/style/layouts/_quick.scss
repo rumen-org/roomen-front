@@ -1,0 +1,63 @@
+@use '../mixin' as *;
+
+.quick {
+  position: fixed;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+
+  li {
+    width: 12px;
+    height: 12px;
+    border-radius: 15px;
+    border: 1px solid #000;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      margin-top: 15px;
+    }
+  }
+
+  .on {
+    height: 50px;
+    border-radius: 7.5px;
+    background: #000;
+  }
+
+  &.theme-bk {
+    li {
+      border-color: #000;
+    }
+
+    .on {
+      background: #000;
+    }
+  }
+
+  &.top {
+    li {
+      border: 1px solid #fff;
+    }
+
+    .on {
+      background: #fff;
+    }
+  }
+  @include response-to("1160") {
+    li {
+      width: 8px;
+      height: 8px;
+
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
+
+    .on {
+      height: 32px;
+    }
+
+    right: 24px;
+  }
+}

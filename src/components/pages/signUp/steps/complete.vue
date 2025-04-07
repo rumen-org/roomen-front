@@ -1,14 +1,14 @@
 <template>
   <div id="container">
     <div>
-      <!-- conTopArea -->
-      <div class="conTopArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area">
         <h2 class="ko ws-nowrap">회원가입 완료</h2>
       </div>
-      <!--// conTopArea -->
+      <!--// contents-top-area -->
       <div class="w670 mt-120">
-        <!-- inputTable -->
-        <div class="txtC">
+        <!-- input-table -->
+        <div class="txt-c">
           <div>
             <p>
               회원 가입이 완료 되었습니다.<br />
@@ -16,12 +16,14 @@
             </p>
           </div>
         </div>
-        <!--// inputTable -->
-        <!-- bottomBtn -->
-        <div class="bottomBtn txtC">
-          <button type="button" class="btn sL w230" @click="$router.push('/login')">로그인</button>
+        <!--// input-table -->
+        <!-- bottom-btn -->
+        <div class="bottom-btn txt-c">
+          <button type="button" class="btn s-large w230" @click="$router.push('/login')">
+            로그인
+          </button>
         </div>
-        <!--// bottomBtn -->
+        <!--// bottom-btn -->
       </div>
     </div>
   </div>

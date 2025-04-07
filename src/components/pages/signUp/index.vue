@@ -1,13 +1,13 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea pt-40">
+      <!-- contents-top-area -->
+      <div class="contents-top-area pt-40">
         <h2 v-if="currentStep !== 2">SIGNUP</h2>
       </div>
       <h3 v-if="currentStep === 0" class="step1_tit">&#91;약관동의&#93;</h3>
 
-      <!--// conTopArea -->
+      <!--// contents-top-area -->
       <div class="w670">
         <component :is="CurrentComponent" @update="nextStep" />
       </div>

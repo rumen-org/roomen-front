@@ -1,3 +1,7 @@
 @charset "UTF-8";
 
-@import 'common', 'layout', 'main', 'contents';
+@use 'base/reset' as *;
+@use 'base/default' as *;
+@use 'base/color' as *;
+@use 'components/main' as *;
+@import 'layout', 'contents';

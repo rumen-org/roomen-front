@@ -2,23 +2,23 @@
   <div id="container" ref="containerRef" class="products">
     <!--        <div v-if="loading" class="spinner">Loading...</div>-->
     <div :class="{ loading: loading }" class="contents">
-      <!-- productDetail -->
-      <div class="productDetail">
+      <!-- product-detail -->
+      <div class="product-detail">
         <!-- fixArea -->
         <div class="fixArea">
-          <!-- imgList -->
-          <div class="imgList">
-            <div class="preList">
+          <!-- img-list -->
+          <div class="img-list">
+            <div class="pre-list">
               <BackButton />
               <div>
                 <div v-for="(item, i) in product?.images" :key="i" @click="changeThumb(item)">
                   <img :src="`https://back.roomen.kro.kr/${item}`" alt="상품 이미지 리스트" />
-                  <em :class="thumbImg !== item ? 'opacityCover' : 'blind'"></em>
+                  <em :class="thumbImg !== item ? 'opacity-cover' : 'blind'"></em>
                 </div>
               </div>
             </div>
             <transition name="fade">
-              <div v-if="showTransitions" class="preArea">
+              <div v-if="showTransitions" class="pre-area">
                 <img
                   :src="
                     thumbImg !== null
@@ -30,13 +30,13 @@
               </div>
             </transition>
           </div>
-          <!--// imgList -->
+          <!--// img-list -->
 
-          <!-- floatMenu -->
-          <aside class="floatMenu">
-            <div ref="floatingMenu" class="floatScroll">
+          <!-- float-menu -->
+          <aside class="float-menu">
+            <div ref="floatingMenu" class="float-scroll">
               <strong class="tit">{{ product?.name }}</strong>
-              <p class="subTit fontG">{{ product?.subTitle }}</p>
+              <p class="sub-title font-g">{{ product?.subTitle }}</p>
               <p v-if="product" class="price">
                 <span
                   >₩ {{ formatPrice(getOriginPrice(product.price, product.discountPer)) }}원</span
@@ -45,7 +45,7 @@
               </p>
               <RadioPalette :key="SelectKey" :pallete="palleteData" @change="handleChange" />
               <RadioPalette :key="SelectKey" :pallete="palleteData2" @change="handleChange" />
-              <div class="optionArea">
+              <div class="option-area">
                 <SelectOptions :key="SelectKey" :selector="shippingOption" @change="handleChange" />
                 <SelectOptions
                   :key="SelectKey"
@@ -65,14 +65,14 @@
                 </div>
               </template>
 
-              <em class="wideLine"><span class="blind">구분선</span></em>
-              <div class="totalPrice">
-                <span class="fontG">TOTAL</span>
+              <em class="wide-line"><span class="blind">구분선</span></em>
+              <div class="total-price">
+                <span class="font-g">TOTAL</span>
                 <em>₩ {{ formatPrice(getPrice) }}</em>
               </div>
-              <div class="btnArea">
-                <button type="button" class="btn sL" @click="gotoOrder">구매하기</button>
-                <button type="button" class="btn bgWhite cartBtn" @click="handleConfirm">
+              <div class="btn-area">
+                <button type="button" class="btn s-large" @click="gotoOrder">구매하기</button>
+                <button type="button" class="btn bg-white cart-btn" @click="handleConfirm">
                   <i>
                     <span class="hide">장바구니</span>
                   </i>
@@ -80,13 +80,13 @@
               </div>
             </div>
           </aside>
-          <!--// floatMenu -->
+          <!--// float-menu -->
 
           <div class="detail">
             <div v-dompurify-html="product?.content" class="inner"></div>
           </div>
-          <em class="wideLine wideLine2"><span class="blind">구분선</span></em>
-          <div class="productInfo">
+          <em class="wide-line wide-line2"><span class="blind">구분선</span></em>
+          <div class="product-information">
             <h4>상품결제안내</h4>
             <div></div>
             <h4>배송안내</h4>
@@ -97,7 +97,7 @@
         </div>
         <!-- fixArea -->
       </div>
-      <!--// productDetail -->
+      <!--// product-detail -->
     </div>
     <Confirm />
     <Alert />
@@ -367,7 +367,7 @@ onUnmounted(() => {
 })
 </script>
 <style lang="scss">
-.floatScroll {
+.float-scroll {
   position: absolute;
   left: -10px;
   right: -10px;
@@ -383,7 +383,7 @@ onUnmounted(() => {
     font-size: 22px;
     font-weight: 600;
   }
-  .subTit {
+  .sub-title {
     margin-top: 8px;
     font-size: 16px;
     font-weight: 300;
@@ -401,7 +401,7 @@ onUnmounted(() => {
     }
   }
 }
-.floatScroll::-webkit-scrollbar {
+.float-scroll::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
 .loading {

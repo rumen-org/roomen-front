@@ -3,7 +3,7 @@
   <div class="paging">
     <button
       type="button"
-      class="btnPrev"
+      class="btn-prev"
       :class="{ disabled: isPrevDisabled }"
       @click="$emit('changePage', 'prev')"
     >
@@ -22,7 +22,7 @@
 
     <button
       type="button"
-      class="btnNext"
+      class="btn-next"
       :class="{ disabled: isNextDisabled }"
       @click="$emit('changePage', 'next')"
     >

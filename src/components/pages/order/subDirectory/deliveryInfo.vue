@@ -1,12 +1,12 @@
 <template>
-  <dl class="sectionTit">
+  <dl class="section-title">
     <dt>배송 정보</dt>
     <dd><span class="blind">제목 하단 선</span></dd>
   </dl>
   <!-- conTable -->
-  <div class="conTable topLine">
-    <!-- inputTable -->
-    <div class="inputTable">
+  <div class="con-table topLine">
+    <!-- input-table -->
+    <div class="input-table">
       <table>
         <caption>
           배송지 설정, 수령인, 주소, 휴대전화, 이메일, 배송 메세지 항목으로 구성된 배송정보 상세 표
@@ -16,7 +16,7 @@
           <col style="width: auto" />
         </colgroup>
         <tbody>
-          <tr class="mFlex">
+          <tr class="m-flex">
             <th scope="row">
               <span class="checkbox">
                 <input id="chk0101" v-model="sameInfo" type="checkbox" @change="toggleInfo" />
@@ -28,7 +28,7 @@
               <div class="layerPopup">
                 <button
                   type="button"
-                  class="btn bgWhite sM w130 popBtn"
+                  class="btn bg-white s-medium w130 popBtn"
                   @click.stop="openAddressList"
                 >
                   배송지 변경
@@ -46,9 +46,9 @@
           </tr>
           <tr>
             <th scope="row">
-              수령인 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+              수령인 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
             </th>
-            <td :class="{ 'red inputChck': errors.name }">
+            <td :class="{ 'red input-check': errors.name }">
               <input
                 v-model="toggleValue.name"
                 type="text"
@@ -61,11 +61,11 @@
           </tr>
           <tr>
             <th scope="row">
-              주소 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+              주소 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
             </th>
             <td>
               <div class="address">
-                <div class="zipCode">
+                <div class="zip-code">
                   <input
                     v-model="toggleAddress.getPostCode"
                     type="text"
@@ -74,7 +74,7 @@
                   />
                   <button
                     type="button"
-                    class="btn blockBtn"
+                    class="btn block-btn"
                     :disabled="!isScriptLoaded"
                     @click="execDaumPostcode"
                   >
@@ -93,7 +93,7 @@
           </tr>
           <tr>
             <th scope="row">
-              휴대전화 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+              휴대전화 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
             </th>
             <td>
               <div class="phone w480">
@@ -130,9 +130,9 @@
           </tr>
           <tr>
             <th scope="row">
-              이메일 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+              이메일 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
             </th>
-            <td :class="{ 'red inputChck': errors.email }">
+            <td :class="{ 'red input-check': errors.email }">
               <input
                 v-model="toggleValue.email"
                 type="text"
@@ -159,7 +159,7 @@
         </tbody>
       </table>
     </div>
-    <!--// inputTable -->
+    <!--// input-table -->
   </div>
   <!--// conTable -->
 </template>
@@ -317,7 +317,7 @@ onMounted(() => {
 ::placeholder {
   opacity: 0.5;
 }
-.inputTable tr td select {
+.input-table tr td select {
   font-weight: 300;
 }
 input[type='text']:read-only {

@@ -1,8 +1,8 @@
 <template>
-  <div class="option optionTop">
+  <div class="option option-top">
     <p>{{ props.pallete.title[props.pallete.type - 1] }}</p>
-    <!-- checkboxWrap -->
-    <div class="checkboxWrap">
+    <!-- checkbox-wrap -->
+    <div class="checkbox-wrap">
       <span
         v-for="(item, idx) in props.pallete.radios"
         :key="idx"
@@ -36,7 +36,7 @@
               backgroundImage: item.color === 'ImageWood' ? `url(${imageWood})` : ''
             }
           ]"
-          class="checkboxShape"
+          class="checkbox-shape"
         >
           <span class="blind">{{ item.label }}</span>
         </label>
@@ -83,66 +83,4 @@ onMounted(() => {
   initInput()
 })
 </script>
-<style scoped lang="scss">
-.blind {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-.option.optionTop {
-  margin-top: 40px;
-  p {
-    font-size: 16px;
-    color: #191919;
-  }
-}
-.checkboxWrap {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 12px -20px 0;
-  padding: 0 20px;
-  .checkbox {
-    margin: 0;
-    display: block;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    input[type='radio'].blind {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
-    input[type='radio'] + label.checkboxShape {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-image: none;
-      background-size: auto auto;
-    }
-    &.curr {
-      width: 25px;
-      height: 25px;
-      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
-    }
-    &.curr2 {
-      width: 25px;
-      height: 25px;
-      box-shadow: 0 0 5px 1px #00000026;
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>

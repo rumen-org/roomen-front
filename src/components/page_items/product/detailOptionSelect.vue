@@ -1,5 +1,5 @@
 <template>
-  <div class="optionSelects">
+  <div class="option-selects">
     <label :for="`shippingSelect-`">{{ props.selector.label }}</label>
     <select
       :id="props.selector.id"

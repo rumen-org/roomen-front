@@ -1,34 +1,26 @@
 <template>
   <div
-    id="fullpage"
+    id="full-page"
     ref="onFullPage"
     @wheel="handleMouseWheel"
     @touchstart="touchStart"
     @touchmove="touchMove"
     @touchend="touchEnd"
   >
-    <div class="quick" :class="quickNavClass">
-      <ul>
-        <li
-          v-for="(section, index) in sections"
-          :key="index"
-          class="menu-point"
-          :class="{ on: activeSection === index }"
-          @click="scrollToSection(index)"
-        >
-          <span class="dp-block blind-text">{{ section }} {{ index + 1 }}</span>
-        </li>
-      </ul>
-    </div>
-
+    <QuickMenu
+      :quick-nav-class="quickNavClass"
+      :active-section="activeSection"
+      :sections="sections"
+      @update="scrollToSection"
+    />
     <!-- 섹션1 -->
-    <section :ref="sections[0]" class="fullsection full1"></section>
+    <section :ref="sections[0]" class="full-section full1"></section>
     <!-- //섹션1 -->
     <!-- 섹션2 -->
-    <section :ref="sections[1]" class="fullsection full2">
+    <section :ref="sections[1]" class="full-section full2">
       <div class="inner">
-        <!-- productSlider -->
-        <div class="productSlider">
+        <!-- product-slider -->
+        <div class="product-slider">
           <swiper
             ref="main2WrapSwiper"
             :slides-per-view="1"
@@ -44,19 +36,19 @@
             }"
             :navigation="{
               enabled: true,
-              nextEl: '._productPrev',
-              prevEl: '._productNext'
+              nextEl: '.product-prev',
+              prevEl: '.product-next'
             }"
             @slide-change-transition-start="handleSwiperState(true)"
             @slide-change-transition-end="handleSwiperState(false)"
           >
             <swiper-slide v-for="(pallete, index) in mainPalleteImage" :key="index">
-              <div class="sliderTit txtC">
+              <div class="slider-tit txt-c">
                 <strong>{{ pallete.name }}</strong>
                 <p>다양한 색 조합으로 나만의 개성을 담은 데스크를 만들어 보세요.</p>
               </div>
               <div class="item">
-                <div class="colorChse left">
+                <div class="color-choose left">
                   <ul>
                     <li
                       v-for="(item, idx) in leftColors"
@@ -69,8 +61,8 @@
                     </li>
                   </ul>
                 </div>
-                <!-- detailSlider -->
-                <div class="detailSlider">
+                <!-- detail-slider -->
+                <div class="detail-slider">
                   <swiper
                     :slides-per-view="1"
                     :space-between="150"
@@ -89,8 +81,8 @@
                     </swiper-slide>
                   </swiper>
                 </div>
-                <!--// detailSlider -->
-                <div class="colorChse right">
+                <!--// detail-slider -->
+                <div class="color-choose right">
                   <ul>
                     <li
                       v-for="(item, idx) in rightColors"
@@ -105,38 +97,38 @@
                 </div>
               </div>
             </swiper-slide>
-            <div class="swiperBtn">
-              <button class="_productPrev">Prev</button>
-              <button class="_productNext">Next</button>
+            <div class="swiper-btn">
+              <button class="product-prev">Prev</button>
+              <button class="product-next">Next</button>
             </div>
-            <div class="swiperPaging">
+            <div class="swiper-paging">
               <span class="_productPaging">1</span>
             </div>
           </swiper>
         </div>
 
-        <!--// productSlider -->
-        <div class="shopBtn txtC">
-          <button type="button" class="btn bgBlack sL w270"><span>SHOP NOW</span></button>
+        <!--// product-slider -->
+        <div class="shop-btn txt-c">
+          <button type="button" class="btn bgBlack s-large w270"><span>SHOP NOW</span></button>
         </div>
       </div>
     </section>
     <!-- //섹션2 -->
     <!-- 섹션3 -->
-    <section :ref="sections[2]" class="fullsection full3">
+    <section :ref="sections[2]" class="full-section full3">
       <div class="inner">
         <h2>GALLERY</h2>
-        <!-- gallSlider -->
-        <div ref="xScrollRef" class="gallSlider">
+        <!-- gallery-slider -->
+        <div ref="xScrollRef" class="gallery-slider">
           <div class="swiper-wrapper gallWrapper">
             <div class="swiper-slide">
-              <!-- inGallSlider -->
+              <!-- in-gallery-slider -->
               <swiper
                 :slides-per-view="1"
                 :space-between="150"
                 :modules="[Navigation]"
                 :navigation="true"
-                class="inGallSlider"
+                class="in-gallery-slider"
               >
                 <swiper-slide>
                   <picture><img src="@/assets/images/img-gallery01.jpg" alt="" /></picture>
@@ -151,7 +143,7 @@
                   <strong>MMM STUDIO 3</strong>
                 </swiper-slide>
               </swiper>
-              <!--// inGallSlider -->
+              <!--// in-gallery-slider -->
             </div>
             <div class="swiper-slide">
               <picture><img src="@/assets/images/img-gallery04.png" alt="" /></picture>
@@ -167,7 +159,10 @@
             </div>
           </div>
         </div>
-        <!--// gallSlider -->
+        <div class="shop-btn txt-c">
+          <button type="button" class="btn bg-white s-large w270"><span>MORE</span></button>
+        </div>
+        <!--// gallery-slider -->
       </div>
     </section>
     <!-- //섹션3 -->
@@ -194,6 +189,9 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, EffectFade } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'
 import 'swiper/swiper-bundle.css'
+
+// Components
+import QuickMenu from '@/components/common/quick_menu.vue'
 // Composable
 import { useFullPage } from '@/composables/useFullPageEvent'
 const main2WrapSwiper = ref<SwiperInstance | null>(null)
@@ -235,15 +233,11 @@ const changeColor = (p1: string, p2: string, p3: number) => {
 }
 </script>
 <style scoped>
-.dp-block {
-  display: inline-block;
-  text-indent: -9999px;
-}
-.detailSlider::v-deep .swiper-button-prev:after,
-.detailSlider::v-deep .swiper-button-next:after {
+.detail-slider::v-deep .swiper-button-prev:after,
+.detail-slider::v-deep .swiper-button-next:after {
   display: none;
 }
-.detailSlider {
+.detail-slider {
   overflow: auto;
   overscroll-behavior: contain;
 

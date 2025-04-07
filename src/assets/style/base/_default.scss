@@ -1,0 +1,131 @@
+/*** 공통 ***/
+.font-g {
+  font-family: GmarketSans, sans-serif !important;
+}
+
+.font-n {
+  font-family: NanumSquare, sans-serif !important;
+}
+
+.bg-gray {
+  background: #D9D9D9;
+
+  #header::before {
+    background: #D9D9D9;
+  }
+}
+
+.bg-gray-e6 {
+  background: #E6E6E6;
+
+  #header::before {
+    background: #E6E6E6;
+  }
+}
+
+.c-red {
+  color: #F00 !important;
+}
+
+.txt-l {
+  text-align: left !important;
+}
+
+.txt-r {
+  text-align: right !important;
+}
+
+.txt-c {
+  text-align: center !important;
+}
+
+
+.block-btn {
+  display: block;
+  width: 100%;
+}
+
+.icon-btn {
+  padding-left: 23px;
+  font-size: 16px;
+
+  &.back {
+    background: url("@/assets/images/btn-prev.png") no-repeat center (left / auto);
+  }
+}
+
+.table-btn {
+  margin-top: 25px;
+}
+
+.txt-btn {
+  background: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #191919;
+}
+
+.btn {
+  background: #fff;
+  color: #191919;
+
+  &:has(.bg-white) {
+    background: #fff !important;
+    border: 1px solid #191919;
+    color: #191919 !important;
+  }
+}
+
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.flex {
+  display: flex;
+
+  &.v-center {
+    align-items: center;
+  }
+
+  &.between {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &.left {
+    justify-content: flex-start;
+  }
+
+  &.right {
+    justify-content: flex-end;
+  }
+
+  &.m-block div + div {
+    margin-left: 30px;
+  }
+}
+
+/* 체크박스 */
+.checkbox-wrap {
+  margin: 0 -20px;
+
+  .checkbox {
+    display: inline-block;
+    margin: 0 20px;
+  }
+}
+
+select + .checkbox-wrap {
+  margin-top: 20px;
+}
+
+input + .checkbox-wrap {
+  margin-top: 20px;
+}

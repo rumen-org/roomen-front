@@ -76,22 +76,4 @@ const defaultTHead = props.tblData.tHead.map(head => ({
   rSpan: head.rSpan ?? 1,
   scope: head.scope ?? 'col'
 }))
-
-// const tblData = {
-//   title: '테이블1',
-//   class: '',
-//   colGroups: {
-//     col: [{ style: '100px', span: 1, className: 'col-class-1' }]
-//   },
-//   tHead: [
-//     { type: 'th', text: '헤더1', cSpan: 1, rSpan: '', class: '' },
-//     { type: 'th', text: '헤더1', cSpan: 1, rSpan: '', class: '' }
-//   ],
-//   tBody: {
-//     tr: [
-//       { type: 'td', text: '헤더1', cSpan: 1, rSpan: '', class: '' },
-//       { type: 'td', text: '헤더1', cSpan: 1, rSpan: '', class: '' }
-//     ]
-//   }
-// }
 </script>

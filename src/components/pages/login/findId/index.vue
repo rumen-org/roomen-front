@@ -1,14 +1,14 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area">
         <h2 class="ko">아이디 찾기</h2>
       </div>
-      <!--// conTopArea -->
+      <!--// contents-top-area -->
       <div class="w670">
-        <!-- inputTable -->
-        <div class="inputTable">
+        <!-- input-table -->
+        <div class="input-table">
           <table>
             <caption>
               회원유형, 이름, 아이디, 휴대전화 항목으로 구성된 비밀번호찾기 정보입력 표
@@ -22,8 +22,8 @@
                 <th scope="row">이름</th>
                 <td>
                   <input v-model="params.name" type="text" title="이름" />
-                  <!-- checkboxWrap -->
-                  <div class="checkboxWrap">
+                  <!-- checkbox-wrap -->
+                  <div class="checkbox-wrap">
                     <span class="checkbox">
                       <input
                         id="chk0101"
@@ -48,7 +48,7 @@
                       <label for="chk0102">이메일</label>
                     </span>
                   </div>
-                  <!--// checkboxWrap -->
+                  <!--// checkbox-wrap -->
                 </td>
               </tr>
               <tr v-if="useType === 'mobile'">
@@ -96,12 +96,12 @@
             </tbody>
           </table>
         </div>
-        <!--// inputTable -->
-        <!-- bottomBtn -->
-        <div class="bottomBtn txtC">
-          <button type="button" class="btn sL w230" @click="fetchData()">아이디 찾기</button>
+        <!--// input-table -->
+        <!-- bottom-btn -->
+        <div class="bottom-btn txt-c">
+          <button type="button" class="btn s-large w230" @click="fetchData()">아이디 찾기</button>
         </div>
-        <!--// bottomBtn -->
+        <!--// bottom-btn -->
       </div>
     </div>
   </div>

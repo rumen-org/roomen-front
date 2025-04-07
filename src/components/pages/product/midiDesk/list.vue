@@ -2,15 +2,15 @@
   <!-- container -->
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area">
         <Sort :items="sortItems" @update:value="changeSorting" />
         <Breadcrumb />
         <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
-      <!--// conTopArea -->
-      <!-- productList -->
-      <div class="productList">
+      <!--// contents-top-area -->
+      <!-- product-list -->
+      <div class="product-list">
         <EmptyResult :search-value="searchValue" :search-result-length="searchResultLength">
           <template #notEmpty2>
             <router-link
@@ -27,7 +27,7 @@
                   v-dompurify-html="highlightText(item.name, searchValue)"
                   class="tit"
                 ></strong>
-                <p class="subTit">{{ item.subTitle }}</p>
+                <p class="option-area">{{ item.subTitle }}</p>
                 <p class="price">
                   <span>₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span>
                   <del>₩ {{ formatPrice(item.price) }}원</del>
@@ -39,7 +39,7 @@
       </div>
       <!--// productList -->
       <!-- bottomArea -->
-      <div class="conBottomArea">
+      <div class="contents-bottom-area">
         <!-- paging -->
         <Pagination
           :current-page="currentPage"
@@ -48,7 +48,7 @@
         />
         <!--// paging -->
       </div>
-      <!--// conBottomArea -->
+      <!--// contents-bottom-area -->
     </div>
   </div>
   <!-- container -->

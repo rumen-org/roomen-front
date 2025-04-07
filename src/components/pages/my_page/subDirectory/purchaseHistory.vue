@@ -1,14 +1,14 @@
 <template>
-  <div class="orderTable">
+  <div class="order-table">
     <InitTable :tbl-data="tables">
       <template #tableBody>
         <!--        <tr v-for="(item, idx) in filteredResults" :key="idx">-->
         <!--          <td>-->
-        <!--            <a href="" class="goodsInfo">-->
+        <!--            <a href="" class="goods-info">-->
         <!--              <p class="img"><img src="@/assets/images/img-product-3.jpg" alt="" /></p>-->
         <!--              <div>-->
         <!--                <strong>{{ item.title }}</strong>-->
-        <!--                <p>{{ item.subTitle }}</p>-->
+        <!--                <p>{{ item.option-areale }}</p>-->
         <!--                <div>-->
         <!--                  [ 옵션 :-->
         <!--                  <span v-for="(option, index) in item.options.split(' / ')" :key="index">-->
@@ -25,7 +25,7 @@
         <!--          <td data-label="주문금액(수량)"><em>₩ 1,400,000</em> <br /><em>(1개)</em></td>-->
         <!--          <td data-label="주문상태">-->
         <!--            <div class="shippStates">-->
-        <!--              배송중<button type="button" class="btn w90 bgWhite sM">배송조회</button>-->
+        <!--              배송중<button type="button" class="btn w90 bg-white ">배송조회</button>-->
         <!--            </div>-->
         <!--          </td>-->
         <!--        </tr>-->
@@ -36,14 +36,14 @@
       </template>
     </InitTable>
   </div>
-  <!--// orderTable -->
+  <!--// order-table -->
   <!-- bottomArea -->
-  <div class="conBottomArea">
+  <div class="contents-bottom-area">
     <!-- paging -->
     <div class="paging">
-      <a href="" class="btnPrev disabled">이전 페이지</a>
+      <a href="" class="btn-prev disabled">이전 페이지</a>
       <strong>1</strong>
-      <a href="" class="btnNext disabled">다음 페이지</a>
+      <a href="" class="btn-next disabled">다음 페이지</a>
     </div>
     <!--// paging -->
   </div>

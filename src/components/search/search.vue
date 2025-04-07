@@ -1,5 +1,5 @@
 <template>
-  <div class="srchArea">
+  <div class="search-area">
     <input v-model="searchValue" type="text" title="검색" @keyup.enter="onSearch" />
     <button type="button" class="srchBtn" @click="onSearch">
       <span class="hide">검색하기</span>

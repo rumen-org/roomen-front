@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 // Components
-import Products from '@/components/pages/order/subDirectory/productInfo.vue'
+import Products from '@/components/pages/order/subDirectory/product-information.vue'
 import Delivery from '@/components/pages/order/subDirectory/deliveryInfo.vue'
 import Payments from '@/components/pages/order/subDirectory/paymentInfo.vue'
 import Accept from '@/components/pages/order/subDirectory/buttonArea.vue'

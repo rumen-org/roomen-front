@@ -1,15 +1,15 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area">
         <div></div>
         <Breadcrumb />
         <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
-      <!--// conTopArea -->
-      <!-- galleryList -->
-      <div class="galleryList">
+      <!--// contents-top-area -->
+      <!-- gallery-list -->
+      <div class="gallery-list">
         <ul>
           <li v-for="(item, i) in lists.slice(0, itemQuantity)" :key="i">
             <div>
@@ -28,7 +28,7 @@
               <template v-if="isShowModal">
                 <layerPop @close="initItem">
                   <template #body>
-                    <div class="galDetailSlider">
+                    <div class="gallery-detail-slider">
                       <div class="swiper-wrapper">
                         <swiper
                           ref="modalSwiper"
@@ -76,11 +76,13 @@
           </li>
         </ul>
       </div>
-      <!--// galleryLists -->
+      <!--// gallery-lists -->
     </div>
-    <div class="btnArea txtC mt-50">
+    <div class="btn-area txt-c mt-50">
       <p v-if="notMore">더 보여질 게시물이 없습니다.</p>
-      <button class="btn bgWhite sM w90 mt-30" :disabled="notMore" @click="moreBtn">더 보기</button>
+      <button class="btn bg-white s-medium w90 mt-30" :disabled="notMore" @click="moreBtn">
+        더 보기
+      </button>
     </div>
   </div>
 </template>

@@ -1,17 +1,17 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea v2">
-        <div class="btnArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area v2">
+        <div class="btn-area">
           <backButton />
         </div>
         <h2 class="ko">문의하기</h2>
       </div>
-      <!--// conTopArea -->
+      <!--// contents-top-area -->
       <div class="w943">
-        <!-- inputTable -->
-        <div class="inputTable qna">
+        <!-- input-table -->
+        <div class="input-table qna">
           <table>
             <caption>
               문의유형, 제목, 문의내용, 사진, 비밀글 비밀번호 항목으로 구성된 문의하기 입력 표
@@ -24,10 +24,10 @@
             </colgroup>
             <tbody>
               <tr>
-                <th scope="row" class="mNone">문의유형</th>
+                <th scope="row" class="m-none">문의유형</th>
                 <td colspan="3">
-                  <!-- checkboxWrap -->
-                  <div class="checkboxWrap selectCate">
+                  <!-- checkbox-wrap -->
+                  <div class="checkbox-wrap select-cate">
                     <span v-for="(item, idx) in computeTypes" :key="idx" class="checkbox">
                       <input
                         :id="`${item.name}+${idx}`"
@@ -40,7 +40,7 @@
                       <label :for="`${item.name}+${idx}`">{{ item.label }}</label>
                     </span>
                   </div>
-                  <!--// checkboxWrap -->
+                  <!--// checkbox-wrap -->
                 </td>
               </tr>
               <tr>
@@ -65,11 +65,11 @@
                   </textarea>
                 </td>
               </tr>
-              <tr class="flexArea">
+              <tr class="flex-area">
                 <th scope="row">사진</th>
                 <td>
-                  <!-- imgUpload -->
-                  <div class="imgUpload" :class="{ gap10: computeFiles.length > 0 }">
+                  <!-- img-upload -->
+                  <div class="img-upload" :class="{ gap10: computeFiles.length > 0 }">
                     <div class="preview">
                       <ul v-if="computeFiles.length > 0">
                         <li v-for="(item, idx) in computeFiles" :key="idx" class="pos-rel">
@@ -82,11 +82,11 @@
                     </div>
                     <input type="file" class="upload" accept="image/*" multiple @change="addFile" />
                   </div>
-                  <!--// imgUpload -->
+                  <!--// img-upload -->
                 </td>
                 <th scope="row">비밀글</th>
                 <td>
-                  <div class="inputBtn">
+                  <div class="input-button">
                     <input
                       v-model="datas.password"
                       type="password"
@@ -94,7 +94,7 @@
                       :disabled="!datas.secret"
                       :required="datas.secret"
                     />
-                    <span class="checkbox noTxt">
+                    <span class="checkbox no-txt">
                       <input id="chk0201" v-model="datas.secret" type="checkbox" />
                       <label for="chk0201">사용</label>
                     </span>
@@ -104,13 +104,13 @@
             </tbody>
           </table>
         </div>
-        <!--// inputTable -->
+        <!--// input-table -->
 
-        <!-- bottomBtn -->
-        <div class="bottomBtn txtC">
-          <button type="button" class="btn sL w230" @click="submitQna">작성하기</button>
+        <!-- bottom-btn -->
+        <div class="bottom-btn txt-c">
+          <button type="button" class="btn s-large w230" @click="submitQna">작성하기</button>
         </div>
-        <!--// bottomBtn -->
+        <!--// bottom-btn -->
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <template>
-  <div class="resultArea w670">
-    <div class="txtC">
+  <div class="result-area w670">
+    <div class="txt-c">
       <div>
         <div class="w350">
           <p>jyk719 회원님, <em>주문이 완료되었습니다!</em></p>
@@ -23,11 +23,11 @@
         </div>
       </div>
     </div>
-    <!-- bottomBtn -->
-    <div class="bottomBtn txtC">
-      <button type="button" class="btn bgWhite sL w230">주문내역 확인</button>
-      <button type="button" class="btn sL w230">메인으로</button>
+    <!-- bottom-btn -->
+    <div class="bottom-btn txt-c">
+      <button type="button" class="btn bg-white s-medium w230">주문내역 확인</button>
+      <button type="button" class="btn s-large w230">메인으로</button>
     </div>
-    <!--// bottomBtn -->
+    <!--// bottom-btn -->
   </div>
 </template>

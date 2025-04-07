@@ -1,18 +1,18 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea">
-        <div class="btnArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area">
+        <div class="btn-area">
           <backButton />
         </div>
         <h2>NOTICE</h2>
       </div>
-      <!--// conTopArea -->
-      <!-- detailArea -->
-      <div class="detailArea">
+      <!--// contents-top-area -->
+      <!-- detail-area -->
+      <div class="detail-area">
         <!-- top -->
-        <div class="top txtC">
+        <div class="top txt-c">
           <h3>{{ sameItem?.title }}</h3>
           <p v-if="sameItem?.creDate !== undefined">{{ formatDate(sameItem?.creDate) }}</p>
         </div>
@@ -23,7 +23,7 @@
         </div>
         <!--// con -->
       </div>
-      <!--// detailArea -->
+      <!--// detail-area -->
     </div>
   </div>
 </template>

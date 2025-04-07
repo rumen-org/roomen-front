@@ -1,6 +1,6 @@
 <template>
-  <!-- orderTable -->
-  <div class="orderTable">
+  <!-- order-table -->
+  <div class="order-table">
     <table>
       <caption>
         상품정보, 옵션, 주문수량, 합계 항목으로 구성된 주문서 상세표
@@ -22,7 +22,7 @@
       <tbody>
         <tr v-for="(item, idx) in data" :key="idx">
           <td>
-            <div class="goodsInfo">
+            <div class="goods-info">
               <p class="img">
                 <img :src="`https://back.roomen.kro.kr/${item?.imgUrl}`" alt="" />
               </p>
@@ -33,7 +33,7 @@
             </div>
           </td>
           <td data-label="옵션">
-            <div class="option txtL">
+            <div class="option txt-l">
               <span v-for="(option, idx2) in item.options.split('/')" :key="idx2"
                 >{{ option }} <em v-if="idx2 < item.options.split('/').length - 1"> / </em></span
               >
@@ -50,9 +50,9 @@
       </tbody>
     </table>
   </div>
-  <!--// orderTable -->
-  <div class="totalPrice txtR">
-    <span class="fontG">TOTAL</span>
+  <!--// order-table -->
+  <div class="total-price txt-r">
+    <span class="font-g">TOTAL</span>
     <em>₩ {{ formatPrice(getPrice) }}</em>
   </div>
 </template>

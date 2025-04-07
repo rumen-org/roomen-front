@@ -1,8 +1,8 @@
 <template>
   <!-- 실시간 계좌이체 -->
   <div>
-    <!-- inputTable -->
-    <div class="inputTable">
+    <!-- input-table -->
+    <div class="input-table">
       <table>
         <caption>
           예금주명 항목으로 구성된 실시간 계좌이체 정보입력 표
@@ -14,24 +14,24 @@
         <tbody>
           <tr>
             <th scope="row">
-              예금주명 <span class="req cRed"><span class="hide">필수입력항목</span>*</span>
+              예금주명 <span class="req c-red"><span class="hide">필수입력항목</span>*</span>
             </th>
             <td><input type="text" title="예금주명" /></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <!--// inputTable -->
-    <p class="mTop25">- 소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
-    <!-- cashReceipt -->
-    <div class="cashReceipt">
+    <!--// input-table -->
+    <p class="m-top25">- 소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
+    <!-- cash-receipt -->
+    <div class="cash-receipt">
       <span class="checkbox">
         <input id="chk0201" type="checkbox" />
         <label for="chk0201">현금영수증 신청</label>
       </span>
       <div class="flex">
-        <!-- checkboxWrap -->
-        <div class="checkboxWrap">
+        <!-- checkbox-wrap -->
+        <div class="checkbox-wrap">
           <span class="checkbox">
             <input id="chk0401" type="radio" name="chk04" checked />
             <label for="chk0401">개인</label>
@@ -41,7 +41,7 @@
             <label for="chk0402">사업자</label>
           </span>
         </div>
-        <!--// checkboxWrap -->
+        <!--// checkbox-wrap -->
         <div class="phone">
           <select title="휴대전화 앞 세자리">
             <option value="">010</option>
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    <!--// cashReceipt -->
+    <!--// cash-receipt -->
   </div>
   <!--// 실시간 계좌이체 -->
 </template>

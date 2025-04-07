@@ -1,12 +1,12 @@
 <template>
-  <dl class="sectionTit mt-70">
+  <dl class="section-title mt-70">
     <dt>결제 정보</dt>
     <dd><span class="blind">제목 하단 선</span></dd>
   </dl>
-  <!-- tabArea -->
-  <div class="tabArea topLine mt-30">
+  <!-- tab-area -->
+  <div class="tab-area topLine mt-30">
     <PaymentTab :items="tabs" @send:value="getContents" />
-    <div class="tabCon">
+    <div class="tab-contents">
       <component :is="currentComponents"></component>
     </div>
   </div>

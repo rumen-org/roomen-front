@@ -2,7 +2,7 @@
   <div v-if="isOpen" class="layer w700">
     <div ref="popupRef">
       <slot name="type2Layer" />
-      <a href="javascript:void(0);" class="mClose"><span class="hide">닫기</span></a>
+      <a href="javascript:void(0);" class="m-close"><span class="hide">닫기</span></a>
     </div>
   </div>
 </template>

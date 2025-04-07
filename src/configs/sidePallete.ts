@@ -1,27 +1,27 @@
 export const mainPallete = {
   left: [
-    { class: 'cWhite', label: '화이트', value: 'ffffff' },
-    { class: 'cBlack', label: '블랙', value: '191919' },
-    { class: 'cGray', label: '그레이', value: '939393' },
-    { class: 'cBrown', label: '브라운', value: '855937' },
-    { class: 'cRed', label: '레드', value: 'EA5D5D' },
-    { class: 'cYellow', label: '옐로우', value: 'FDD33F' },
-    { class: 'cBeige', label: '베이지', value: 'DEC9A6' },
-    { class: 'cBlue', label: '블루', value: '3EBAEF' },
-    { class: 'cGreen', label: '그린', value: '58FFAF' },
-    { class: 'cPurple', label: '퍼블', value: 'B661F9' }
+    { class: 'c-white', label: '화이트', value: 'ffffff' },
+    { class: 'c-black', label: '블랙', value: '191919' },
+    { class: 'c-gray', label: '그레이', value: '939393' },
+    { class: 'c-brown', label: '브라운', value: '855937' },
+    { class: 'c-red', label: '레드', value: 'EA5D5D' },
+    { class: 'c-yellow', label: '옐로우', value: 'FDD33F' },
+    { class: 'c-beige', label: '베이지', value: 'DEC9A6' },
+    { class: 'c-blue', label: '블루', value: '3EBAEF' },
+    { class: 'c-green', label: '그린', value: '58FFAF' },
+    { class: 'c-purple', label: '퍼블', value: 'B661F9' }
   ],
   right: [
-    { class: 'cBlack', label: '블랙', value: '191919' },
-    { class: 'cWhite', label: '화이트', value: 'ffffff' },
-    { class: 'cGray', label: '그레이', value: '939393' },
-    { class: 'cBrown', label: '브라운', value: '855937' },
-    { class: 'cRed', label: '레드', value: 'EA5D5D' },
-    { class: 'cYellow', label: '옐로우', value: 'FDD33F' },
-    { class: 'cBeige', label: '베이지', value: 'DEC9A6' },
-    { class: 'cBlue', label: '블루', value: '3EBAEF' },
-    { class: 'cGreen', label: '그린', value: '58FFAF' },
-    { class: 'cPurple', label: '퍼블', value: 'B661F9' }
+    { class: 'c-black', label: '블랙', value: '191919' },
+    { class: 'c-white', label: '화이트', value: 'ffffff' },
+    { class: 'c-gray', label: '그레이', value: '939393' },
+    { class: 'c-brown', label: '브라운', value: '855937' },
+    { class: 'c-red', label: '레드', value: 'EA5D5D' },
+    { class: 'c-yellow', label: '옐로우', value: 'FDD33F' },
+    { class: 'c-beige', label: '베이지', value: 'DEC9A6' },
+    { class: 'c-blue', label: '블루', value: '3EBAEF' },
+    { class: 'c-green', label: '그린', value: '58FFAF' },
+    { class: 'c-purple', label: '퍼블', value: 'B661F9' }
   ]
 }
 

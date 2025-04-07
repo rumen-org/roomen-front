@@ -1,10 +1,10 @@
 <template>
-  <div class="conBlock center">
+  <div class="con-block center">
     <span class="checkbox">
       <input id="chk0501" v-model="isCorrect" type="checkbox" />
       <label for="chk0501">결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
     </span>
-    <button type="button" class="btn sL w290" @click="checkCustomer">
+    <button type="button" class="btn s-large w290" @click="checkCustomer">
       ₩ <em>{{ formatPrice(getPrice) }}</em> 결제하기
     </button>
     <Alert />

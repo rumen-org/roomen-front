@@ -1,6 +1,6 @@
 <template>
-  <h3 class="txtC">배송지 변경</h3>
-  <div class="scrollArea topLine">
+  <h3 class="txt-c">배송지 변경</h3>
+  <div class="scroll-area topLine">
     <ul v-if="shipAddressList">
       <li v-for="(pItem, i) in shipAddressList" :key="i" @click="selectItem(pItem)">
         <div class="tit-box">
@@ -10,7 +10,7 @@
         <p>{{ pItem.address }}</p>
         <p>{{ pItem.phone }}</p>
 
-        <button type="button" class="btn sM w100 selectedBtn">선택</button>
+        <button type="button" class="btn s-medium w100 selectedBtn">선택</button>
       </li>
     </ul>
     <dl v-else>

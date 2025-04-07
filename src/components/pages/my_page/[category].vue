@@ -2,8 +2,8 @@
   <!-- container -->
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div v-if="category !== 'addShipAddress'" class="conTopArea">
+      <!-- contents-top-area -->
+      <div v-if="category !== 'addShipAddress'" class="contents-top-area">
         <tab />
         <searchComponent
           v-if="category === 'PurchaseHistory'"
@@ -11,10 +11,10 @@
           @search="searchItem"
         />
       </div>
-      <!--// conTopArea -->
-      <!-- orderTable -->
+      <!--// contents-top-area -->
+      <!-- order-table -->
       <component :is="current" v-bind="currentProps" v-on="currentEmits" />
-      <!--// conBottomArea -->
+      <!--// contents-bottom-area -->
     </div>
   </div>
   <!-- container -->

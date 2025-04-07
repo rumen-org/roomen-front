@@ -1,9 +1,9 @@
 <template>
-  <!-- termsArea -->
-  <div class="termsArea">
+  <!-- terms-area -->
+  <div class="terms-area">
     <h4 class="terms-tit">전체동의</h4>
-    <!-- checkboxWrap -->
-    <div class="checkboxWrap mt-20">
+    <!-- checkbox-wrap -->
+    <div class="checkbox-wrap mt-20">
       <span class="checkbox">
         <input id="chk0101" v-model="allCheck" type="checkbox" class="chckAll" />
         <label for="chk0101"
@@ -13,12 +13,12 @@
     </div>
     <div v-for="(item, idx) in termsList" :key="idx" class="terms">
       <h3>{{ item.head }}</h3>
-      <PerfectScrollbar class="scrollArea">
+      <PerfectScrollbar class="scroll-area">
         <div class="scrollInner">
           <WordBreak v-if="item.body" :break-text="item.body" />
         </div>
       </PerfectScrollbar>
-      <div :class="item.checkBox.length === 2 ? 'flex right mBlock' : ''" class="txtR">
+      <div :class="item.checkBox.length === 2 ? 'flex right m-block' : ''" class="txt-r">
         <template v-if="item.checkBox.length === 1">
           <template v-for="item2 in item.checkBox" :key="item2">
             <span>
@@ -42,12 +42,12 @@
         </template>
       </div>
     </div>
-    <!-- checkboxWrap -->
+    <!-- checkbox-wrap -->
   </div>
-  <!-- termsArea -->
-  <div class="bottomBtn txtC">
-    <button type="button" class="btn bgWhite sL w230" @click="goBack">취소</button>
-    <button type="button" class="btn sL w230" :disabled="!requireAgree" @click="sendPage">
+  <!-- terms-area -->
+  <div class="bottom-btn txt-c">
+    <button type="button" class="btn bg-white s-large w230" @click="goBack">취소</button>
+    <button type="button" class="btn s-large w230" :disabled="!requireAgree" @click="sendPage">
       다음
     </button>
   </div>

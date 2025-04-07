@@ -1,8 +1,12 @@
 <template>
-  <div
+  <header
     id="header"
     ref="headerRef"
-    :class="{ top: getActiveSection === 0 && windowWidth >= 1161, on: isMenuOpen }"
+    :class="{
+      top: getActiveSection === 0 && windowWidth >= 1161,
+      on: isMenuOpen,
+      'mobile-header': windowWidth < 1160
+    }"
   >
     <!-- inner -->
     <div class="inner">
@@ -74,14 +78,14 @@
         <Languages />
         <SnsList />
       </div>
-      <button type="button" class="btnMenu" @click="toggleMenu">
+      <button type="button" class="btn-menu" @click="toggleMenu">
         <em
           ><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em
         >
       </button>
     </div>
     <!--// inner -->
-  </div>
+  </header>
 </template>
 <script setup lang="ts">
 import { debounce } from 'lodash'

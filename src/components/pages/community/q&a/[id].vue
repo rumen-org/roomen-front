@@ -1,9 +1,9 @@
 <template>
-  <tr v-if="props.answer" class="bgGray">
+  <tr v-if="props.answer" class="bg-gray">
     <td></td>
-    <td class="mNone"></td>
-    <td class="txtL subject">
-      <div class="conDetail">
+    <td class="m-none"></td>
+    <td class="txt-l subject">
+      <div class="contents-detail">
         <p>{{ answer.content }}</p>
       </div>
     </td>
@@ -20,19 +20,3 @@ const props = defineProps<{ answer: propsType }>()
 import { useFormatDate } from '@/composables/useDateType'
 const { formatDate } = useFormatDate()
 </script>
-
-<style scoped>
-.conDetail {
-  display: block;
-  overflow: hidden;
-  width: 100%;
-  font-weight: 300;
-  text-align: left;
-  padding: 10px 5px;
-  height: 60px;
-  font-size: 16px;
-}
-.conDetail img {
-  display: block;
-}
-</style>

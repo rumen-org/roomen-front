@@ -3,21 +3,21 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
-      <div class="conTopArea">
+      <!-- contents-top-area -->
+      <div class="contents-top-area">
         <Sort :items="sortItems" @update:value="changeSorting" />
         <h2>Q&#38;A</h2>
         <searchComponent v-model:searchValue="searchValue" @search="searchItem" />
       </div>
-      <!--// conTopArea -->
-      <!-- qnaTable -->
-      <div class="qnaTable">
+      <!--// contents-top-area -->
+      <!-- qna-table -->
+      <div class="qna-table">
         <table>
           <caption>
             번호, 문의유형, 제목, 작성자, 작성일 항목으로 구성된 q&a 목록표
           </caption>
           <colgroup>
-            <col style="width: 160px" class="mw100 mNone" />
+            <col style="width: 160px" class="mw100 m-none" />
             <col style="width: 160px" class="mw100" />
             <col style="width: auto" />
             <col style="width: 160px" class="mw100" />
@@ -25,7 +25,7 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="col" class="mNone">번호</th>
+              <th scope="col" class="m-none">번호</th>
               <th scope="col">문의유형</th>
               <th scope="col">제목</th>
               <th scope="col">작성자</th>
@@ -40,13 +40,13 @@
             >
               <template #notEmpty>
                 <template v-for="(item, index) in qnaList" :key="index">
-                  <tr :class="{ bgGray: selectedItemId === item.id }">
-                    <td class="mNone">{{ item.id }}</td>
+                  <tr :class="{ 'bg-gray': selectedItemId === item.id }">
+                    <td class="m-none">{{ item.id }}</td>
                     <td>{{ qnaTypeText(item.qnaType) }}</td>
-                    <td class="txtL subject">
+                    <td class="txt-l subject">
                       <button
                         :class="{ lock: item.secret, com: item.hasReply }"
-                        class="likeAnchor"
+                        class="like-anchor"
                         @click.prevent="toggleDetail(item)"
                       >
                         <span v-dompurify-html="highlightText(item.title, searchValue)"></span>
@@ -90,9 +90,9 @@
           </tbody>
         </table>
       </div>
-      <!--// qnaTable -->
+      <!--// qna-table -->
       <!-- bottomArea -->
-      <div class="conBottomArea">
+      <div class="contents-bottom-area">
         <!-- paging -->
         <Pagination
           :current-page="currentPage"
@@ -100,13 +100,13 @@
           @change-page="changePage"
         />
         <!--// paging -->
-        <!-- btnArea -->
-        <div class="btnArea">
-          <button type="button" class="btn sL w230" @click="pushWrite">문의하기</button>
+        <!-- btn-area -->
+        <div class="btn-area">
+          <button type="button" class="btn s-large w230" @click="pushWrite">문의하기</button>
         </div>
-        <!--// btnArea -->
+        <!--// btn-area -->
       </div>
-      <!--// conBottomArea -->
+      <!--// contents-bottom-area -->
     </div>
     <Confirm />
   </div>

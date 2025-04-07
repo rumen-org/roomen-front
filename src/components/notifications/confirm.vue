@@ -2,9 +2,9 @@
   <div v-if="confirmState.isVisible" class="confirm-overlay">
     <div class="confirm-box">
       <p class="confirm-text">{{ confirmState.message }}</p>
-      <div class="btnArea btnArea2">
+      <div class="btn-area btn-area2">
         <button class="btn" @click="confirmState.onConfirm">확인</button>
-        <button class="btn bgWhite" @click="confirmState.onCancel">취소</button>
+        <button class="btn bg-white" @click="confirmState.onCancel">취소</button>
       </div>
     </div>
   </div>
@@ -33,12 +33,12 @@ const { confirmState } = useConfirm()
 .confirm-box {
   background-color: white;
   padding: 20px;
-  border-radius: 0px;
+  border-radius: 0;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.btnArea2 {
+.btn-area2 {
   margin-top: 10px;
   display: flex;
   gap: 10px;

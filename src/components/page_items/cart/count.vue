@@ -3,14 +3,14 @@
     <div>
       <button
         type="button"
-        class="minusBtn"
+        class="minus-btn"
         :disabled="state === 1 || state === 0"
         @click="changeValue('-')"
       >
         <span class="hide">빼기</span>
       </button>
       <span>{{ state }}</span>
-      <button type="button" class="plusBtn" :disabled="state >= 10" @click="changeValue('+')">
+      <button type="button" class="plus-btn" :disabled="state >= 10" @click="changeValue('+')">
         <span class="hide">더하기</span>
       </button>
     </div>

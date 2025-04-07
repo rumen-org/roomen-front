@@ -1,17 +1,17 @@
 <template>
   <div id="container">
     <div class="contents">
-      <!-- conTopArea -->
+      <!-- contents-top-area -->
       <Alert />
-      <div class="conTopArea v3">
+      <div class="contents-top-area v3">
         <h2>CART</h2>
       </div>
-      <!--// conTopArea -->
-      <!-- cartList -->
-      <div v-if="cartItems.length" class="cartList">
+      <!--// contents-top-area -->
+      <!-- cart-list -->
+      <div v-if="cartItems.length" class="cart-list">
         <div v-for="(item, i) in cartItems" :key="i" class="goods">
           <div class="fixed">
-            <span class="checkbox noTxt">
+            <span class="checkbox no-txt">
               <input
                 :id="`chk0101+${i}`"
                 v-model="selectedItems"
@@ -30,28 +30,28 @@
           <div>
             <p class="name">
               <strong>{{ item?.name }}</strong>
-              <span class="fontG">{{ item?.subName }}</span>
+              <span class="font-g">{{ item?.subName }}</span>
             </p>
-            <p class="price fontN">
-              ₩ <em class="fontG">{{ formatPrice(item?.basicPrice) }}</em>
+            <p class="price font-n">
+              ₩ <em class="font-g">{{ formatPrice(item?.basicPrice) }}</em>
             </p>
             <p class="option">{{ item?.options }}</p>
             <countComponent :id="item?.id" :init-value="item?.quantity" @update="fixCartItem" />
           </div>
-          <p class="totalPrice fontN">₩ <em class="fontG">1,400,000</em></p>
+          <p class="total-price font-n">₩ <em class="font-g">1,400,000</em></p>
           <button type="button" class="btn-del" @click="removeCartItem(item.id)">
             <span class="hide">삭제</span>
           </button>
         </div>
       </div>
-      <!--// cartList -->
-      <!-- allBtnArea -->
-      <div v-else-if="!cartItems.length" class="emptyCart cartList">
+      <!--// cart-list -->
+      <!-- all-btn-area -->
+      <div v-else-if="!cartItems.length" class="empty-cart cart-list">
         <h3>
           <strong>장바구니가 비어 있습니다.</strong>
         </h3>
       </div>
-      <div class="allBtnArea">
+      <div class="all-btn-area">
         <button
           type="button"
           class="btn chckBtn"
@@ -69,14 +69,14 @@
           선택삭제
         </button>
       </div>
-      <!--// allBtnArea -->
-      <!-- btnArea -->
-      <div class="btnArea txtR">
-        <button type="button" :disabled="selectedItems.length === 0" class="btn sL w230">
+      <!--// all-btn-area -->
+      <!-- btn-area -->
+      <div class="btn-area txt-r">
+        <button type="button" :disabled="selectedItems.length === 0" class="btn s-large w230">
           주문하기
         </button>
       </div>
-      <!--// btnArea -->
+      <!--// btn-area -->
     </div>
   </div>
 </template>
@@ -181,22 +181,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
-button.btn-del {
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  background: url('@/assets/images/btn-cart-del.png') no-repeat (center / 30px) auto;
-
-  @media (max-width: 940px) {
-    width: 20px;
-    height: 20px;
-  }
-  @media (max-width: 768px) {
-    top: 30px;
-    right: 10px;
-  }
-}
-</style>
+<style scoped lang="scss"></style>

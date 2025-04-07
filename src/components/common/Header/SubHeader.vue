@@ -1,8 +1,12 @@
 <template>
-  <div
+  <header
     id="header"
     ref="headerRef"
-    :class="{ top: windowWidth < 1161 || routePath === '/about', on: isMenuOpen }"
+    :class="{
+      top: windowWidth < 1161 || routePath === '/about',
+      on: isMenuOpen,
+      'mobile-header': windowWidth < 1161
+    }"
   >
     <!-- inner -->
     <div class="inner">
@@ -84,14 +88,14 @@
         <Languages />
         <SnsList />
       </div>
-      <button type="button" class="btnMenu" @click="toggleMenu">
+      <button type="button" class="btn-menu" @click="toggleMenu">
         <em
           ><span class="hide">{{ isMenuOpen ? '메뉴 닫기' : '메뉴 열기' }}</span></em
         >
       </button>
     </div>
     <!--// inner -->
-  </div>
+  </header>
 </template>
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'

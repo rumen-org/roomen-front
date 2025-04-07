@@ -1,9 +1,9 @@
 <template>
   <div class="w670">
-    <div class="conTopArea v2">
+    <div class="contents-top-area v2">
       <backButton />
     </div>
-    <div class="inputTable">
+    <div class="input-table">
       <table>
         <caption>
           배송지명, 수령인, 주소, 휴대전화 항목으로 구성된 배송지 등록표
@@ -25,12 +25,12 @@
             <th scope="row">주소</th>
             <td>
               <div class="address">
-                <div class="zipCode">
+                <div class="zip-code">
                   <input type="text" title="우편번호 검색" :value="postcode" />
                   <button
                     type="button"
                     :disabled="!isScriptLoaded"
-                    class="btn blockBtn"
+                    class="btn block-btn"
                     @click="execDaumPostcode"
                   >
                     검색
@@ -75,11 +75,11 @@
         </tbody>
       </table>
     </div>
-    <!--// inputTable -->
+    <!--// input-table -->
 
-    <!-- bottomBtn -->
-    <div class="bottomBtn txtC">
-      <button type="button" class="btn sL w230" @click="addItems">배송지 등록</button>
+    <!-- bottom-btn -->
+    <div class="bottom-btn txt-c">
+      <button type="button" class="btn s-large w230" @click="addItems">배송지 등록</button>
     </div>
   </div>
 </template>
