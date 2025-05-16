@@ -1318,7 +1318,11 @@ div[class*='table'].input-table.qna {
 
   /* qna 모바일 */
   .qna-table > table {
-    > {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-align: left;
+
       thead {
         > tr > th {
           display: none;
@@ -1351,7 +1355,10 @@ div[class*='table'].input-table.qna {
             background:url("@/assets/images/ico-select-arrow.png") no-repeat center / 100% auto;
           }
 
-          > {
+          display: flex;
+          position: relative;
+          padding: 40px 10px 10px;
+
             th {
               display: block;
               width: 100%;
@@ -1378,11 +1385,9 @@ div[class*='table'].input-table.qna {
                 top: 13px;
               }
             }
-          }
 
-          display: flex;
-          position: relative;
-          padding: 40px 10px 10px;
+
+
 
           &.answer {
             padding: 40px 10px 10px;
@@ -1398,11 +1403,6 @@ div[class*='table'].input-table.qna {
         }
       }
     }
-
-    display: block;
-    width: 100%;
-    height: auto;
-    text-align: left;
   }
 
   .qna-pw {
@@ -1521,7 +1521,11 @@ div[class*='table'].input-table.qna {
     }
 
     > table {
-      > {
+
+      display: block;
+      width: 100%;
+      text-align: left;
+
         thead {
           display: none;
         }
@@ -1536,7 +1540,12 @@ div[class*='table'].input-table.qna {
             width: 100%;
             text-align: left;
 
-            > {
+
+            position: relative;
+            padding-top: 25px;
+            padding-left: 40px;
+            padding-bottom: 25px;
+
               th {
                 display: block;
                 width: 100%;
@@ -1558,19 +1567,8 @@ div[class*='table'].input-table.qna {
                 height: 25px;
                 line-height: 16px;
               }
-            }
 
-            position: relative;
-            padding-top: 25px;
-            padding-left: 40px;
-            padding-bottom: 25px;
           }
-        }
-      }
-
-      display: block;
-      width: 100%;
-      text-align: left;
     }
   }
 }
@@ -2363,7 +2361,10 @@ div[class*='table'].input-table.qna {
     margin-top: 30px !important;
 
     > table {
-      > {
+      display: block;
+      height: auto;
+      text-align: left;
+
         thead {
           border-width: 2px;
 
@@ -2415,11 +2416,7 @@ div[class*='table'].input-table.qna {
             }
           }
         }
-      }
 
-      display: block;
-      height: auto;
-      text-align: left;
     }
   }
 

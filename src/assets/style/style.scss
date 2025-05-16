@@ -4,4 +4,5 @@
 @use 'base/default' as *;
 @use 'base/color' as *;
 @use 'components/main' as *;
-@import 'layout', 'contents';
+@use 'layout' as *;
+@use 'contents' as *;

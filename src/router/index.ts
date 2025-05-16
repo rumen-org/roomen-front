@@ -83,7 +83,7 @@ const routes: Array<RouteRecordRaw> = [
             children: [
               {
                 path: '',
-                name: 'NOTICE',
+                name: 'NOTICEList',
                 component: () => import('@/views/community/notice/list.vue')
               },
               {
@@ -100,7 +100,7 @@ const routes: Array<RouteRecordRaw> = [
             meta: { layout: DefaultLayout },
             children: [
               {
-                name: 'Q&A',
+                name: 'Q&AList',
                 path: '',
                 component: () => import('@/views/community/q&a/list.vue')
               },
