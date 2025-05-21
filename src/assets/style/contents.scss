@@ -70,7 +70,6 @@
 
   &.bg-white {
     background: #fff !important;
-    border: 1px solid #191919;
     color: #191919 !important;
 
     span {
@@ -95,6 +94,7 @@
 }
 
 .s-large {
+  width: 230px;
   height: 70px;
   font-weight: 600;
   font-size: 20px;
@@ -374,11 +374,11 @@ div.html-contents {
 
 .input-check2 {
   position: relative;
-  border-bottom: 1px solid #191919;
+  //border-bottom: 1px solid #191919;
 
-  input {
-    border: none;
-  }
+  //input {
+  //  border: none;
+  //}
 
   span {
     white-space: nowrap;
@@ -387,8 +387,9 @@ div.html-contents {
   }
 
   &.red {
-    border-color: #F00;
-
+    input {
+      border-color: #F00;
+    }
     span {
       color: #F00;
       position: absolute;
@@ -423,6 +424,7 @@ div.html-contents {
 .about-visual {
   position: relative;
   overflow: hidden;
+  height: 100vh;
 
   img {
     width: 100%;
@@ -433,7 +435,7 @@ div.html-contents {
     position: absolute;
     top: 50%;
     left: 50%;
-    max-width: 500px;
+    max-width: 650px;
     width: 100%;
     text-align: center;
     transform: translate(-50%, -50%);
@@ -476,6 +478,7 @@ div.html-contents {
     p.ko {
       font-weight: 300;
       font-size: 18px;
+      color: #a3a3a3;
 
       @include response-to("768") {
         line-height: 24px;
@@ -496,6 +499,7 @@ div.html-contents {
     p.eng {
       font-weight: 300;
       font-size: 16px;
+      color: #a3a3a3;
     }
   }
 }
@@ -819,95 +823,95 @@ div.html-contents {
 /*** table ***/
 
 /* 공통 */
-div[class*='table'] {
-  margin-top: 5px;
-
-  table {
-    width: 100%;
-  }
-
-  thead {
-    border-bottom: 3px solid #191919;
-
-    @include response-to("768") {
-      border-width: 0;
-    }
-  }
-
-  tbody tr {
-    border-bottom: 1px solid #a4a4a4;
-  }
-
-  tbody tr:last-child {
-    border-bottom: 1px solid #191919;
-  }
-
-  tr {
-    th, td {
-      height: 100px;
-      font-size: 18px;
-      text-align: center;
-    }
-
-    th {
-      font-weight: 600;
-    }
-
-    td {
-      font-weight: 400;
-
-      &.subject {
-        padding-left: 80px;
-
-        > button:not(.btn) {
-          display: inline-flex;
-          font-size: inherit;
-          font-weight: inherit;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          line-height: inherit;
-          text-overflow: ellipsis;
-          color: #191919;
-          text-align:left;
-
-          span {
-            display:block;
-          }
-
-          &.lock {
-            padding-left: 32px;
-            background: url("@/assets/images/ico-lock.png") no-repeat center (left / 16px) auto;
-          }
-
-          &.com {
-            position: relative;
-            padding-right: 90px;
-
-            span.tag {
-              position: absolute;
-              top: 0;
-              right: 0;
-              display: inline-block;
-              padding: 0 9px;
-              background: #191919;
-              font-size: 12px;
-              color: #fff;
-            }
-          }
-        }
-      }
-
-      a {
-        color: inherit;
-      }
-    }
-
-    &.bg-gray {
-      background: #F4F4F4;
-    }
-  }
-}
+//div[class*='table'] {
+//  margin-top: 5px;
+//
+//  table {
+//    width: 100%;
+//  }
+//
+//  thead {
+//    border-bottom: 3px solid #191919;
+//
+//    @include response-to("768") {
+//      border-width: 0;
+//    }
+//  }
+//
+//  tbody tr {
+//    border-bottom: 1px solid #a4a4a4;
+//  }
+//
+//  tbody tr:last-child {
+//    border-bottom: 1px solid #191919;
+//  }
+//
+//  tr {
+//    th, td {
+//      //height: 100px;
+//      font-size: 18px;
+//      //text-align: center;
+//    }
+//
+//    th {
+//      font-weight: 600;
+//    }
+//
+//    td {
+//      font-weight: 400;
+//
+//      &.subject {
+//        padding-left: 80px;
+//
+//        > button:not(.btn) {
+//          display: inline-flex;
+//          font-size: inherit;
+//          font-weight: inherit;
+//          -webkit-line-clamp: 1;
+//          -webkit-box-orient: vertical;
+//          overflow: hidden;
+//          line-height: inherit;
+//          text-overflow: ellipsis;
+//          color: #191919;
+//          text-align:left;
+//
+//          span {
+//            display:block;
+//          }
+//
+//          &.lock {
+//            padding-left: 32px;
+//            background: url("@/assets/images/ico-lock.png") no-repeat center (left / 16px) auto;
+//          }
+//
+//          &.com {
+//            position: relative;
+//            padding-right: 90px;
+//
+//            span.tag {
+//              position: absolute;
+//              top: 0;
+//              right: 0;
+//              display: inline-block;
+//              padding: 0 9px;
+//              background: #191919;
+//              font-size: 12px;
+//              color: #fff;
+//            }
+//          }
+//        }
+//      }
+//
+//      a {
+//        color: inherit;
+//      }
+//    }
+//
+//    &.bg-gray {
+//      background: #F4F4F4;
+//    }
+//  }
+//}
 
 /* qna */
 .qna-table {
@@ -1103,61 +1107,54 @@ div[class*='table'].input-table.qna {
 }
 
 /* input */
-.input-table {
-  margin-top: 35px !important;
-
-  tbody tr {
-    border-bottom: none !important;
-  }
-
-  tr {
-    th, td {
-      padding-top: 15px;
-      height: 65px !important;
-      text-align: left !important;
-    }
-
-    th {
-      padding-top: 25px;
-      vertical-align: top;
-    }
-
-    td {
-      input:not([type="checkbox"], [type="radio"]) {
-        padding: 16px 20px !important;
-        height: 50px;
-        font-weight: 300;
-        font-size: 16px !important;
-        color: #191919;
-
-        &::placeholder {
-          font-weight: 300;
-          font-size: 16px !important;
-          color: #191919;
-        }
-      }
-
-      select {
-        //padding: 16px 20px !important;
-        height: 50px;
-        padding: 16px 30px 16px 20px !important;
-        background: url("@/assets/images/ico-select-arrow.png") no-repeat center right 20px / 17px auto;
-        border: none;
-        border-bottom: 1px solid #191919;
-        font-size: 16px;
-        font-weight: 600;
-      }
-
-      textarea {
-        padding: 16px 25px;
-        height: 300px;
-        border: 1px solid #191919;
-        font-size: 16px;
-        color: rgb(25 25 25 / 70%);
-      }
-    }
-  }
-}
+//.input-table {
+//  margin-top: 35px !important;
+//
+//  tbody tr {
+//    border-bottom: none !important;
+//  }
+//
+//  tr {
+//    th, td {
+//      height: 50px;
+//      text-align: left !important;
+//    }
+//    td {
+//      input:not([type="checkbox"], [type="radio"]) {
+//        padding: 16px 20px !important;
+//        height: 50px;
+//        font-weight: 300;
+//        font-size: 16px !important;
+//        color: #191919;
+//
+//        &::placeholder {
+//          font-weight: 300;
+//          font-size: 16px !important;
+//          color: #191919;
+//        }
+//      }
+//
+//      select {
+//        //padding: 16px 20px !important;
+//        height: 50px;
+//        padding: 16px 30px 16px 20px !important;
+//        background: url("@/assets/images/ico-select-arrow.png") no-repeat center right 20px / 17px auto;
+//        border: none;
+//        border-bottom: 1px solid #191919;
+//        font-size: 16px;
+//        font-weight: 600;
+//      }
+//
+//      textarea {
+//        padding: 16px 25px;
+//        height: 300px;
+//        border: 1px solid #191919;
+//        font-size: 16px;
+//        color: rgb(25 25 25 / 70%);
+//      }
+//    }
+//  }
+//}
 
 .phone {
   display: flex;
@@ -1187,223 +1184,223 @@ div[class*='table'].input-table.qna {
   }
 }
 
-@include response-to("1160") {
-  div[class*='table'] tr td.subject {
-    padding-left: 40px;
-  }
-}
+//@include response-to("1160") {
+//  div[class*='table'] tr td.subject {
+//    padding-left: 40px;
+//  }
+//}
 
-@include response-to("940") {
-  div[class*='table'] {
-    colgroup col {
-      &.mw100 {
-        width: 100px !important;
-      }
+//@include response-to("940") {
+//  div[class*='table'] {
+//    colgroup col {
+//      &.mw100 {
+//        width: 100px !important;
+//      }
+//
+//      &.mw150 {
+//        width: 150px !important;
+//      }
+//
+//      &.mw300 {
+//        width: 300px !important;
+//      }
+//    }
+//
+//    tr {
+//      th {
+//        padding: 10px 5px;
+//        height: 60px;
+//        font-size: 16px;
+//      }
+//
+//      td {
+//        padding: 10px 5px;
+//        height: 60px;
+//        font-size: 16px;
+//
+//        &.subject {
+//          button.lock {
+//            padding-left: 20px;
+//            background-size: 13px;
+//          }
+//
+//        }
+//      }
+//    }
+//  }
+//
+//  .input-table tr {
+//    th {
+//      height: 30px !important;
+//    }
+//
+//    td {
+//      height: 30px !important;
+//
+//      input:not([type="checkbox"], [type="radio"]) {
+//        padding: 5px 10px !important;
+//        height: 30px;
+//      }
+//
+//      select {
+//        padding:5px 20px 5px 5px !important;
+//        height:30px;
+//        background-size:12px auto;
+//        background-position:center right 5px;
+//        font-size: 16px;
+//      }
+//    }
+//  }
+//}
 
-      &.mw150 {
-        width: 150px !important;
-      }
-
-      &.mw300 {
-        width: 300px !important;
-      }
-    }
-
-    tr {
-      th {
-        padding: 10px 5px;
-        height: 60px;
-        font-size: 16px;
-      }
-
-      td {
-        padding: 10px 5px;
-        height: 60px;
-        font-size: 16px;
-
-        &.subject {
-          button.lock {
-            padding-left: 20px;
-            background-size: 13px;
-          }
-
-        }
-      }
-    }
-  }
-
-  .input-table tr {
-    th {
-      height: 30px !important;
-    }
-
-    td {
-      height: 30px !important;
-
-      input:not([type="checkbox"], [type="radio"]) {
-        padding: 5px 10px !important;
-        height: 30px;
-      }
-
-      select {
-        padding:5px 20px 5px 5px !important;
-        height:30px;
-        background-size:12px auto;
-        background-position:center right 5px;
-        font-size: 16px;
-      }
-    }
-  }
-}
-
-@include response-to("768") {
-  div[class*='table'] {
-    margin-top: 0;
-
-    .m-none {
-      display: none !important;
-    }
-
-    tr {
-      th {
-        padding: 10px 5px;
-        height: 40px;
-        font-size: 13px;
-      }
-
-      td {
-        padding: 10px 5px;
-        height: 40px;
-        font-size: 13px;
-
-        &.subject {
-          padding-left: 10px;
-          font-weight: 700;
-
-          a, button {
-            &.lock {
-              padding-left: 22px;
-              padding-right: 60px;
-              background-position: center left;
-            }
-
-            &.com span.tag {
-              padding: 0 7px;
-              font-size: 10px;
-            }
-          }
-
-          &.answer, .contents-detail {
-            font-weight: 500;
-          }
-
-          //&.answer {
-          //padding-left: 0;
-          //}
-
-          .contents-detail {
-            margin-left: -30px;
-            display: block;
-            overflow: hidden;
-            width: 100%;
-            font-weight: 300;
-            text-align: left;
-            padding: 10px 5px;
-            font-size: 16px;
-          }
-        }
-      }
-    }
-  }
-
-  /* qna 모바일 */
-  .qna-table > table {
-    display: block;
-    width: 100%;
-    height: auto;
-    text-align: left;
-
-      thead {
-        > tr > th {
-          display: none;
-        }
-
-        display: block;
-        width: 100%;
-        height: auto;
-        text-align: left;
-      }
-
-      tbody {
-        display: block;
-        width: 100%;
-        height: auto;
-        text-align: left;
-
-        > tr {
-          width: 100%;
-          height: auto;
-          text-align: left;
-
-          &::before {
-            position:absolute;
-            content:"";
-            top:50%;
-            right:5px;
-            width:13px;
-            height:7px;
-            background:url("@/assets/images/ico-select-arrow.png") no-repeat center / 100% auto;
-          }
-
-          display: flex;
-          position: relative;
-          padding: 40px 10px 10px;
-
-            th {
-              display: block;
-              width: 100%;
-              height: auto;
-              text-align: left;
-            }
-
-            td {
-              display: block;
-              height: auto;
-              text-align: left;
-              position: relative;
-              padding: 3px 0;
-              width: initial;
-
-              &:nth-child(4) {
-                position: absolute;
-                top: 13px;
-                left: 80px;
-              }
-
-              &:nth-child(5) {
-                position: absolute;
-                top: 13px;
-              }
-            }
-
-
-
-
-          &.answer {
-            padding: 40px 10px 10px;
-
-            //td {}
-            //td:nth-child(4),
-            //td:nth-child(5) {
-            //position: static;  // 위치 초기화
-            //inset: auto;
-
-            //}
-          }
-        }
-      }
-    }
-  }
+//@include response-to("768") {
+//  div[class*='table'] {
+//    margin-top: 0;
+//
+//    .m-none {
+//      display: none !important;
+//    }
+//
+//    tr {
+//      th {
+//        padding: 10px 5px;
+//        height: 40px;
+//        font-size: 13px;
+//      }
+//
+//      td {
+//        padding: 10px 5px;
+//        height: 40px;
+//        font-size: 13px;
+//
+//        &.subject {
+//          padding-left: 10px;
+//          font-weight: 700;
+//
+//          a, button {
+//            &.lock {
+//              padding-left: 22px;
+//              padding-right: 60px;
+//              background-position: center left;
+//            }
+//
+//            &.com span.tag {
+//              padding: 0 7px;
+//              font-size: 10px;
+//            }
+//          }
+//
+//          &.answer, .contents-detail {
+//            font-weight: 500;
+//          }
+//
+//          //&.answer {
+//          //padding-left: 0;
+//          //}
+//
+//          .contents-detail {
+//            margin-left: -30px;
+//            display: block;
+//            overflow: hidden;
+//            width: 100%;
+//            font-weight: 300;
+//            text-align: left;
+//            padding: 10px 5px;
+//            font-size: 16px;
+//          }
+//        }
+//      }
+//    }
+//  }
+//
+//  /* qna 모바일 */
+//  .qna-table > table {
+//    display: block;
+//    width: 100%;
+//    height: auto;
+//    text-align: left;
+//
+//      thead {
+//        > tr > th {
+//          display: none;
+//        }
+//
+//        display: block;
+//        width: 100%;
+//        height: auto;
+//        text-align: left;
+//      }
+//
+//      tbody {
+//        display: block;
+//        width: 100%;
+//        height: auto;
+//        text-align: left;
+//
+//        > tr {
+//          width: 100%;
+//          height: auto;
+//          text-align: left;
+//
+//          &::before {
+//            position:absolute;
+//            content:"";
+//            top:50%;
+//            right:5px;
+//            width:13px;
+//            height:7px;
+//            background:url("@/assets/images/ico-select-arrow.png") no-repeat center / 100% auto;
+//          }
+//
+//          display: flex;
+//          position: relative;
+//          padding: 40px 10px 10px;
+//
+//            th {
+//              display: block;
+//              width: 100%;
+//              height: auto;
+//              text-align: left;
+//            }
+//
+//            td {
+//              display: block;
+//              height: auto;
+//              text-align: left;
+//              position: relative;
+//              padding: 3px 0;
+//              width: initial;
+//
+//              &:nth-child(4) {
+//                position: absolute;
+//                top: 13px;
+//                left: 80px;
+//              }
+//
+//              &:nth-child(5) {
+//                position: absolute;
+//                top: 13px;
+//              }
+//            }
+//
+//
+//
+//
+//          &.answer {
+//            padding: 40px 10px 10px;
+//
+//            //td {}
+//            //td:nth-child(4),
+//            //td:nth-child(5) {
+//            //position: static;  // 위치 초기화
+//            //inset: auto;
+//
+//            //}
+//          }
+//        }
+//      }
+//    }
+//  }
 
   .qna-pw {
     gap: 5px;
@@ -1423,40 +1420,70 @@ div[class*='table'].input-table.qna {
   /* input-table */
   .input-table {
     margin-top: 15px !important;
-
-    > table {
-      display: block;
-      width: 100%;
+    th,
+    td {
+      padding-top: 15px;
+      height: 65px;
       text-align: left;
-
-      > {
-        thead {
-          display: block;
-          width: 100%;
-          text-align: left;
-        }
-
-        tbody {
-          display: block;
-          width: 100%;
-          text-align: left;
-
-          > tr {
-            display: block;
-            width: 100%;
-            text-align: left;
-
-            > {
-              th, td {
-                display: block;
-                width: 100%;
-                text-align: left;
-              }
-            }
-          }
+    }
+    td{
+      //border-bottom:1px solid #191919;
+      input:not([type="checkbox"], [type="radio"]), select {
+        //border-bottom: none;
+        padding: 5px;
+        height: 50px;
+        font-size: 16px;
+        &::placeholder {
+          font-size: 16px;
         }
       }
+      select {
+        padding: 5px 10px;
+        background: url("@/assets/images/ico-select-arrow.png") no-repeat center right 10px / 19px auto;
+      }
+      button {
+        height: 50px;
+        font-size: 16px;
+      }
+      textarea {
+        padding: 10px;
+        height: 200px;
+        font-size: 12px;
+      }
     }
+    //> table {
+    //  display: block;
+    //  width: 100%;
+    //  text-align: left;
+    //
+    //  > {
+    //    thead {
+    //      display: block;
+    //      width: 100%;
+    //      text-align: left;
+    //    }
+    //
+    //    tbody {
+    //      display: block;
+    //      width: 100%;
+    //      text-align: left;
+    //
+    //      > tr {
+    //        display: block;
+    //        width: 100%;
+    //        text-align: left;
+    //
+    //        > {
+    //          th, td {
+    //            display: block;
+    //            width: 100%;
+    //            text-align: left;
+    //          }
+    //        }
+    //      }
+    //    }
+    //  }
+    //}
 
     tr {
       &.flex-area {
@@ -1481,35 +1508,25 @@ div[class*='table'].input-table.qna {
         }
       }
 
-      th {
-        margin-top: 10px !important;
-        padding: 0 !important;
-        height: auto !important;
-      }
-
-      td {
-        padding: 0 !important;
-        height: 100% !important;
-
-        input:not([type="checkbox"], [type="radio"]) {
-          padding: 5px !important;
-          height: 35px;font-size: 14px !important;
-
-          &::placeholder {
-            font-size: 11px !important;
-          }
-        }
-
-        select {
-          font-size: 14px;
-        }
-
-        textarea {
-          padding: 10px;
-          height: 200px;
-          font-size: 12px;
-        }
-      }
+      //td {
+      //  //padding: 0 !important;
+      //  //height: 100% !important;
+      //
+      //  input:not([type="checkbox"], [type="radio"]), select {
+      //    padding: 5px !important;
+      //    height: 50px;
+      //
+      //    &::placeholder {
+      //      font-size: 16px;
+      //    }
+      //  }
+      //
+      //  textarea {
+      //    padding: 10px;
+      //    height: 200px;
+      //    font-size: 12px;
+      //  }
+      //}
     }
   }
 
@@ -1921,7 +1938,10 @@ div[class*='table'].input-table.qna {
 }
 
 /*** 회원서비스 ***/
-
+.login,
+.signup{
+  background:#E6E6E6;
+}
 /* 로그인 */
 .login-area {
   margin-top: 40px;
@@ -1946,6 +1966,7 @@ div[class*='table'].input-table.qna {
 
   button {
     margin-top: 30px;
+    width: 100%;
     height: 80px;
     font-size: 24px;
   }
@@ -1956,7 +1977,7 @@ div[class*='table'].input-table.qna {
     padding: 35px 20px 0;
 
     a {
-      font-weight: 700;
+      font-weight: 600;
       font-size: 18px;
       color: #191919;
 

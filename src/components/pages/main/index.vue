@@ -159,9 +159,6 @@
             </div>
           </div>
         </div>
-        <div class="shop-btn txt-c">
-          <button type="button" class="btn bg-white s-large w270"><span>MORE</span></button>
-        </div>
         <!--// gallery-slider -->
       </div>
     </section>
@@ -231,6 +228,13 @@ const changeColor = (p1: string, p2: string, p3: number) => {
     rightCurr.value = p3
   }
 }
+
+onMounted(() => {
+  document.body.classList.add('mainPage')
+})
+onUnmounted(() => {
+  document.body.classList.remove('mainPage')
+})
 </script>
 <style scoped>
 .detail-slider::v-deep .swiper-button-prev:after,

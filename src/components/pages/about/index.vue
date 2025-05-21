@@ -24,24 +24,24 @@
   </div>
 </template>
 <script setup lang="ts">
-import { debounce } from 'lodash'
-import { onMounted, onUnmounted, ref } from 'vue'
-const responseHeight = ref<number>(0)
-const heightGetter = debounce(() => {
-  responseHeight.value = window.innerHeight
-}, 500)
-// const heightGetter = computed<number>(() => {
-//   return window.innerHeight
+// import { debounce } from 'lodash'
+// import { onMounted, onUnmounted, ref } from 'vue'
+// const responseHeight = ref<number>(0)
+// const heightGetter = debounce(() => {
+//   responseHeight.value = window.innerHeight
+// }, 500)
+// // const heightGetter = computed<number>(() => {
+// //   return window.innerHeight
+// // })
+// onMounted(() => {
+//   heightGetter()
+//   window.addEventListener('resize', () => {
+//     heightGetter()
+//   })
 // })
-onMounted(() => {
-  heightGetter()
-  window.addEventListener('resize', () => {
-    heightGetter()
-  })
-})
-onUnmounted(() => {
-  window.removeEventListener('resize', () => {
-    heightGetter()
-  })
-})
+// onUnmounted(() => {
+//   window.removeEventListener('resize', () => {
+//     heightGetter()
+//   })
+// })
 </script>

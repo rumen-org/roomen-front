@@ -1,5 +1,5 @@
 <template>
-  <div class="quick" :class="quickNavClass">
+  <div class="quick">
     <ul>
       <li
         v-for="(section, index) in sections"
@@ -19,7 +19,7 @@ import type { Ref } from 'vue'
 
 defineProps<{
   sections: Ref<HTMLElement | null>[]
-  quickNavClass: string | null
+  // quickNavClass: string | null
   activeSection: number
 }>()
 const emits = defineEmits(['update:value'])
