@@ -19,6 +19,15 @@
             </colgroup>
             <tbody>
               <tr>
+                <th scope="row">회원유형</th>
+                <td>
+                  <select title="회원유형">
+                    <option>개인회원</option>
+                    <option>기업회원</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
                 <th scope="row">이름</th>
                 <td>
                   <input v-model="params.name" type="text" title="이름" />

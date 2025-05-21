@@ -38,47 +38,19 @@
           padding-right: 18px;
           background: url("@/assets/images/ico-arrow-b.png") no-repeat center (right / auto);
           font-weight: 700;
-
-          &.nav-active {
-            color:#939393;
-
-          }
-        }
-
-        ul > li > a {
-          &.nav-active {
-            color: #939393;
-          }
         }
 
         > button {
           padding-right: 18px;
           background: url("@/assets/images/ico-arrow-b.png") no-repeat center (right / auto);
           font-weight: 700;
-
-          &.nav-active,
-          &.curr {
-            color:#939393;
-
-          }
         }
-
-      @include response-to-min('1160') {
-        &:hover > {
-          a, button {
-            color: rgb(25 25 25 / 70%);
-            transition: all 0.2s;
-            background: url("@/assets/images/ico-arrow-g.png") no-repeat center (right / auto);
-          }
-        }
-      }
-
       > {
-        a.curr,
-        button.curr {
-          background: url("@/assets/images/ico-arrow-up-g.png") no-repeat center (right / auto);
-          color:#939393;
-        }
+        //a.curr,
+        //button.curr {
+        //  background: url("@/assets/images/ico-arrow-up-g.png") no-repeat center (right / auto);
+        //  color:#939393;
+        //}
 
         ul {
           height: 0;
@@ -121,6 +93,7 @@
     button {
       display: block;
       font-weight: 700;
+      background:none;
 
       + a {
         margin-top: 20px;
@@ -147,10 +120,16 @@
         border-bottom: 2px solid #191919;
         color: #191919;
       }
-
       + button {
         margin-left: 30px;
       }
+    }
+    &.top button {
+      color: rgb(255 255 255 / 50%);
+    }
+    &.top button.curr {
+      border-color: #fff;
+      color: #fff;
     }
   }
 
@@ -160,10 +139,6 @@
     width: 30px;
     height: 30px;
     background: url("@/assets/images/ico-insta-b.png") no-repeat (center / 30px) auto;
-  }
-
-  &.mobile-header {
-    border-bottom: 1px solid #a4a4a4;
   }
 
   &.top {
@@ -398,4 +373,39 @@
     }
   }
 
+  &:not(.mainPage) {
+    .menu {
+      > ul > li {
+        > a {
+          &.nav-active,
+          &.curr {
+            opacity: 0.6;
+          }
+        }
+        > button.curr {
+          opacity: 0.6;
+        }
+        > ul > li {
+          > a {
+            &.nav-active,
+            &.curr,
+            &:hover {
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+    }
+
+    @include response-to-min('1160') {
+      &:hover > {
+        a, button {
+          color: rgb(25 25 25 / 70%);
+          transition: all 0.2s;
+          background: url("@/assets/images/ico-arrow-g.png") no-repeat center (right / auto);
+        }
+      }
+
+    }
+  }
 }

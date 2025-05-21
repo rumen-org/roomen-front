@@ -1,6 +1,6 @@
 <template>
   <SkipComponent />
-  <div id="wrap" :class="route.path ? routePath : ''">
+  <div id="wrap" :class="[ routePath, { bgGray: isGrayPage } ]">
     <SubHeaderComponent />
     <slot></slot>
     <FooterComponent />
@@ -21,6 +21,10 @@ watchEffect(() => {
 const heightGetter = computed<number>(() => {
   return window.outerHeight
 })
+
+const isGrayPage = computed(() =>
+  ['/community/gallery', '/login/findID', '/login/findPW'].includes(route.path)
+)
 // const getBrowserHeight = ref<number>(heightGetter.value);
 console.log('route', route.path, heightGetter)
 </script>

@@ -21,10 +21,14 @@
       padding: 0;
     }
   }
+  &.bgGray {
+    background-color: #E6E6E6;
+  }
 
   #container {
     margin-bottom: 120px;
     padding: 172px 60px 60px 300px;
+    min-height: 100vh;
 
     &.products {
       padding: 100px 60px 60px 300px;

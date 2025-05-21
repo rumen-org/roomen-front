@@ -3,7 +3,6 @@
     id="header"
     ref="headerRef"
     :class="{
-      top: getActiveSection === 0 && windowWidth >= 1161,
       on: isMenuOpen,
       'mobile-header': windowWidth < 1160
     }"
@@ -75,7 +74,10 @@
             >
           </template>
         </div>
-        <Languages />
+        <Languages
+          :class="{
+            top: getActiveSection === 0 && windowWidth >= 1161
+          }"/>
         <SnsList />
       </div>
       <button type="button" class="btn-menu" @click="toggleMenu">

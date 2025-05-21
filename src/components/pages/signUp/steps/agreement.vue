@@ -117,9 +117,32 @@ const allCheck = computed<boolean>({
 // 선택 된 CheckBox
 const checkedList = ref<string[]>([])
 </script>
-<style scoped>
-.scrollInner {
-  padding: 0 30px;
+<style>
+.scroll-area {
+  .scrollInner {
+    padding: 0 20px;
+  }
+  .ps__thumb-y {
+    margin: 10px 5px;
+    background-color: #191919;
+    width: 3px;
+  }
+  .ps__rail-y:hover > .ps__thumb-y,
+  .ps__rail-y:focus > .ps__thumb-y,
+  .ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: rgba(25, 25, 25, 0.7);
+    opacity: 1;
+    width: 6px;
+  }
+  .ps__rail-x:hover,
+  .ps__rail-y:hover,
+  .ps__rail-x:focus,
+  .ps__rail-y:focus,
+  .ps__rail-x.ps--clicking,
+  .ps__rail-y.ps--clicking {
+    background-color: transparent;
+    opacity: 1;
+  }
 }
 .terms-tit {
   font-weight: 600;
