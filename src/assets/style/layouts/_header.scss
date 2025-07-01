@@ -2,10 +2,23 @@
 
 #header {
   position: fixed;
-  z-index: 100;
+  z-index: 9999;
   top: 60px;
   left: 60px;
   letter-spacing: 0.0125rem;
+  @include response-to('1280'){
+    left: 40px;
+  }
+  @include response-to('1160'){
+    top: 0;
+    left: 0;
+    width:100%;
+    height:60px;
+    background:transparent;
+  }
+  @include response-to('940'){
+    background:#fff;
+  }
 
   h1 > a {
     display: inline-block;
@@ -13,6 +26,10 @@
     height: 55px;
     background: url("@/assets/images/main_bk.png") no-repeat (center / 100%) auto;
     text-indent: -9999px;
+    @include response-to('1280'){
+      width: 160px;
+      height: 45px;
+    }
   }
 
   > * {
@@ -23,6 +40,9 @@
     font-family: GmarketSans, sans-serif;
     font-size: 18px;
     color: #191919;
+    @include response-to('1280'){
+      font-size: 16px;
+    }
   }
 
   .menu {
@@ -82,6 +102,9 @@
 
       &:not(:first-child) {
         margin-top: 20px;
+        @include response-to('1280'){
+          margin-top: 15px;
+        }
       }
     }
   }
@@ -195,12 +218,6 @@
     }
   }
   @include response-to('1160') {
-    top: 0;
-    left: 0;
-    width:100%;
-    height:60px;
-    background:transparent;
-
     &::before {
       height: 60px;
     }

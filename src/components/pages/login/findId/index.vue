@@ -31,6 +31,11 @@
                 <th scope="row">이름</th>
                 <td>
                   <input v-model="params.name" type="text" title="이름" />
+                </td>
+              </tr>
+              <tr class="auto-height">
+                <th></th>
+                <td>
                   <!-- checkbox-wrap -->
                   <div class="checkbox-wrap">
                     <span class="checkbox">

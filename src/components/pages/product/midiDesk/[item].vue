@@ -1,5 +1,6 @@
 <template>
   <div id="container" ref="containerRef" class="products">
+    <BackButton />
     <!--        <div v-if="loading" class="spinner">Loading...</div>-->
     <div :class="{ loading: loading }" class="contents">
       <!-- product-detail -->
@@ -9,7 +10,6 @@
           <!-- img-list -->
           <div class="img-list">
             <div class="pre-list">
-              <BackButton />
               <div>
                 <div v-for="(item, i) in product?.images" :key="i" @click="changeThumb(item)">
                   <img :src="`https://back.roomen.kro.kr/${item}`" alt="상품 이미지 리스트" />
@@ -43,8 +43,10 @@
                 >
                 <del>₩ {{ formatPrice(product.price) }}원</del>
               </p>
-              <RadioPalette :key="SelectKey" :pallete="palleteData" @change="handleChange" />
-              <RadioPalette :key="SelectKey" :pallete="palleteData2" @change="handleChange" />
+              <div class="radio-option-area">
+                <RadioPalette :key="SelectKey" :pallete="palleteData" @change="handleChange" />
+                <RadioPalette :key="SelectKey" :pallete="palleteData2" @change="handleChange" />
+              </div>
               <div class="option-area">
                 <SelectOptions :key="SelectKey" :selector="shippingOption" @change="handleChange" />
                 <SelectOptions
@@ -103,6 +105,7 @@
     <Alert />
   </div>
 </template>
+
 <script setup lang="ts">
 import { nextTick, onBeforeMount, onMounted, onUnmounted, reactive, ref } from 'vue'
 // Components
@@ -367,6 +370,8 @@ onUnmounted(() => {
 })
 </script>
 <style lang="scss">
+@use "/src/assets/style/mixin" as *;
+
 .float-scroll {
   position: absolute;
   left: -10px;
@@ -411,6 +416,9 @@ onUnmounted(() => {
 .contents:not(.loading) {
   opacity: 1;
   transition: all 0.6s ease-in-out;
+  //@include response-to('1280') {
+  //  padding-top: 55px;
+  //}
 }
 .loading img {
   opacity: 0;

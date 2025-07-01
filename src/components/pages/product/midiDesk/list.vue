@@ -19,7 +19,7 @@
               :to="`midiDesk/${item.id}`"
               class="product"
             >
-              <p>
+              <p class="thumb-img">
                 <img :src="`https://back.roomen.kro.kr/${item.imgPath}`" alt="상품 섬네일" />
               </p>
               <div>
@@ -27,10 +27,10 @@
                   v-dompurify-html="highlightText(item.name, searchValue)"
                   class="tit"
                 ></strong>
-                <p class="option-area">{{ item.subTitle }}</p>
+                <p class="option-area font-g">{{ item.subTitle }}</p>
                 <p class="price">
-                  <span>₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span>
-                  <del>₩ {{ formatPrice(item.price) }}원</del>
+                  <span class="font-g">₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span>
+                  <del class="font-g">₩ {{ formatPrice(item.price) }}원</del>
                 </p>
               </div>
             </router-link>
@@ -47,6 +47,9 @@
           @change-page="changePage"
         />
         <!--// paging -->
+        <div class="btn-area center">
+          <button type="button" class="btn-more font-g" @click="removeCartItem(item.id)">MORE</button>
+        </div>
       </div>
       <!--// contents-bottom-area -->
     </div>
