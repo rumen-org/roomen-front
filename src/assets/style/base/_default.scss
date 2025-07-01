@@ -1,3 +1,4 @@
+@use "../mixin" as *;
 /*** 공통 ***/
 .font-g {
   font-family: GmarketSans, sans-serif !important;
@@ -51,6 +52,9 @@
 
   &.back {
     background: url("@/assets/images/btn-prev.png") no-repeat center (left / auto);
+  }
+  @include response-to("768") {
+    display: none;
   }
 }
 

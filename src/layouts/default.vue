@@ -16,7 +16,8 @@ import { computed, ref, watchEffect } from 'vue'
 const route = useRoute()
 const routePath = ref<string>('')
 watchEffect(() => {
-  routePath.value = route.path.replace(/^\/+/, '')
+  const segments = route.path.split('/').filter(Boolean) // 빈 값 제거
+  routePath.value = segments[segments.length - 1] || ''  // 마지막 segment만
 })
 const heightGetter = computed<number>(() => {
   return window.outerHeight

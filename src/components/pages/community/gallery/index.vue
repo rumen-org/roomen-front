@@ -80,9 +80,9 @@
     </div>
     <div class="btn-area txt-c mt-50">
       <p v-if="notMore">더 보여질 게시물이 없습니다.</p>
-      <button class="btn bg-white s-medium w90 mt-30" :disabled="notMore" @click="moreBtn">
-        더 보기
-      </button>
+<!--      <button class="btn bg-white s-medium w90 mt-30" :disabled="notMore" @click="moreBtn">-->
+<!--        더 보기-->
+<!--      </button>-->
     </div>
   </div>
 </template>

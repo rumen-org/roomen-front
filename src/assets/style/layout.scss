@@ -23,15 +23,35 @@
   }
   &.bgGray {
     background-color: #E6E6E6;
+    @include response-to("768") {
+      &.gallery {
+        background-color: #fff;
+      }
+    }
   }
 
   #container {
     margin-bottom: 120px;
     padding: 172px 60px 60px 300px;
     min-height: 100vh;
+    @include response-to('1280'){
+      padding: 172px 60px 60px 220px;
+    }
 
     &.products {
       padding: 100px 60px 60px 300px;
+      @include response-to('1280'){
+        padding: 80px 40px 40px 250px;
+      }
+      @include response-to('1160'){
+        padding: 80px 40px 40px 40px;
+      }
+      @include response-to('940'){
+        padding: 80px 20px 40px 20px;
+      }
+      @include response-to('940'){
+        padding: 60px 20px 20px 20px;
+      }
     }
   }
 }
