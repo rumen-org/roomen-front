@@ -1,5 +1,5 @@
 <template>
-  <div class="contents-detail">
+  <div class="contents-detail qna">
     <ul class="contents-images">
       <li v-for="(item, i) in content?.images" :key="i">
         <p class="images image-box">
@@ -108,13 +108,3 @@ const deleteItem = async (id: number) => {
 }
 </script>
 
-<style scoped>
-.contents-detail {
-  display: block;
-  overflow: hidden;
-  width: 100%;
-  max-width: 600px;
-  padding: 3rem 0;
-  font-weight: 300;
-}
-</style>

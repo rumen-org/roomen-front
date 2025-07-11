@@ -2,10 +2,10 @@
   <div id="container">
     <div class="contents">
       <!-- contents-top-area -->
-<!--      <div class="contents-top-area pt-40" v-if="currentStep !== 2">-->
-<!--        <h2>SIGNUP</h2>-->
-<!--      </div>-->
-<!--      <h3 v-if="currentStep === 0" class="step1_tit">&#91;약관동의&#93;</h3>-->
+      <div class="contents-top-area pt-40" v-if="currentStep !== 2">
+        <h2>SIGNUP</h2>
+      </div>
+      <h3 v-if="currentStep === 0" class="step1_tit">&#91;약관동의&#93;</h3>
 
       <!--// contents-top-area -->
       <div class="w670">
