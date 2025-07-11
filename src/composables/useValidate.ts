@@ -39,7 +39,7 @@ export function useValidate() {
     setError(
       'password',
       isValid,
-      '비밀번호는 8~16자 이내로 영문, 숫자, 특수문자 조합이 포함되어야 합니다.'
+      '* 8-16자 대소문자, 숫자, 특수문자 중 2가지를 사용하세요.'
     )
     return isValid
   }
@@ -69,7 +69,7 @@ export function useValidate() {
     const target = event.target as HTMLInputElement
     const idRegex = /^[a-z0-9]{6,12}$/
     const isValid = idRegex.test(target.value)
-    setError('id', isValid, '아이디는 영문 소문자와 숫자 6~12자여야 합니다.')
+    setError('id', isValid, '* 6-12자 영문과 숫자만 입력 가능합니다.')
     return isValid
   }
 

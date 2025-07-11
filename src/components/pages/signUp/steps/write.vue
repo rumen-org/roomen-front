@@ -52,7 +52,7 @@
           <td :class="{ 'red input-check2': !observeChecked && confirmPassword !== '' }">
             <input v-model="confirmPassword" type="password" title="비밀번호 확인" />
             <span v-if="!observeChecked && confirmPassword !== ''" class="error"
-              >비밀번호가 일치하지 않습니다!</span
+              >* 비밀번호가 일치하지 않습니다!</span
             >
           </td>
         </tr>

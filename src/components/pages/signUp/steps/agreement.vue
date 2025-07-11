@@ -18,7 +18,7 @@
           <WordBreak v-if="item.body" :break-text="item.body" />
         </div>
       </PerfectScrollbar>
-      <div :class="item.checkBox.length === 2 ? 'flex right m-block' : ''" class="txt-r">
+      <div :class="item.checkBox.length === 2 ? 'flex right' : ''">
         <template v-if="item.checkBox.length === 1">
           <template v-for="item2 in item.checkBox" :key="item2">
             <span>
