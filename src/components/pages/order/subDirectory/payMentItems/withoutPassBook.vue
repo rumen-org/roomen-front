@@ -2,7 +2,7 @@
   <!-- 무통장입금 -->
   <div>
     <!-- input-table -->
-    <div class="input-table">
+    <div class="input-table v2">
       <table>
         <caption>
           입금은행, 입금자명 항목으로 구성된 무통장입금 정보입력 표

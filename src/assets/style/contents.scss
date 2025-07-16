@@ -107,8 +107,9 @@
   font-size: 16px;
   color: #fff;
   &.bg-white {
-    background: #fff !important;
-    color: #191919 !important;
+    background: #fff;
+    border:1px solid #191919;
+    color: #191919;
 
     span {
       display: inline-block;
@@ -128,7 +129,8 @@
   font-size: 16px;
 }
 .s-large {
-  width: 230px;
+  width: 290px;
+  max-width: 100%;
   height: 70px;
   font-weight: 600;
   font-size: 20px;
@@ -136,14 +138,17 @@
   @include response-to("768") {
     height: 55px;
     font-size: 16px;
+    width:100%;
   }
 }
 
 .all-btn-area {
   padding: 30px 15px;
 
-  @include response-to("768") {
+  @include response-to("1280") {
     padding: 15px;
+  }
+  @include response-to("768") {
     text-align: right;
   }
 
@@ -153,7 +158,10 @@
     font-size: 18px;
     color: #191919;
 
-    @include response-to("768") {
+    @include response-to("1280") {
+      font-size: 16px;
+    }
+    @include response-to("940") {
       font-size: 13px;
     }
 
@@ -343,6 +351,10 @@ div.html-contents {
   }
 }
 
+select {
+  background:url("/src/assets/images/ico-select-arrow.png") no-repeat center right 12px/17px auto;
+}
+
 
 @include response-to("768") {
   select + .checkbox-wrap {
@@ -431,6 +443,9 @@ div.html-contents {
       right: 0;
       bottom: 18px;
       line-height: 1.25;
+      @include response-to("768") {
+        bottom: -20px;
+      }
     }
   }
 
@@ -851,6 +866,7 @@ div.html-contents {
 
     @include response-to("500") {
       display: block;
+      padding: 20px 0 0;
     }
 
     .checkbox-wrap {
@@ -858,6 +874,7 @@ div.html-contents {
 
       @include response-to("768") {
         padding-right: 20px;
+        padding-bottom: 20px;
         min-width: auto;
       }
     }
@@ -891,134 +908,160 @@ div[class*='table'] {
     border-bottom: 3px solid #191919;
 
     @include response-to("768") {
-      border-width: 0;
+      border-width: 2px;
     }
-  }
 
-  tbody tr {
-    border-bottom: 1px solid #a4a4a4;
-    @include response-to("768") {
-      padding: 15px 0;
-
-      th {
+    th {
+      height: 100px;
+      font-weight: 600;
+      font-size: 18px;
+      text-align: center;
+      @include response-to("1160") {
+        height: 50px;
+        font-size: 16px;
+      }
+      @include response-to("768") {
         padding: 10px 5px;
         height: 40px;
         font-size: 13px;
       }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #a4a4a4;
 
       td {
-        padding: 10px 5px;
-        height: 40px;
-        font-weight: 300;
-        font-size: 14px;
+        height: 100px;
+        font-size: 18px;
+        text-align: center;
+      }
 
-        &.subject {
-          padding-left: 10px;
-          font-weight: 600;
-          font-size: 16px;
+      @include response-to("768") {
+        padding: 15px 0;
 
-          a, button {
-            &.lock {
-              padding-left: 22px;
-              padding-right: 60px;
-              background-position: center left;
-              @include response-to("768") {
-                padding-right:0;
+        td {
+          padding: 10px 5px;
+          height: 40px;
+          font-weight: 300;
+          font-size: 14px;
+
+          &.subject {
+            padding-left: 10px;
+            font-weight: 600;
+            font-size: 16px;
+
+            a, button {
+              &.lock {
+                padding-left: 22px;
+                padding-right: 60px;
+                background-position: center left;
+                @include response-to("768") {
+                  padding-right: 0;
+                }
+              }
+
+              &.com span.tag {
+                padding: 0 7px;
+                font-size: 10px;
               }
             }
 
-            &.com span.tag {
-              padding: 0 7px;
-              font-size: 10px;
+            &.answer, .contents-detail {
+              font-weight: 500;
+            }
+
+            .contents-detail {
+              display: block;
+              overflow: hidden;
+              width: 100%;
+              font-weight: 300;
+              text-align: left;
+              padding: 10px 5px;
+              font-size: 16px;
             }
           }
 
-          &.answer, .contents-detail {
-            font-weight: 500;
-          }
-
-          .contents-detail {
-            display: block;
-            overflow: hidden;
-            width: 100%;
-            font-weight: 300;
-            text-align: left;
-            padding: 10px 5px;
-            font-size: 16px;
-          }
         }
       }
-    }
-  }
 
-  tbody tr:last-child {
-    border-bottom: 1px solid #191919;
-  }
-
-  tr {
-    th, td {
-      height: 100px;
-      font-size: 18px;
-      text-align: center;
-    }
-
-    th {
-      font-weight: 600;
-    }
-
-    td {
-      font-weight: 400;
-
-      &.subject {
-        padding-left: 80px;
-        @include response-to("1500") {
-          padding-left: 0;
+      td {
+        font-weight: 400;
+        @include response-to("940") {
+          font-size: 13px;
         }
 
-        > button:not(.btn) {
-          display: inline-flex;
-          flex-wrap: wrap;
-          font-size: inherit;
-          font-weight: inherit;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          line-height: inherit;
-          text-overflow: ellipsis;
-          color: #191919;
-          text-align:left;
+        &.subject {
+          padding-left: 80px;
+          @include response-to("1500") {
+            padding-left: 0;
+          }
 
-          span:first-child {
-            display:block;
-            margin-right: 15px;
-            @include response-to("768") {
-              font-size:14px;
+          > button:not(.btn) {
+            display: inline-flex;
+            flex-wrap: wrap;
+            font-size: inherit;
+            font-weight: inherit;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: inherit;
+            text-overflow: ellipsis;
+            color: #191919;
+            text-align:left;
+
+            span:first-child {
+              display:block;
+              margin-right: 15px;
+              @include response-to("768") {
+                font-size:14px;
+              }
+            }
+
+            &.lock {
+              padding-left: 32px;
+              background: url("@/assets/images/ico-lock.png") no-repeat top 2px left / 16px auto;
+              @include response-to("768") {
+                background : url("/src/assets/images/ico-lock.png") no-repeat top 2px left 11px /16px auto;
+              }
+            }
+
+            &.com {
+              position: relative;
+              //padding-right: 90px;
+
+              span.tag {
+                //position: absolute;
+                //top: 0;
+                //right: 0;
+                display: inline-block;
+                padding: 0 9px;
+                background: #191919;
+                font-size: 12px;
+                color: #fff;
+                height: 25px;
+              }
             }
           }
 
-          &.lock {
-            padding-left: 32px;
-            background: url("@/assets/images/ico-lock.png") no-repeat top 2px left / 16px auto;
-            @include response-to("768") {
-              background : url("/src/assets/images/ico-lock.png") no-repeat top 2px left 11px /16px auto;
-            }
+          a {
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 100%;
           }
+        }
 
-          &.com {
-            position: relative;
-            //padding-right: 90px;
-
-            span.tag {
-              //position: absolute;
-              //top: 0;
-              //right: 0;
-              display: inline-block;
-              padding: 0 9px;
-              background: #191919;
-              font-size: 12px;
-              color: #fff;
-              height: 25px;
-            }
+        @include response-to("940") {
+          &.empty-center {
+            margin: 0;
+            text-align: center;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
@@ -1027,17 +1070,12 @@ div[class*='table'] {
         color: inherit;
       }
 
-      &.subject a {
-        display: block;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 100%;
+      &:last-child {
+        border-bottom: 1px solid #191919;
       }
-    }
-
-    &.bg-gray {
-      background: #F4F4F4;
+      &.bg-gray {
+        background: #F4F4F4;
+      }
     }
   }
 }
@@ -1335,7 +1373,6 @@ div[class*='table'].input-table.qna {
   }
 }
 
-
 /* input */
 div[class*=table].input-table {
   margin-top: 35px;
@@ -1353,6 +1390,9 @@ div[class*=table].input-table {
   }
 
   tr {
+    @include response-to("768") {
+      padding:0;
+    }
     th, td {
       padding-top: 15px;
       height: 50px;
@@ -1362,7 +1402,15 @@ div[class*=table].input-table {
         width: 100%;
       }
     }
+    th {
+      vertical-align: text-top;
+      line-height: 45px;
+    }
     td {
+      @include response-to("768") {
+        padding:0;
+        height: auto;
+      }
       input:not([type="checkbox"], [type="radio"]) {
         padding: 16px 20px;
         height: 50px;
@@ -1370,11 +1418,19 @@ div[class*=table].input-table {
         font-size: 16px;
         color: #191919;
         cursor: pointer;
+        @include response-to("768") {
+          padding: 5px;
+          height: 36px;
+          font-size: 14px;
+        }
 
         &::placeholder {
           font-weight: 300;
           font-size: 16px;
           color: #191919;
+          @include response-to("768") {
+            font-size: 14px;
+          }
         }
       }
 
@@ -1386,6 +1442,12 @@ div[class*=table].input-table {
         border-bottom: 1px solid #191919;
         font-size: 16px;
         font-weight: 600;
+        @include response-to("768") {
+          height: 36px;
+          padding:5px;
+          background: url("/src/assets/images/ico-select-arrow.png") no-repeat center right 8px/14px auto;
+          font-size: 14px;
+        }
       }
 
       textarea {
@@ -1397,6 +1459,36 @@ div[class*=table].input-table {
       }
     }
   }
+
+  @include response-to("768") {
+    &.v2 {
+      margin-top: 0;
+
+      tr {
+        padding: 0;
+        &:not(.m-flex){
+          th,
+          td {
+            display: table-cell;
+          }
+          th{
+            min-width: 75px;
+            width: auto;
+          }
+          td {
+            width: 100%;
+          }
+        }
+        &.m-flex{
+          padding: 0;
+        }
+      }
+
+    }
+  }
+}
+.table-btn {
+  margin-top: 30px;
 }
 
 .phone {
@@ -1426,11 +1518,20 @@ div[class*=table].input-table {
     font-size: 16px;
   }
 }
+@include response-to("768") {
+  .memberInfo div[class*=table].input-table,
+  .changePassword div[class*=table].input-table{
+    margin-top:-5px;
+  }
+}
 
 /*** 컨텐츠 하단영역 ***/
 .contents-bottom-area {
   position: relative;
   margin-top: 100px;
+  @include response-to("940") {
+    margin-top: 50px;
+  }
   @include response-to("768") {
     margin-top: 40px;
   }
@@ -1453,14 +1554,16 @@ div[class*=table].input-table {
       height: 70px;
       font-weight: 700;
       font-size: 20px;
-      @include response-to("940") {
-        width: 190px;
+      @include response-to("1280") {
+        //width: 190px;
         height: 55px;
-        font-weight: 500;
-        font-size: 18px;
+        //font-weight: 500;
+        font-size: 16px;
       }
       @include response-to("768") {
         width: 100%;
+        height: 45px;
+        font-size: 14px;
       }
     }
     @include response-to("768") {
@@ -1468,6 +1571,29 @@ div[class*=table].input-table {
         padding-right:22px;
         font-weight: 600;
         font-size: 14px;
+      }
+    }
+  }
+
+  &.flex {
+    display: flex;
+    margin-top:0;
+    @include response-to("768") {
+      flex-direction: column;
+    }
+
+    > * {
+      flex: 1;
+    }
+
+    .btn-area {
+      position: static;
+      justify-content: flex-end;
+      @include response-to("940") {
+        margin-top:0;
+      }
+      @include response-to("768") {
+        margin-top: 20px;
       }
     }
   }
@@ -1565,16 +1691,19 @@ div[class*=table].input-table {
 
 /* 게시판 상세페이지 */
 @include response-to("768") {
-  .noti-detail {
-    .contents-top-area {
-      display: inline-block;
-      h2 {
-        display: none;
-      }
-      .icon-btn {
-        display: block;
-        text-indent:-9999px;
-      }
+  .contents-top-area.mV2 {
+    h2 {
+      left:50%;
+      transform: translateX(-50%);
+    }
+    .icon-btn {
+      display: block;
+      text-indent:-9999px;
+    }
+  }
+  .noti-detail .contents-top-area.mV2 {
+    h2 {
+      display: none;
     }
   }
 }
@@ -1954,11 +2083,6 @@ div[class*=table].input-table {
           input::placeholder {
             font-size: 14px;
           }
-          &.input-check2.red span {
-            right: inherit;
-            left: 0;
-            bottom: -20px;
-          }
           .phone {
             gap: 5px;
             select {
@@ -2087,34 +2211,137 @@ div[class*=table].input-table {
 }
 
 /* 주문내역 */
-.order-table {
-  tr td {
-    padding: 60px 0;
+div[class*=table].order-table {
+  @include response-to("1160") {
+    margin-top: 30px;
+  }
+  > table{
+    @include response-to("940") {
+      display: block;
+      height: auto;
+      text-align: left;
 
-    .option {
-      font-weight: 400;
-      font-size: 14px;
+      thead {
+        > tr > th {
+          display: none;
+        }
+
+        display: block;
+        height: auto;
+        text-align: left;
+      }
     }
+    > tbody {
+      @include response-to("940") {
+        display: block;
+        height: auto;
+        text-align: left;
+      }
+      > tr {
+        @include response-to("940") {
+          position: relative;
+          padding: 20px 0;
+          display: block;
+          height: auto;
+          text-align: left;
 
-    button {
-      margin-top: 5px;
+          th {
+            display: block;
+            height: auto;
+            text-align: left;
+          }
+        }
+        @include response-to("768") {
+          th, td {
+            font-size: 13px;
+          }
+        }
+        @include response-to("500") {
+          padding: 5px 0 15px;
+        }
+
+        > td:not(.empty-center) {
+          padding: 60px 0;
+          @include response-to("940") {
+            display: block;
+            height: auto;
+            text-align: left;
+            margin-left: 110px;
+            padding: 10px 10px 10px 0;
+
+            &:not(:first-child) {
+              position: relative;
+              padding: 3px 0 3px 55px;
+              text-align: left;
+            }
+            &:nth-child(2) {
+              padding: 3px 0 3px 35px;
+            }
+            &:last-child {
+              padding: 3px 0;
+            }
+
+            &::before {
+              position: absolute;
+              content: attr(data-label);
+              left: 0;
+              font-weight: 700;
+              font-size: 13px;
+            }
+
+            br {
+              display: none;
+            }
+
+            em {
+              white-space: nowrap;
+            }
+          }
+          @include response-to("500") {
+            margin-left: 85px;
+          }
+          .option {
+            display: inline-block;
+            font-weight: 400;
+            font-size: 14px;
+          }
+
+          button {
+            margin-top: 12px;
+            @include response-to("500") {
+              display: block;
+              width: 100%;
+            }
+          }
+        }
+      }
     }
   }
-
   + .total-price {
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
     padding: 25px 0 70px;
+    @include response-to("768") {
+      justify-content: space-between;
+      padding: 15px 0;
+    }
 
     span {
       padding-right: 75px;
       font-weight: 700;
       font-size: 16px;
+      @include response-to("768") {
+        padding-right: 0;
+        font-size: 16px;
+      }
     }
 
     em {
       font-size: 32px;
+      @include response-to("768") {
+        font-size: 22px;
+      }
     }
   }
 }
@@ -2135,6 +2362,17 @@ div[class*=table].input-table {
     @include response-to("1160") {
       width: 150px;
     }
+    @include response-to("940") {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 100px;
+    }
+    @include response-to("500") {
+      top: 20px;
+      width: 70px;
+      min-width: 70px;
+    }
 
     img {
       width: 100%;
@@ -2150,6 +2388,9 @@ div[class*=table].input-table {
       font-weight: 600;
       font-size: 18px;
     }
+    @include response-to("940") {
+      font-size: 16px;
+    }
   }
 
   p:not(.img) {
@@ -2157,6 +2398,14 @@ div[class*=table].input-table {
     font-size: 16px;
     @include response-to("1160") {
       font-size: 14px;
+    }
+    @include response-to("940") {
+      font-size: 13px;
+
+      + div {
+        padding-top: 10px;
+        line-height: 17px;
+      }
     }
   }
 
@@ -2172,35 +2421,43 @@ div[class*=table].input-table {
     margin-top: 20px;
   }
 
-  > div > div {
-    @include response-to("1160") {
-      * {
-        display: inline-block;
-      }
-    }
-    > span {
-      display: inline;
+  > div {
+    > div {
+      margin-top:30px;
+
       @include response-to("1160") {
+        * {
+          display: inline-block;
+        }
+      }
+      @include response-to("940") {
         margin-top: 10px;
-        line-height: 16px;
       }
 
-      > span + span {
-        position: relative;
-        padding-left: 15px;
+      > span {
+        display: inline;
         @include response-to("1160") {
-          padding-left: 10px;
+          margin-top: 10px;
+          line-height: 16px;
         }
 
-        &::before {
-          position: absolute;
-          content: "/";
-          left: 4px;
+        > span + span {
+          position: relative;
+          padding-left: 15px;
           @include response-to("1160") {
+            padding-left: 10px;
+          }
+
+          &::before {
             position: absolute;
             content: "/";
-            top: -1px;
-            left: 2px;
+            left: 4px;
+            @include response-to("1160") {
+              position: absolute;
+              content: "/";
+              top: -1px;
+              left: 2px;
+            }
           }
         }
       }
@@ -2208,154 +2465,73 @@ div[class*=table].input-table {
   }
 }
 
-@include response-to("940") {
-  .order-table {
-    margin-top: 30px !important;
-
-    > table {
-      display: block;
-      height: auto;
-      text-align: left;
-
-        thead {
-          border-width: 2px;
-
-          > tr > th {
-            display: none;
-          }
-
-          display: block;
-          height: auto;
-          text-align: left;
-        }
-
-        tbody {
-          display: block;
-          height: auto;
-          text-align: left;
-
-          > tr {
-            display: block;
-            height: auto;
-            text-align: left;
-
-            > {
-              th {
-                display: block;
-                height: auto;
-                text-align: left;
+/* 주문내역 table */
+.purchaseHistory {
+  div[class*=table].order-table {
+    margin-top: 0;
+    @include response-to("940") {
+      margin-top: 20px;
+    }
+    > table{
+      > tbody {
+        > tr {
+          > td{
+            @include response-to("940") {
+              &:not(:first-child) {
+                padding: 3px 0 3px 95px;
               }
 
-              td {
-                display: block;
-                height: auto;
-                text-align: left;
-
-                &:not(:first-child) {
-                  position: relative;
-                  padding: 3px 0 3px 80px;
-                  text-align: right;
-                }
-
-                &::before {
-                  position: absolute;
-                  content: attr(data-label);
-                  left: 0;
-                  font-weight: 700;
-                  font-size: 13px;
-                }
+              .shippStates {
+                align-items: flex-start;
               }
             }
           }
         }
-
+      }
     }
   }
+}
 
-  .goods-info .img {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 100px;
+div[class*=table].address-table {
+  @include response-to("1160"){
+    margin-top: 30px;
   }
-
-  .order-table > table > tbody > tr {
-    position: relative;
-    padding: 20px 0;
-
+  @include response-to("940") {
+    thead {
+      tr {
+        th {
+          display: none;
+        }
+      }
+    }
+  }
+  @include response-to("768") {
+    table,
+    thead,
+    tbody,
+    tr,
     td {
-      margin-left: 110px;
-      padding: 10px 10px 10px 0;
-
-      br {
-        display: none;
-      }
-
-      em {
-        white-space: nowrap;
-      }
-    }
-  }
-
-  .goods-info {
-    strong {
-      font-size: 16px;
-    }
-
-    p:not(.img) {
-      font-size: 13px;
-
-      + div {
-        padding-top: 10px;
-        line-height: 17px;
-      }
-    }
-  }
-}
-
-@include response-to("768") {
-  .order-table {
-    + .total-price {
-      justify-content: space-between;
-      padding: 15px 0;
-
-      span {
-        padding-right: 0;
-        font-size: 16px;
-      }
-
-      em {
-        font-size: 22px;
-      }
-    }
-
-    tr {
-      th, td {
-        font-size: 13px !important;
-      }
-    }
-  }
-}
-
-@include response-to("500") {
-  .goods-info .img {
-    top: 20px;
-    width: 70px;
-    min-width: 70px;
-  }
-
-  .order-table {
-    > table > tbody > tr {
-      padding: 5px 0 15px;
-
-      > td {
-        margin-left: 85px;
-      }
-    }
-
-    tr td button {
       display: block;
       width: 100%;
+      text-align: left;
+      .name-box {
+        justify-content: flex-start;
+        p {
+          font-weight: 700;
+        }
+      }
+    }
+    tr {
+      position: relative;
+      padding-left: 40px;
+    }
+    td{
+      padding: 0 5px;
+      height: auto;
+      &:first-child {
+        position: absolute;
+        left: 0;
+      }
     }
   }
 }
@@ -2583,10 +2759,13 @@ div[class*=table].input-table {
 .gallery-list {
   margin-top: 50px;
   padding-top: 40px;
-
-  // padding-bottom: 100%;
   width: 100%;
   border-top: 3px solid #191919;
+  @include response-to("768") {
+    margin-top: 0;
+    padding-top: 30px;
+    border-top: none;
+  }
 
   > ul {
     display: grid;
@@ -2595,12 +2774,18 @@ div[class*=table].input-table {
     @include response-to("1280") {
       gap: 40px;
     }
+    @include response-to("768") {
+      gap: 50px 35px;
+    }
 
     > li > div {
       position: relative;
       aspect-ratio: 1/1;
       overflow: hidden;
       cursor: pointer;
+      @include response-to("768") {
+        overflow: inherit;
+      }
 
       > p > img {
         position: absolute;
@@ -2614,6 +2799,9 @@ div[class*=table].input-table {
 
       &:hover > p > img {
         transform: scale(1.15);
+        @include response-to("768") {
+          transform: scale(1);
+        }
       }
 
       span {
@@ -2623,6 +2811,12 @@ div[class*=table].input-table {
         font-weight: 700;
         font-size: 14px;
         color: #fff;
+        @include response-to("768") {
+          right: inherit;
+          bottom: -30px;
+          font-weight: 400;
+          color: #000;
+        }
       }
     }
   }
@@ -2641,6 +2835,17 @@ div[class*=table].input-table {
       max-width: 100%;
       max-height: 80%;
       transform: translate(-50%, -50%);
+      @include response-to("768") {
+        > div + div {
+          //margin: 0;
+          margin: 24px;
+          font-size: 20px;
+
+          > ul {
+            font-size: 16px;
+          }
+        }
+      }
 
       > button {
         position: absolute;
@@ -2650,6 +2855,12 @@ div[class*=table].input-table {
         width: 60px;
         height: 60px;
         background: url("@/assets/images/btn-close-w.png") no-repeat (center / 100%) auto;
+        @include response-to("768") {
+          top: -55px;
+          right: 24px;
+          width: 35px;
+          height: 35px;
+        }
       }
     }
   }
@@ -2657,10 +2868,20 @@ div[class*=table].input-table {
 
 .gallery-detail-slider, .gallery-list .inner > div + div {
   margin: 0 20%;
+  @include response-to("1160") {
+    margin: 30px 20% 0;
+  }
 }
 
 .gallery-detail-slider {
   overflow: hidden;
+  @include response-to("940") {
+    margin: 30px 12% 0;
+  }
+  @include response-to("768") {
+    position: relative;
+    margin: 0;
+  }
 
   img {
     width: 100%;
@@ -2670,6 +2891,11 @@ div[class*=table].input-table {
   .swiper-button-next, .swiper-button-prev {
     width: 30px;
     height: 60px;
+    @include response-to("768") {
+      width: 19px;
+      height: 38px;
+      background-size: 100% auto;
+    }
   }
 
   .swiper-button-next::after, .swiper-button-prev::after {
@@ -2691,94 +2917,23 @@ div[class*=table].input-table {
   font-weight: 700;
   font-size: 24px;
   color: #fff;
+  @include response-to("940") {
+    margin: 30px 12% 0;
+  }
 
   > ul {
     margin-top: 20px;
     font-family: NanumSquare, sans-serif;
     font-weight: 400;
     font-size: 18px;
+    @include response-to("940") {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 45px;
+    }
 
     li {
       display: inline-block;
       margin-right: 18px;
-    }
-  }
-}
-
-@include response-to("1160") {
-  .gallery-detail-slider, .gallery-list .inner > div + div {
-    margin: 30px 20% 0;
-  }
-}
-
-@include response-to("940") {
-  .gallery-detail-slider {
-    margin: 30px 12% 0;
-  }
-
-  .gallery-list {
-    .inner > div + div {
-      margin: 30px 12% 0;
-    }
-
-    > ul {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 45px;
-    }
-  }
-}
-
-@include response-to("768") {
-  .gallery-list {
-    margin-top: 0;
-    padding-top: 30px;
-    border-top: none;
-
-    > ul {
-      gap: 50px 35px;
-
-      > li > div {
-        overflow: inherit;
-
-        span {
-          right: inherit;
-          bottom: -30px;
-          font-weight: 400;
-          color: #000;
-        }
-
-        &:hover > p > img {
-          transform: scale(1);
-        }
-      }
-    }
-
-    .inner > div + div {
-      //margin: 0;
-      margin: 24px;
-      font-size: 20px;
-
-      > ul {
-        font-size: 16px;
-      }
-    }
-
-    .detail .inner > button {
-      top: -55px;
-      right: 24px;
-      width: 35px;
-      height: 35px;
-    }
-  }
-
-  .gallery-detail-slider {
-    position: relative;
-    margin: 0;
-
-    .swiper-button-next, .swiper-button-prev {
-      width: 19px;
-      height: 38px;
-      background-size: 100% auto;
     }
   }
 }
@@ -3317,6 +3472,9 @@ div[class*=table].input-table {
 
 .section-title {
   display: block;
+  @include response-to('768') {
+    margin-top: 15px;
+  }
 
   dt {
     font-size: 20px;
@@ -3324,6 +3482,9 @@ div[class*=table].input-table {
     font-weight: 700;
     text-align: left;
     padding: 0 20px;
+    @include response-to('768') {
+      font-size: 18px;
+    }
   }
 
   dd {
@@ -3331,6 +3492,9 @@ div[class*=table].input-table {
     display: block;
     height: 3px;
     background-color: #191919;
+    @include response-to('768') {
+      margin-top: 10px;
+    }
   }
 }
 

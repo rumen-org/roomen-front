@@ -1,9 +1,10 @@
 <template>
   <div class="w670">
-    <div class="contents-top-area v2">
+    <div class="contents-top-area mV2">
       <backButton />
+      <h2 class="ko">배송지 등록</h2>
     </div>
-    <div class="input-table">
+    <div class="input-table v2">
       <table>
         <caption>
           배송지명, 수령인, 주소, 휴대전화 항목으로 구성된 배송지 등록표
