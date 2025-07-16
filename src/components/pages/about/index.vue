@@ -26,7 +26,9 @@
 <script setup lang="ts">
 // import { debounce } from 'lodash'
 // import { onMounted, onUnmounted, ref } from 'vue'
-// const responseHeight = ref<number>(0)
+import { ref } from 'vue'
+
+const responseHeight = ref<number>(0)
 // const heightGetter = debounce(() => {
 //   responseHeight.value = window.innerHeight
 // }, 500)
