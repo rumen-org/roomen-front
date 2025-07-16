@@ -6,18 +6,19 @@
           선택, 배송지명, 수령인, 주소, 휴대전화 항목으로 구성된 배송지관리 목록표
         </caption>
         <colgroup>
-          <col style="width: 50px" />
-          <col style="width: 200px" span="2" class="mw100" />
-          <col style="width: 270px" />
-          <col style="width: 200px" class="mw100" />
+          <col style="width: 10%" />
+          <col style="width: 15%" />
+          <col style="width: 15%" />
+          <col style="width: 15%" />
+          <col style="width: 45%" />
         </colgroup>
         <thead>
           <tr>
             <th scope="col"></th>
             <th scope="col">배송지명</th>
             <th scope="col">수령인</th>
-            <th scope="col">주소</th>
             <th scope="col">휴대전화</th>
+            <th scope="col">주소</th>
           </tr>
         </thead>
         <tbody>
@@ -41,7 +42,6 @@
                 </div>
               </td>
               <td>{{ item.receiver }}</td>
-              <td>{{ item.address }}</td>
               <td class="pos-relative">
                 {{ item.phone }}
                 <div :class="{ w25per: btnState }" class="w0 toggle-btn">
@@ -50,14 +50,15 @@
                   </button>
                 </div>
               </td>
+              <td>{{ item.address }}</td>
             </tr>
           </template>
           <template v-if="!shipAddressList || shipAddressList.length === 0">
-            <td colspan="5">
-              <div class="empty-center">
-                <strong>등록 된 주소가 없습니다.</strong>
-              </div>
-            </td>
+            <tr>
+              <td colspan="5" class="empty-center">
+                등록 된 주소가 없습니다.
+              </td>
+            </tr>
           </template>
         </tbody>
       </table>
@@ -84,16 +85,21 @@
     </div>
     <!--// all-btn-area -->
     <!-- bottomArea -->
-    <div class="contents-bottom-area">
+    <div class="contents-bottom-area flex">
+      <div></div>
       <!-- paging -->
-
+      <div class="paging">
+        <a href="" class="btn-prev disabled">이전 페이지</a>
+        <strong>1</strong>
+        <a href="" class="btn-next disabled">다음 페이지</a>
+      </div>
       <!--// paging -->
       <!-- btn-area -->
       <div class="btn-area col-type">
-        <button type="button" class="btn block-btn s-large w230 bg-white" @click="setDefault">
+        <button type="button" class="btn block-btn bg-white" @click="setDefault">
           기본배송지 설정
         </button>
-        <button type="button" class="btn block-btn s-large w230" @click="goWrite">
+        <button type="button" class="btn block-btn" @click="goWrite">
           배송지 등록
         </button>
       </div>
@@ -122,6 +128,7 @@ import { storeToRefs } from 'pinia'
 import Alert from '@/components/notifications/alert.vue'
 // Composables
 import { useAlert } from '@/composables/useAlert'
+import Pagination from '@components/board/pagination.vue'
 const { showAlert } = useAlert()
 
 const goWrite = () => {
@@ -193,11 +200,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.empty-center {
-  text-align: center;
-  padding: 40px 30px;
-  font-size: 22px;
-}
 .name-box {
   display: flex;
   gap: 12px;

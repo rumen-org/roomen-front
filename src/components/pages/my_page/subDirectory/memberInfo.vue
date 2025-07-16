@@ -107,8 +107,8 @@
         </tr>
       </tbody>
     </table>
-    <div class="table-btn txt-r">
-      <button type="button" class="txt-btn" @click="checkRemove">회원탈퇴</button>
+    <div class="mt-30 txt-r">
+      <button type="button" class="txt-btn memCancel" @click="checkRemove">회원탈퇴</button>
     </div>
   </div>
   <Alert />

@@ -46,11 +46,11 @@ export const purchaseHistory: TableData = {
   class: '',
   colGroups: {
     col: [
-      { style: '600px', className: 'mw300' },
-      { style: '200px', className: 'mw100' },
-      { style: '270px', className: '' },
-      { style: '200px', className: 'mw100' },
-      { style: '270px', className: 'mw150' }
+      { style: '45%', className: 'mw300' },
+      { style: '15%', className: 'mw100' },
+      { style: '20%', className: '' },
+      { style: '15%', className: 'mw100' },
+      { style: '15%', className: 'mw150' }
     ]
   },
   tHead: [

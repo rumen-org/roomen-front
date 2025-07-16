@@ -2,7 +2,7 @@
   <div id="container" class="noti-detail">
     <div class="contents">
       <!-- contents-top-area -->
-      <div class="contents-top-area">
+      <div class="contents-top-area mV2">
         <div class="btn-area">
           <backButton />
         </div>

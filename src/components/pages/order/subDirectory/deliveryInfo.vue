@@ -6,7 +6,7 @@
   <!-- conTable -->
   <div class="con-table topLine">
     <!-- input-table -->
-    <div class="input-table">
+    <div class="input-table v2">
       <table>
         <caption>
           배송지 설정, 수령인, 주소, 휴대전화, 이메일, 배송 메세지 항목으로 구성된 배송정보 상세 표
