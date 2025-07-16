@@ -2,7 +2,7 @@
   <!-- 실시간 계좌이체 -->
   <div>
     <!-- input-table -->
-    <div class="input-table">
+    <div class="input-table v2">
       <table>
         <caption>
           예금주명 항목으로 구성된 실시간 계좌이체 정보입력 표

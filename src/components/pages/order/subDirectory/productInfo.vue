@@ -6,10 +6,10 @@
         상품정보, 옵션, 주문수량, 합계 항목으로 구성된 주문서 상세표
       </caption>
       <colgroup>
-        <col style="width: 560px" class="mw300" />
-        <col style="width: 380px" class="mw100" />
-        <col style="width: 260px" class="mw100" />
-        <col style="width: 300px" class="mw150" />
+        <col style="width: 40%" class="mw300" />
+        <col style="width: 20%" class="mw100" />
+        <col style="width: 20%" class="mw100" />
+        <col style="width: 20%" class="mw150" />
       </colgroup>
       <thead>
         <tr>
@@ -32,18 +32,18 @@
               </div>
             </div>
           </td>
-          <td data-label="옵션">
+          <td data-label="옵션 :">
             <div class="option txt-l">
               <span v-for="(option, idx2) in item.options.split('/')" :key="idx2"
                 >{{ option }} <em v-if="idx2 < item.options.split('/').length - 1"> / </em></span
               >
             </div>
           </td>
-          <td data-label="주문수량" class="font16">
+          <td data-label="주문수량 :" class="font16">
             <em>{{ item.quantity }}</em
             >개
           </td>
-          <td data-label="합계">
+          <td>
             <em class="font24">₩ {{ formatPrice(item.totalPrice * item.quantity) }}</em>
           </td>
         </tr>

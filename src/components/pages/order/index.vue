@@ -1,6 +1,13 @@
 <template>
   <div id="container">
     <div class="contents">
+      <!-- contents-top-area -->
+      <div class="contents-top-area mV2">
+        <BackButton />
+        <h2 class="ko">주문서</h2>
+        <!-- <em>{{ t('messages.text1') }}</em>-->
+      </div>
+      <!--// contents-top-area -->
       <Products @update="sendItem" />
       <Delivery :call-info="payState" />
       <Payments />
@@ -19,6 +26,7 @@ import Accept from '@/components/pages/order/subDirectory/buttonArea.vue'
 // Models
 import type { Items } from '@/models/interfaces/Order'
 import type { PayState } from '@/models/type/typeList'
+import BackButton from '@components/button/backButton.vue'
 
 const itemValue = ref<Items | null>(null)
 const payState = ref<PayState>('waiting')

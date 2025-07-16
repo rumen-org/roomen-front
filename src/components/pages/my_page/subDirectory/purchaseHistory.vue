@@ -2,36 +2,36 @@
   <div class="order-table">
     <InitTable :tbl-data="tables">
       <template #tableBody>
-        <!--        <tr v-for="(item, idx) in filteredResults" :key="idx">-->
-        <!--          <td>-->
-        <!--            <a href="" class="goods-info">-->
-        <!--              <p class="img"><img src="@/assets/images/img-product-3.jpg" alt="" /></p>-->
-        <!--              <div>-->
-        <!--                <strong>{{ item.title }}</strong>-->
-        <!--                <p>{{ item.option-areale }}</p>-->
-        <!--                <div>-->
-        <!--                  [ 옵션 :-->
-        <!--                  <span v-for="(option, index) in item.options.split(' / ')" :key="index">-->
-        <!--                    {{ option.trim() }}-->
-        <!--                    <br v-if="index < item.options.split(' / ').length - 1" />-->
-        <!--                  </span>-->
-        <!--                  ]-->
-        <!--                </div>-->
-        <!--              </div>-->
-        <!--            </a>-->
-        <!--          </td>-->
-        <!--          <td data-label="주문일자">2024.03.19</td>-->
-        <!--          <td data-label="주문번호">2024031900001</td>-->
-        <!--          <td data-label="주문금액(수량)"><em>₩ 1,400,000</em> <br /><em>(1개)</em></td>-->
-        <!--          <td data-label="주문상태">-->
-        <!--            <div class="shippStates">-->
-        <!--              배송중<button type="button" class="btn w90 bg-white ">배송조회</button>-->
-        <!--            </div>-->
-        <!--          </td>-->
-        <!--        </tr>-->
+                <!--<tr v-for="(item, idx) in filteredResults" :key="idx">
+                  <td>
+                    <a href="" class="goods-info">
+                      <p class="img"><img src="@/assets/images/img-product-3.jpg" alt="" /></p>
+                      <div>
+                        <strong>{{ item.title }}</strong>
+                        <p>{{ item.option-areale }}</p>
+                        <div class="option">
+                          [ 옵션 :
+                          <span v-for="(option, index) in item.options.split(' / ')" :key="index">
+                            {{ option.trim() }}
+                            <em v-if="index < item.options.split(' / ').length - 1">/</em>
+                          </span>
+                          ]
+                        </div>
+                      </div>
+                    </a>
+                  </td>
+                  <td data-label="주문일자">2024.03.19</td>
+                  <td data-label="주문번호">2024031900001</td>
+                  <td data-label="주문금액(수량)"><em>₩ 1,400,000</em> <br /><em>(1개)</em></td>
+                  <td data-label="주문상태">
+                    <div class="shippStates">
+                      배송중<button type="button" class="btn w90 bg-white s-medium">배송조회</button>
+                    </div>
+                  </td>
+                </tr>-->
 
         <tr v-if="filteredResults.length > 0">
-          <td colspan="5" class="text-center">검색 결과가 없습니다.</td>
+          <td colspan="5" class="empty-center">검색 결과가 없습니다.</td>
         </tr>
       </template>
     </InitTable>
