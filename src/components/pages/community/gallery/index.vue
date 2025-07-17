@@ -80,9 +80,9 @@
     </div>
     <div class="btn-area txt-c mt-50">
       <p v-if="notMore">더 보여질 게시물이 없습니다.</p>
-<!--      <button class="btn bg-white s-medium w90 mt-30" :disabled="notMore" @click="moreBtn">-->
-<!--        더 보기-->
-<!--      </button>-->
+      <!--      <button class="btn bg-white s-medium w90 mt-30" :disabled="notMore" @click="moreBtn">-->
+      <!--        더 보기-->
+      <!--      </button>-->
     </div>
   </div>
 </template>
@@ -143,9 +143,9 @@ const notMore = computed<boolean>(() => {
   return lists.value.length <= itemQuantity.value
 })
 const itemQuantity = ref<number>(6)
-const moreBtn = () => {
-  itemQuantity.value = itemQuantity.value + 6
-}
+// const moreBtn = () => {
+//   itemQuantity.value = itemQuantity.value + 6
+// }
 onMounted(() => {
   fetchList()
 })

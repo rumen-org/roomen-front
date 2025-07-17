@@ -55,9 +55,7 @@
           </template>
           <template v-if="!shipAddressList || shipAddressList.length === 0">
             <tr>
-              <td colspan="5" class="empty-center">
-                등록 된 주소가 없습니다.
-              </td>
+              <td colspan="5" class="empty-center">등록 된 주소가 없습니다.</td>
             </tr>
           </template>
         </tbody>
@@ -99,9 +97,7 @@
         <button type="button" class="btn block-btn bg-white" @click="setDefault">
           기본배송지 설정
         </button>
-        <button type="button" class="btn block-btn" @click="goWrite">
-          배송지 등록
-        </button>
+        <button type="button" class="btn block-btn" @click="goWrite">배송지 등록</button>
       </div>
       <Alert />
       <!--// btn-area -->
@@ -128,7 +124,6 @@ import { storeToRefs } from 'pinia'
 import Alert from '@/components/notifications/alert.vue'
 // Composables
 import { useAlert } from '@/composables/useAlert'
-import Pagination from '@components/board/pagination.vue'
 const { showAlert } = useAlert()
 
 const goWrite = () => {

@@ -94,7 +94,7 @@ const { showAlert } = useAlert()
 // vue 요소
 import { computed, onMounted, ref } from 'vue'
 
-interface CartItem {
+export interface CartItem {
   id: number
   itemId: number
   memberId: number

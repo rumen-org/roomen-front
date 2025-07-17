@@ -1,10 +1,7 @@
 <template>
   <div id="container">
     <div class="inner">
-      <div
-        class="about-visual"
-        :style="{ height: responseHeight === 0 ? '100%' : responseHeight + 'px' }"
-      >
+      <div class="about-visual">
         <!--        <img src="@/assets/images/img-about-visual.png" alt="루멘_배경이미지">-->
         <div>
           <p class="ani-one"><img class="logo-img" src="@/assets/images/logo.png" alt="" /></p>
