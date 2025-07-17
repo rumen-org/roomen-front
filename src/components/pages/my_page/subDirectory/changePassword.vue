@@ -50,10 +50,10 @@
     <!--// input-table -->
 
     <!-- bottom-btn -->
-    <div class="bottom-btn txt-c">
+    <div class="bottom-btn">
       <button
         type="button"
-        class="btn block-btn s w230"
+        class="btn"
         :disabled="!equalNewPasswords || !allFieldsFilled"
         @click="submitPasswordData"
       >

@@ -113,8 +113,8 @@
   </div>
   <Alert />
   <Confirm />
-  <div class="bottom-btn txt-c">
-    <button type="button" class="btn s-large w230" @click="submitUpdate">회원정보 수정</button>
+  <div class="bottom-btn">
+    <button type="button" class="btn" @click="submitUpdate">회원정보 수정</button>
   </div>
 </template>
 <script lang="ts" setup>

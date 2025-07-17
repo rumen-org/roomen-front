@@ -29,9 +29,7 @@
                 ></strong>
                 <p class="option-area font-g">{{ item.subTitle }}</p>
                 <p class="price">
-                  <span class="font-g"
-                    >₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span
-                  >
+                  <span class="font-g">₩ {{ formatPrice(getOriginPrice(item.price, item.discountPer)) }}원</span>
                   <del class="font-g">₩ {{ formatPrice(item.price) }}원</del>
                 </p>
               </div>
@@ -49,6 +47,9 @@
           @change-page="changePage"
         />
         <!--// paging -->
+        <div class="btn-area center mBlock">
+          <button type="button" class="btn-more font-g" @click="removeCartItem(item.id)">MORE</button>
+        </div>
       </div>
       <!--// contents-bottom-area -->
     </div>
