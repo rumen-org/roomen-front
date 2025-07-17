@@ -47,7 +47,7 @@
           @change-page="changePage"
         />
         <!--// paging -->
-        <div class="btn-area center">
+        <div class="btn-area center mBlock">
           <button type="button" class="btn-more font-g" @click="removeCartItem(item.id)">MORE</button>
         </div>
       </div>
