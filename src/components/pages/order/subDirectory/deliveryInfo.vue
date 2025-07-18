@@ -33,9 +33,8 @@
                 >
                   배송지 변경
                 </button>
-                <button></button>
                 <!-- 배송지변경 팝업 -->
-                <ChangeAddressPopup v-model:isOpen="isOpen">
+                <ChangeAddressPopup v-model:isOpen="isOpen" :class="{ 'on': isOpen }">
                   <template #type2Layer>
                     <PopupContents v-model:isOpen="isOpen" @contents="handleContents" />
                   </template>
@@ -81,12 +80,13 @@
                     검색
                   </button>
                 </div>
-                <input v-model="toggleAddress.getRoadAddress" type="text" title="주소" />
+                <input v-model="toggleAddress.getRoadAddress" type="text" title="주소" placeholder="주소"/>
                 <input
                   v-model="toggleAddress.getDetailAdress"
                   maxlength="20"
                   type="text"
                   title="상세주소"
+                  placeholder="상세주소를 입력하세요."
                 />
               </div>
             </td>

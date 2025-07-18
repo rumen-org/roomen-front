@@ -9,8 +9,8 @@
           <col style="width: 10%" />
           <col style="width: 15%" />
           <col style="width: 15%" />
-          <col style="width: 15%" />
-          <col style="width: 45%" />
+          <col style="width: 20%" />
+          <col style="width: 40%" />
         </colgroup>
         <thead>
           <tr>
@@ -42,12 +42,14 @@
                 </div>
               </td>
               <td>{{ item.receiver }}</td>
-              <td class="pos-relative">
-                {{ item.phone }}
-                <div :class="{ w25per: btnState }" class="w0 toggle-btn">
-                  <button type="button" class="btn s-large d-block" @click="fetchDefault(item.id)">
-                    <span> 선택 </span>
-                  </button>
+              <td>
+                <div class="pos-relative">
+                  {{ item.phone }}
+                  <div :class="{ w30per: btnState }" class="w0 toggle-btn">
+                    <button type="button" class="btn s-large d-block" @click="fetchDefault(item.id)">
+                      <span> 선택 </span>
+                    </button>
+                  </div>
                 </div>
               </td>
               <td>{{ item.address }}</td>
@@ -211,15 +213,8 @@ onMounted(() => {
   display: block;
   width: 100%;
 }
-.pos-relative {
-  position: relative;
-}
 .w0 {
   width: 0;
-  transition: width 0.2s ease;
-}
-.w25per {
-  width: 25%;
   transition: width 0.2s ease;
 }
 .col-type {
@@ -231,11 +226,5 @@ onMounted(() => {
   white-space: nowrap;
   padding-left: 5px;
   padding-right: 5px;
-}
-.toggle-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 </style>
