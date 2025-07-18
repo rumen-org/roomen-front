@@ -2,7 +2,7 @@
   <div id="container">
     <div class="contents">
       <!-- contents-top-area -->
-      <div class="contents-top-area v2">
+      <div class="contents-top-area mV2">
         <div class="btn-area">
           <backButton />
         </div>
@@ -27,7 +27,7 @@
                 <th scope="row" class="m-none">문의유형</th>
                 <td colspan="3">
                   <!-- checkbox-wrap -->
-                  <div class="checkbox-wrap select-cate">
+                  <div class="checkbox-wrap select-cate mt-10">
                     <span v-for="(item, idx) in computeTypes" :key="idx" class="checkbox">
                       <input
                         :id="`${item.name}+${idx}`"

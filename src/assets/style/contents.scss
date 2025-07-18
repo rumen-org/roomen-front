@@ -74,6 +74,12 @@
 .mt-30 {
   margin-top: 30px;
 }
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
 
 .w100per {
   > li > * {
@@ -1294,6 +1300,9 @@ div[class*='table'] {
 
 /* qna 등록 */
 div[class*='table'].input-table.qna {
+  @include response-to("768") {
+    margin-top: 0;
+  }
   tr {
     th, td {
       padding-top: 30px;
@@ -1306,6 +1315,16 @@ div[class*='table'].input-table.qna {
 
           span {
             margin: 10px;
+          }
+        }
+      }
+
+      .select-cate {
+        @include response-to("768") {
+          margin-top: -20px;
+
+          .checkbox input[type="radio"] + label {
+            padding-left: 0;
           }
         }
       }
@@ -1347,12 +1366,20 @@ div[class*='table'].input-table.qna {
     background: #E6E6E6 url("@/assets/images/ico-add-img.png") no-repeat (center / auto);
     text-indent: -9999px;
     cursor: pointer;
+    @include response-to("940") {
+      width:70px;
+      height:70px !important;
+    }
   }
 
   .preview ul li {
     position: relative;
     width: 80px;
     height: 80px;
+    @include response-to("940") {
+      width: 70px;
+      height: 70px;
+    }
 
     img {
       width: 100%;
@@ -1409,6 +1436,10 @@ div[class*=table].input-table {
       @include response-to("768") {
         padding:0;
         height: auto;
+
+        .layerPopup {
+          margin-top: 20px;
+        }
       }
       input:not([type="checkbox"], [type="radio"]) {
         padding: 16px 20px;
@@ -1455,6 +1486,11 @@ div[class*=table].input-table {
         border: 1px solid #191919;
         font-size: 16px;
         color: rgb(25 25 25 / 70%);
+        @include response-to("768") {
+          padding: 8px 15px;
+          height: 150px;
+          font-size: 14px;
+        }
       }
     }
   }
@@ -1772,7 +1808,7 @@ div[class*=table].input-table {
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index: 110;
+    z-index: 9999;
     padding: 60px;
     width: 100%;
     max-height: 90%;
@@ -1805,7 +1841,7 @@ div[class*=table].input-table {
 
     ul li {
       position: relative;
-      padding: 10px 0 90px;
+      padding: 30px 0 90px;
       border-bottom: 1px solid #191919;
 
       + li {
@@ -1813,16 +1849,16 @@ div[class*=table].input-table {
       }
 
       div {
+        padding-bottom: 15px;
+        @include response-to("768") {
+          padding-bottom: 5px;
+        }
+
         strong {
           display: block;
           @include response-to("768") {
             font-size: 16px;
           }
-        }
-
-        padding-bottom: 15px;
-        @include response-to("768") {
-          padding-bottom: 5px;
         }
       }
 
@@ -1850,7 +1886,7 @@ div[class*=table].input-table {
     position: fixed;
     content: "";
     inset: 0;
-    z-index: 110;
+    z-index: 9999;
     background: rgb(0 0 0 / 50%);
   }
 
@@ -1872,6 +1908,7 @@ div[class*=table].input-table {
   .scroll-area {
     height: 500px;
     overflow-y: auto;
+    border-top: 3px solid #191919;
     @include response-to("600") {
       height: 80% !important;
     }
@@ -2542,6 +2579,38 @@ div[class*=table].address-table {
   }
 }
 
+.shipAddress {
+  .pos-relative {
+    position: relative;
+    display: inline-block;
+    padding-right: 70px;
+    @include response-to("1160") {
+      padding-right: 50px;
+    }
+
+    .w30per {
+      width: 30%;
+      transition: width 0.2s ease;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      button {
+        height: 33px;
+        font-size: 16px;
+        @include response-to("1160") {
+          height: 25px;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
 /* cart */
 .empty-cart {
   display: flex;
@@ -3142,6 +3211,7 @@ div[class*=table].address-table {
           background: #F8F8F8;
           aspect-ratio: 1/1;
           overflow: hidden;
+          cursor: pointer;
           @include response-to('768') {
             max-width: 60px;
           }
@@ -3577,6 +3647,7 @@ button.btn-del {
         border-radius: 50%;
         background-image: none;
         background-size: auto auto;
+        cursor: pointer;
       }
 
       &.curr {
